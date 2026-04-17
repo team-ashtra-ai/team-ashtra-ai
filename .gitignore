@@ -1,0 +1,28 @@
+# Ignore vscode AI rules
+.github/instructions/codacy.instructions.md
+.github/*.chatmode.md
+.github/instructions/
+
+# Local virtualenv / caches that may still exist on dev machines
+.venv/
+__pycache__/
+*.pyc
+.codacy/
+.codex
+.codex/
+.vscode/
+.sixth/
+
+# Next.js app outputs
+apps/web/node_modules
+apps/web/.next
+
+# Local SaaS storage
+storage/optimise-ai
+portfolio-sites/
+
+# Local env files
+.env
+.env.local
+apps/web/.env
+apps/web/.env.local

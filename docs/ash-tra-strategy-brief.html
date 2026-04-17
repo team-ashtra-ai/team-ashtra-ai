@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ash-tra Strategic Design Brief</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --paper: #f6f0e8;
+        --paper-strong: #fffaf5;
+        --panel: rgba(255, 251, 246, 0.92);
+        --line: rgba(26, 37, 52, 0.12);
+        --line-strong: rgba(26, 37, 52, 0.2);
+        --ink: #122033;
+        --ink-soft: #4f5c6d;
+        --ink-faint: #738091;
+        --accent: #c76034;
+        --accent-soft: rgba(199, 96, 52, 0.12);
+        --cyan: #0f6f77;
+        --gold: #9b6d2d;
+        --navy: #162435;
+        --shadow: 0 30px 80px rgba(18, 32, 51, 0.08);
+        --radius-xl: 30px;
+        --radius-lg: 22px;
+        --radius-md: 16px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Sora", "Avenir Next", "Segoe UI", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(199, 96, 52, 0.08), transparent 26%),
+          radial-gradient(circle at top right, rgba(15, 111, 119, 0.08), transparent 24%),
+          linear-gradient(180deg, #fcf8f3 0%, var(--paper) 100%);
+      }
+
+      main {
+        width: min(1400px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 28px 0 72px;
+      }
+
+      .cover {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 36px;
+        background:
+          linear-gradient(145deg, rgba(255, 250, 245, 0.98), rgba(247, 239, 231, 0.94)),
+          var(--paper-strong);
+        box-shadow: var(--shadow);
+        padding: 32px;
+      }
+
+      .cover::before {
+        content: "";
+        position: absolute;
+        inset: auto -80px -120px auto;
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(15, 111, 119, 0.14), transparent 68%);
+        pointer-events: none;
+      }
+
+      .cover::after {
+        content: "";
+        position: absolute;
+        inset: -90px auto auto -60px;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(199, 96, 52, 0.14), transparent 68%);
+        pointer-events: none;
+      }
+
+      .cover-top {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: start;
+      }
+
+      .eyebrow {
+        margin: 0;
+        font-size: 0.82rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--accent);
+      }
+
+      h1, h2, h3, h4 {
+        font-family: "Fraunces", "Iowan Old Style", "Palatino Linotype", serif;
+        letter-spacing: -0.04em;
+      }
+
+      h1 {
+        margin: 14px 0 16px;
+        max-width: 900px;
+        font-size: clamp(2.6rem, 6vw, 5rem);
+        line-height: 0.92;
+      }
+
+      .subtitle {
+        max-width: 920px;
+        margin: 0;
+        font-size: 1.14rem;
+        line-height: 1.65;
+        color: var(--ink-soft);
+      }
+
+      .note {
+        margin-top: 22px;
+        padding: 16px 18px;
+        border-radius: var(--radius-md);
+        border: 1px solid rgba(15, 111, 119, 0.18);
+        background: rgba(15, 111, 119, 0.08);
+        color: var(--navy);
+        line-height: 1.6;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: end;
+      }
+
+      .action-btn {
+        appearance: none;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        padding: 12px 18px;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .action-btn.primary {
+        color: white;
+        background: linear-gradient(135deg, #dc7348, var(--accent));
+        box-shadow: 0 14px 30px rgba(199, 96, 52, 0.22);
+      }
+
+      .action-btn.secondary {
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.72);
+        border-color: var(--line);
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 28px;
+      }
+
+      .hero-stat,
+      .card,
+      .persona,
+      .timeline-card,
+      .appendix,
+      .qa-group,
+      .callout {
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-stat {
+        padding: 18px;
+      }
+
+      .hero-stat-label {
+        margin: 0;
+        font-size: 0.76rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--ink-faint);
+      }
+
+      .hero-stat-value {
+        margin: 10px 0 0;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: var(--ink);
+      }
+
+      .section {
+        margin-top: 22px;
+      }
+
+      .section-head {
+        margin-bottom: 16px;
+      }
+
+      .section-head h2 {
+        margin: 8px 0 8px;
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        line-height: 0.98;
+      }
+
+      .section-body {
+        max-width: 850px;
+        margin: 0;
+        color: var(--ink-soft);
+        line-height: 1.7;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 18px;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .card {
+        padding: 22px;
+      }
+
+      .card h3,
+      .persona h3,
+      .timeline-card h3 {
+        margin: 0 0 10px;
+        font-size: 1.5rem;
+      }
+
+      .card p,
+      .persona p,
+      .timeline-card p,
+      .appendix p {
+        margin: 0;
+        color: var(--ink-soft);
+        line-height: 1.7;
+      }
+
+      .kv-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .kv-card {
+        padding: 18px;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.7);
+      }
+
+      .kv-label {
+        margin: 0 0 8px;
+        font-size: 0.78rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ink-faint);
+      }
+
+      .kv-value {
+        margin: 0;
+        line-height: 1.58;
+      }
+
+      .bullet-list {
+        margin: 12px 0 0;
+        padding-left: 18px;
+      }
+
+      .bullet-list li {
+        margin: 0 0 8px;
+        line-height: 1.55;
+        color: var(--ink-soft);
+      }
+
+      .persona {
+        padding: 22px;
+      }
+
+      .mini-label {
+        margin: 18px 0 8px;
+        font-size: 0.78rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--cyan);
+      }
+
+      .message-stack > div {
+        padding: 18px;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.66);
+      }
+
+      .message-stack {
+        display: grid;
+        gap: 14px;
+      }
+
+      .quote {
+        font-size: 1.35rem;
+        line-height: 1.55;
+        color: var(--navy);
+      }
+
+      .intent-map {
+        display: grid;
+        gap: 12px;
+      }
+
+      .intent-row {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 14px;
+        padding: 16px;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.68);
+      }
+
+      .intent-row strong {
+        color: var(--navy);
+      }
+
+      .callout {
+        padding: 24px;
+        background: linear-gradient(140deg, rgba(22, 36, 53, 0.98), rgba(20, 45, 61, 0.96));
+        color: white;
+      }
+
+      .callout h3,
+      .callout p,
+      .callout li {
+        color: white;
+      }
+
+      .timeline {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .timeline-card {
+        padding: 20px;
+      }
+
+      .appendix {
+        margin-top: 22px;
+        padding: 22px;
+      }
+
+      .qa-group {
+        margin-top: 16px;
+        padding: 20px;
+        break-inside: avoid;
+      }
+
+      .qa-group h3 {
+        margin: 0 0 12px;
+        font-size: 1.45rem;
+      }
+
+      .qa-table {
+        display: grid;
+        gap: 10px;
+      }
+
+      .qa-row {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 14px;
+        padding: 14px;
+        border-radius: var(--radius-md);
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(26, 37, 52, 0.08);
+      }
+
+      .qa-q {
+        font-weight: 700;
+        line-height: 1.5;
+      }
+
+      .qa-a {
+        color: var(--ink-soft);
+        line-height: 1.65;
+      }
+
+      .footer-note {
+        margin-top: 20px;
+        color: var(--ink-faint);
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 1120px) {
+        .grid-2,
+        .grid-3,
+        .grid-4,
+        .hero-stats,
+        .timeline,
+        .kv-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .cover-top {
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 760px) {
+        main {
+          width: min(100% - 20px, 1400px);
+          padding-top: 14px;
+        }
+
+        .cover,
+        .card,
+        .persona,
+        .timeline-card,
+        .appendix,
+        .qa-group {
+          padding: 18px;
+        }
+
+        .grid-2,
+        .grid-3,
+        .grid-4,
+        .hero-stats,
+        .timeline,
+        .kv-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .intent-row,
+        .qa-row {
+          grid-template-columns: 1fr;
+        }
+
+        h1 {
+          font-size: 2.6rem;
+        }
+      }
+
+      @media print {
+        body {
+          background: white;
+        }
+
+        main {
+          width: 100%;
+          padding: 0;
+        }
+
+        .cover,
+        .hero-stat,
+        .card,
+        .persona,
+        .timeline-card,
+        .appendix,
+        .qa-group,
+        .callout,
+        .kv-card,
+        .intent-row,
+        .message-stack > div,
+        .qa-row {
+          box-shadow: none;
+          background: white;
+        }
+
+        .action-btn {
+          display: none;
+        }
+
+        .cover,
+        .section,
+        .appendix {
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="cover">
+        <div class="cover-top">
+          <div>
+            <p class="eyebrow">Strategic Design Brief</p>
+            <h1>ash-tra Strategic Design Brief</h1>
+            <p class="subtitle">Public positioning, offer definition, website direction, and client-experience strategy for a design-led website transformation company.</p>
+          </div>
+          <div class="actions">
+            <button class="action-btn primary" type="button" onclick="window.print()">Print / Save as PDF</button>
+            <a class="action-btn secondary" href="#appendix">Jump to Consultation Answers</a>
+          </div>
+        </div>
+        <div class="note">
+          <strong>Working note:</strong> This brief is based on the latest ash-tra discovery direction. It should guide public messaging, page hierarchy, design decisions, and client-portal continuity across the product.
+          <br />
+          <strong>Generated:</strong> April 16, 2026 at 7:08 PM
+          <br />
+          <strong>Update path:</strong> edit <code>apps/web/scripts/ash-tra-strategy-brief.data.mjs</code> and rerun <code>npm run brief:ash-tra</code>.
+        </div>
+        <div class="hero-stats">
+          
+                <article class="hero-stat">
+                  <p class="hero-stat-label">Core Offer</p>
+                  <p class="hero-stat-value">Premium websites and client portals</p>
+                </article>
+              
+                <article class="hero-stat">
+                  <p class="hero-stat-label">Primary Audience</p>
+                  <p class="hero-stat-value">Serious service businesses</p>
+                </article>
+              
+                <article class="hero-stat">
+                  <p class="hero-stat-label">Commercial Goal</p>
+                  <p class="hero-stat-value">Stronger trust, better-fit leads, smoother delivery</p>
+                </article>
+              
+                <article class="hero-stat">
+                  <p class="hero-stat-label">Strategic Angle</p>
+                  <p class="hero-stat-value">Design, SEO, accessibility, and client journey together</p>
+                </article>
+              
+        </div>
+      </section>
+
+      <section class="section">
+        
+    <div class="section-head">
+      <p class="eyebrow">Executive Summary</p>
+      <h2>What ash-tra is really selling</h2>
+      
+    </div>
+  
+        <div class="grid-2">
+          <article class="card">
+            <h3>Business pitch</h3>
+            <p style="margin-top:12px;">ash-tra is a premium, design-led website transformation company for serious service businesses. It redesigns websites and client portals so the business becomes easier to understand, easier to trust, easier to find, and easier to buy from.</p><p style="margin-top:12px;">The offer is not a cosmetic refresh. ash-tra improves messaging, page structure, design language, SEO foundations, accessibility, multilingual readiness, conversion flow, and the client-facing experience after the sale.</p><p style="margin-top:12px;">The strongest public message is simple: ash-tra helps businesses whose real quality is stronger than their current website. The work closes that gap by making the digital presence feel more modern, more premium, more usable, and more commercially effective.</p>
+          </article>
+          <aside class="callout">
+            <h3>Design-team translation</h3>
+            <p>
+              The visual system should communicate strategic intelligence, premium trust, and organized delivery.
+              This is not a playful startup brand and not a cold enterprise portal. It should feel like a
+              boutique operator with product-level rigor.
+            </p>
+            <ul class="bullet-list"><li>Lead with clarity, not abstraction.</li><li>Use editorial hierarchy to make the promise legible fast.</li><li>Make the dashboard feel like the inside of the same premium product.</li><li>Let proof and process do as much work as aesthetics.</li></ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        
+    <div class="section-head">
+      <p class="eyebrow">Brief Summary</p>
+      <h2>AI-drafted client brief summary</h2>
+      
+    </div>
+  
+        <div class="kv-grid">
+        <div class="kv-card">
+          <p class="kv-label">Business</p>
+          <p class="kv-value">Design-led website transformation company for premium service businesses.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Main offer</p>
+          <p class="kv-value">Premium websites and client portals that improve clarity, trust, SEO, accessibility, multilingual usability, and the client journey.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Target audience</p>
+          <p class="kv-value">Founder-led consultancies, boutique agencies, expert-led firms, specialist professional services, and other high-trust service operators.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Main business goal</p>
+          <p class="kv-value">Help serious service businesses step into a more advanced class of digital presence.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Main website goal</p>
+          <p class="kv-value">Make the offer understandable in seconds and guide visitors toward a clear next step.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Primary call to action</p>
+          <p class="kv-value">Start a Project.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Brand personality</p>
+          <p class="kv-value">Premium, calm, exact, design-literate, technically credible, commercially aware.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Preferred visual direction</p>
+          <p class="kv-value">Modern, elegant, structured, premium, and clearly judged without trend-chasing or startup clichés.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Tone of voice</p>
+          <p class="kv-value">Clear before clever. Buyer-readable. Calm, mature, and commercially useful.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Must-have pages/features</p>
+          <p class="kv-value">Home, Services, How It Works, Examples, Client Login, Start a Project, client portal, preview and feedback flow.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Nice-to-have pages/features</p>
+          <p class="kv-value">Industry landing pages, comparison pages, resource library, accessibility notes, multilingual showcases.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Required integrations</p>
+          <p class="kv-value">Project intake, preview feedback, payment, booking, file sharing, analytics, CRM readiness.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">SEO/content priorities</p>
+          <p class="kv-value">Clear service pages, page hierarchy, schema, metadata, accessibility, multilingual usability, and stronger search foundations.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Operational needs</p>
+          <p class="kv-value">Organized client portal, visible project state, structured handoff, and practical support for hosting, domains, and integrations.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Success metrics</p>
+          <p class="kv-value">Qualified project starts, better-fit leads, stronger trust cues, quote acceptance, payment conversion, delivery satisfaction.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Budget range</p>
+          <p class="kv-value">Premium service positioning that supports strategy, design, technical rigor, and client experience quality.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Deadline</p>
+          <p class="kv-value">Fast enough to create momentum, but not at the expense of clarity or quality.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Main decision-maker</p>
+          <p class="kv-value">Usually a founder, principal, or senior operator with final approval on positioning and design direction.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Top concerns/risks</p>
+          <p class="kv-value">Generic design, vague strategy, shallow SEO, poor accessibility, weak multilingual handling, and a client portal that feels disconnected from the public promise.</p>
+        </div>
+      </div>
+      </section>
+
+      <section class="section">
+        
+    <div class="section-head">
+      <p class="eyebrow">Offer Architecture</p>
+      <h2>The commercial pillars ash-tra should own</h2>
+      
+    </div>
+  
+        <div class="grid-4">
+          
+                <article class="card">
+                  <h3>Clearer positioning and messaging</h3>
+                  <p>ash-tra helps service businesses explain who they help, what they do, and why they are worth trusting without making visitors decode the offer.</p>
+                </article>
+              
+                <article class="card">
+                  <h3>Stronger SEO, accessibility, and multilingual foundations</h3>
+                  <p>Page structure, semantic hierarchy, metadata, schema, internal linking, accessibility, and multilingual readiness are built into the site from the start.</p>
+                </article>
+              
+                <article class="card">
+                  <h3>A smoother conversion and client journey</h3>
+                  <p>The project experience continues after the first enquiry through a client portal that keeps updates, files, payment, feedback, and handoff organized.</p>
+                </article>
+              
+                <article class="card">
+                  <h3>A full digital upgrade for the business</h3>
+                  <p>The work should make the business look more modern, more premium, more discoverable, more usable, and more commercially serious across public and private touchpoints.</p>
+                </article>
+              
+        </div>
+      </section>
+
+      <section class="section">
+        
+    <div class="section-head">
+      <p class="eyebrow">Audience</p>
+      <h2>Primary personas, motivations, and objections</h2>
+      
+    </div>
+  
+        <div class="grid-3">
+          
+                <article class="persona">
+                  <h3>Founder-Led Consultancy Principal</h3>
+                  <p>Usually experienced, quality-sensitive, and frustrated that the business looks weaker online than it is in reality.</p>
+                  <p class="mini-label">Goals</p>
+                  <ul class="bullet-list"><li>Look more credible to better clients</li><li>Clarify the offer quickly</li><li>Raise perceived value without sounding inflated</li></ul>
+                  <p class="mini-label">Pains</p>
+                  <ul class="bullet-list"><li>Website undersells the work</li><li>Message is too vague or too clever</li><li>Current design does not match the quality of service</li></ul>
+                  <p class="mini-label">Trust triggers</p>
+                  <p>Clarity, trust, design quality, sensible SEO, and a polished client experience.</p>
+                </article>
+              
+                <article class="persona">
+                  <h3>Boutique Agency Or Specialist Service Operator</h3>
+                  <p>Managing growth and delivery at the same time, with little patience for fragmented systems.</p>
+                  <p class="mini-label">Goals</p>
+                  <ul class="bullet-list"><li>Improve lead quality</li><li>Make onboarding and delivery feel more premium</li><li>Reduce friction after the sale</li></ul>
+                  <p class="mini-label">Pains</p>
+                  <ul class="bullet-list"><li>Scattered tools and handoff confusion</li><li>Public site promise and delivery experience do not match</li><li>Hard to keep the project feeling organized for the client</li></ul>
+                  <p class="mini-label">Trust triggers</p>
+                  <p>Operational clarity, a better portal, and a digital presence that feels more advanced.</p>
+                </article>
+              
+                <article class="persona">
+                  <h3>Expert-Led Service Brand</h3>
+                  <p>Strong expertise and reputation, but a website that does not communicate the depth or quality of the work.</p>
+                  <p class="mini-label">Goals</p>
+                  <ul class="bullet-list"><li>Package expertise clearly</li><li>Support growth beyond referrals alone</li><li>Look more current, refined, and commercially ready</li></ul>
+                  <p class="mini-label">Pains</p>
+                  <ul class="bullet-list"><li>Hard to translate expertise into convincing pages</li><li>Weak page hierarchy and poor search foundations</li><li>A brand that feels fragmented across touchpoints</li></ul>
+                  <p class="mini-label">Trust triggers</p>
+                  <p>Thoughtful design, better structure, clearer calls to action, and stronger trust cues.</p>
+                </article>
+              
+        </div>
+      </section>
+
+      <section class="section">
+        
+    <div class="section-head">
+      <p class="eyebrow">Intent Map</p>
+      <h2>How the buyer thinks before they ever start a project</h2>
+      
+    </div>
+  
+        <div class="intent-map">
+          
+                <div class="intent-row">
+                  <strong>Problem-aware</strong>
+                  <div>The current site is weaker than the business and creates confusion, hesitation, or trust loss.</div>
+                </div>
+              
+                <div class="intent-row">
+                  <strong>Solution-aware</strong>
+                  <div>The buyer is exploring redesign, repositioning, SEO cleanup, accessibility improvements, or a better client portal.</div>
+                </div>
+              
+                <div class="intent-row">
+                  <strong>Category-aware</strong>
+                  <div>They compare agencies, freelancers, design studios, SEO providers, developers, and generalist website shops.</div>
+                </div>
+              
+                <div class="intent-row">
+                  <strong>Decision triggers</strong>
+                  <div>Clear differentiation, serious design quality, practical technical thinking, better trust cues, and a smoother client journey.</div>
+                </div>
+              
+                <div class="intent-row">
+                  <strong>High-intent searches</strong>
+                  <div>premium website redesign, service business website transformation, client portal design, website accessibility, multilingual website redesign</div>
+                </div>
+              
+                <div class="intent-row">
+                  <strong>Primary CTA moment</strong>
+                  <div>When the buyer can see that the work improves both the public site and the client experience after the sale.</div>
+                </div>
+              
+        </div>
+      </section>
+
+      <section class="section">
+        
+    <div class="section-head">
+      <p class="eyebrow">Positioning</p>
+      <h2>Message house, promise, and reasons to believe</h2>
+      
+    </div>
+  
+        <div class="grid-2">
+          <article class="card message-stack">
+            <div>
+              <p class="mini-label">One-line positioning</p>
+              <p class="quote">ash-tra is a premium, design-led website transformation company for serious service businesses. It redesigns websites and client portals to improve clarity, trust, SEO, accessibility, multilingual usability, and the overall client journey.</p>
+            </div>
+            <div>
+              <p class="mini-label">Core promise</p>
+              <p>We do not just make the site look better. We make it communicate better, work better, rank better, and feel more premium from first visit to final handoff.</p>
+            </div>
+            <div>
+              <p class="mini-label">Different because</p>
+              <ul class="bullet-list"><li>Improves messaging, design, SEO, accessibility, multilingual readiness, and client delivery instead of treating them as separate projects.</li><li>Treats the website as both a commercial product and a client-facing operating experience.</li><li>Uses design as business communication and trust-building, not decoration.</li><li>Talks to serious service businesses in buyer-readable language rather than internal system jargon.</li></ul>
+            </div>
+          </article>
+          <article class="card">
+            <p class="mini-label">Reasons to believe</p>
+            <ul class="bullet-list"><li>The platform already supports project intake, page capture, previewing, feedback, payment, downloads, and client visibility.</li><li>The public site and the client portal share one brand language instead of feeling like different products.</li><li>The workflow now supports multi-page website capture and preview, not just a homepage demo.</li><li>The strategy and review documents reinforce clarity, trust, SEO, accessibility, multilingual readiness, and client experience as the core offer.</li></ul>
+            <p class="mini-label">Do not position as</p>
+            <ul class="bullet-list"><li>Cheap website agency</li><li>Hype-driven AI brand</li><li>Vague innovation studio</li><li>Pure template reseller</li><li>SEO-only provider</li><li>Portal-only builder</li></ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        
+    <div class="section-head">
+      <p class="eyebrow">Brand Direction</p>
+      <h2>The taste, mood, and visual decisions the design team should work from</h2>
+      
+    </div>
+  
+        <div class="grid-2">
+          <article class="card">
+            <h3>Forced-choice direction</h3>
+            <div class="kv-grid">
+        <div class="kv-card">
+          <p class="kv-label">Luxury vs friendly</p>
+          <p class="kv-value">Premium first, but still human and reassuring.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Modern vs classic</p>
+          <p class="kv-value">Modern with long-term credibility rather than short-term trendiness.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Minimal vs rich</p>
+          <p class="kv-value">Structured and restrained, with enough richness to feel considered.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Serious vs energetic</p>
+          <p class="kv-value">Serious and calm, with selective energy where it helps momentum.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Expert-led vs community-led</p>
+          <p class="kv-value">Expert-led.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Soft/elegant vs bold/powerful</p>
+          <p class="kv-value">Elegant with quiet authority.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Corporate vs human</p>
+          <p class="kv-value">Human, but disciplined.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Premium vs accessible</p>
+          <p class="kv-value">Premium while staying usable and clear.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Clean/calm vs expressive/memorable</p>
+          <p class="kv-value">Clean and calm first, memorable through judgment.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Traditional trust vs innovative edge</p>
+          <p class="kv-value">Trust-led with modern technical credibility.</p>
+        </div>
+      </div>
+          </article>
+          <article class="card">
+            <h3>Visual system guidance</h3>
+            <p class="mini-label">Adjectives</p>
+            <ul class="bullet-list"><li>Premium</li><li>Calm</li><li>Clear</li><li>Exact</li><li>Intelligent</li></ul>
+            <p class="mini-label">Palette direction</p>
+            <ul class="bullet-list"><li>Warm neutrals and parchment tones for composure</li><li>Deep ink or navy for seriousness and contrast</li><li>A controlled warm accent for confidence and momentum</li><li>A restrained technical accent for SEO, accessibility, or systems cues</li></ul>
+            <p class="mini-label">Typography direction</p>
+            <ul class="bullet-list"><li>Expressive serif display moments for authority</li><li>Clean sans-serif body and UI for clarity</li><li>Strong hierarchy and generous spacing instead of dense card clutter</li></ul>
+            <p class="mini-label">Imagery direction</p>
+            <ul class="bullet-list"><li>Premium workspaces and environments that suggest organized expertise</li><li>Decision-maker or professional contexts rather than generic smiling teams</li><li>Imagery that supports calm confidence instead of empty futurism</li></ul>
+            <p class="mini-label">Avoid</p>
+            <ul class="bullet-list"><li>Generic SaaS styling</li><li>Purple gradients and empty tech clichés</li><li>Lazy AI imagery</li><li>Overloaded card grids that bury the message</li><li>Anything that makes the brand feel cheap, generic, or over-produced</li></ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        
+    <div class="section-head">
+      <p class="eyebrow">Website Strategy</p>
+      <h2>What the site should communicate and how the structure should work</h2>
+      
+    </div>
+  
+        <div class="grid-2">
+          <article class="card">
+            <h3>First impression brief</h3>
+            <p>Visitors should immediately understand who ash-tra helps, what gets improved, why that matters commercially, and what action to take next.</p>
+            <p class="mini-label">Must communicate</p>
+            <ul class="bullet-list"><li>ash-tra is for serious service businesses</li><li>The work improves clarity, trust, SEO, accessibility, multilingual usability, and the client journey</li><li>This is a full transformation, not a cosmetic refresh</li><li>The client portal continues the premium experience after the sale</li></ul>
+            <p class="mini-label">Recommended pages</p>
+            <ul class="bullet-list"><li>Home</li><li>Services</li><li>How It Works</li><li>Examples</li><li>Client Login</li><li>Start a Project</li><li>Client portal</li><li>FAQ</li><li>Legal and policy pages</li></ul>
+            <p class="mini-label">Optional expansion</p>
+            <ul class="bullet-list"><li>About / point of view</li><li>Industry landing pages</li><li>Accessibility notes</li><li>Multilingual capability page</li><li>Support and maintenance page</li></ul>
+          </article>
+          <article class="card">
+            <h3>Page jobs</h3>
+            <div class="kv-grid">
+        <div class="kv-card">
+          <p class="kv-label">Home</p>
+          <p class="kv-value">State who ash-tra helps, what improves, why it matters, and what to do next.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Services</p>
+          <p class="kv-value">Explain what improves for the business rather than describing internal architecture.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">How It Works</p>
+          <p class="kv-value">Show a simple, visible client journey from review to handoff.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Examples</p>
+          <p class="kv-value">Present strategic proof in plain language, with commercial reasoning instead of internal commentary.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Client Login</p>
+          <p class="kv-value">Help users sign in quickly and confidently with minimal friction.</p>
+        </div>
+      
+        <div class="kv-card">
+          <p class="kv-label">Start a Project</p>
+          <p class="kv-value">Make registration feel like the start of a project, not an internal workflow explanation.</p>
+        </div>
+      </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        
+    <div class="section-head">
+      <p class="eyebrow">UX / UI Direction</p>
+      <h2>Principles for flow, forms, trust, and clarity</h2>
+      
+    </div>
+  
+        <div class="grid-3">
+          <article class="card">
+            <h3>Principles</h3>
+            <ul class="bullet-list"><li>Be clear before being clever</li><li>Reduce buyer friction at every stage</li><li>Keep the public site and client portal visually coherent</li><li>Make accessibility and multilingual behavior feel native to the design system</li><li>Use strong CTA rhythm and obvious next steps</li><li>Design for real scanning behavior on mobile and desktop</li></ul>
+          </article>
+          <article class="card">
+            <h3>Friction to reduce</h3>
+            <ul class="bullet-list"><li>Abstract wording that makes visitors translate the offer for themselves</li><li>Builder-focused language that explains the system instead of the client outcome</li><li>Long, unclear forms or sign-in pages wrapped in brand rhetoric</li><li>Weak proof placement and buried calls to action</li><li>Mismatched quality between the public site and the client portal</li></ul>
+          </article>
+          <article class="card">
+            <h3>Trust signals</h3>
+            <ul class="bullet-list"><li>Clear service scope</li><li>Examples framed in business language</li><li>Visible process</li><li>Accessible, readable page design</li><li>Confident but calm visual direction</li><li>A client portal that feels well handled</li></ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        
+    <div class="section-head">
+      <p class="eyebrow">Technical, Content, Ops, and Measurement</p>
+      <h2>The system logic behind the brand</h2>
+      
+    </div>
+  
+        <div class="grid-2">
+          <article class="card">
+            <h3>Technical view</h3>
+            <p class="mini-label">Current stack</p>
+            <ul class="bullet-list"><li>Next.js</li><li>React</li><li>TypeScript</li><li>Stripe</li><li>local storage</li><li>preview and crawl tooling</li></ul>
+            <p class="mini-label">Current strengths</p>
+            <ul class="bullet-list"><li>Supports public pages, auth, intake, project records, previews, payments, downloads, and admin oversight</li><li>Can now capture multiple pages and package the original and optimized site for review</li><li>Keeps the public site and client portal inside one product instead of splitting them across tools</li><li>Strong base for accessibility, multilingual readiness, integrations, and further client workflow refinement</li></ul>
+            <p class="mini-label">Likely next needs</p>
+            <ul class="bullet-list"><li>Live in-browser preview editing or finer-grained feedback tooling</li><li>CRM and analytics integrations for real projects</li><li>Richer content editing for non-technical updates</li><li>Sitemap-aware crawling and broader page discovery</li><li>Ongoing support workflows and maintenance operations</li></ul>
+          </article>
+          <article class="card">
+            <h3>SEO and content</h3>
+            <p class="mini-label">Priority themes</p>
+            <ul class="bullet-list"><li>Premium website transformation</li><li>Website redesign for service businesses</li><li>SEO-ready websites</li><li>Accessible website design</li><li>Multilingual website design</li><li>Client portal experience</li></ul>
+            <p class="mini-label">Content pillars</p>
+            <ul class="bullet-list"><li>Clarity of offer and positioning</li><li>Trust-building proof and page hierarchy</li><li>SEO structure, metadata, schema, and internal linking</li><li>Accessibility-minded UX</li><li>Multilingual usability</li><li>Client journey and handoff experience</li></ul>
+            <p class="mini-label">Tone</p>
+            <p>Talk about SEO as part of modern website quality: better structure, cleaner metadata, stronger page intent, and improved discoverability built into the site from day one.</p>
+          </article>
+        </div>
+        <div class="grid-2" style="margin-top:16px;">
+          <article class="card">
+            <h3>Sales and operations</h3>
+            <p class="mini-label">Lead handling flow</p>
+            <ul class="bullet-list"><li>Capture goals, page scope, references, and discovery answers at the start</li><li>Route interested clients into a direct project or a guided consultation path</li><li>Use the portal to keep the brief, preview, payment, and handoff organized</li></ul>
+            <p class="mini-label">High-quality lead profile</p>
+            <ul class="bullet-list"><li>Understands that the current site is weaker than the business</li><li>Cares about trust, design quality, and long-term brand value</li><li>Wants more than surface styling</li><li>Values clarity, SEO, accessibility, and a better client experience</li></ul>
+            <p class="mini-label">Operational wins</p>
+            <ul class="bullet-list"><li>Less confusion after the sale</li><li>Clearer visibility into project state</li><li>Structured delivery and feedback</li><li>A better bridge between the sales promise and real project execution</li></ul>
+          </article>
+          <article class="card">
+            <h3>Analytics</h3>
+            <p class="mini-label">Core KPIs</p>
+            <ul class="bullet-list"><li>Qualified project starts</li><li>Lead quality</li><li>Quote acceptance</li><li>Payment conversion</li><li>Client satisfaction with preview and handoff</li><li>Portal usage during delivery</li></ul>
+            <p class="mini-label">Platform needs</p>
+            <ul class="bullet-list"><li>Core event tracking for enquiries, registrations, preview approval, and payment</li><li>Analytics and CRM integration readiness</li><li>Clear visibility into the pages or offers that convert best</li></ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        
+    <div class="section-head">
+      <p class="eyebrow">Roadmap</p>
+      <h2>A sensible phased rollout</h2>
+      
+    </div>
+  
+        <div class="timeline">
+          
+                <article class="timeline-card">
+                  <p class="eyebrow">Phase 1</p>
+                  <h3>Reposition the public brand</h3>
+                  <p>Make the site sound like a design-led website transformation company for serious service businesses, not a systems lab or AI-first brand.</p>
+                  <ul class="bullet-list"><li>Rewrite the homepage around audience, outcome, and next step</li><li>Adopt the client-ready navigation structure</li><li>Remove internal jargon and builder-facing phrasing</li></ul>
+                </article>
+              
+                <article class="timeline-card">
+                  <p class="eyebrow">Phase 2</p>
+                  <h3>Make the offer visibly broader and stronger</h3>
+                  <p>Show that ash-tra improves more than visuals by surfacing SEO, accessibility, multilingual usability, and client experience more clearly.</p>
+                  <ul class="bullet-list"><li>Rebuild services and process pages around business benefits</li><li>Add stronger language around accessibility and multilingual readiness</li><li>Use examples to show commercial improvement, not just design taste</li></ul>
+                </article>
+              
+                <article class="timeline-card">
+                  <p class="eyebrow">Phase 3</p>
+                  <h3>Refine the client portal and operational promise</h3>
+                  <p>Ensure the signed-in experience continues the same standard as the public site so the premium promise holds after the sale.</p>
+                  <ul class="bullet-list"><li>Keep project updates, files, payment, preview feedback, and handoff visible</li><li>Make login and registration task-focused and reassuring</li><li>Support consultation, preview, and support workflows inside the portal</li></ul>
+                </article>
+              
+        </div>
+      </section>
+
+      <section class="section">
+        
+    <div class="section-head">
+      <p class="eyebrow">Key Risks</p>
+      <h2>What the team must protect against</h2>
+      
+    </div>
+  
+        <div class="grid-2">
+          <article class="card">
+            <h3>Primary risks</h3>
+            <ul class="bullet-list"><li>Falling back into abstract language that sounds impressive but hides the offer</li><li>Letting design become a style exercise instead of a commercial upgrade</li><li>Treating accessibility or multilingual support as optional add-ons</li><li>Breaking the visual or tonal continuity between public pages and the client portal</li><li>Overstating AI and under-explaining the actual client benefit</li></ul>
+          </article>
+          <article class="callout">
+            <h3>North-star outcome</h3>
+            <p>
+              The finished experience should leave people thinking:
+              “This company understands high-value service businesses, has taste, has structure, and will
+              run my project like a premium operator from first impression to final delivery.”
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="appendix" id="appendix">
+        
+    <div class="section-head">
+      <p class="eyebrow">Consultation Answers Appendix</p>
+      <h2>AI-drafted answers to the discovery questions, written as a working consultation brief.</h2>
+      
+    </div>
+  
+        
+    <section class="qa-group">
+      <h3>1. Core Company Definition</h3>
+      <div class="qa-table">
+        
+              <div class="qa-row">
+                <div class="qa-q">What kind of company is ash-tra?</div>
+                <div class="qa-a">ash-tra is a design-led website transformation company for premium service businesses. It redesigns websites and client portals so the business feels more modern, more premium, more discoverable, and easier to trust.</div>
+              </div>
+            
+              <div class="qa-row">
+                <div class="qa-q">What does ash-tra really sell?</div>
+                <div class="qa-a">A whole new website and client-experience system: messaging, page structure, design, SEO foundations, accessibility, multilingual readiness, conversion flow, and the client-facing workflow after the sale.</div>
+              </div>
+            
+              <div class="qa-row">
+                <div class="qa-q">What is the commercial value of the work?</div>
+                <div class="qa-a">The business becomes clearer to the right buyer, more credible at first impression, better structured for search, easier to navigate, easier to use, and more coherent from first click to final handoff.</div>
+              </div>
+            
+      </div>
+    </section>
+  
+    <section class="qa-group">
+      <h3>2. Business Problem Discovery</h3>
+      <div class="qa-table">
+        
+              <div class="qa-row">
+                <div class="qa-q">What problem does ash-tra solve?</div>
+                <div class="qa-a">Most premium service businesses do not have a substance problem. They have a clarity, structure, trust, or presentation problem. ash-tra closes that gap so the digital presence stops underselling the real business.</div>
+              </div>
+            
+              <div class="qa-row">
+                <div class="qa-q">Why is this not just web design?</div>
+                <div class="qa-a">Because web design alone is not enough. A premium site also needs clear messaging, conversion logic, SEO structure, accessibility, multilingual support, and a client experience that still feels professional after the sale.</div>
+              </div>
+            
+      </div>
+    </section>
+  
+    <section class="qa-group">
+      <h3>3. Audience Discovery</h3>
+      <div class="qa-table">
+        
+              <div class="qa-row">
+                <div class="qa-q">Who is ash-tra for?</div>
+                <div class="qa-a">Premium service businesses whose current website no longer reflects the quality of their work: founder-led consultancies, boutique agencies, expert-led firms, and other specialist service operators.</div>
+              </div>
+            
+              <div class="qa-row">
+                <div class="qa-q">What does the ideal client want?</div>
+                <div class="qa-a">A site that explains value more clearly, attracts better-fit leads, looks more premium and current, performs better in search, and gives clients a smoother experience after they enquire or sign.</div>
+              </div>
+            
+              <div class="qa-row">
+                <div class="qa-q">What is the client afraid of?</div>
+                <div class="qa-a">Paying for something that looks good but changes nothing: generic design, vague strategy, poor SEO, weak accessibility, surface styling without results, and a sales experience that does not match real delivery.</div>
+              </div>
+            
+      </div>
+    </section>
+  
+    <section class="qa-group">
+      <h3>4. Positioning And Offer Discovery</h3>
+      <div class="qa-table">
+        
+              <div class="qa-row">
+                <div class="qa-q">How should ash-tra describe its offer?</div>
+                <div class="qa-a">ash-tra designs and builds premium websites and client-facing digital systems for service businesses that need a more modern presence, stronger SEO foundations, clearer messaging, better accessibility, multilingual flexibility, and a smoother client experience.</div>
+              </div>
+            
+              <div class="qa-row">
+                <div class="qa-q">What makes ash-tra different?</div>
+                <div class="qa-a">It brings together premium design, modern UX, strong page structure, SEO, accessibility, multilingual readiness, conversion thinking, and client-facing operational clarity in one transformation.</div>
+              </div>
+            
+              <div class="qa-row">
+                <div class="qa-q">What should ash-tra never sound like?</div>
+                <div class="qa-a">A cheap website agency, a hype-driven AI startup, a vague innovation studio, a template seller, or a purely technical migration shop.</div>
+              </div>
+            
+      </div>
+    </section>
+  
+    <section class="qa-group">
+      <h3>5. Design Discovery</h3>
+      <div class="qa-table">
+        
+              <div class="qa-row">
+                <div class="qa-q">Is ash-tra a design company?</div>
+                <div class="qa-a">Yes, but with a mature view of design. Design is treated as business communication, user guidance, trust engineering, and brand perception rather than decoration.</div>
+              </div>
+            
+              <div class="qa-row">
+                <div class="qa-q">What visual direction fits ash-tra?</div>
+                <div class="qa-a">Modern, elegant, structured, premium, calm, intelligent, and clearly judged. It should feel current without feeling trendy, and distinctive without becoming eccentric.</div>
+              </div>
+            
+              <div class="qa-row">
+                <div class="qa-q">What should be avoided visually?</div>
+                <div class="qa-a">Generic SaaS styling, lazy AI imagery, purple gradients, startup clichés, noisy card overload, and anything that makes the brand feel generic, cheap, or over-produced.</div>
+              </div>
+            
+      </div>
+    </section>
+  
+    <section class="qa-group">
+      <h3>6. Website Transformation Discovery</h3>
+      <div class="qa-table">
+        
+              <div class="qa-row">
+                <div class="qa-q">What exactly is being redesigned?</div>
+                <div class="qa-a">Everything the customer sees and experiences: homepage strategy, navigation, services, examples, process, CTA logic, forms, login, registration, portal experience, multilingual behavior, accessibility, SEO structure, metadata, and page hierarchy.</div>
+              </div>
+            
+              <div class="qa-row">
+                <div class="qa-q">What should the new site achieve?</div>
+                <div class="qa-a">It should make the business appear more modern, more premium, more coherent, more discoverable, more accessible, and more strategically serious while also making the user journey easier to understand and easier to trust.</div>
+              </div>
+            
+              <div class="qa-row">
+                <div class="qa-q">What should a visitor understand immediately?</div>
+                <div class="qa-a">Who ash-tra is for, what kind of transformation it delivers, why it is more advanced than ordinary web design, and what action to take next.</div>
+              </div>
+            
+      </div>
+    </section>
+  
+    <section class="qa-group">
+      <h3>7. SEO, Accessibility, And Language Discovery</h3>
+      <div class="qa-table">
+        
+              <div class="qa-row">
+                <div class="qa-q">How important is SEO?</div>
+                <div class="qa-a">SEO is core, not optional. The offer promises better search foundations through cleaner page hierarchy, metadata, schema, semantic HTML, internal linking, and performance-aware structure.</div>
+              </div>
+            
+              <div class="qa-row">
+                <div class="qa-q">Should accessibility be part of the offer?</div>
+                <div class="qa-a">Yes. A modern premium site should be more usable for more people through readable contrast, good focus states, clear forms, semantic structure, sensible motion, scalable text, and mobile clarity.</div>
+              </div>
+            
+              <div class="qa-row">
+                <div class="qa-q">Should multilingual support be part of the system?</div>
+                <div class="qa-a">Yes. For many premium businesses, multilingual clarity is part of trust, reach, usability, and commercial professionalism rather than an optional extra.</div>
+              </div>
+            
+      </div>
+    </section>
+  
+    <section class="qa-group">
+      <h3>8. UX, Portal, And Technical Discovery</h3>
+      <div class="qa-table">
+        
+              <div class="qa-row">
+                <div class="qa-q">What should the user journey feel like?</div>
+                <div class="qa-a">Simple, premium, and obvious: clear first impression, fast audience recognition, visible proof, logical process, strong next step, and coherent continuation into the client portal.</div>
+              </div>
+            
+              <div class="qa-row">
+                <div class="qa-q">Why does the client portal matter?</div>
+                <div class="qa-a">Because the premium promise should not end after the proposal is signed. The portal should communicate order, care, professional control, and confidence through onboarding, files, progress visibility, payment visibility, and handoff.</div>
+              </div>
+            
+              <div class="qa-row">
+                <div class="qa-q">What technical quality should ash-tra stand for?</div>
+                <div class="qa-a">Practical, high-quality execution: modern front-end quality, responsiveness, semantic markup, maintainability, accessibility support, multilingual structure, scalable page systems, and clean integration readiness.</div>
+              </div>
+            
+      </div>
+    </section>
+  
+    <section class="qa-group">
+      <h3>9. Public Messaging And Success</h3>
+      <div class="qa-table">
+        
+              <div class="qa-row">
+                <div class="qa-q">How should ash-tra sound in public?</div>
+                <div class="qa-a">Like a leading design and technology company with strong judgment: clear, mature, commercially aware, design-literate, technically credible, calm, premium, and exact.</div>
+              </div>
+            
+              <div class="qa-row">
+                <div class="qa-q">What words should appear more often?</div>
+                <div class="qa-a">Premium websites and client portals, design-led website transformation, clearer messaging, stronger SEO, accessibility-minded design, multilingual readiness, smoother client journey, easier to understand, easier to trust, easier to buy from.</div>
+              </div>
+            
+              <div class="qa-row">
+                <div class="qa-q">What does success look like?</div>
+                <div class="qa-a">A site that feels clearly stronger in every important way: better design, clearer offer, stronger SEO structure, accessibility improvements, multilingual capability, a smoother conversion flow, and a client portal that continues the premium experience.</div>
+              </div>
+            
+      </div>
+    </section>
+  
+        <p class="footer-note">
+          The reusable questionnaire template is saved separately at
+          <code>docs/client-discovery-questionnaire-template.md</code>.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

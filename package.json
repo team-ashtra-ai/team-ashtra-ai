@@ -1,0 +1,15 @@
+{
+  "name": "optimise-ai",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix apps/web run dev",
+    "build": "npm --prefix apps/web run build",
+    "lint": "npm --prefix apps/web run lint",
+    "start": "npm --prefix apps/web run start",
+    "typecheck": "npm --prefix apps/web run typecheck",
+    "portfolio:setup": "node scripts/setup-portfolio-sites.mjs",
+    "media:generate": "npm --prefix apps/web run media:generate",
+    "review:public": "npm --prefix apps/web run review:public",
+    "brief:ash-tra": "npm --prefix apps/web run brief:ash-tra"
+  }
+}

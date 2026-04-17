@@ -1,0 +1,25 @@
+<svg width="720" height="208" viewBox="0 0 720 208" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="8" y="8" width="192" height="192" rx="56" fill="url(#paint0_linear)" />
+  <rect x="8" y="8" width="192" height="192" rx="56" stroke="rgba(255,255,255,0.18)" stroke-width="2" />
+  <path d="M65 151L104 62L143 151" stroke="#F8F3EE" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M79 119H129" stroke="#F8F3EE" stroke-width="14" stroke-linecap="round" />
+  <path d="M142 67H177" stroke="#F26A3D" stroke-width="12" stroke-linecap="round" />
+  <path d="M159.5 67V153" stroke="#F26A3D" stroke-width="12" stroke-linecap="round" />
+  <circle cx="159.5" cy="153" r="8" fill="#31A0A3" />
+  <text x="236" y="98" fill="#09141F" font-family="'Fraunces', Georgia, serif" font-size="66" font-weight="700" letter-spacing="-0.06em">
+    ash-tra.com
+  </text>
+  <text x="238" y="136" fill="#52606F" font-family="'Sora', Arial, sans-serif" font-size="18" font-weight="600" letter-spacing="0.24em">
+    AI-NATIVE EDITORIAL SYSTEMS
+  </text>
+  <text x="238" y="167" fill="#52606F" font-family="'Sora', Arial, sans-serif" font-size="18" font-weight="400">
+    for ambitious service brands
+  </text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="31" y1="15" x2="183" y2="200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D1622" />
+      <stop offset="0.55" stop-color="#17324A" />
+      <stop offset="1" stop-color="#10283D" />
+    </linearGradient>
+  </defs>
+</svg>
