@@ -5,6 +5,7 @@
   "description": "Static marketing site for ash-tra.com",
   "scripts": {
     "dev": "python3 -m http.server 3000",
-    "start": "python3 -m http.server 3000"
+    "start": "python3 -m http.server 3000",
+    "publish:repo": "bash scripts/git-publish.sh"
   }
 }
