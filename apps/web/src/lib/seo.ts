@@ -34,9 +34,9 @@ export function buildMetadata({
     keywords: [...siteConfig.keywords, ...keywords],
     manifest: "/manifest.webmanifest",
     icons: {
-      icon: [{ url: siteConfig.iconPath, type: "image/svg+xml" }],
+      icon: [{ url: siteConfig.iconPath, type: "image/png" }],
       shortcut: [siteConfig.iconPath],
-      apple: [{ url: "/apple-icon", sizes: "180x180", type: "image/png" }],
+      apple: [{ url: "/brand/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
     },
     alternates: {
       canonical,

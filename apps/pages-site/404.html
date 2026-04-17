@@ -4,21 +4,112 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Page not found | ash-tra.com</title>
-    <link rel="icon" href="/brand/ash-tra-favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/assets/site.css" />
+    <meta name="description" content="This page could not be found. Return to ash-tra.com or contact the team for help." />
+    <meta name="theme-color" content="#2c1f12" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/brand/favicon-16.png" />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <style>
+      body {
+        margin: 0;
+        background: #f3e7cd;
+        color: #2c1f12;
+      }
+    </style>
+    <link rel="preload" href="/assets/site.css" as="style" />
+    <link rel="stylesheet" href="/assets/site.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="/assets/site.css" /></noscript>
   </head>
-  <body>
+  <body class="page-404">
     <div class="page-shell">
+      <header class="site-header">
+        <div class="site-header__shell">
+          <div class="site-header__bar">
+            <p class="site-kicker">Overcoming challenges. Pursuing goals.</p>
+            <div class="utility-links">
+              <a href="mailto:team.ashtra.ai@gmail.com">team.ashtra.ai@gmail.com</a>
+              <a href="https://api.whatsapp.com/send/?phone=5543991324028" target="_blank" rel="noreferrer">
+                WhatsApp
+              </a>
+            </div>
+          </div>
+          <div class="site-header__main">
+            <a class="brand-lockup" href="/">
+              <span class="brand-mark-frame">
+                <img src="/brand/ash-tra-mark-gold.png" alt="" width="58" height="58" decoding="async" />
+              </span>
+              <span class="brand-copy">
+                <strong>ash-tra.com</strong>
+                <span>Premium websites and client portals for serious service businesses.</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </header>
+
       <main class="content">
-        <section class="card page-intro">
-          <p class="eyebrow">404</p>
-          <h1>That page is not here.</h1>
-          <p class="lead">The public marketing pages are live, but this URL does not exist.</p>
+        <section class="card">
+          <p class="section-label">Page not found</p>
+          <h1>This page does not exist anymore, but the next step is easy.</h1>
+          <p class="lead">
+            Return to the homepage, review the services, or contact ash-tra directly and we will help you find the right page quickly.
+          </p>
           <div class="button-row">
-            <a class="button button-primary" href="/">Back to homepage</a>
+            <a class="button button-primary" href="/">Go home</a>
+            <a class="button button-secondary" href="/services/">See services</a>
+            <a class="button button-ghost" href="mailto:team.ashtra.ai@gmail.com">Email ash-tra</a>
           </div>
         </section>
       </main>
+
+      <footer class="site-footer">
+        <div class="footer-panel">
+          <div class="footer-grid">
+            <div class="footer-copy">
+              <div class="footer-title">
+                <span class="brand-mark-frame">
+                  <img src="/brand/ash-tra-mark-gold.png" alt="" width="58" height="58" loading="lazy" decoding="async" />
+                </span>
+                <div>
+                  <h3>ash-tra.com</h3>
+                  <p>Overcoming challenges. Pursuing goals.</p>
+                </div>
+              </div>
+              <p>Need help finding the right page? Email the team or use the site guide.</p>
+              <div class="footer-link-row">
+                <a href="mailto:team.ashtra.ai@gmail.com">team.ashtra.ai@gmail.com</a>
+                <a href="https://api.whatsapp.com/send/?phone=5543991324028" target="_blank" rel="noreferrer">
+                  WhatsApp
+                </a>
+              </div>
+            </div>
+            <div class="footer-column">
+              <div>
+                <h3>Explore</h3>
+                <div class="footer-link-row">
+                  <a href="/">Home</a>
+                  <a href="/services/">Services</a>
+                  <a href="/process/">Process</a>
+                  <a href="/consultation/">Consultation</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>&copy; <span data-current-year></span> ash-tra.com. Overcoming challenges. Pursuing goals.</p>
+            <div class="footer-bottom__links">
+              <a href="/sitemap.xml">Sitemap</a>
+              <a href="/robots.txt">Robots</a>
+              <a href="mailto:team.ashtra.ai@gmail.com">Email</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <div id="support-dock-root"></div>
+      <script defer src="/assets/site.js"></script>
     </div>
   </body>
 </html>

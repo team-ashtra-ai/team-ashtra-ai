@@ -1,0 +1,12 @@
+ash-tra.com DNS record checklist
+
+Google Search Console verification
+- Type: TXT
+- Host: ash-tra.com
+- Value: google-site-verification=pgHlxAWeyshlvtMN0YiK_ceLNU9unGVwHSRe-HxJn-o
+- TTL: 1 hour
+- Proxy mode: DNS only
+
+Notes
+- This file stores the exact record in the repo for reference.
+- The TXT record still needs to be created at the DNS provider. It cannot be published from website code alone.

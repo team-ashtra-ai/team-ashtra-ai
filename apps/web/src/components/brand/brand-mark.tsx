@@ -19,9 +19,9 @@ export function BrandMark({
         "inline-flex items-center gap-3 text-left transition duration-[var(--motion-fast)] ease-[var(--ease-standard)] hover:-translate-y-0.5",
         className,
       )}
-    >
+      >
       <Image
-        src="/brand/ash-tra-mark.svg"
+        src="/brand/ash-tra-mark-gold.png"
         alt=""
         aria-hidden="true"
         width={compact ? 40 : 48}
@@ -41,7 +41,7 @@ export function BrandMark({
           ash-tra.com
         </span>
         <span className="type-meta mt-1 text-[var(--color-text-subtle)]">
-          Premium websites and client portals
+          Overcoming challenges. Pursuing goals.
         </span>
       </span>
     </Link>

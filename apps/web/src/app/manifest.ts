@@ -14,16 +14,16 @@ export default function manifest(): MetadataRoute.Manifest {
     icons: [
       {
         src: siteConfig.iconPath,
-        sizes: "any",
-        type: "image/svg+xml",
-      },
-      {
-        src: "/icon",
-        sizes: "512x512",
+        sizes: "32x32",
         type: "image/png",
       },
       {
-        src: "/apple-icon",
+        src: "/brand/ash-tra-icon-192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        src: "/brand/apple-touch-icon.png",
         sizes: "180x180",
         type: "image/png",
       },

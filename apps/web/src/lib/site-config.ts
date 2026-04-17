@@ -1,15 +1,18 @@
 export const siteConfig = {
   name: "ash-tra.com",
   shortName: "ash-tra",
+  motto: "Overcoming challenges. Pursuing goals.",
   tagline: "Design-led website transformation for premium service businesses.",
   description:
     "Premium websites and client portals for service businesses that need clearer messaging, stronger SEO foundations, better accessibility, multilingual readiness, and a smoother client journey.",
   longDescription:
     "ash-tra.com redesigns websites and client portals for serious service businesses, improving clarity, trust, SEO, accessibility, multilingual usability, and the overall client journey from first visit to final handoff.",
   defaultPath: "/",
-  ogImagePath: "/brand/ash-tra-social-lockup.svg",
-  iconPath: "/brand/ash-tra-favicon.svg",
-  socialLockupPath: "/brand/ash-tra-social-lockup.svg",
+  supportEmail: "team.ashtra.ai@gmail.com",
+  whatsappHref: "https://api.whatsapp.com/send/?phone=5543991324028",
+  ogImagePath: "/brand/ash-tra-social-lockup.png",
+  iconPath: "/brand/favicon-32.png",
+  socialLockupPath: "/brand/ash-tra-social-lockup.png",
   navItems: [
     { href: "/services", label: "Services" },
     { href: "/process", label: "How It Works" },
