@@ -2,7 +2,7 @@
 
 Static multi-page site for `ash-tra.com`.
 
-Brand line: `Overcoming challenges. Pursuing goals.`
+Brand line: `Where ambition meets momentum.`
 
 ## Local preview
 
@@ -18,4 +18,5 @@ Then open `http://localhost:3000`.
 - GitHub Actions no longer performs Cloudflare deploys for this site.
 - Keep the canonical domain as `https://ash-tra.com`.
 - Add the Search Console TXT record at DNS level.
-- Fill analytics placeholders in [assets/js/site-config.js](/home/ash/nacho/assets/js/site-config.js:1) when GTM or GA4 is ready.
+- Google Analytics is configured in [assets/js/site-config.js](/home/ash/nacho/assets/js/site-config.js:1).
+- Add a real GTM container ID later if you want Tag Manager as well.

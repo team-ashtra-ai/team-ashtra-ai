@@ -1,7 +1,7 @@
 {
   "name": "ASH-TRA",
   "short_name": "ASH-TRA",
-  "description": "Premium cinematic websites for ambitious brands.",
+  "description": "Where ambition meets momentum.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#050A12",
@@ -16,6 +16,12 @@
     {
       "src": "/brand/ash-tra-icon-256.png",
       "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/brand/ash-tra-logo-with-text.png",
+      "sizes": "1024x1024",
       "type": "image/png",
       "purpose": "any"
     }
