@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /cdn-cgi/
-
-Sitemap: https://ash-tra.com/sitemap.xml
-Host: ash-tra.com

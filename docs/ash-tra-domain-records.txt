@@ -8,5 +8,5 @@ Google Search Console verification
 - Proxy mode: DNS only
 
 Notes
-- This file stores the exact record in the repo for reference.
-- The TXT record still needs to be created at the DNS provider. It cannot be published from website code alone.
+- This record exists at the DNS level, not in website code.
+- Keep this note even if the website implementation changes again.

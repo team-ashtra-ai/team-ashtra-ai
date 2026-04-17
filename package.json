@@ -1,19 +1,10 @@
 {
-  "name": "optimise-ai",
+  "name": "ash-tra-static-site",
   "private": true,
+  "version": "1.0.0",
+  "description": "Static marketing site for ash-tra.com",
   "scripts": {
-    "dev": "npm --prefix apps/web run dev",
-    "build": "npm --prefix apps/web run build",
-    "build:pages": "node scripts/build-pages-site.mjs",
-    "preview": "npm --prefix apps/web run preview",
-    "deploy": "npm --prefix apps/web run deploy",
-    "git:commit": "python3 scripts/git_commit_helper.py",
-    "lint": "npm --prefix apps/web run lint",
-    "start": "npm --prefix apps/web run start",
-    "typecheck": "npm --prefix apps/web run typecheck",
-    "portfolio:setup": "node scripts/setup-portfolio-sites.mjs",
-    "media:generate": "npm --prefix apps/web run media:generate",
-    "review:public": "npm --prefix apps/web run review:public",
-    "brief:ash-tra": "npm --prefix apps/web run brief:ash-tra"
+    "dev": "python3 -m http.server 3000",
+    "start": "python3 -m http.server 3000"
   }
 }
