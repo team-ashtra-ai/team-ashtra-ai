@@ -7,7 +7,7 @@ export const siteConfig = {
   longDescription:
     "ash-tra.com redesigns websites and client portals for serious service businesses, improving clarity, trust, SEO, accessibility, multilingual usability, and the overall client journey from first visit to final handoff.",
   defaultPath: "/",
-  ogImagePath: "/opengraph-image",
+  ogImagePath: "/brand/ash-tra-social-lockup.svg",
   iconPath: "/brand/ash-tra-favicon.svg",
   socialLockupPath: "/brand/ash-tra-social-lockup.svg",
   navItems: [

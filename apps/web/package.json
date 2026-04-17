@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "node scripts/patch-opennext-cloudflare.mjs",
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --webpack && node scripts/fix-cloudflare-standalone.mjs",
     "start": "next start",
+    "preview": "opennextjs-cloudflare build && node scripts/fix-cloudflare-worker-assets.mjs && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && node scripts/fix-cloudflare-worker-assets.mjs && wrangler deploy",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "media:generate": "node scripts/generate-marketing-media.mjs",
@@ -13,6 +17,7 @@
     "brief:ash-tra": "node scripts/generate-ash-tra-strategy-brief.mjs"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.19.1",
     "cheerio": "^1.2.0",
     "clsx": "^2.1.1",
     "jszip": "^3.10.1",
@@ -34,6 +39,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.83.0"
   }
 }

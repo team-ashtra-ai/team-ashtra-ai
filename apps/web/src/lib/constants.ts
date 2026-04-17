@@ -80,15 +80,15 @@ export const projectApproachOptions = [
 
 export const siteCaptureModeOptions = [
   {
+    id: "all",
+    label: "All discovered pages",
+    summary: "Capture every internal page the crawler can discover within the selected page limit.",
+  },
+  {
     id: "primary_navigation",
     label: "Header, footer, homepage",
     summary:
       "Best for quick scoping: homepage plus the main navigation and footer-linked pages.",
-  },
-  {
-    id: "all",
-    label: "All discovered pages",
-    summary: "Capture every internal page the crawler can discover within the selected page limit.",
   },
   {
     id: "custom",

@@ -109,7 +109,7 @@ export function ProjectIntakeForm({
   const [sourceUrl, setSourceUrl] = useState(defaultSourceUrl || "");
   const [projectApproach, setProjectApproach] = useState("optimize_current_site");
   const [captureMode, setCaptureMode] =
-    useState<SiteCaptureMode>("primary_navigation");
+    useState<SiteCaptureMode>("all");
   const [pageLimit, setPageLimit] = useState(24);
   const [discoveredPages, setDiscoveredPages] = useState<SiteDiscoveryPage[]>([]);
   const [selectedPageUrls, setSelectedPageUrls] = useState<string[]>([]);
@@ -515,8 +515,9 @@ export function ProjectIntakeForm({
               </div>
             ) : (
               <div className="mt-5 rounded-[1.3rem] border border-dashed border-[color:var(--color-line)] px-5 py-8 text-center type-body-sm">
-                The crawler will still fall back to the homepage, but discovering the
-                site first makes the whole service much more comprehensive.
+                The crawler will still fall back to the homepage if discovery fails, but
+                the intended flow is full-site discovery first, then all pages, main
+                navigation pages, or a custom set.
               </div>
             )}
           </div>

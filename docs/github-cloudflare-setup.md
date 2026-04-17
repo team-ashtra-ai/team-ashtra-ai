@@ -1,6 +1,8 @@
 # GitHub And Cloudflare Setup
 
-This is the simplest safe workflow for this repo.
+This repo now includes a GitHub Actions deployment workflow at [.github/workflows/deploy-cloudflare.yml](/home/ash/nacho/.github/workflows/deploy-cloudflare.yml).
+
+When you push to `main`, GitHub can deploy the `apps/web` Next.js app to Cloudflare automatically.
 
 ## 1. Check your local Git identity
 
@@ -76,53 +78,76 @@ git branch -M main
 git push -u origin main
 ```
 
-## 7. Connect GitHub to Cloudflare
+## 7. Create the Cloudflare API token
 
-For Cloudflare Pages:
+In Cloudflare:
 
-1. Open Cloudflare Dashboard.
-2. Go to `Workers & Pages`.
-3. Select `Create application`.
-4. Select `Pages`.
-5. Select `Connect to Git`.
-6. Authorize the `team-ashtra-ai/team-ashtra-ai` repository.
+1. Open `My Profile` -> `API Tokens`.
+2. Create a token that can deploy Workers.
+3. Include at least:
+   - `Account` -> `Cloudflare Workers Scripts` -> `Edit`
+   - `Zone` -> `Workers Routes` -> `Edit` if you will attach custom domains through automation
+   - `Zone` -> `Zone Settings` -> `Read`
+4. Copy the token value.
 
-## 8. Choose the right Cloudflare target
+You also need your Cloudflare account ID from the dashboard.
 
-Use Cloudflare Pages only for a static export.
+## 8. Add GitHub secrets and variables
 
-Do not point Cloudflare Pages at the current full `apps/web` product unless you first convert it into a true static build target.
+In `team-ashtra-ai/team-ashtra-ai` -> `Settings` -> `Secrets and variables` -> `Actions`:
 
-Why:
+Add these repository secrets:
 
-- the app uses server routes
-- the app uses local filesystem storage
-- the app writes project files at runtime
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
+- `SESSION_SECRET`
+- `STRIPE_SECRET_KEY`
+- `STRIPE_WEBHOOK_SECRET`
+- `PIXABAY_API_KEY` if used
+- `SMTP_USER` if used
+- `SMTP_PASS` if used
 
-For the current codebase, the practical choices are:
+Add these repository variables:
 
-1. Keep the full app local while you keep building.
-2. Deploy only a static site to Cloudflare Pages.
-3. Refactor the full app for hosted storage before putting the whole product on Cloudflare.
+- `NEXT_PUBLIC_APP_URL`
+- `OWNER_EMAIL`
+- `OLLAMA_BASE_URL`
+- `OLLAMA_MODEL`
+- `STRIPE_CURRENCY`
+- `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `SMTP_FROM`
 
-## 9. If you want automatic deploys from Git
+Only the values your app actually uses need to be set, but `NEXT_PUBLIC_APP_URL` should be set for production.
 
-Cloudflare Pages can auto-deploy every time you push to `main` after the repository is connected in the dashboard.
+## 9. Cloudflare app target
 
-For static Next.js projects, Cloudflare's documented preset is:
+This repo is no longer using the old static-only Pages approach for automatic deploys.
 
-- Framework preset: `Next.js (Static HTML Export)`
-- Production branch: `main`
-- Build command: `npx next build`
-- Build directory: `out`
+The checked-in deploy flow uses:
 
-That applies to static exports, not to this repo's current full product flow.
+- `@opennextjs/cloudflare`
+- [apps/web/wrangler.jsonc](/home/ash/nacho/apps/web/wrangler.jsonc)
+- [apps/web/open-next.config.ts](/home/ash/nacho/apps/web/open-next.config.ts)
+- GitHub Actions on push to `main`
 
-## 10. Recommended next step for this repo
+That better matches the current Next.js app than a static Pages export.
 
-Push this repo to GitHub first.
+## 10. Push to main
 
-Then decide between:
+After the GitHub secrets and variables are set:
 
-1. deploying a small static marketing surface to Cloudflare Pages
-2. keeping the full app local until we replace filesystem storage with hosted storage
+```bash
+git add .
+git commit -m "Add Cloudflare auto-deploy workflow"
+git push origin main
+```
+
+Each push to `main` will trigger the workflow and deploy the latest app build to Cloudflare.
+
+## 11. Important runtime note
+
+The public marketing site is the best fit for this hosted setup today.
+
+Parts of the app still depend on local filesystem storage for users, projects, uploads, and generated outputs. Those flows may need a later refactor to use hosted storage before the entire dashboard workflow is production-ready on Cloudflare.

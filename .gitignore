@@ -16,6 +16,8 @@ __pycache__/
 # Next.js app outputs
 apps/web/node_modules
 apps/web/.next
+apps/web/.open-next
+.wrangler/
 
 # Local SaaS storage
 storage/optimise-ai

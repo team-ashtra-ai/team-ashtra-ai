@@ -4,6 +4,9 @@
   "scripts": {
     "dev": "npm --prefix apps/web run dev",
     "build": "npm --prefix apps/web run build",
+    "preview": "npm --prefix apps/web run preview",
+    "deploy": "npm --prefix apps/web run deploy",
+    "git:commit": "python3 scripts/git_commit_helper.py",
     "lint": "npm --prefix apps/web run lint",
     "start": "npm --prefix apps/web run start",
     "typecheck": "npm --prefix apps/web run typecheck",

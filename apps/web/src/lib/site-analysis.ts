@@ -16,8 +16,8 @@ import type {
 import { normalizeSourceUrl, slugify } from "@/lib/utils";
 
 const DEFAULT_PAGE_LIMIT = 24;
-const FETCH_TIMEOUT_MS = 8000;
-const DISCOVERY_TIME_BUDGET_MS = 12000;
+const FETCH_TIMEOUT_MS = 20000;
+const DISCOVERY_TIME_BUDGET_MS = 180000;
 const FETCH_HEADERS = {
   "user-agent": "ash-tra.com full-site capture assistant",
 };
@@ -139,6 +139,13 @@ export async function downloadSiteAssets(
   const projectDir = getProjectDirectory(projectId);
   const originalDir = path.join(projectDir, "original");
   await mkdir(originalDir, { recursive: true });
+  const assetContext: AssetContext = {
+    originalDir,
+    assetMap: new Map(),
+  };
+  const selectedPages = new Map(
+    selectedPageUrls.map((pageUrl) => [pageUrl, buildStoredPagePath(pageUrl, normalizedUrl)]),
+  );
 
   const capturedPages: CapturedPageRecord[] = [];
 
@@ -166,7 +173,15 @@ export async function downloadSiteAssets(
     const storedPath = buildStoredPagePath(pageUrl, normalizedUrl);
     const absoluteStoredPath = path.join(originalDir, ...storedPath.split("/"));
     await mkdir(path.dirname(absoluteStoredPath), { recursive: true });
-    await writeFile(absoluteStoredPath, sourcePage.html);
+    const localized = await localizeHtmlDocument(
+      sourcePage.html,
+      pageUrl,
+      storedPath,
+      normalizedUrl,
+      selectedPages,
+      assetContext,
+    );
+    await writeFile(absoluteStoredPath, localized.html);
 
     capturedPages.push({
       url: pageUrl,
@@ -177,7 +192,7 @@ export async function downloadSiteAssets(
       sourceTags: discovery.pages.find((page) => page.url === pageUrl)?.sourceTags || [
         "crawl",
       ],
-      assetCount: 0,
+      assetCount: localized.assetCount,
       fetchStatus: "ok",
     });
   }
@@ -212,13 +227,7 @@ async function discoverSiteStructure(
 ): Promise<DiscoveryResult> {
   const startedAt = Date.now();
   const normalizedUrl = normalizeSourceUrl(sourceUrl);
-  const pending = [
-    {
-      url: normalizePageUrl(normalizedUrl, normalizedUrl),
-      depth: 0,
-      sourceTags: ["homepage"] as CaptureSourceTag[],
-    },
-  ];
+  const pending = await buildDiscoveryQueue(normalizedUrl, pageLimit);
   const seen = new Set<string>();
   const pageMap = new Map<string, SiteDiscoveryPage>();
   const pageDetails = new Map<string, PageAnalysis>();
@@ -296,6 +305,27 @@ async function discoverSiteStructure(
     }
   }
 
+  if (pageMap.size < pageLimit && pending.length) {
+    for (const queuedPage of pending) {
+      if (pageMap.size >= pageLimit) {
+        break;
+      }
+
+      if (pageMap.has(queuedPage.url)) {
+        continue;
+      }
+
+      pageMap.set(queuedPage.url, {
+        url: queuedPage.url,
+        path: buildPublicPagePath(queuedPage.url, normalizedUrl),
+        title: buildPageTitleFromUrl(queuedPage.url),
+        description: "",
+        sourceTags: queuedPage.sourceTags,
+        depth: queuedPage.depth,
+      });
+    }
+  }
+
   const pages = Array.from(pageMap.values()).sort((left, right) => {
     if (left.depth !== right.depth) {
       return left.depth - right.depth;
@@ -309,6 +339,151 @@ async function discoverSiteStructure(
     pages,
     pageDetails,
   };
+}
+
+async function buildDiscoveryQueue(sourceUrl: string, pageLimit: number) {
+  const normalizedHomepage = normalizePageUrl(sourceUrl, sourceUrl) || sourceUrl;
+  const queue: Array<{ url: string; depth: number; sourceTags: CaptureSourceTag[] }> = [];
+  const queued = new Set<string>();
+
+  const enqueue = (url: string | null, depth: number, sourceTags: CaptureSourceTag[]) => {
+    if (!url || queued.has(url)) {
+      return;
+    }
+
+    queued.add(url);
+    queue.push({ url, depth, sourceTags });
+  };
+
+  enqueue(normalizedHomepage, 0, ["homepage"]);
+
+  const sitemapUrls = await discoverSitemapUrls(normalizedHomepage, pageLimit);
+  for (const url of sitemapUrls) {
+    enqueue(url, 1, ["crawl"]);
+  }
+
+  for (const url of buildCommonPageCandidates(normalizedHomepage)) {
+    enqueue(url, 1, ["crawl"]);
+  }
+
+  return queue;
+}
+
+async function discoverSitemapUrls(sourceUrl: string, pageLimit: number) {
+  const discovered = new Set<string>();
+  const sitemapQueue: string[] = [];
+  const visitedSitemaps = new Set<string>();
+  const origin = new URL(sourceUrl).origin;
+
+  try {
+    const robots = await fetchText(`${origin}/robots.txt`);
+    for (const sitemapUrl of extractSitemapUrlsFromRobots(robots, origin)) {
+      sitemapQueue.push(sitemapUrl);
+    }
+  } catch {
+    // Best-effort only.
+  }
+
+  sitemapQueue.push(`${origin}/sitemap.xml`);
+
+  while (sitemapQueue.length && discovered.size < pageLimit * 4) {
+    const sitemapUrl = sitemapQueue.shift();
+    if (!sitemapUrl || visitedSitemaps.has(sitemapUrl)) {
+      continue;
+    }
+
+    visitedSitemaps.add(sitemapUrl);
+
+    try {
+      const xml = await fetchText(sitemapUrl);
+
+      for (const nestedSitemap of extractSitemapIndexUrls(xml, origin)) {
+        if (!visitedSitemaps.has(nestedSitemap)) {
+          sitemapQueue.push(nestedSitemap);
+        }
+      }
+
+      for (const pageUrl of extractUrlsetUrls(xml, origin)) {
+        if (isLikelyHtmlUrl(pageUrl)) {
+          discovered.add(pageUrl);
+        }
+
+        if (discovered.size >= pageLimit * 4) {
+          break;
+        }
+      }
+    } catch {
+      // Ignore failures and continue with homepage crawl.
+    }
+  }
+
+  return Array.from(discovered);
+}
+
+async function fetchText(url: string) {
+  const response = await fetch(url, {
+    headers: FETCH_HEADERS,
+    signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch ${url}`);
+  }
+
+  return response.text();
+}
+
+function extractSitemapUrlsFromRobots(robotsText: string, origin: string) {
+  return robotsText
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => /^sitemap:/i.test(line))
+    .map((line) => line.replace(/^sitemap:\s*/i, "").trim())
+    .map((line) => normalizeAssetUrl(line, origin))
+    .filter((line): line is string => Boolean(line));
+}
+
+function extractSitemapIndexUrls(xml: string, origin: string) {
+  return Array.from(xml.matchAll(/<sitemap>[\s\S]*?<loc>(.*?)<\/loc>[\s\S]*?<\/sitemap>/gi))
+    .map((match) => decodeXmlEntities(match[1] || ""))
+    .map((value) => normalizeAssetUrl(value, origin))
+    .filter((value): value is string => Boolean(value));
+}
+
+function extractUrlsetUrls(xml: string, origin: string) {
+  return Array.from(xml.matchAll(/<url>[\s\S]*?<loc>(.*?)<\/loc>[\s\S]*?<\/url>/gi))
+    .map((match) => decodeXmlEntities(match[1] || ""))
+    .map((value) => normalizePageUrl(value, origin))
+    .filter((value): value is string => Boolean(value));
+}
+
+function decodeXmlEntities(value: string) {
+  return value
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+}
+
+function buildCommonPageCandidates(sourceUrl: string) {
+  const url = new URL(sourceUrl);
+  const commonPaths = [
+    "/about",
+    "/about-us",
+    "/contact",
+    "/services",
+    "/service",
+    "/pricing",
+    "/portfolio",
+    "/projects",
+    "/work",
+    "/blog",
+  ];
+
+  return commonPaths
+    .map((pathname) => normalizePageUrl(pathname, url.origin))
+    .filter((value): value is string => Boolean(value));
 }
 
 async function analyzePage(

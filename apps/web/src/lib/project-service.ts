@@ -286,14 +286,14 @@ They must directly influence the summary, CTA language, design variation headlin
 }
 
 function parseSiteCaptureSelection(formData: FormData): SiteCaptureSelection {
-  const mode = String(formData.get("siteCaptureMode") || "primary_navigation");
+  const mode = String(formData.get("siteCaptureMode") || "all");
   const pageLimit = Number.parseInt(String(formData.get("siteCapturePageLimit") || "24"), 10);
 
   return {
     mode:
       mode === "all" || mode === "custom" || mode === "primary_navigation"
         ? mode
-        : "primary_navigation",
+        : "all",
     selectedUrls: formData.getAll("selectedPageUrls").map(String).filter(Boolean),
     pageLimit: Number.isFinite(pageLimit) ? Math.min(Math.max(pageLimit, 1), 60) : 24,
   };
