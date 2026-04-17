@@ -1,0 +1,263 @@
+:root {
+  --bg: #f4ede5;
+  --panel: #fffaf4;
+  --ink: #172435;
+  --muted: #56657a;
+  --accent: #e16b41;
+  --cyan: #1d7f87;
+  --dark: #102031;
+  --line: rgba(23, 36, 53, 0.1);
+  --shadow: 0 24px 60px rgba(16, 32, 49, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  background:
+    radial-gradient(circle at top left, rgba(225, 107, 65, 0.12), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(29, 127, 135, 0.12), transparent 24%),
+    var(--bg);
+  color: var(--ink);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.page-shell {
+  min-height: 100vh;
+}
+
+.site-header,
+.content,
+.site-footer {
+  width: min(1160px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 28px 0 12px;
+}
+
+.brand img {
+  width: 180px;
+}
+
+.site-nav {
+  display: flex;
+  gap: 18px;
+  font: 600 0.95rem/1.2 Arial, sans-serif;
+  color: var(--muted);
+}
+
+.site-nav .active,
+.site-nav a:hover {
+  color: var(--ink);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 12px 0 56px;
+}
+
+.hero,
+.card-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.hero {
+  grid-template-columns: 1.08fr 0.92fr;
+}
+
+.card-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.card,
+.dark-panel {
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  box-shadow: var(--shadow);
+}
+
+.card {
+  background: var(--panel);
+  padding: 30px;
+}
+
+.page-intro {
+  max-width: 860px;
+}
+
+.dark-panel {
+  background: linear-gradient(140deg, #102031, #1d354c);
+  color: #f4ede5;
+  padding: 34px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  font: 700 0.82rem/1.3 Arial, sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.dark-panel .eyebrow {
+  color: #f1b8a1;
+}
+
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+  line-height: 0.98;
+  max-width: 12ch;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  line-height: 1.05;
+}
+
+h3 {
+  font-size: 1.4rem;
+  line-height: 1.1;
+}
+
+.lead,
+.card p,
+.site-footer p,
+.check-list li,
+.pill-grid span {
+  font: 400 1rem/1.7 Arial, sans-serif;
+  color: var(--muted);
+}
+
+.lead {
+  font-size: 1.14rem;
+  max-width: 58ch;
+  margin-top: 18px;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.button {
+  border-radius: 999px;
+  padding: 14px 18px;
+  font: 700 0.95rem/1 Arial, sans-serif;
+}
+
+.button-primary {
+  background: var(--ink);
+  color: #fff;
+}
+
+.button-secondary {
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.mini-grid,
+.pill-grid {
+  display: grid;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.mini-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mini-grid h2 {
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 6px;
+}
+
+.pill-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 24px;
+}
+
+.pill-grid span {
+  color: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  padding: 14px 16px;
+}
+
+.media-card img {
+  border-radius: 22px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.check-list {
+  display: grid;
+  gap: 12px;
+  padding-left: 20px;
+  margin-top: 20px;
+}
+
+.section-head {
+  max-width: 760px;
+}
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 0 36px;
+  border-top: 1px solid var(--line);
+}
+
+.site-footer p {
+  padding-top: 22px;
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .card-grid,
+  .pill-grid,
+  .mini-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header,
+  .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

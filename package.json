@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "npm --prefix apps/web run dev",
     "build": "npm --prefix apps/web run build",
+    "build:pages": "node scripts/build-pages-site.mjs",
     "preview": "npm --prefix apps/web run preview",
     "deploy": "npm --prefix apps/web run deploy",
     "git:commit": "python3 scripts/git_commit_helper.py",
