@@ -6,17 +6,34 @@
     <title>Contact | ASH-TRA</title>
     <meta
       name="description"
-      content="Talk to ASH-TRA about a cinematic website redesign, a full astro-tech rebuild, or the right next move if the current site feels behind."
+      content="Talk to ASH-TRA about a cinematic website redesign, a full rebuild, or the right next move if the current site feels behind."
+    />
+    <meta
+      name="keywords"
+      content="contact ASH-TRA, project enquiry form, website redesign contact, consultation form, cinematic web design contact"
     />
     <link rel="canonical" href="https://ash-tra.com/contact/" />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content="Contact | ASH-TRA" />
     <meta
       property="og:description"
       content="If the site feels too generic for where the business is going, this is where the conversation starts."
     />
+    <meta property="og:site_name" content="ASH-TRA" />
+    <meta property="og:url" content="https://ash-tra.com/contact/" />
     <meta property="og:image" content="https://ash-tra.com/brand/ash-tra-social-lockup.png" />
+    <meta property="og:image:alt" content="ASH-TRA contact page preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Contact | ASH-TRA" />
+    <meta
+      name="twitter:description"
+      content="If the site feels too generic for where the business is going, this is where the conversation starts."
+    />
+    <meta name="twitter:image" content="https://ash-tra.com/brand/ash-tra-social-lockup.png" />
+    <meta name="twitter:image:alt" content="ASH-TRA contact page preview" />
     <meta name="theme-color" content="#090d16" />
     <link rel="icon" href="/brand/ash-tra-favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,13 +62,13 @@
               of presence you want next is enough to start properly.
             </p>
             <div class="contact-ways">
-              <a class="contact-way" href="mailto:team.ashtra.ai@gmail.com" data-track="email_click">
-                <strong>Email</strong>
-                <span>team.ashtra.ai@gmail.com</span>
+              <a class="contact-way" href="#contact-form">
+                <strong>Project form</strong>
+                <span>Use the shorter enquiry form if the gap is already clear.</span>
               </a>
-              <a class="contact-way" href="https://api.whatsapp.com/send/?phone=5543991324028" target="_blank" rel="noreferrer" data-track="whatsapp_click">
-                <strong>WhatsApp</strong>
-                <span>Fastest route if you want a real reply quickly.</span>
+              <a class="contact-way" href="/start-project/">
+                <strong>Start</strong>
+                <span>Use the focused consultation intake if the direction is already clear.</span>
               </a>
             </div>
           </article>
@@ -67,10 +84,10 @@
                 <span>The goal is a stronger conversation, not a bureaucratic form maze.</span>
               </div>
               <div class="scene__window scene__window--wide image-frame" data-depth="1.2">
-                <img src="/assets/media/visual-contact-beacon.svg" alt="Futuristic communication beacon with glowing orbital contact lines." />
+                <img src="/assets/media/visual-contact-beacon.svg" alt="Futuristic communication beacon with glowing blue orbital contact lines." />
               </div>
               <div class="scene__window scene__window--card image-frame" data-depth="0.8">
-                <img src="/assets/media/space-exoplanet-frame.jpg" alt="Futuristic exoplanet frame matching the astro-tech contact mood." />
+                <img src="/assets/media/space-exoplanet-frame.jpg" alt="Futuristic exoplanet frame matching the blue-black contact mood." />
               </div>
             </div>
           </aside>
@@ -79,12 +96,20 @@
 
       <section class="section">
         <div class="shell contact-grid">
-          <article class="surface form-card" data-reveal>
+          <article class="surface form-card" data-reveal id="contact-form">
             <div class="form-card__head">
               <h2 class="card__title">Project enquiry</h2>
               <p>Enough detail to understand the gap and reply with real context.</p>
             </div>
-            <form data-enquiry-form data-subject="ASH-TRA contact enquiry" name="contact-enquiry">
+            <form
+              action="https://formspree.io/f/mbdqovoj"
+              method="POST"
+              data-enquiry-form
+              data-form-kind="contact"
+              data-success-copy="Your project enquiry was sent. The connected inbox should now have the full submission."
+              name="contact-enquiry"
+            >
+              <input type="hidden" name="_subject" value="ASH-TRA contact enquiry" />
               <div class="form-grid">
                 <div class="field">
                   <label for="contact-name">Name</label>
@@ -130,13 +155,13 @@
                 </div>
               </div>
               <div class="hero__actions">
-                <button class="button button--primary" type="submit">Draft the enquiry email</button>
+                <button class="button button--primary" type="submit">Send enquiry</button>
               </div>
             </form>
             <p class="success-note" hidden data-form-success>
-              Your email app should open with the enquiry drafted. If it does not, use the direct
-              email address or WhatsApp instead.
+              Your enquiry was sent. The connected inbox should now have the full submission.
             </p>
+            <p class="error-note" hidden data-form-error></p>
           </article>
 
           <aside class="surface contact-card" data-reveal data-tilt>
@@ -150,7 +175,7 @@
             <div class="route-cloud">
               <a href="/services/">Services</a>
               <a href="/examples/">Portfolio</a>
-              <a href="/start-project/">Start project</a>
+              <a href="/start-project/">Start</a>
             </div>
           </aside>
         </div>

@@ -1,6 +1,8 @@
 (function () {
   const config = window.AshtraConfig || {};
   const page = document.body.dataset.page || "home";
+  const contactFormEndpoint = config.contactFormEndpoint || "https://formspree.io/f/mbdqovoj";
+  const consultationFormEndpoint = config.consultationFormEndpoint || "https://formspree.io/f/xaqaogoo";
 
   const navItems = [
     { href: "/services/", label: "Services", match: "/services/" },
@@ -10,55 +12,153 @@
     { href: "/contact/", label: "Contact", match: "/contact/" }
   ];
 
-  const supportPages = [
+  const footerAtlasLinks = [
+    { title: "Home", url: "/" },
+    { title: "Services", url: "/services/" },
+    { title: "Process", url: "/process/" },
+    { title: "Portfolio", url: "/examples/" },
+    { title: "About", url: "/about/" },
+    { title: "Contact", url: "/contact/" },
+    { title: "Start a Project", url: "/start-project/" },
+    { title: "FAQ", url: "/faq/" },
     { title: "Privacy", url: "/privacy/" },
     { title: "Terms", url: "/terms/" },
     { title: "Cookies", url: "/cookies/" },
     { title: "Accessibility", url: "/accessibility/" }
   ];
 
+  const discoveryQuestions = [
+    {
+      step: "01",
+      title: "Business",
+      prompt: "What kind of business are we building around?",
+      choiceName: "Business mode",
+      noteName: "Business notes",
+      options: ["Service-led", "Product-led", "Consulting", "Hybrid"],
+      placeholder: "What do you sell, who buys it, and why does this moment matter?"
+    },
+    {
+      step: "02",
+      title: "Urgency",
+      prompt: "Why does the next version need to happen now?",
+      choiceName: "Urgency lane",
+      noteName: "Urgency notes",
+      options: ["Launch", "Rebrand", "Underperforming", "Expansion"],
+      placeholder: "Explain the trigger, pressure, or opportunity behind the rebuild."
+    },
+    {
+      step: "03",
+      title: "Audience",
+      prompt: "Who needs to trust the site fastest?",
+      choiceName: "Audience priority",
+      noteName: "Audience notes",
+      options: ["B2B buyers", "Premium clients", "Investors", "Partners"],
+      placeholder: "Describe the exact people you want the site to attract and convince."
+    },
+    {
+      step: "04",
+      title: "Mood",
+      prompt: "What should the brand feel like on first contact?",
+      choiceName: "Brand mood",
+      noteName: "Brand mood notes",
+      options: ["Cinematic", "Technical", "Minimal", "Editorial"],
+      placeholder: "What should visitors feel immediately, and what should the brand never feel like?"
+    },
+    {
+      step: "05",
+      title: "Goal",
+      prompt: "What is the primary job of the site?",
+      choiceName: "Primary site goal",
+      noteName: "Primary site goal notes",
+      options: ["Leads", "Authority", "Bookings", "Applications"],
+      placeholder: "What is the one action or understanding the site must create quickly?"
+    },
+    {
+      step: "06",
+      title: "Visuals",
+      prompt: "What balance feels right for the new system?",
+      choiceName: "Visual balance",
+      noteName: "Visual balance notes",
+      options: ["Image-led", "Type-led", "Motion-led", "Balanced"],
+      placeholder: "Share references, visual cues, colors, motion ideas, or examples you admire."
+    },
+    {
+      step: "07",
+      title: "Content",
+      prompt: "How ready is the content layer today?",
+      choiceName: "Content readiness",
+      noteName: "Content readiness notes",
+      options: ["Ready", "Partial", "Needs help", "Starting fresh"],
+      placeholder: "What copy, imagery, proof, testimonials, or assets already exist?"
+    },
+    {
+      step: "08",
+      title: "Tech",
+      prompt: "What technical support should the build include?",
+      choiceName: "Technical needs",
+      noteName: "Technical needs notes",
+      options: ["CMS", "Integrations", "Multilingual", "Low maintenance"],
+      placeholder: "List the must-have features, integrations, or technical constraints."
+    },
+    {
+      step: "09",
+      title: "Timing",
+      prompt: "How quickly do you want to move if the fit is right?",
+      choiceName: "Project timing",
+      noteName: "Project timing notes",
+      options: ["Two weeks", "Thirty days", "This quarter", "Flexible"],
+      placeholder: "Add any launch dates, deadlines, budget context, or decision windows."
+    }
+  ];
+
   const siteIndex = [
     {
       title: "Services",
       url: "/services/",
-      description: "Strategy, redesign, front-end build, motion, performance, and SEO-ready structure.",
-      keywords: ["service", "services", "design", "redesign", "build", "motion", "seo", "performance"]
+      description: "Strategy, redesign, motion, performance, and launch-ready blue-black website systems.",
+      keywords: ["services", "design", "redesign", "build", "motion", "seo", "performance"]
     },
     {
       title: "Process",
       url: "/process/",
-      description: "Audit, direction, design, build, and launch with a clear production rhythm.",
-      keywords: ["process", "steps", "timeline", "how", "workflow", "launch"]
+      description: "Audit, direction, design, build, and launch with a calm production rhythm.",
+      keywords: ["process", "steps", "timeline", "workflow", "launch", "delivery"]
     },
     {
       title: "Portfolio",
       url: "/examples/",
-      description: "Portfolio direction studies that show ASH-TRA's visual standard without turning client work into filler.",
-      keywords: ["examples", "portfolio", "study", "direction", "gallery", "private"]
+      description: "Public direction studies that show the cinematic standard without turning private work into filler.",
+      keywords: ["portfolio", "studies", "industries", "gallery", "direction", "private"]
     },
     {
       title: "About",
       url: "/about/",
-      description: "ASH-TRA's positioning, standards, and the kind of brands the work is built for.",
-      keywords: ["about", "studio", "brand", "positioning", "fit"]
+      description: "ASH-TRA's positioning, standards, and the kinds of ambitious brands the work is built for.",
+      keywords: ["about", "studio", "brand", "positioning", "fit", "story"]
     },
     {
       title: "Contact",
       url: "/contact/",
-      description: "Direct contact options and a shorter enquiry form for brands ready to talk.",
-      keywords: ["contact", "email", "whatsapp", "reach", "talk", "message"]
+      description: "Project enquiry form, faster routing, and next-step guidance for brands ready to talk.",
+      keywords: ["contact", "enquiry", "form", "message", "reach", "talk"]
     },
     {
-      title: "Start a Project",
+      title: "Start",
       url: "/start-project/",
-      description: "Project intake for brands that know the current site no longer matches the business.",
-      keywords: ["start", "project", "brief", "quote", "kickoff", "enquiry"]
+      description: "Consultation intake for brands that know the current site no longer matches the business.",
+      keywords: ["start", "consultation", "brief", "quote", "kickoff", "discovery"]
+    },
+    {
+      title: "Discovery",
+      url: "/discovery/",
+      description: "A deeper consultation brief with guided choices and written notes for every planning area.",
+      keywords: ["discovery", "consultation", "brief", "strategy", "planning", "intake"]
     },
     {
       title: "FAQ",
       url: "/faq/",
-      description: "Answers about fit, motion, mobile, SEO, private work, and the design process.",
-      keywords: ["faq", "questions", "answers", "seo", "mobile", "fit", "pricing"]
+      description: "Answers about fit, motion, mobile, SEO, discovery, and the design process.",
+      keywords: ["faq", "questions", "answers", "seo", "mobile", "fit", "discovery"]
     }
   ];
 
@@ -72,8 +172,6 @@
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.9"/></svg>',
       search:
         '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 16l5 5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/></svg>',
-      email:
-        '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4.5 7l7.5 6 7.5-6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>',
       whatsapp:
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2a8.6 8.6 0 0 0-7.4 13l-1.2 4.6 4.7-1.2A8.6 8.6 0 1 0 12 3.2zm4.8 12.2c-.2.6-1.3 1.1-1.9 1.2-.5.1-1.1.2-3.4-.8-2.8-1.2-4.5-4-4.7-4.2-.2-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5.2.6.8 2 .8 2.1.1.2.1.4 0 .6-.1.2-.2.4-.4.6l-.5.5c-.2.2-.3.3-.1.6.2.4.9 1.5 2 2.4 1.4 1.2 2.5 1.5 2.9 1.7.3.1.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.3.7-.2.3.1 1.9.9 2.2 1 .3.2.6.3.7.5.1.1.1.7-.2 1.3z" fill="currentColor"/></svg>',
       top:
@@ -95,6 +193,147 @@
     return current.startsWith(match);
   }
 
+  function escapeHtml(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function renderDiscoveryQuestion(question, questionIndex) {
+    return `
+      <article class="discovery-question" data-reveal>
+        <div class="discovery-question__head">
+          <span class="discovery-question__step">${question.step}</span>
+          <div>
+            <h3>${question.title}</h3>
+            <p>${question.prompt}</p>
+          </div>
+        </div>
+        <fieldset class="choice-fieldset">
+          <legend class="sr-only">${question.prompt}</legend>
+          <div class="choice-grid">
+            ${question.options
+              .map(
+                (option, optionIndex) => `
+                  <label class="choice-chip">
+                    <input
+                      type="radio"
+                      name="${question.choiceName}"
+                      value="${option}"
+                      ${optionIndex === 0 ? "required" : ""}
+                    />
+                    <span>${option}</span>
+                  </label>
+                `
+              )
+              .join("")}
+          </div>
+        </fieldset>
+        <div class="field field--note">
+          <label for="discovery-note-${questionIndex}">${question.title} notes</label>
+          <textarea
+            id="discovery-note-${questionIndex}"
+            name="${question.noteName}"
+            placeholder="${question.placeholder}"
+          ></textarea>
+        </div>
+      </article>
+    `;
+  }
+
+  function discoveryFormMarkup() {
+    return `
+      <section class="footer-discovery" id="discovery">
+        <div class="footer-discovery__intro" data-reveal>
+          <div>
+            <span class="eyebrow">Discovery</span>
+            <h2 class="section-title">Build the consultation brief with a guided discovery flow.</h2>
+          </div>
+          <p class="section-text">
+            Choose the closest answer for each question, then add detail in the note field beside
+            it. The full packet goes to the consultation inbox with your contact details attached.
+          </p>
+        </div>
+        <form
+          class="discovery-form"
+          action="${consultationFormEndpoint}"
+          method="POST"
+          name="discovery-consultation"
+          data-enquiry-form
+          data-form-kind="discovery"
+          data-success-copy="The discovery brief was sent. The consultation inbox should now have the full brief."
+        >
+          <input type="hidden" name="_subject" value="ASH-TRA discovery consultation" />
+          <div class="discovery-form__identity">
+            <div class="field">
+              <label for="discovery-name">Name</label>
+              <input id="discovery-name" name="Name" type="text" required />
+            </div>
+            <div class="field">
+              <label for="discovery-email">Email</label>
+              <input id="discovery-email" name="Email" type="email" required />
+            </div>
+            <div class="field">
+              <label for="discovery-brand">Brand</label>
+              <input id="discovery-brand" name="Brand" type="text" required />
+            </div>
+            <div class="field">
+              <label for="discovery-site">Website</label>
+              <input id="discovery-site" name="Website" type="url" placeholder="https://..." />
+            </div>
+          </div>
+          <div class="discovery-form__grid">
+            ${discoveryQuestions.map(renderDiscoveryQuestion).join("")}
+          </div>
+          <div class="discovery-form__actions">
+            <button class="button button--primary" type="submit">Send discovery</button>
+            <p class="form-note">This goes to the consultation form with every answer labeled and grouped.</p>
+          </div>
+        </form>
+        <p class="success-note" hidden data-form-success></p>
+        <p class="error-note" hidden data-form-error>
+          The send did not complete. Please try again, or use the contact page while we retry.
+        </p>
+      </section>
+    `;
+  }
+
+  function footerDiscoveryMarkup() {
+    return `
+      <section class="footer-discovery" data-reveal>
+        <div class="footer-discovery__intro">
+          <div>
+            <span class="eyebrow">Discovery</span>
+            <h2 class="section-title">Need a deeper consultation route?</h2>
+          </div>
+          <p class="section-text">
+            The dedicated Discovery page keeps the footer clean while still giving the longer
+            consultation path a proper place to live.
+          </p>
+        </div>
+        <div class="footer-discovery__route">
+          <div class="footer-discovery__meta">
+            <p class="footer-discovery__label">What it covers</p>
+            <ul class="footer-discovery__list">
+              <li>Business model and audience</li>
+              <li>Brand mood and visual direction</li>
+              <li>Content, timing, and technical needs</li>
+            </ul>
+          </div>
+          <div class="footer-discovery__card">
+            <p class="footer-discovery__label">Separate page</p>
+            <h3>Open Discovery.</h3>
+            <p>Brand direction, strategic context, and the fuller consultation path all live in one calmer route.</p>
+            <a class="button button--primary" href="/discovery/">Discovery</a>
+          </div>
+        </div>
+      </section>
+    `;
+  }
+
   function headerMarkup() {
     return `
       <header class="site-header">
@@ -103,7 +342,7 @@
             <img class="brand-lockup__mark" src="/brand/ash-tra-favicon.svg" alt="ASH-TRA mark" />
             <span class="brand-lockup__meta">
               <span class="brand-lockup__title">ASH-TRA</span>
-              <span class="brand-lockup__tag">Orbital websites for ambitious brands.</span>
+              <span class="brand-lockup__tag">Cinematic sites for ambitious brands.</span>
             </span>
           </a>
           <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
@@ -119,10 +358,6 @@
                 .join("")}
             </div>
             <div class="site-nav__cta">
-              <button class="button button--subtle button--bot" type="button" data-command-open>
-                ${icon("search")}
-                <span>Ask Astra</span>
-              </button>
               <a class="button button--primary" href="/start-project/" data-track="start_project_click">
                 ${icon("arrow")}
                 <span>Launch a rebuild</span>
@@ -135,40 +370,35 @@
   }
 
   function footerMarkup() {
-    const atlasLinks = [
-      { title: "Home", url: "/" },
-      ...siteIndex.map((item) => ({ title: item.title, url: item.url })),
-      ...supportPages
-    ];
-
     return `
       <footer class="site-footer">
         <div class="site-footer__inner">
           <div class="site-footer__main surface footer-mega">
-            <div class="footer-brand">
+            <section class="footer-brand" data-reveal>
               <div class="footer-brand__lockup">
-                <img src="/brand/ash-tra-mark.svg" alt="ASH-TRA mark" />
+                <img src="/brand/ash-tra-favicon.svg" alt="ASH-TRA mark" />
                 <div>
                   <p class="footer-brand__title">ASH-TRA</p>
-                  <p class="footer-brand__tag">Sci-fi polish. Real business momentum.</p>
+                  <p class="footer-brand__tag">SCI-FI POLISH. REAL BUSINESS MOMENTUM.</p>
                 </div>
               </div>
               <p class="footer-brand__text">
-                Design-led websites for ambitious brands that want to feel more advanced, more cinematic, and more unmistakably premium online.
+                Design-led websites for ambitious brands that want to feel more advanced, more cinematic,
+                and more unmistakably premium online.
               </p>
               <div class="footer-brand__actions">
                 <a class="button button--primary" href="/start-project/" data-track="start_project_click">Start a project</a>
                 <a class="button button--secondary" href="/contact/" data-track="contact_click">Talk to ASH-TRA</a>
               </div>
-            </div>
+            </section>
 
-            <div class="footer-sitemap">
+            <section class="footer-sitemap" data-reveal aria-label="Site Atlas">
               <div class="footer-sitemap__head">
-                <strong>Site atlas</strong>
+                <strong>Site Atlas</strong>
                 <p>Everything in the system, mapped in one place.</p>
               </div>
               <div class="footer-sitemap__grid">
-                ${atlasLinks
+                ${footerAtlasLinks
                   .map(
                     (item) => `
                       <a class="footer-sitemap__link" href="${item.url}">
@@ -179,28 +409,26 @@
                   )
                   .join("")}
               </div>
-            </div>
+            </section>
 
             <div class="site-footer__columns">
-              <div class="footer-column">
+              <section class="footer-column" data-reveal>
                 <strong>Portfolio</strong>
                 <a href="/examples/">Direction studies</a>
                 <a href="/services/">Services</a>
-                <a href="/process/">Process</a>
-              </div>
-              <div class="footer-column">
+              </section>
+              <section class="footer-column" data-reveal>
                 <strong>Connect</strong>
-                <a href="/contact/" data-track="contact_click">Contact</a>
-                <a href="/start-project/" data-track="start_project_click">Start a project</a>
-                <a href="mailto:${config.formEmail || "team.ashtra.ai@gmail.com"}" data-track="email_click">${config.formEmail || "team.ashtra.ai@gmail.com"}</a>
-                <a href="${config.whatsappUrl || "#"}" target="_blank" rel="noreferrer" data-track="whatsapp_click">WhatsApp</a>
-              </div>
-              <div class="footer-column">
+                <a href="/contact/">Contact</a>
+                <a href="/start-project/">Start a project</a>
+                <a href="/discovery/">Discovery</a>
+              </section>
+              <section class="footer-column" data-reveal>
                 <strong>Standards</strong>
                 <a href="/about/">About</a>
                 <a href="/faq/">FAQ</a>
                 <a href="/accessibility/">Accessibility</a>
-              </div>
+              </section>
             </div>
           </div>
           <div class="site-footer__bottom">
@@ -225,44 +453,43 @@
           ${icon("whatsapp")}
           <span class="floating-action__label">WhatsApp</span>
         </a>
-        <button class="floating-action floating-action--bot" type="button" data-command-open aria-label="Open site navigator">
-          <img class="floating-action__avatar" src="/brand/ash-tra-bot.svg" alt="" aria-hidden="true" />
-          <span class="floating-action__label">Astra Bot</span>
+        <button class="floating-action floating-action--bot" type="button" data-command-open aria-label="Open Orbot help">
+          <img class="floating-action__avatar" src="/brand/orbot-avatar.svg" alt="" aria-hidden="true" />
+          <span class="floating-action__label">Orbot</span>
         </button>
-        <button class="floating-action" type="button" data-back-to-top aria-label="Back to top" hidden>
+        <button class="floating-action floating-action--top" type="button" data-back-to-top aria-label="Back to top" hidden>
           ${icon("top")}
           <span class="floating-action__label">Top</span>
         </button>
       </div>
       <div class="command-root" data-command-root hidden>
-        <button class="command-root__backdrop" type="button" aria-label="Close site navigator" data-command-close></button>
-        <section class="command-panel" aria-label="Site navigator">
+        <button class="command-root__backdrop" type="button" aria-label="Close Orbot help" data-command-close></button>
+        <section class="command-panel" aria-label="Orbot help">
           <div class="command-panel__header">
             <div class="command-panel__avatar">
-              <img src="/brand/ash-tra-bot.svg" alt="" aria-hidden="true" />
+              <img src="/brand/orbot-avatar.svg" alt="" aria-hidden="true" />
             </div>
             <div>
-              <span class="eyebrow">Astra navigator</span>
-              <h2>Talk to the little orbital bot.</h2>
-              <p>Ask about portfolio, fit, services, process, or jump straight to the right page.</p>
+              <span class="eyebrow">Orbot</span>
+              <h2>Subtle help, faster routing.</h2>
+              <p>Ask about services, process, portfolio, discovery, or the cleanest next step.</p>
             </div>
-            <button class="command-panel__close" type="button" aria-label="Close site navigator" data-command-close>
+            <button class="command-panel__close" type="button" aria-label="Close Orbot help" data-command-close>
               ${icon("close")}
             </button>
           </div>
           <div class="command-panel__body">
             <div class="command-panel__suggestions">
-              <button type="button" class="command-panel__suggestion" data-command-suggestion="What does ASH-TRA do?">What does ASH-TRA do?</button>
-              <button type="button" class="command-panel__suggestion" data-command-suggestion="Show me the portfolio direction">Show me the portfolio</button>
-              <button type="button" class="command-panel__suggestion" data-command-suggestion="Who is this for?">Who is this for?</button>
-              <button type="button" class="command-panel__suggestion" data-command-suggestion="How does the process work?">How does the process work?</button>
-              <button type="button" class="command-panel__suggestion" data-command-suggestion="How do I start a project?">How do I start?</button>
+              <button type="button" class="command-panel__suggestion" data-command-suggestion="Show me the services">Services</button>
+              <button type="button" class="command-panel__suggestion" data-command-suggestion="How does the process work?">Process</button>
+              <button type="button" class="command-panel__suggestion" data-command-suggestion="Where is the portfolio?">Portfolio</button>
+              <button type="button" class="command-panel__suggestion" data-command-suggestion="Where can I send the full discovery brief?">Discovery</button>
             </div>
             <form class="command-panel__form" data-command-form>
-              <label class="sr-only" for="command-input">Search the site or ask a question</label>
+              <label class="sr-only" for="command-input">Ask Orbot about the site</label>
               <div class="command-panel__field">
                 ${icon("search")}
-                <input id="command-input" name="query" type="text" autocomplete="off" placeholder="Ask Astra about the site..." />
+                <input id="command-input" name="query" type="text" autocomplete="off" placeholder="Ask Orbot about services, process, or the right next page..." />
               </div>
               <button class="button button--primary" type="submit">
                 ${icon("arrow")}
@@ -272,7 +499,7 @@
             <div class="command-panel__log" data-command-log aria-live="polite"></div>
           </div>
           <div class="command-panel__footer">
-            <p>Fastest human reply still comes from WhatsApp or a direct email.</p>
+            <p>The contact form handles project enquiries. The Discovery page handles the deeper consultation brief.</p>
           </div>
         </section>
       </div>
@@ -284,6 +511,9 @@
     const footerTarget = document.querySelector("[data-site-footer]");
     if (headerTarget) headerTarget.innerHTML = headerMarkup();
     if (footerTarget) footerTarget.innerHTML = footerMarkup();
+    document.querySelectorAll("[data-discovery-form]").forEach(function (target) {
+      target.innerHTML = discoveryFormMarkup();
+    });
     if (!document.querySelector("[data-site-utilities]")) {
       document.body.insertAdjacentHTML("beforeend", utilityMarkup());
     }
@@ -315,8 +545,8 @@
     stage.appendChild(cometLayer);
   }
 
-  function trackEvent(name, detail = {}) {
-    const payload = { event: name, page, ...detail };
+  function trackEvent(name, detail) {
+    const payload = { event: name, page, ...(detail || {}) };
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push(payload);
 
@@ -325,7 +555,7 @@
         page_title: document.title,
         page_location: window.location.href,
         page_path: window.location.pathname,
-        ...detail
+        ...(detail || {})
       });
     }
   }
@@ -378,7 +608,9 @@
   function setupHeaderState() {
     const header = document.querySelector(".site-header");
     if (!header) return;
-    const update = () => header.classList.toggle("is-scrolled", window.scrollY > 18);
+    const update = function () {
+      header.classList.toggle("is-scrolled", window.scrollY > 18);
+    };
     window.addEventListener("scroll", update, { passive: true });
     update();
   }
@@ -387,7 +619,9 @@
     const revealItems = document.querySelectorAll("[data-reveal]");
     if (!revealItems.length) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      revealItems.forEach((item) => item.classList.add("is-visible"));
+      revealItems.forEach(function (item) {
+        item.classList.add("is-visible");
+      });
       return;
     }
 
@@ -402,7 +636,9 @@
       { threshold: 0.18 }
     );
 
-    revealItems.forEach((item) => observer.observe(item));
+    revealItems.forEach(function (item) {
+      observer.observe(item);
+    });
   }
 
   function setupTiltCards() {
@@ -476,7 +712,7 @@
     const button = document.querySelector("[data-back-to-top]");
     if (!button) return;
 
-    const update = () => {
+    const update = function () {
       button.hidden = window.scrollY < 440;
     };
 
@@ -489,41 +725,97 @@
     update();
   }
 
-  function buildMailtoPayload(form) {
-    const data = new FormData(form);
-    const subject = form.dataset.subject || "ASH-TRA enquiry";
-    const lines = [];
-    data.forEach((value, key) => {
-      lines.push(`${key}: ${String(value).trim()}`);
-    });
-    const body = lines.join("\n");
-    return `mailto:${config.formEmail || "team.ashtra.ai@gmail.com"}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-  }
-
   function setupForms() {
     document.querySelectorAll("[data-enquiry-form]").forEach(function (form) {
       const success = form.parentElement.querySelector("[data-form-success]");
+      const error = form.parentElement.querySelector("[data-form-error]");
+      const submit = form.querySelector('[type="submit"]');
       let started = false;
 
-      form.addEventListener("submit", function (event) {
+      function clearFeedback() {
+        if (success) success.hidden = true;
+        if (error) error.hidden = true;
+      }
+
+      form.addEventListener("submit", async function (event) {
         event.preventDefault();
-        trackEvent("contact_form_submitted", {
-          form: form.getAttribute("name") || "enquiry"
-        });
-        if (success) success.hidden = false;
-        window.location.href = buildMailtoPayload(form);
+        clearFeedback();
+
+        const endpoint = form.getAttribute("action");
+        if (!endpoint) {
+          if (error) error.hidden = false;
+          return;
+        }
+
+        const formName = form.getAttribute("name") || form.dataset.formKind || "enquiry";
+        const payload = new FormData(form);
+        payload.set("Page", window.location.href);
+        payload.set("Page title", document.title);
+
+        if (submit) {
+          submit.disabled = true;
+          submit.dataset.originalLabel = submit.dataset.originalLabel || submit.textContent.trim();
+          submit.textContent = "Sending...";
+        }
+
+        form.setAttribute("aria-busy", "true");
+
+        try {
+          const response = await fetch(endpoint, {
+            method: (form.getAttribute("method") || "POST").toUpperCase(),
+            body: payload,
+            headers: { Accept: "application/json" }
+          });
+
+          const result = await response
+            .clone()
+            .json()
+            .catch(function () {
+              return {};
+            });
+
+          if (!response.ok) {
+            const message =
+              result?.errors?.map(function (item) {
+                return item.message;
+              }).join(" ") || "The form could not be sent right now.";
+            throw new Error(message);
+          }
+
+          form.reset();
+          if (success) {
+            success.textContent =
+              form.dataset.successCopy || "Your form was sent successfully. We will review it and reply from the inbox connected to this form.";
+            success.hidden = false;
+          }
+          trackEvent("contact_form_submitted", { form: formName });
+        } catch (submissionError) {
+          if (error) {
+            error.textContent = submissionError.message || "The form could not be sent right now.";
+            error.hidden = false;
+          }
+          trackEvent("contact_form_error", {
+            form: formName,
+            label: (submissionError.message || "error").slice(0, 80)
+          });
+        } finally {
+          if (submit) {
+            submit.disabled = false;
+            submit.textContent = submit.dataset.originalLabel || "Send";
+          }
+          form.setAttribute("aria-busy", "false");
+        }
       });
 
       form.querySelectorAll("input, textarea, select").forEach(function (field) {
+        if (field.type === "hidden") return;
         field.addEventListener(
           "focus",
           function () {
             if (started) return;
             started = true;
             trackEvent("contact_form_started", {
-              form: form.getAttribute("name") || "enquiry"
+              form: form.getAttribute("name") || form.dataset.formKind || "enquiry"
             });
           },
           { once: true }
@@ -547,21 +839,12 @@
     return String(text || "").trim().toLowerCase();
   }
 
-  function escapeHtml(value) {
-    return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;");
-  }
-
   function searchSite(query) {
     const q = normalize(query);
     if (!q) return [];
 
     return siteIndex
-      .map((entry) => {
+      .map(function (entry) {
         let score = 0;
         if (normalize(entry.title).includes(q)) score += 5;
         if (normalize(entry.description).includes(q)) score += 2;
@@ -571,10 +854,16 @@
         });
         return { entry, score };
       })
-      .filter((item) => item.score > 0)
-      .sort((a, b) => b.score - a.score)
+      .filter(function (item) {
+        return item.score > 0;
+      })
+      .sort(function (left, right) {
+        return right.score - left.score;
+      })
       .slice(0, 4)
-      .map((item) => item.entry);
+      .map(function (item) {
+        return item.entry;
+      });
   }
 
   function resolveReply(query) {
@@ -582,55 +871,76 @@
     const rules = [
       {
         match: ["what does", "services", "offer", "redesign", "rebuild"],
-        answer: "ASH-TRA plans, designs, and builds premium website systems with strong art direction, motion, and technical discipline.",
-        results: siteIndex.filter((item) => item.url === "/services/" || item.url === "/examples/")
+        answer: "ASH-TRA plans, designs, and builds cinematic website systems with stronger art direction, motion, and technical discipline.",
+        results: siteIndex.filter(function (item) {
+          return item.url === "/services/" || item.url === "/examples/";
+        })
       },
       {
         match: ["who is", "fit", "best for", "ideal client"],
-        answer: "The work is best for ambitious founders, consultants, agencies, AI and tech-adjacent brands, and service businesses that care about digital taste.",
-        results: siteIndex.filter((item) => item.url === "/about/" || item.url === "/services/")
+        answer: "The work is best for ambitious founders, consultants, agencies, AI and tech-adjacent brands, and premium service teams that care how the site reads immediately.",
+        results: siteIndex.filter(function (item) {
+          return item.url === "/about/" || item.url === "/services/";
+        })
       },
       {
         match: ["process", "timeline", "steps", "launch"],
         answer: "Projects move through audit, direction, design, build, and launch with a calm production rhythm.",
-        results: siteIndex.filter((item) => item.url === "/process/" || item.url === "/start-project/")
+        results: siteIndex.filter(function (item) {
+          return item.url === "/process/" || item.url === "/start-project/";
+        })
       },
       {
-        match: ["portfolio", "private", "examples", "case study"],
-        answer: "The public portfolio stays as direction studies. Approved client work can be discussed privately when it helps the brief.",
-        results: siteIndex.filter((item) => item.url === "/examples/" || item.url === "/contact/")
+        match: ["portfolio", "private", "examples", "case study", "industries"],
+        answer: "The public portfolio stays curated as direction studies. It is there to prove the standard without turning private work into filler.",
+        results: siteIndex.filter(function (item) {
+          return item.url === "/examples/" || item.url === "/contact/";
+        })
       },
       {
         match: ["seo", "mobile", "performance", "accessibility", "motion"],
-        answer: "Those are built into the quality bar. The site is designed to feel expensive without getting bloated or fragile.",
-        results: siteIndex.filter((item) => item.url === "/services/" || item.url === "/faq/")
+        answer: "Those are part of the quality bar. The site is designed to feel expensive without getting bloated or fragile.",
+        results: siteIndex.filter(function (item) {
+          return item.url === "/services/" || item.url === "/faq/";
+        })
       },
       {
-        match: ["start", "brief", "project", "quote", "budget"],
-        answer: "The easiest next move is the project intake page or a direct WhatsApp message if you want a faster conversation first.",
-        results: siteIndex.filter((item) => item.url === "/start-project/" || item.url === "/contact/")
+        match: ["start", "brief", "project", "quote", "budget", "consultation"],
+        answer: "The quickest route is the Start page for a direct consultation or the Discovery page if you want to send the fuller brief right now.",
+        results: siteIndex.filter(function (item) {
+          return item.url === "/start-project/" || item.url === "/discovery/";
+        })
       },
       {
-        match: ["contact", "email", "whatsapp", "message"],
-        answer: "Email and WhatsApp are both available, and WhatsApp is usually the fastest route for a human reply.",
-        results: siteIndex.filter((item) => item.url === "/contact/" || item.url === "/start-project/")
+        match: ["contact", "email", "whatsapp", "message", "discovery"],
+        answer: "Use the contact form for a project enquiry, the Discovery page for a deeper consultation brief, or WhatsApp for a fast human reply.",
+        results: siteIndex.filter(function (item) {
+          return item.url === "/contact/" || item.url === "/discovery/" || item.url === "/start-project/";
+        })
       }
     ];
 
-    const matched = rules.find((rule) => rule.match.some((item) => q.includes(item)));
+    const matched = rules.find(function (rule) {
+      return rule.match.some(function (item) {
+        return q.includes(item);
+      });
+    });
+
     if (matched) return matched;
 
     const results = searchSite(query);
     if (results.length) {
       return {
         answer: "These are the closest matching pages in the site structure.",
-        results
+        results: results
       };
     }
 
     return {
-      answer: "I could not map that cleanly, but the contact page or project intake page should get you to the right next step.",
-      results: siteIndex.filter((item) => item.url === "/contact/" || item.url === "/start-project/")
+      answer: "I could not map that cleanly, but the contact page, Start page, or Discovery page should get you to the right next step.",
+      results: siteIndex.filter(function (item) {
+        return item.url === "/contact/" || item.url === "/start-project/" || item.url === "/discovery/";
+      })
     };
   }
 
@@ -663,7 +973,7 @@
     if (!root || !log || !form || !input) return;
 
     function addEntry(role, text, results) {
-      const label = role === "assistant" ? "Astra Bot" : "You";
+      const label = role === "assistant" ? "Orbot" : "You";
       log.insertAdjacentHTML(
         "beforeend",
         `
@@ -683,8 +993,10 @@
       if (!log.childElementCount) {
         addEntry(
           "assistant",
-          "Ask about the portfolio, fit, services, process, or where to go next in the site atlas.",
-          siteIndex.filter((item) => item.url === "/services/" || item.url === "/start-project/" || item.url === "/examples/")
+          "Ask about services, process, portfolio, discovery, or the cleanest page to open next.",
+          siteIndex.filter(function (item) {
+            return item.url === "/services/" || item.url === "/start-project/" || item.url === "/discovery/" || item.url === "/examples/";
+          })
         );
       }
       window.setTimeout(function () {
@@ -724,6 +1036,12 @@
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       submitQuery(input.value);
+    });
+
+    root.addEventListener("click", function (event) {
+      if (event.target.closest(".command-results a")) {
+        closePalette();
+      }
     });
 
     document.addEventListener("keydown", function (event) {

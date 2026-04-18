@@ -8,12 +8,26 @@
       name="description"
       content="Tell ASH-TRA what feels weak about the current site and what kind of sharper, more premium presence the next version needs to project."
     />
+    <meta
+      name="keywords"
+      content="start website project, consultation form, discovery brief, premium website rebuild, cinematic web design intake"
+    />
     <link rel="canonical" href="https://ash-tra.com/start-project/" />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content="Start a Project | ASH-TRA" />
     <meta property="og:description" content="Describe the gap. Describe the target. That is enough to start." />
+    <meta property="og:site_name" content="ASH-TRA" />
+    <meta property="og:url" content="https://ash-tra.com/start-project/" />
     <meta property="og:image" content="https://ash-tra.com/brand/ash-tra-social-lockup.png" />
+    <meta property="og:image:alt" content="ASH-TRA start page preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Start a Project | ASH-TRA" />
+    <meta name="twitter:description" content="Describe the gap. Describe the target. That is enough to start." />
+    <meta name="twitter:image" content="https://ash-tra.com/brand/ash-tra-social-lockup.png" />
+    <meta name="twitter:image:alt" content="ASH-TRA start page preview" />
     <meta name="theme-color" content="#090d16" />
     <link rel="icon" href="/brand/ash-tra-favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,8 +49,8 @@
       <section class="hero section">
         <div class="shell hero__grid">
           <article class="hero__copy surface" data-reveal>
-            <span class="eyebrow">Start a project</span>
-            <h1 class="hero__title">Describe the gap. Describe the target. That is enough.</h1>
+            <span class="eyebrow">Start</span>
+            <h1 class="hero__title">Describe the gap. Define the target. Send the consultation.</h1>
             <p class="hero__lede">
               If the current site feels too safe, too basic, or too behind the brand, use this page
               to define what the next version needs to become.
@@ -54,10 +68,10 @@
                 <span>The best starting brief is usually the most honest one.</span>
               </div>
               <div class="scene__window scene__window--wide image-frame" data-depth="1.15">
-                <img src="/assets/media/visual-command-center.svg" alt="Command center visual representing project direction and briefing." />
+                <img src="/assets/media/visual-command-center.svg" alt="Command center visual representing project direction and briefing in a blue-black interface." />
               </div>
               <div class="scene__window scene__window--card image-frame" data-depth="0.8">
-                <img src="/assets/media/space-titan-frame.jpg" alt="Cinematic Titan scene reinforcing the project launch theme." />
+                <img src="/assets/media/space-titan-frame.jpg" alt="Cinematic Titan scene reinforcing the project launch theme in a deep blue-black grade." />
               </div>
             </div>
           </aside>
@@ -71,7 +85,15 @@
               <h2 class="card__title">Project start form</h2>
               <p>Enough detail to understand the problem, the ambition, and the next move.</p>
             </div>
-            <form data-enquiry-form data-subject="ASH-TRA project start" name="project-start">
+            <form
+              action="https://formspree.io/f/xaqaogoo"
+              method="POST"
+              data-enquiry-form
+              data-form-kind="consultation"
+              data-success-copy="Your consultation form was sent. The consultation inbox should now have the full submission."
+              name="project-start"
+            >
+              <input type="hidden" name="_subject" value="ASH-TRA project consultation" />
               <div class="form-grid">
                 <div class="field">
                   <label for="start-name">Name</label>
@@ -120,13 +142,13 @@
                 </div>
               </div>
               <div class="hero__actions">
-                <button class="button button--primary" type="submit">Draft the enquiry email</button>
+                <button class="button button--primary" type="submit">Send consult</button>
               </div>
             </form>
             <p class="success-note" hidden data-form-success>
-              Your email draft should open automatically. If it does not, use WhatsApp or the
-              regular contact page and send the same details there.
+              Your consultation form was sent. The consultation inbox should now have the full submission.
             </p>
+            <p class="error-note" hidden data-form-error></p>
           </article>
 
           <aside class="surface contact-card" data-reveal data-tilt>

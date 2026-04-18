@@ -1,0 +1,33 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Orbot assistant avatar</title>
+  <desc id="desc">A compact orbital assistant avatar with deep blue glass, cyan glow, and a subtle green signal ring.</desc>
+  <defs>
+    <linearGradient id="orbot-shell" x1="28" y1="22" x2="132" y2="144" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1730" />
+      <stop offset="0.48" stop-color="#081221" />
+      <stop offset="1" stop-color="#03070F" />
+    </linearGradient>
+    <radialGradient id="orbot-cyan" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(112 56) rotate(130) scale(78 60)">
+      <stop stop-color="#69E3FF" stop-opacity="0.92" />
+      <stop offset="1" stop-color="#69E3FF" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="orbot-teal" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(48 116) rotate(48) scale(70 54)">
+      <stop stop-color="#25D366" stop-opacity="0.58" />
+      <stop offset="1" stop-color="#25D366" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <circle cx="80" cy="80" r="74" fill="url(#orbot-shell)" />
+  <circle cx="80" cy="80" r="73" stroke="#9BDFFF" stroke-opacity="0.18" stroke-width="2" />
+  <circle cx="110" cy="58" r="48" fill="url(#orbot-cyan)" />
+  <circle cx="50" cy="118" r="42" fill="url(#orbot-teal)" />
+  <circle cx="80" cy="80" r="40" fill="#060C16" stroke="#8BE6FF" stroke-opacity="0.18" />
+  <circle cx="80" cy="80" r="24" fill="#0F1E35" stroke="#69E3FF" stroke-opacity="0.85" stroke-width="4" />
+  <circle cx="80" cy="80" r="9" fill="#F1FBFF" />
+  <path d="M28 88C35 111 55 128 80 132" stroke="#6CEBFF" stroke-opacity="0.74" stroke-width="4" stroke-linecap="round" />
+  <path d="M131 72C124 47 104 28 79 28" stroke="#25D366" stroke-opacity="0.88" stroke-width="4" stroke-linecap="round" />
+  <circle cx="131" cy="72" r="5" fill="#25D366" />
+  <circle cx="28" cy="88" r="5" fill="#6CEBFF" />
+  <path d="M62 108H98" stroke="#C9F5FF" stroke-opacity="0.72" stroke-width="4" stroke-linecap="round" />
+  <circle cx="66" cy="62" r="5" fill="#6CEBFF" />
+  <circle cx="94" cy="62" r="5" fill="#25D366" />
+</svg>
