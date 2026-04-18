@@ -115,49 +115,49 @@
     {
       title: "Services",
       url: "/services/",
-      description: "Strategy, redesign, motion, performance, and launch-ready blue-black website systems.",
+      description: "Website redesigns, rebuilds, brand polish, SEO foundations, and clearer structure for growth.",
       keywords: ["services", "design", "redesign", "build", "motion", "seo", "performance"]
     },
     {
       title: "Process",
       url: "/process/",
-      description: "Audit, direction, design, build, and launch with a calm production rhythm.",
+      description: "How the project moves from problem to direction to build to final polish.",
       keywords: ["process", "steps", "timeline", "workflow", "launch", "delivery"]
     },
     {
       title: "Portfolio",
       url: "/examples/",
-      description: "Public direction studies that show the cinematic standard without turning private work into filler.",
+      description: "Direction studies that show the level, the visual standard, and the sharper presence ASH-TRA builds.",
       keywords: ["portfolio", "studies", "industries", "gallery", "direction", "private"]
     },
     {
       title: "About",
       url: "/about/",
-      description: "ASH-TRA's positioning, standards, and the kinds of ambitious brands the work is built for.",
+      description: "What ASH-TRA stands for, who the work is for, and why stronger design changes how the business is read.",
       keywords: ["about", "studio", "brand", "positioning", "fit", "story"]
     },
     {
       title: "Contact",
       url: "/contact/",
-      description: "Project enquiry form, faster routing, and next-step guidance for brands ready to talk.",
+      description: "The fast route for project enquiries, next-step questions, and a clearer conversation.",
       keywords: ["contact", "enquiry", "form", "message", "reach", "talk"]
     },
     {
       title: "Start",
       url: "/start-project/",
-      description: "Consultation intake for brands that know the current site no longer matches the business.",
+      description: "A short project brief for businesses that know the current site no longer fits.",
       keywords: ["start", "consultation", "brief", "quote", "kickoff", "discovery"]
     },
     {
       title: "Discovery",
       url: "/discovery/",
-      description: "A deeper consultation brief with guided choices and written notes for every planning area.",
+      description: "A deeper consultation page with guided choices and written notes for the fuller brief.",
       keywords: ["discovery", "consultation", "brief", "strategy", "planning", "intake"]
     },
     {
       title: "FAQ",
       url: "/faq/",
-      description: "Answers about fit, motion, mobile, SEO, discovery, and the design process.",
+      description: "Short answers about fit, timing, motion, mobile, SEO, and how projects start.",
       keywords: ["faq", "questions", "answers", "seo", "mobile", "fit", "discovery"]
     }
   ];
@@ -342,7 +342,7 @@
             <img class="brand-lockup__mark" src="/brand/ash-tra-favicon.svg" alt="ASH-TRA mark" />
             <span class="brand-lockup__meta">
               <span class="brand-lockup__title">ASH-TRA</span>
-              <span class="brand-lockup__tag">Cinematic sites for ambitious brands.</span>
+              <span class="brand-lockup__tag">Where ambition meets momentum.</span>
             </span>
           </a>
           <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
@@ -379,12 +379,12 @@
                 <img src="/brand/ash-tra-favicon.svg" alt="ASH-TRA mark" />
                 <div>
                   <p class="footer-brand__title">ASH-TRA</p>
-                  <p class="footer-brand__tag">SCI-FI POLISH. REAL BUSINESS MOMENTUM.</p>
+                  <p class="footer-brand__tag">BUILT FOR GROWTH. DESIGNED TO STAND OUT.</p>
                 </div>
               </div>
               <p class="footer-brand__text">
-                Design-led websites for ambitious brands that want to feel more advanced, more cinematic,
-                and more unmistakably premium online.
+                ASH-TRA helps ambitious businesses look sharper, build trust faster, and grow with
+                more confidence through modern websites that make a stronger impression.
               </p>
               <div class="footer-brand__actions">
                 <a class="button button--primary" href="/start-project/" data-track="start_project_click">Start a project</a>
