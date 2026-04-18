@@ -25,6 +25,8 @@
     { title: "Discovery", url: "/discovery/" },
     { title: "Contact", url: "/contact/" },
     { title: "Launch Site", url: "/start-project/" },
+    { title: "Pay Consultation", url: "/pay-consultation/" },
+    { title: "Schedule Meeting", url: "/schedule-meeting/" },
     { title: "FAQ", url: "/faq/" },
     { title: "Privacy", url: "/privacy/" },
     { title: "Terms", url: "/terms/" },
@@ -164,6 +166,18 @@
       url: "/discovery/",
       description: "The two-route discovery page with a paid consultation option and the full project questionnaire.",
       keywords: ["discovery", "consultation", "brief", "strategy", "planning", "questionnaire"]
+    },
+    {
+      title: "Pay Consultation",
+      url: "/pay-consultation/",
+      description: "The paid consultation page with coverage, payment routes, and the sharper strategy-first path.",
+      keywords: ["pay", "payment", "consultation", "stripe", "paypal", "pix", "strategy"]
+    },
+    {
+      title: "Schedule Meeting",
+      url: "/schedule-meeting/",
+      description: "The scheduling page with the Calendly booking route and what to prepare before the session.",
+      keywords: ["schedule", "meeting", "book", "calendly", "slot", "consultation"]
     },
     {
       title: "FAQ",
@@ -432,6 +446,8 @@
               <section class="footer-column" data-reveal>
                 <strong>Start</strong>
                 <a href="/start-project/">Launch Site</a>
+                <a href="/pay-consultation/">Pay Consultation</a>
+                <a href="/schedule-meeting/">Schedule Meeting</a>
                 <a href="/discovery/">Discovery</a>
                 <a href="/contact/">Contact</a>
               </section>
@@ -901,6 +917,20 @@
         })
       },
       {
+        match: ["pay", "payment", "stripe", "paypal", "pix"],
+        answer: "Use Pay Consultation to choose the paid strategy route, review the payment options, and move into scheduling once the payment is handled.",
+        results: siteIndex.filter(function (item) {
+          return item.url === "/pay-consultation/" || item.url === "/schedule-meeting/" || item.url === "/discovery/";
+        })
+      },
+      {
+        match: ["schedule", "calendly", "meeting", "slot", "book a time"],
+        answer: "Use Schedule Meeting to lock the consultation slot once the paid consultation has been handled.",
+        results: siteIndex.filter(function (item) {
+          return item.url === "/schedule-meeting/" || item.url === "/pay-consultation/" || item.url === "/discovery/";
+        })
+      },
+      {
         match: ["process", "timeline", "steps", "launch"],
         answer: "Projects move through discovery, direction, build, refinement, optimisation, and support with a clear commercial rhythm.",
         results: siteIndex.filter(function (item) {
@@ -923,9 +953,9 @@
       },
       {
         match: ["start", "brief", "project", "quote", "budget", "consultation"],
-        answer: "Use Launch Site for the direct consultation route or Discovery if you want the paid consultation option and the full questionnaire first.",
+        answer: "Use Launch Site for the direct project form, Pay Consultation for the paid strategy route, or Discovery if you want the full questionnaire first.",
         results: siteIndex.filter(function (item) {
-          return item.url === "/start-project/" || item.url === "/discovery/";
+          return item.url === "/start-project/" || item.url === "/pay-consultation/" || item.url === "/discovery/";
         })
       },
       {
