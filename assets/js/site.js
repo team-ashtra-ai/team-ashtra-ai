@@ -3,23 +3,28 @@
   const page = document.body.dataset.page || "home";
   const contactFormEndpoint = config.contactFormEndpoint || "https://formspree.io/f/mbdqovoj";
   const consultationFormEndpoint = config.consultationFormEndpoint || "https://formspree.io/f/xaqaogoo";
+  const discoveryFormEndpoint =
+    config.discoveryFormEndpoint || consultationFormEndpoint || "https://formspree.io/f/xaqaogoo";
 
   const navItems = [
+    { href: "/", label: "Home", match: "/" },
+    { href: "/about/", label: "About", match: "/about/" },
     { href: "/services/", label: "Services", match: "/services/" },
     { href: "/process/", label: "Process", match: "/process/" },
     { href: "/examples/", label: "Portfolio", match: "/examples/" },
-    { href: "/about/", label: "About", match: "/about/" },
+    { href: "/discovery/", label: "Discovery", match: "/discovery/" },
     { href: "/contact/", label: "Contact", match: "/contact/" }
   ];
 
   const footerAtlasLinks = [
     { title: "Home", url: "/" },
+    { title: "About", url: "/about/" },
     { title: "Services", url: "/services/" },
     { title: "Process", url: "/process/" },
     { title: "Portfolio", url: "/examples/" },
-    { title: "About", url: "/about/" },
+    { title: "Discovery", url: "/discovery/" },
     { title: "Contact", url: "/contact/" },
-    { title: "Start a Project", url: "/start-project/" },
+    { title: "Launch Site", url: "/start-project/" },
     { title: "FAQ", url: "/faq/" },
     { title: "Privacy", url: "/privacy/" },
     { title: "Terms", url: "/terms/" },
@@ -113,15 +118,21 @@
 
   const siteIndex = [
     {
+      title: "Home",
+      url: "/",
+      description: "The cinematic homepage with the core positioning, values, and launch routes.",
+      keywords: ["home", "overview", "hero", "ashtra", "website", "momentum"]
+    },
+    {
       title: "Services",
       url: "/services/",
-      description: "Website redesigns, rebuilds, brand polish, SEO foundations, and clearer structure for growth.",
-      keywords: ["services", "design", "redesign", "build", "motion", "seo", "performance"]
+      description: "Strategy, launch builds, full resets, SEO foundations, systems connection, and momentum support.",
+      keywords: ["services", "design", "redesign", "build", "seo", "support", "growth"]
     },
     {
       title: "Process",
       url: "/process/",
-      description: "How the project moves from problem to direction to build to final polish.",
+      description: "The six-stage process from discovery consultation through optimisation and support.",
       keywords: ["process", "steps", "timeline", "workflow", "launch", "delivery"]
     },
     {
@@ -133,26 +144,26 @@
     {
       title: "About",
       url: "/about/",
-      description: "What ASH-TRA stands for, who the work is for, and why stronger design changes how the business is read.",
+      description: "What ASH-TRA stands for, who it is for, and why perception changes business outcomes.",
       keywords: ["about", "studio", "brand", "positioning", "fit", "story"]
     },
     {
       title: "Contact",
       url: "/contact/",
-      description: "The fast route for project enquiries, next-step questions, and a clearer conversation.",
+      description: "The fast route for project enquiries, fit questions, and direct contact.",
       keywords: ["contact", "enquiry", "form", "message", "reach", "talk"]
     },
     {
-      title: "Start",
+      title: "Launch Site",
       url: "/start-project/",
-      description: "A short project brief for businesses that know the current site no longer fits.",
-      keywords: ["start", "consultation", "brief", "quote", "kickoff", "discovery"]
+      description: "A direct project consultation form for businesses ready to launch or rebuild.",
+      keywords: ["launch", "start", "consultation", "brief", "quote", "kickoff"]
     },
     {
       title: "Discovery",
       url: "/discovery/",
-      description: "A deeper consultation page with guided choices and written notes for the fuller brief.",
-      keywords: ["discovery", "consultation", "brief", "strategy", "planning", "intake"]
+      description: "The two-route discovery page with a paid consultation option and the full project questionnaire.",
+      keywords: ["discovery", "consultation", "brief", "strategy", "planning", "questionnaire"]
     },
     {
       title: "FAQ",
@@ -259,12 +270,12 @@
         </div>
         <form
           class="discovery-form"
-          action="${consultationFormEndpoint}"
+          action="${discoveryFormEndpoint}"
           method="POST"
           name="discovery-consultation"
           data-enquiry-form
           data-form-kind="discovery"
-          data-success-copy="The discovery brief was sent. The consultation inbox should now have the full brief."
+          data-success-copy="The discovery brief was sent. The connected discovery inbox should now have the full brief."
         >
           <input type="hidden" name="_subject" value="ASH-TRA discovery consultation" />
           <div class="discovery-form__identity">
@@ -360,7 +371,7 @@
             <div class="site-nav__cta">
               <a class="button button--primary" href="/start-project/" data-track="start_project_click">
                 ${icon("arrow")}
-                <span>Launch a rebuild</span>
+                <span>Launch Site</span>
               </a>
             </div>
           </nav>
@@ -379,23 +390,23 @@
                 <img src="/brand/ash-tra-favicon.svg" alt="ASH-TRA mark" />
                 <div>
                   <p class="footer-brand__title">ASH-TRA</p>
-                  <p class="footer-brand__tag">BUILT FOR GROWTH. DESIGNED TO STAND OUT.</p>
+                  <p class="footer-brand__tag">LOOK LIKE THE BUSINESS YOU ARE BECOMING.</p>
                 </div>
               </div>
               <p class="footer-brand__text">
-                ASH-TRA helps ambitious businesses look sharper, build trust faster, and grow with
-                more confidence through modern websites that make a stronger impression.
+                ASH-TRA builds modern digital presence for ambitious companies that want more
+                trust, more pull, and more momentum.
               </p>
               <div class="footer-brand__actions">
-                <a class="button button--primary" href="/start-project/" data-track="start_project_click">Start a project</a>
-                <a class="button button--secondary" href="/contact/" data-track="contact_click">Talk to ASH-TRA</a>
+                <a class="button button--primary" href="/start-project/" data-track="start_project_click">Launch Site</a>
+                <a class="button button--secondary" href="/discovery/" data-track="discovery_view">Discover your voice</a>
               </div>
             </section>
 
             <section class="footer-sitemap" data-reveal aria-label="Site Atlas">
               <div class="footer-sitemap__head">
                 <strong>Site Atlas</strong>
-                <p>Everything in the system, mapped in one place.</p>
+                <p>Clear signal. Strong routes. No dead ends.</p>
               </div>
               <div class="footer-sitemap__grid">
                 ${footerAtlasLinks
@@ -413,19 +424,20 @@
 
             <div class="site-footer__columns">
               <section class="footer-column" data-reveal>
-                <strong>Portfolio</strong>
-                <a href="/examples/">Direction studies</a>
-                <a href="/services/">Services</a>
-              </section>
-              <section class="footer-column" data-reveal>
-                <strong>Connect</strong>
-                <a href="/contact/">Contact</a>
-                <a href="/start-project/">Start a project</a>
-                <a href="/discovery/">Discovery</a>
-              </section>
-              <section class="footer-column" data-reveal>
-                <strong>Standards</strong>
+                <strong>Explore</strong>
                 <a href="/about/">About</a>
+                <a href="/services/">Services</a>
+                <a href="/process/">Process</a>
+              </section>
+              <section class="footer-column" data-reveal>
+                <strong>Start</strong>
+                <a href="/start-project/">Launch Site</a>
+                <a href="/discovery/">Discovery</a>
+                <a href="/contact/">Contact</a>
+              </section>
+              <section class="footer-column" data-reveal>
+                <strong>Reference</strong>
+                <a href="/examples/">Portfolio</a>
                 <a href="/faq/">FAQ</a>
                 <a href="/accessibility/">Accessibility</a>
               </section>
@@ -471,7 +483,7 @@
             </div>
             <div>
               <span class="eyebrow">Orbot</span>
-              <h2>Subtle help, faster routing.</h2>
+              <h2>Clear routes, faster starts.</h2>
               <p>Ask about services, process, portfolio, discovery, or the cleanest next step.</p>
             </div>
             <button class="command-panel__close" type="button" aria-label="Close Orbot help" data-command-close>
@@ -483,13 +495,13 @@
               <button type="button" class="command-panel__suggestion" data-command-suggestion="Show me the services">Services</button>
               <button type="button" class="command-panel__suggestion" data-command-suggestion="How does the process work?">Process</button>
               <button type="button" class="command-panel__suggestion" data-command-suggestion="Where is the portfolio?">Portfolio</button>
-              <button type="button" class="command-panel__suggestion" data-command-suggestion="Where can I send the full discovery brief?">Discovery</button>
+              <button type="button" class="command-panel__suggestion" data-command-suggestion="How do I start with discovery?">Discovery</button>
             </div>
             <form class="command-panel__form" data-command-form>
               <label class="sr-only" for="command-input">Ask Orbot about the site</label>
               <div class="command-panel__field">
                 ${icon("search")}
-                <input id="command-input" name="query" type="text" autocomplete="off" placeholder="Ask Orbot about services, process, or the right next page..." />
+                <input id="command-input" name="query" type="text" autocomplete="off" placeholder="Ask Orbot about services, discovery, process, or launch routes..." />
               </div>
               <button class="button button--primary" type="submit">
                 ${icon("arrow")}
@@ -499,7 +511,7 @@
             <div class="command-panel__log" data-command-log aria-live="polite"></div>
           </div>
           <div class="command-panel__footer">
-            <p>The contact form handles project enquiries. The Discovery page handles the deeper consultation brief.</p>
+            <p>Use Launch Site for the direct consultation route or Discovery for the deeper questionnaire.</p>
           </div>
         </section>
       </div>
@@ -625,19 +637,16 @@
       return;
     }
 
-    const observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.18 }
-    );
+    revealItems.forEach(function (item, index) {
+      item.style.transitionDelay = `${Math.min(index * 40, 320)}ms`;
+    });
 
-    revealItems.forEach(function (item) {
-      observer.observe(item);
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(function () {
+        revealItems.forEach(function (item) {
+          item.classList.add("is-visible");
+        });
+      });
     });
   }
 
@@ -725,6 +734,13 @@
     update();
   }
 
+  function resolveFormEndpoint(key) {
+    if (key === "contact") return contactFormEndpoint;
+    if (key === "consultation") return consultationFormEndpoint;
+    if (key === "discovery") return discoveryFormEndpoint;
+    return "";
+  }
+
   function setupForms() {
     document.querySelectorAll("[data-enquiry-form]").forEach(function (form) {
       const success = form.parentElement.querySelector("[data-form-success]");
@@ -741,7 +757,8 @@
         event.preventDefault();
         clearFeedback();
 
-        const endpoint = form.getAttribute("action");
+        const endpoint =
+          form.getAttribute("action") || resolveFormEndpoint(form.getAttribute("data-form-endpoint"));
         if (!endpoint) {
           if (error) error.hidden = false;
           return;
@@ -871,21 +888,21 @@
     const rules = [
       {
         match: ["what does", "services", "offer", "redesign", "rebuild"],
-        answer: "ASH-TRA plans, designs, and builds cinematic website systems with stronger art direction, motion, and technical discipline.",
+        answer: "ASH-TRA helps companies launch, rebuild, refine, and optimise digital presence so they look sharper, feel more credible, and move with more force.",
         results: siteIndex.filter(function (item) {
           return item.url === "/services/" || item.url === "/examples/";
         })
       },
       {
         match: ["who is", "fit", "best for", "ideal client"],
-        answer: "The work is best for ambitious founders, consultants, agencies, AI and tech-adjacent brands, and premium service teams that care how the site reads immediately.",
+        answer: "The work is built for ambitious companies, founders, consultants, agencies, and service brands that care how the business is read online.",
         results: siteIndex.filter(function (item) {
           return item.url === "/about/" || item.url === "/services/";
         })
       },
       {
         match: ["process", "timeline", "steps", "launch"],
-        answer: "Projects move through audit, direction, design, build, and launch with a calm production rhythm.",
+        answer: "Projects move through discovery, direction, build, refinement, optimisation, and support with a clear commercial rhythm.",
         results: siteIndex.filter(function (item) {
           return item.url === "/process/" || item.url === "/start-project/";
         })
@@ -906,14 +923,14 @@
       },
       {
         match: ["start", "brief", "project", "quote", "budget", "consultation"],
-        answer: "The quickest route is the Start page for a direct consultation or the Discovery page if you want to send the fuller brief right now.",
+        answer: "Use Launch Site for the direct consultation route or Discovery if you want the paid consultation option and the full questionnaire first.",
         results: siteIndex.filter(function (item) {
           return item.url === "/start-project/" || item.url === "/discovery/";
         })
       },
       {
         match: ["contact", "email", "whatsapp", "message", "discovery"],
-        answer: "Use the contact form for a project enquiry, the Discovery page for a deeper consultation brief, or WhatsApp for a fast human reply.",
+        answer: "Use Contact for a fast project enquiry, Discovery for the deeper intake, or WhatsApp for a quick human reply.",
         results: siteIndex.filter(function (item) {
           return item.url === "/contact/" || item.url === "/discovery/" || item.url === "/start-project/";
         })
@@ -937,7 +954,7 @@
     }
 
     return {
-      answer: "I could not map that cleanly, but the contact page, Start page, or Discovery page should get you to the right next step.",
+      answer: "I could not map that cleanly, but Contact, Launch Site, or Discovery should get you to the right next step.",
       results: siteIndex.filter(function (item) {
         return item.url === "/contact/" || item.url === "/start-project/" || item.url === "/discovery/";
       })
@@ -993,7 +1010,7 @@
       if (!log.childElementCount) {
         addEntry(
           "assistant",
-          "Ask about services, process, portfolio, discovery, or the cleanest page to open next.",
+          "Ask about services, process, portfolio, discovery, or the right route to start.",
           siteIndex.filter(function (item) {
             return item.url === "/services/" || item.url === "/start-project/" || item.url === "/discovery/" || item.url === "/examples/";
           })
