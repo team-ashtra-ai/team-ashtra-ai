@@ -7,31 +7,27 @@
     config.discoveryFormEndpoint || consultationFormEndpoint || "https://formspree.io/f/xaqaogoo";
 
   const navItems = [
-    { href: "/", label: "Home", match: "/" },
-    { href: "/about/", label: "About", match: "/about/" },
     { href: "/services/", label: "Services", match: "/services/" },
+    { href: "/examples/", label: "Work", match: "/examples/" },
     { href: "/process/", label: "Process", match: "/process/" },
-    { href: "/examples/", label: "Portfolio", match: "/examples/" },
-    { href: "/discovery/", label: "Discovery", match: "/discovery/" },
-    { href: "/contact/", label: "Contact", match: "/contact/" }
+    { href: "/about/", label: "About", match: "/about/" }
+  ];
+
+  const secondaryNavItems = [
+    { href: "/contact/", label: "Contact" },
+    { href: "/discovery/#discovery-questionnaire", label: "Discovery Form" },
+    { href: "/faq/", label: "FAQ" }
   ];
 
   const footerAtlasLinks = [
-    { title: "Home", url: "/" },
-    { title: "About", url: "/about/" },
+    { title: "Start Project", url: "/start-project/" },
+    { title: "Book Call", url: "/pay-consultation/" },
+    { title: "Discovery Form", url: "/discovery/#discovery-questionnaire" },
     { title: "Services", url: "/services/" },
+    { title: "Work", url: "/examples/" },
     { title: "Process", url: "/process/" },
-    { title: "Portfolio", url: "/examples/" },
-    { title: "Discovery", url: "/discovery/" },
-    { title: "Contact", url: "/contact/" },
-    { title: "Launch Site", url: "/start-project/" },
-    { title: "Pay Consultation", url: "/pay-consultation/" },
-    { title: "Schedule Meeting", url: "/schedule-meeting/" },
-    { title: "FAQ", url: "/faq/" },
-    { title: "Privacy", url: "/privacy/" },
-    { title: "Terms", url: "/terms/" },
-    { title: "Cookies", url: "/cookies/" },
-    { title: "Accessibility", url: "/accessibility/" }
+    { title: "About", url: "/about/" },
+    { title: "Contact", url: "/contact/" }
   ];
 
   const discoveryQuestions = [
@@ -134,14 +130,14 @@
     {
       title: "Process",
       url: "/process/",
-      description: "The six-stage process from discovery consultation through optimisation and support.",
+      description: "The four-phase process from diagnosis through launch.",
       keywords: ["process", "steps", "timeline", "workflow", "launch", "delivery"]
     },
     {
-      title: "Portfolio",
+      title: "Work",
       url: "/examples/",
-      description: "Direction studies that show the level, the visual standard, and the sharper presence ASH-TRA builds.",
-      keywords: ["portfolio", "studies", "industries", "gallery", "direction", "private"]
+      description: "Selected work directions showing the structure, pacing, and premium standard ASH-TRA builds.",
+      keywords: ["work", "studies", "examples", "gallery", "direction", "private"]
     },
     {
       title: "About",
@@ -156,10 +152,10 @@
       keywords: ["contact", "enquiry", "form", "message", "reach", "talk"]
     },
     {
-      title: "Launch Site",
+      title: "Start Project",
       url: "/start-project/",
-      description: "A direct project consultation form for businesses ready to launch or rebuild.",
-      keywords: ["launch", "start", "consultation", "brief", "quote", "kickoff"]
+      description: "The direct project intake form for businesses ready to launch, rebuild, or upgrade key pages.",
+      keywords: ["start", "project", "consultation", "brief", "quote", "kickoff"]
     },
     {
       title: "Discovery",
@@ -168,10 +164,10 @@
       keywords: ["discovery", "consultation", "brief", "strategy", "planning", "questionnaire"]
     },
     {
-      title: "Pay Consultation",
+      title: "Book Call",
       url: "/pay-consultation/",
       description: "The paid consultation page with coverage, payment routes, and the sharper strategy-first path.",
-      keywords: ["pay", "payment", "consultation", "stripe", "paypal", "pix", "strategy"]
+      keywords: ["book", "call", "payment", "consultation", "stripe", "paypal", "pix", "strategy"]
     },
     {
       title: "Schedule Meeting",
@@ -367,25 +363,39 @@
             <img class="brand-lockup__mark" src="/brand/ash-tra-favicon.svg" alt="ASH-TRA mark" />
             <span class="brand-lockup__meta">
               <span class="brand-lockup__title">ASH-TRA</span>
-              <span class="brand-lockup__tag">Where ambition meets momentum.</span>
+              <span class="brand-lockup__tag">Premium websites for ambitious businesses.</span>
             </span>
           </a>
           <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
             ${icon("menu")}
           </button>
           <nav class="site-nav" id="site-nav" aria-label="Primary">
-            <div class="site-nav__links">
-              ${navItems
-                .map(
-                  (item) =>
-                    `<a href="${item.href}" class="${isActive(item.match) ? "is-active" : ""}">${item.label}</a>`
-                )
-                .join("")}
+            <div class="site-nav__group">
+              <span class="site-nav__eyebrow">Explore</span>
+              <div class="site-nav__links">
+                ${navItems
+                  .map(
+                    (item) =>
+                      `<a href="${item.href}" class="${isActive(item.match) ? "is-active" : ""}">${item.label}</a>`
+                  )
+                  .join("")}
+              </div>
+            </div>
+            <div class="site-nav__group site-nav__group--support">
+              <span class="site-nav__eyebrow">Helpful Routes</span>
+              <div class="site-nav__meta">
+                ${secondaryNavItems
+                  .map((item) => `<a href="${item.href}">${item.label}</a>`)
+                  .join("")}
+              </div>
             </div>
             <div class="site-nav__cta">
+              <a class="button button--secondary" href="/pay-consultation/" data-track="pay_consultation_view">
+                <span>Book Call</span>
+              </a>
               <a class="button button--primary" href="/start-project/" data-track="start_project_click">
                 ${icon("arrow")}
-                <span>Launch Site</span>
+                <span>Start Project</span>
               </a>
             </div>
           </nav>
@@ -404,23 +414,27 @@
                 <img src="/brand/ash-tra-favicon.svg" alt="ASH-TRA mark" />
                 <div>
                   <p class="footer-brand__title">ASH-TRA</p>
-                  <p class="footer-brand__tag">LOOK LIKE THE BUSINESS YOU ARE BECOMING.</p>
+                  <p class="footer-brand__tag">PREMIUM WEBSITES FOR AMBITIOUS BUSINESSES.</p>
                 </div>
               </div>
               <p class="footer-brand__text">
-                ASH-TRA builds modern digital presence for ambitious companies that want more
-                trust, more pull, and more momentum.
+                ASH-TRA plans, writes, and builds premium websites for ambitious businesses that
+                need clearer positioning, stronger trust, and better conversion paths.
               </p>
               <div class="footer-brand__actions">
-                <a class="button button--primary" href="/start-project/" data-track="start_project_click">Launch Site</a>
-                <a class="button button--secondary" href="/discovery/" data-track="discovery_view">Discover your voice</a>
+                <a class="button button--primary" href="/start-project/" data-track="start_project_click">Start Project</a>
+                <a class="button button--secondary" href="/pay-consultation/" data-track="pay_consultation_view">Book Call</a>
+              </div>
+              <div class="route-cloud">
+                <a href="/discovery/#discovery-questionnaire">Discovery Form</a>
+                <a href="/contact/">Contact</a>
               </div>
             </section>
 
-            <section class="footer-sitemap" data-reveal aria-label="Site Atlas">
+            <section class="footer-sitemap" data-reveal aria-label="Primary routes">
               <div class="footer-sitemap__head">
-                <strong>Site Atlas</strong>
-                <p>Clear signal. Strong routes. No dead ends.</p>
+                <strong>Start Here</strong>
+                <p>Choose the route that matches how much clarity you already have.</p>
               </div>
               <div class="footer-sitemap__grid">
                 ${footerAtlasLinks
@@ -439,23 +453,24 @@
             <div class="site-footer__columns">
               <section class="footer-column" data-reveal>
                 <strong>Explore</strong>
-                <a href="/about/">About</a>
                 <a href="/services/">Services</a>
+                <a href="/examples/">Work</a>
                 <a href="/process/">Process</a>
+                <a href="/about/">About</a>
               </section>
               <section class="footer-column" data-reveal>
                 <strong>Start</strong>
-                <a href="/start-project/">Launch Site</a>
-                <a href="/pay-consultation/">Pay Consultation</a>
-                <a href="/schedule-meeting/">Schedule Meeting</a>
-                <a href="/discovery/">Discovery</a>
+                <a href="/start-project/">Start Project</a>
+                <a href="/pay-consultation/">Book Call</a>
+                <a href="/discovery/#discovery-questionnaire">Discovery Form</a>
                 <a href="/contact/">Contact</a>
               </section>
               <section class="footer-column" data-reveal>
                 <strong>Reference</strong>
-                <a href="/examples/">Portfolio</a>
                 <a href="/faq/">FAQ</a>
                 <a href="/accessibility/">Accessibility</a>
+                <a href="/privacy/">Privacy</a>
+                <a href="/terms/">Terms</a>
               </section>
             </div>
           </div>
@@ -469,6 +484,11 @@
 
   function utilityMarkup() {
     return `
+      <div class="mobile-cta-bar" data-mobile-cta>
+        <a class="button button--secondary" href="/pay-consultation/" data-track="pay_consultation_view">Book Call</a>
+        <a class="button button--primary" href="/start-project/" data-track="start_project_click">Start Project</a>
+        <a class="mobile-cta-bar__link" href="/discovery/#discovery-questionnaire" data-track="discovery_view">Discovery Form</a>
+      </div>
       <div class="floating-rail" data-site-utilities>
         <a
           class="floating-action floating-action--whatsapp"
@@ -500,7 +520,7 @@
             <div>
               <span class="eyebrow">Orbot</span>
               <h2>Clear routes, faster starts.</h2>
-              <p>Ask about services, process, portfolio, discovery, or the cleanest next step.</p>
+              <p>Ask about services, process, work, discovery, or the cleanest next step.</p>
             </div>
             <button class="command-panel__close" type="button" aria-label="Close Orbot help" data-command-close>
               ${icon("close")}
@@ -510,14 +530,14 @@
             <div class="command-panel__suggestions">
               <button type="button" class="command-panel__suggestion" data-command-suggestion="Show me the services">Services</button>
               <button type="button" class="command-panel__suggestion" data-command-suggestion="How does the process work?">Process</button>
-              <button type="button" class="command-panel__suggestion" data-command-suggestion="Where is the portfolio?">Portfolio</button>
+              <button type="button" class="command-panel__suggestion" data-command-suggestion="Show me the work">Work</button>
               <button type="button" class="command-panel__suggestion" data-command-suggestion="How do I start with discovery?">Discovery</button>
             </div>
             <form class="command-panel__form" data-command-form>
               <label class="sr-only" for="command-input">Ask Orbot about the site</label>
               <div class="command-panel__field">
                 ${icon("search")}
-                <input id="command-input" name="query" type="text" autocomplete="off" placeholder="Ask Orbot about services, discovery, process, or launch routes..." />
+                <input id="command-input" name="query" type="text" autocomplete="off" placeholder="Ask Orbot about services, work, process, or the cleanest next step..." />
               </div>
               <button class="button button--primary" type="submit">
                 ${icon("arrow")}
@@ -527,7 +547,7 @@
             <div class="command-panel__log" data-command-log aria-live="polite"></div>
           </div>
           <div class="command-panel__footer">
-            <p>Use Launch Site for the direct consultation route or Discovery for the deeper questionnaire.</p>
+            <p>Use Start Project when the work is clear, Book Call for strategy first, or Discovery Form for a lighter start.</p>
           </div>
         </section>
       </div>
@@ -929,7 +949,7 @@
       },
       {
         match: ["pay", "payment", "stripe", "paypal", "pix"],
-        answer: "Use Pay Consultation to choose the paid strategy route, request the payment method that fits best, and move into scheduling once payment is confirmed.",
+        answer: "Use Book Call to choose the paid strategy route, request the payment method that fits best, and move into scheduling once payment is confirmed.",
         results: siteIndex.filter(function (item) {
           return item.url === "/pay-consultation/" || item.url === "/schedule-meeting/" || item.url === "/discovery/";
         })
@@ -950,7 +970,7 @@
       },
       {
         match: ["portfolio", "private", "examples", "case study", "industries"],
-        answer: "The public portfolio stays curated as direction studies. It is there to prove the standard without turning private work into filler.",
+        answer: "The public work page stays curated and contextual. It is there to prove the standard without turning private projects into filler.",
         results: siteIndex.filter(function (item) {
           return item.url === "/examples/" || item.url === "/contact/";
         })
@@ -964,7 +984,7 @@
       },
       {
         match: ["start", "brief", "project", "quote", "budget", "consultation"],
-        answer: "Use Launch Site for the direct project form, Pay Consultation for the paid strategy route, or Discovery if you want the full questionnaire first.",
+        answer: "Use Start Project for the direct project form, Book Call for the paid strategy route, or Discovery if you want the fuller questionnaire first.",
         results: siteIndex.filter(function (item) {
           return item.url === "/start-project/" || item.url === "/pay-consultation/" || item.url === "/discovery/";
         })
@@ -995,7 +1015,7 @@
     }
 
     return {
-      answer: "I could not map that cleanly, but Contact, Launch Site, or Discovery should get you to the right next step.",
+      answer: "I could not map that cleanly, but Contact, Start Project, or Discovery should get you to the right next step.",
       results: siteIndex.filter(function (item) {
         return item.url === "/contact/" || item.url === "/start-project/" || item.url === "/discovery/";
       })
@@ -1051,7 +1071,7 @@
       if (!log.childElementCount) {
         addEntry(
           "assistant",
-          "Ask about services, process, portfolio, discovery, or the right route to start.",
+          "Ask about services, process, work, discovery, or the right route to start.",
           siteIndex.filter(function (item) {
             return item.url === "/services/" || item.url === "/start-project/" || item.url === "/discovery/" || item.url === "/examples/";
           })
