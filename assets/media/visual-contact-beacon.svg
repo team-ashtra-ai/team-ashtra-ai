@@ -1,0 +1,41 @@
+<svg width="1280" height="1120" viewBox="0 0 1280 1120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Contact beacon scene</title>
+  <desc id="desc">A communication beacon illustration with glowing rings, message chips, and a layered technology card.</desc>
+  <defs>
+    <linearGradient id="bg" x1="118" y1="90" x2="1072" y2="984" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111D" />
+      <stop offset="1" stop-color="#060A12" />
+    </linearGradient>
+    <radialGradient id="cyan" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(360 250) rotate(46.4) scale(290 210)">
+      <stop stop-color="#7EE5FF" stop-opacity="0.9" />
+      <stop offset="1" stop-color="#7EE5FF" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="amber" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(930 860) rotate(141) scale(310 220)">
+      <stop stop-color="#FFB488" stop-opacity="0.9" />
+      <stop offset="1" stop-color="#FFB488" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1280" height="1120" rx="40" fill="url(#bg)" />
+  <ellipse cx="352" cy="244" rx="224" ry="150" fill="url(#cyan)" />
+  <ellipse cx="928" cy="858" rx="236" ry="166" fill="url(#amber)" />
+  <rect x="146" y="146" width="988" height="828" rx="36" fill="#08111F" fill-opacity="0.42" stroke="#82E4FF" stroke-opacity="0.22" />
+  <circle cx="640" cy="498" r="188" stroke="#82E4FF" stroke-opacity="0.18" stroke-width="2" />
+  <circle cx="640" cy="498" r="136" stroke="#82E4FF" stroke-opacity="0.4" stroke-width="2" />
+  <circle cx="640" cy="498" r="92" stroke="#FFB488" stroke-opacity="0.82" stroke-width="3" />
+  <circle cx="640" cy="498" r="20" fill="#F6FBFF" />
+  <path d="M640 310V230" stroke="#82E4FF" stroke-opacity="0.5" stroke-width="3" stroke-linecap="round" />
+  <path d="M840 498H922" stroke="#FFB488" stroke-opacity="0.5" stroke-width="3" stroke-linecap="round" />
+  <path d="M640 686V766" stroke="#82E4FF" stroke-opacity="0.5" stroke-width="3" stroke-linecap="round" />
+  <path d="M440 498H358" stroke="#82E4FF" stroke-opacity="0.5" stroke-width="3" stroke-linecap="round" />
+  <rect x="248" y="232" width="214" height="72" rx="24" fill="#0F1830" stroke="#82E4FF" stroke-opacity="0.18" />
+  <rect x="818" y="232" width="214" height="72" rx="24" fill="#0F1830" stroke="#FFB488" stroke-opacity="0.2" />
+  <rect x="214" y="756" width="272" height="98" rx="30" fill="#0A1322" stroke="#82E4FF" stroke-opacity="0.18" />
+  <rect x="796" y="756" width="272" height="98" rx="30" fill="#0E1830" stroke="#82E4FF" stroke-opacity="0.18" />
+  <rect x="292" y="428" width="132" height="42" rx="21" fill="#82E4FF" fill-opacity="0.12" stroke="#82E4FF" stroke-opacity="0.24" />
+  <rect x="856" y="532" width="146" height="42" rx="21" fill="#FFB488" fill-opacity="0.12" stroke="#FFB488" stroke-opacity="0.24" />
+  <rect x="266" y="264" width="118" height="12" rx="6" fill="#82E4FF" fill-opacity="0.18" />
+  <rect x="836" y="264" width="130" height="12" rx="6" fill="#FFB488" fill-opacity="0.18" />
+  <path d="M320 806H430" stroke="#82E4FF" stroke-opacity="0.24" stroke-width="2" />
+  <path d="M880 806H990" stroke="#82E4FF" stroke-opacity="0.24" stroke-width="2" />
+  <rect x="520" y="842" width="240" height="50" rx="25" fill="#13243A" stroke="#82E4FF" stroke-opacity="0.18" />
+</svg>

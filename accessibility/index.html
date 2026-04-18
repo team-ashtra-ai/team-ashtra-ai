@@ -6,45 +6,58 @@
     <title>Accessibility | ASH-TRA</title>
     <meta name="description" content="Accessibility statement for ash-tra.com." />
     <link rel="canonical" href="https://ash-tra.com/accessibility/" />
-    <meta name="theme-color" content="#050A12" />
+    <meta name="theme-color" content="#050914" />
     <link rel="icon" href="/brand/favicon-32.png" type="image/png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/assets/css/site.css" />
   </head>
   <body data-page="accessibility">
-    <div class="site-bg" aria-hidden="true"></div>
-    <div class="site-grid" aria-hidden="true"></div>
+    <div class="site-stage" aria-hidden="true">
+      <div class="site-stage__glow"></div>
+      <div class="site-stage__grid"></div>
+      <div class="site-stage__noise"></div>
+    </div>
     <div data-site-header></div>
-    <main>
-      <div class="page-shell">
-        <section class="section page-hero">
-          <article class="hero-card page-hero__content" data-reveal>
+
+    <main class="policy-main">
+      <section class="section">
+        <div class="shell policy-grid">
+          <article class="surface policy-hero" data-reveal>
             <span class="eyebrow">Accessibility</span>
-            <h1 class="page-title">Visually ambitious does not mean usability gets ignored.</h1>
+            <h1 class="policy-hero__title">Visually ambitious does not mean usability gets ignored.</h1>
           </article>
-        </section>
-        <section class="section" data-reveal>
-          <article class="panel legal-copy">
-            <p>ASH-TRA aims to build experiences that remain readable, structured, mobile-friendly, and usable even when the visual direction is bold and design-led.</p>
-            <h2>Current accessibility priorities</h2>
-            <ul>
-              <li>Clear heading structure</li>
-              <li>Keyboard-friendly navigation</li>
-              <li>Visible focus states</li>
-              <li>Readable text contrast</li>
-              <li>Meaningful alt text</li>
-              <li>Reduced-motion support</li>
-              <li>Responsive tap targets</li>
-            </ul>
-            <h2>Ongoing improvement</h2>
-            <p>If you encounter an accessibility issue, please report it by email so it can be reviewed and improved.</p>
+        </div>
+      </section>
+
+      <section class="section section--flush">
+        <div class="shell">
+          <article class="surface policy-card" data-reveal>
+            <div class="policy-card__body">
+              <p>ASH-TRA aims to build experiences that remain readable, structured, mobile-friendly, and usable even when the visual direction is bold and design-led.</p>
+              <h2>Current accessibility priorities</h2>
+              <ul>
+                <li>Clear heading structure</li>
+                <li>Keyboard-friendly navigation</li>
+                <li>Visible focus states</li>
+                <li>Readable text contrast</li>
+                <li>Meaningful alt text</li>
+                <li>Reduced-motion support</li>
+                <li>Responsive tap targets</li>
+              </ul>
+              <h2>Ongoing improvement</h2>
+              <p>If you encounter an accessibility issue, please report it by email so it can be reviewed and improved.</p>
+            </div>
           </article>
-        </section>
-      </div>
+        </div>
+      </section>
     </main>
+
     <div data-site-footer></div>
     <script src="/assets/js/site-config.js"></script>
     <script src="/assets/js/site.js"></script>

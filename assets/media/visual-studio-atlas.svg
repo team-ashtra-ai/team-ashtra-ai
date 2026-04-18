@@ -1,0 +1,46 @@
+<svg width="1600" height="1040" viewBox="0 0 1600 1040" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Studio atlas illustration</title>
+  <desc id="desc">A premium studio composition featuring a glowing map, orbit rings, and layered planning cards.</desc>
+  <defs>
+    <linearGradient id="bg" x1="130" y1="98" x2="1422" y2="942" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#060F1B" />
+      <stop offset="0.48" stop-color="#0C1730" />
+      <stop offset="1" stop-color="#060911" />
+    </linearGradient>
+    <radialGradient id="glowOne" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(334 220) rotate(44.9) scale(322 222)">
+      <stop stop-color="#77E3FF" stop-opacity="0.9" />
+      <stop offset="1" stop-color="#77E3FF" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glowTwo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1224 790) rotate(140.7) scale(360 240)">
+      <stop stop-color="#FFB88D" stop-opacity="0.9" />
+      <stop offset="1" stop-color="#FFB88D" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1040" rx="40" fill="url(#bg)" />
+  <ellipse cx="334" cy="220" rx="222" ry="148" fill="url(#glowOne)" />
+  <ellipse cx="1218" cy="786" rx="234" ry="160" fill="url(#glowTwo)" />
+  <rect x="154" y="132" width="1292" height="776" rx="34" fill="#08111F" fill-opacity="0.42" stroke="#82E4FF" stroke-opacity="0.2" />
+  <rect x="232" y="214" width="546" height="558" rx="30" fill="#0A1322" stroke="#82E4FF" stroke-opacity="0.2" />
+  <rect x="824" y="214" width="540" height="232" rx="30" fill="#0E1830" stroke="#82E4FF" stroke-opacity="0.2" />
+  <rect x="824" y="482" width="258" height="290" rx="30" fill="#0A1322" stroke="#FFB88D" stroke-opacity="0.2" />
+  <rect x="1106" y="482" width="258" height="290" rx="30" fill="#0E1830" stroke="#82E4FF" stroke-opacity="0.2" />
+  <circle cx="506" cy="492" r="164" stroke="#82E4FF" stroke-opacity="0.22" stroke-width="2" />
+  <circle cx="506" cy="492" r="122" stroke="#82E4FF" stroke-opacity="0.42" stroke-width="2" />
+  <circle cx="506" cy="492" r="84" stroke="#FFB88D" stroke-opacity="0.82" stroke-width="3" />
+  <path d="M392 492C392 429.04 443.04 378 506 378" stroke="#82E4FF" stroke-width="4" stroke-linecap="round" />
+  <path d="M506 606C568.96 606 620 554.96 620 492" stroke="#FFB88D" stroke-width="4" stroke-linecap="round" />
+  <circle cx="506" cy="492" r="14" fill="#F5FBFF" />
+  <path d="M302 324L428 438L564 372L688 492L604 622L420 660L316 566L302 324Z" fill="#10314A" fill-opacity="0.36" stroke="#82E4FF" stroke-opacity="0.34" stroke-width="2" />
+  <path d="M330 580L446 486L578 526L602 622L446 660L330 580Z" fill="#FFB88D" fill-opacity="0.12" stroke="#FFB88D" stroke-opacity="0.34" />
+  <rect x="864" y="252" width="186" height="14" rx="7" fill="#82E4FF" fill-opacity="0.18" />
+  <rect x="864" y="284" width="132" height="12" rx="6" fill="#EAF4FF" fill-opacity="0.18" />
+  <path d="M864 356H1320" stroke="#82E4FF" stroke-opacity="0.2" stroke-width="2" />
+  <path d="M864 384H1320" stroke="#82E4FF" stroke-opacity="0.1" stroke-width="2" />
+  <path d="M864 412H1184" stroke="#FFB88D" stroke-opacity="0.18" stroke-width="2" />
+  <rect x="862" y="520" width="154" height="14" rx="7" fill="#FFB88D" fill-opacity="0.18" />
+  <rect x="1144" y="520" width="154" height="14" rx="7" fill="#82E4FF" fill-opacity="0.18" />
+  <rect x="862" y="594" width="180" height="116" rx="24" fill="#10192E" stroke="#FFB88D" stroke-opacity="0.18" />
+  <rect x="1144" y="594" width="180" height="116" rx="24" fill="#10192E" stroke="#82E4FF" stroke-opacity="0.18" />
+  <circle cx="952" cy="652" r="30" fill="#13243A" stroke="#FFB88D" stroke-opacity="0.32" />
+  <circle cx="1234" cy="652" r="30" fill="#13243A" stroke="#82E4FF" stroke-opacity="0.32" />
+</svg>

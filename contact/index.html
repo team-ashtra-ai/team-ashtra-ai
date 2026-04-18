@@ -6,145 +6,159 @@
     <title>Contact | ASH-TRA</title>
     <meta
       name="description"
-      content="Get in touch with ASH-TRA to talk about premium website redesign, a full rebuild, or a more modern digital direction for your brand."
+      content="Talk to ASH-TRA about a premium website redesign, full rebuild, or the right next move for a site that feels too basic or too behind."
     />
     <link rel="canonical" href="https://ash-tra.com/contact/" />
     <meta property="og:title" content="Contact | ASH-TRA" />
-    <meta property="og:description" content="Talk about a more premium digital presence." />
+    <meta
+      property="og:description"
+      content="If the site feels too weak for where the business is headed, this is where the conversation starts."
+    />
     <meta property="og:image" content="https://ash-tra.com/brand/ash-tra-social-lockup.png" />
-    <meta name="theme-color" content="#050A12" />
+    <meta name="theme-color" content="#050914" />
     <link rel="icon" href="/brand/favicon-32.png" type="image/png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/assets/css/site.css" />
   </head>
   <body data-page="contact">
-    <div class="site-bg" aria-hidden="true"></div>
-    <div class="site-grid" aria-hidden="true"></div>
+    <div class="site-stage" aria-hidden="true">
+      <div class="site-stage__glow"></div>
+      <div class="site-stage__grid"></div>
+      <div class="site-stage__noise"></div>
+    </div>
     <div data-site-header></div>
+
     <main>
-      <div class="page-shell">
-        <section class="section page-hero" data-reveal>
-          <article class="hero-card page-hero__content">
+      <section class="hero section">
+        <div class="shell hero__grid">
+          <article class="hero__copy surface" data-reveal>
             <span class="eyebrow">Contact</span>
-            <h1 class="page-title">Let's talk about the site you actually want people to remember.</h1>
-            <p class="page-lede">
-              If the current site feels too basic, too templated, too flat, or simply below the
-              level you want the brand to operate at, this is the right conversation to start.
+            <h1 class="hero__title">If the site feels behind, this is the right place to start.</h1>
+            <p class="hero__lede">
+              You do not need a polished brief. Just explain what feels weak now, what kind of
+              impression you want instead, and where the business is trying to go.
+            </p>
+            <div class="contact-ways">
+              <a class="contact-way" href="mailto:team.ashtra.ai@gmail.com" data-track="email_click">
+                <strong>Email</strong>
+                <span>team.ashtra.ai@gmail.com</span>
+              </a>
+              <a class="contact-way" href="https://api.whatsapp.com/send/?phone=5543991324028" target="_blank" rel="noreferrer" data-track="whatsapp_click">
+                <strong>WhatsApp</strong>
+                <span>Fastest route for a quick human reply.</span>
+              </a>
+            </div>
+          </article>
+
+          <aside class="hero__visual surface" data-reveal data-tilt>
+            <div class="scene" data-scene>
+              <div class="scene__grid"></div>
+              <div class="scene__orbit" data-depth="0.9"></div>
+              <div class="scene__ring" data-depth="0.7"></div>
+              <div class="scene__chip scene__chip--top" data-depth="0.8">Open channel</div>
+              <div class="scene__note" data-depth="1">
+                <strong>Start simple</strong>
+                <span>One honest sentence about the problem is enough to begin.</span>
+              </div>
+              <div class="scene__window scene__window--wide" data-depth="1.2">
+                <img src="/assets/media/visual-contact-beacon.svg" alt="Contact beacon illustration representing communication and project enquiries." />
+              </div>
+              <div class="scene__footer">
+                <span class="scene__badge">Email</span>
+                <span class="scene__badge">WhatsApp</span>
+                <span class="scene__badge">Project intake</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="shell contact-grid">
+          <article class="surface form-card" data-reveal>
+            <div class="form-card__head">
+              <h2 class="card__title">Project enquiry</h2>
+              <p>Enough detail to start properly. No padding. No admin maze.</p>
+            </div>
+            <form data-enquiry-form data-subject="ASH-TRA contact enquiry" name="contact-enquiry">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="contact-name">Name</label>
+                  <input id="contact-name" name="Name" type="text" required />
+                </div>
+                <div class="field">
+                  <label for="contact-email">Email</label>
+                  <input id="contact-email" name="Email" type="email" required />
+                </div>
+                <div class="field">
+                  <label for="contact-company">Company</label>
+                  <input id="contact-company" name="Brand" type="text" />
+                </div>
+                <div class="field">
+                  <label for="contact-website">Current website</label>
+                  <input id="contact-website" name="Website" type="url" placeholder="https://..." />
+                </div>
+                <div class="field field--full">
+                  <label for="contact-message">What needs to improve?</label>
+                  <textarea id="contact-message" name="Project goals" required></textarea>
+                </div>
+                <div class="field field--full">
+                  <label for="contact-reference">Reference sites or visual direction</label>
+                  <textarea id="contact-reference" name="Reference direction" placeholder="Optional, but helpful."></textarea>
+                </div>
+                <div class="field">
+                  <label for="contact-timeline">Timeline</label>
+                  <select id="contact-timeline" name="Timeline">
+                    <option value="As soon as possible">As soon as possible</option>
+                    <option value="Within 1-2 months">Within 1-2 months</option>
+                    <option value="Within 3 months">Within 3 months</option>
+                    <option value="Exploring options">Exploring options</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="contact-budget">Budget direction</label>
+                  <select id="contact-budget" name="Budget direction">
+                    <option value="Not sure yet">Not sure yet</option>
+                    <option value="Premium redesign">Premium redesign</option>
+                    <option value="Full rebuild">Full rebuild</option>
+                    <option value="Need to discuss">Need to discuss</option>
+                  </select>
+                </div>
+              </div>
+              <div class="hero__actions">
+                <button class="button button--primary" type="submit">Draft the enquiry email</button>
+              </div>
+            </form>
+            <p class="success-note" hidden data-form-success>
+              Your email app should open with the enquiry drafted. If it does not, use the direct
+              email address or WhatsApp instead.
             </p>
           </article>
-        </section>
 
-        <section class="section" data-reveal>
-          <div class="contact-grid">
-            <article class="contact-panel">
-              <h2 class="panel-title">Project enquiry</h2>
-              <p>Short, clear, and enough to start the conversation properly.</p>
-              <form class="form-card" data-enquiry-form data-subject="ASH-TRA contact enquiry" name="contact-enquiry">
-                <div class="form-grid">
-                  <div class="field">
-                    <label for="contact-name">Name</label>
-                    <input id="contact-name" name="Name" type="text" required />
-                  </div>
-                  <div class="field">
-                    <label for="contact-email">Email</label>
-                    <input id="contact-email" name="Email" type="email" required />
-                  </div>
-                  <div class="field">
-                    <label for="contact-company">Brand / company</label>
-                    <input id="contact-company" name="Brand" type="text" />
-                  </div>
-                  <div class="field">
-                    <label for="contact-website">Current website</label>
-                    <input id="contact-website" name="Website" type="url" placeholder="https://..." />
-                  </div>
-                  <div class="field field--full">
-                    <label for="contact-message">What do you want to improve?</label>
-                    <textarea id="contact-message" name="Project goals" required></textarea>
-                  </div>
-                  <div class="field field--full">
-                    <label for="contact-reference">Reference sites or visual direction</label>
-                    <textarea id="contact-reference" name="Reference direction" placeholder="Optional, but helpful."></textarea>
-                  </div>
-                  <div class="field">
-                    <label for="contact-timeline">Timeline</label>
-                    <select id="contact-timeline" name="Timeline">
-                      <option value="As soon as possible">As soon as possible</option>
-                      <option value="Within 1-2 months">Within 1-2 months</option>
-                      <option value="Within 3 months">Within 3 months</option>
-                      <option value="Exploring options">Exploring options</option>
-                    </select>
-                  </div>
-                  <div class="field">
-                    <label for="contact-budget">Budget direction</label>
-                    <select id="contact-budget" name="Budget direction">
-                      <option value="Not sure yet">Not sure yet</option>
-                      <option value="Premium redesign">Premium redesign</option>
-                      <option value="Full rebuild">Full rebuild</option>
-                      <option value="Need to discuss">Need to discuss</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="hero-actions">
-                  <button class="button button--primary" type="submit">Draft the enquiry email</button>
-                </div>
-              </form>
-              <p class="success-note" hidden data-form-success>
-                Your email app should open with the enquiry drafted. If it does not, use the direct
-                contact options here or the floating WhatsApp button.
-              </p>
-            </article>
-
-            <aside class="contact-panel">
-              <h2 class="panel-title">Direct contact</h2>
-              <p>
-                Prefer the fast route? Use WhatsApp. Prefer email? That works too. The goal is to
-                make it easy to start the right conversation, not bury it behind admin.
-              </p>
-              <div class="cluster">
-                <a class="button button--ghost" href="mailto:team.ashtra.ai@gmail.com" data-track="email_click">team.ashtra.ai@gmail.com</a>
-                <a
-                  class="button button--ghost"
-                  href="https://api.whatsapp.com/send/?phone=5543991324028"
-                  target="_blank"
-                  rel="noreferrer"
-                  data-track="whatsapp_click"
-                >
-                  WhatsApp
-                </a>
-              </div>
-              <div class="panel" style="margin-top: 1rem">
-                <h3>What helps most</h3>
-                <ul class="check-list">
-                  <li>What feels weak in the current site.</li>
-                  <li>How you want the new site to feel.</li>
-                  <li>Any reference sites you admire.</li>
-                  <li>Your ideal timeline or pressure points.</li>
-                </ul>
-              </div>
-              <div class="panel" style="margin-top: 1rem">
-                <h3>Best fit enquiries</h3>
-                <ul class="check-list">
-                  <li>You want the site to feel more premium and more current.</li>
-                  <li>You care about design quality, not just getting a site online.</li>
-                  <li>You want stronger mobile presence and more polished public perception.</li>
-                  <li>You are not shopping for the cheapest possible answer.</li>
-                </ul>
-              </div>
-              <p class="contact-note">
-                If the site itself needs to become part of the proof, that is exactly the kind of
-                problem ASH-TRA is designed to solve.
-              </p>
-            </aside>
-          </div>
-        </section>
-      </div>
+          <aside class="surface contact-card" data-reveal data-tilt>
+            <h2 class="contact-card__title">What helps most</h2>
+            <p class="contact-card__text">A few honest details make the first conversation much more useful.</p>
+            <ul class="check-list">
+              <li>Why the current site feels too weak, too basic, or too behind.</li>
+              <li>What kind of websites or brands you admire.</li>
+              <li>The level you want the business to reach next.</li>
+              <li>Whether the project feels like a redesign or a full rebuild.</li>
+            </ul>
+            <div class="contact-card__meta">
+              <span class="tag">No long brief required</span>
+              <span class="tag">Fastest reply: WhatsApp</span>
+            </div>
+          </aside>
+        </div>
+      </section>
     </main>
+
     <div data-site-footer></div>
     <script src="/assets/js/site-config.js"></script>
     <script src="/assets/js/site.js"></script>

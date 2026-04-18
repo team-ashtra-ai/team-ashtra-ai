@@ -6,125 +6,152 @@
     <title>Start a Project | ASH-TRA</title>
     <meta
       name="description"
-      content="Start a project with ASH-TRA and outline the website upgrade you want: premium redesign, full rebuild, or a more cinematic digital direction."
+      content="Tell ASH-TRA what feels weak about the current site and what level the new one needs to hit."
     />
     <link rel="canonical" href="https://ash-tra.com/start-project/" />
     <meta property="og:title" content="Start a Project | ASH-TRA" />
-    <meta property="og:description" content="Outline the website upgrade you want with ASH-TRA." />
+    <meta property="og:description" content="Tell us what feels weak now and what level the new site needs to reach." />
     <meta property="og:image" content="https://ash-tra.com/brand/ash-tra-social-lockup.png" />
-    <meta name="theme-color" content="#050A12" />
+    <meta name="theme-color" content="#050914" />
     <link rel="icon" href="/brand/favicon-32.png" type="image/png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/assets/css/site.css" />
   </head>
   <body data-page="start-project">
-    <div class="site-bg" aria-hidden="true"></div>
-    <div class="site-grid" aria-hidden="true"></div>
+    <div class="site-stage" aria-hidden="true">
+      <div class="site-stage__glow"></div>
+      <div class="site-stage__grid"></div>
+      <div class="site-stage__noise"></div>
+    </div>
     <div data-site-header></div>
+
     <main>
-      <div class="page-shell">
-        <section class="section page-hero" data-reveal>
-          <article class="hero-card page-hero__content">
+      <section class="hero section">
+        <div class="shell hero__grid">
+          <article class="hero__copy surface" data-reveal>
             <span class="eyebrow">Start a project</span>
-            <h1 class="page-title">Tell ASH-TRA what is not working and what level you want to reach.</h1>
-            <p class="page-lede">
-              This does not need to be long. Just enough context to understand the current site,
-              the perception problem, and the kind of digital presence you want the rebuild to move toward.
+            <h1 class="hero__title">Tell us what feels weak and what level you want to reach.</h1>
+            <p class="hero__lede">
+              You do not need the perfect words. Describe the problem honestly and the new site can
+              be designed from there.
             </p>
           </article>
-        </section>
 
-        <section class="section" data-reveal>
-          <div class="contact-grid">
-            <article class="contact-panel">
-              <form class="form-card" data-enquiry-form data-subject="ASH-TRA project start" name="project-start">
-                <div class="form-grid">
-                  <div class="field">
-                    <label for="start-name">Name</label>
-                    <input id="start-name" name="Name" type="text" required />
-                  </div>
-                  <div class="field">
-                    <label for="start-email">Email</label>
-                    <input id="start-email" name="Email" type="email" required />
-                  </div>
-                  <div class="field">
-                    <label for="start-company">Business / brand</label>
-                    <input id="start-company" name="Business" type="text" required />
-                  </div>
-                  <div class="field">
-                    <label for="start-url">Current website</label>
-                    <input id="start-url" name="Current website" type="url" placeholder="https://..." />
-                  </div>
-                  <div class="field field--full">
-                    <label for="start-problem">What feels weak right now?</label>
-                    <textarea id="start-problem" name="Current site issues" required></textarea>
-                  </div>
-                  <div class="field field--full">
-                    <label for="start-goal">What should the new site feel like?</label>
-                    <textarea id="start-goal" name="Desired direction" required></textarea>
-                  </div>
-                  <div class="field field--full">
-                    <label for="start-reference">Reference sites, visual cues, or brands you admire</label>
-                    <textarea id="start-reference" name="References" placeholder="Optional, but useful."></textarea>
-                  </div>
-                  <div class="field">
-                    <label for="start-timeline">Timeline</label>
-                    <select id="start-timeline" name="Timeline">
-                      <option value="ASAP">ASAP</option>
-                      <option value="Within 1 month">Within 1 month</option>
-                      <option value="Within 3 months">Within 3 months</option>
-                      <option value="Flexible">Flexible</option>
-                    </select>
-                  </div>
-                  <div class="field">
-                    <label for="start-fit">Project type</label>
-                    <select id="start-fit" name="Project type">
-                      <option value="Premium redesign">Premium redesign</option>
-                      <option value="Full rebuild">Full rebuild</option>
-                      <option value="Need help deciding">Need help deciding</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="hero-actions">
-                  <button class="button button--primary" type="submit">Draft the enquiry email</button>
-                </div>
-              </form>
-              <p class="success-note" hidden data-form-success>
-                Your email draft should open automatically. If it does not, use WhatsApp or the
-                regular contact page and send the same details there.
-              </p>
-            </article>
+          <aside class="hero__visual surface" data-reveal data-tilt>
+            <div class="scene" data-scene>
+              <div class="scene__grid"></div>
+              <div class="scene__orbit" data-depth="1"></div>
+              <div class="scene__ring" data-depth="0.6"></div>
+              <div class="scene__chip scene__chip--top" data-depth="0.8">Project intake</div>
+              <div class="scene__note" data-depth="1">
+                <strong>Clarity first</strong>
+                <span>A short honest brief beats a long vague one.</span>
+              </div>
+              <div class="scene__window scene__window--wide" data-depth="1.15">
+                <img src="/assets/media/visual-command-center.svg" alt="Command center artwork representing project planning and direction setting." />
+              </div>
+              <div class="scene__window scene__window--card" data-depth="0.8">
+                <img src="/assets/media/visual-contact-beacon.svg" alt="Communication beacon artwork representing enquiry flow." />
+              </div>
+              <div class="scene__footer">
+                <span class="scene__badge">Direction</span>
+                <span class="scene__badge">Fit</span>
+                <span class="scene__badge">Next step</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
 
-            <aside class="contact-panel">
-              <h2 class="panel-title">What helps most</h2>
-              <ul class="check-list">
-                <li>A clear description of why the current site feels too weak.</li>
-                <li>The level you want the brand to feel like it belongs in.</li>
-                <li>Reference sites or visual directions you admire.</li>
-                <li>Whether this feels more like a redesign or a deeper rebuild.</li>
-              </ul>
-              <div class="panel" style="margin-top: 1rem">
-                <h3>If you are unsure what to write</h3>
-                <p>
-                  Start with two sentences: what feels wrong with the current site, and what you
-                  want the new one to feel like. That is enough to begin.
-                </p>
+      <section class="section">
+        <div class="shell contact-grid">
+          <article class="surface form-card" data-reveal>
+            <div class="form-card__head">
+              <h2 class="card__title">Project start form</h2>
+              <p>Enough detail to understand the gap and what the next version needs to become.</p>
+            </div>
+            <form data-enquiry-form data-subject="ASH-TRA project start" name="project-start">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="start-name">Name</label>
+                  <input id="start-name" name="Name" type="text" required />
+                </div>
+                <div class="field">
+                  <label for="start-email">Email</label>
+                  <input id="start-email" name="Email" type="email" required />
+                </div>
+                <div class="field">
+                  <label for="start-company">Business / brand</label>
+                  <input id="start-company" name="Business" type="text" required />
+                </div>
+                <div class="field">
+                  <label for="start-url">Current website</label>
+                  <input id="start-url" name="Current website" type="url" placeholder="https://..." />
+                </div>
+                <div class="field field--full">
+                  <label for="start-problem">What is not working?</label>
+                  <textarea id="start-problem" name="Current site issues" required></textarea>
+                </div>
+                <div class="field field--full">
+                  <label for="start-goal">What should the new site feel like?</label>
+                  <textarea id="start-goal" name="Desired direction" required></textarea>
+                </div>
+                <div class="field field--full">
+                  <label for="start-reference">Reference sites, visual cues, or brands you admire</label>
+                  <textarea id="start-reference" name="References" placeholder="Optional, but useful."></textarea>
+                </div>
+                <div class="field">
+                  <label for="start-timeline">Timeline</label>
+                  <select id="start-timeline" name="Timeline">
+                    <option value="ASAP">ASAP</option>
+                    <option value="Within 1 month">Within 1 month</option>
+                    <option value="Within 3 months">Within 3 months</option>
+                    <option value="Flexible">Flexible</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="start-fit">Project type</label>
+                  <select id="start-fit" name="Project type">
+                    <option value="Premium redesign">Premium redesign</option>
+                    <option value="Full rebuild">Full rebuild</option>
+                    <option value="Need help deciding">Need help deciding</option>
+                  </select>
+                </div>
               </div>
-              <div class="panel" style="margin-top: 1rem">
-                <h3>Fastest route</h3>
-                <p>Want a quick human reply before filling this out? Use the floating WhatsApp button.</p>
+              <div class="hero__actions">
+                <button class="button button--primary" type="submit">Draft the enquiry email</button>
               </div>
-            </aside>
-          </div>
-        </section>
-      </div>
+            </form>
+            <p class="success-note" hidden data-form-success>
+              Your email draft should open automatically. If it does not, use WhatsApp or the
+              regular contact page and send the same details there.
+            </p>
+          </article>
+
+          <aside class="surface contact-card" data-reveal data-tilt>
+            <h2 class="contact-card__title">What helps most</h2>
+            <ul class="check-list">
+              <li>Why the current site feels too basic or too weak.</li>
+              <li>The kind of digital presence you want instead.</li>
+              <li>The websites or brands that feel close to the target.</li>
+              <li>How quickly you want to move if the fit feels right.</li>
+            </ul>
+            <div class="contact-card__meta">
+              <span class="tag">No perfect brief needed</span>
+              <span class="tag">WhatsApp available</span>
+            </div>
+            <p class="contact-card__text">If you are not sure where to begin, describe the current site in one honest sentence and the target in one honest sentence.</p>
+          </aside>
+        </div>
+      </section>
     </main>
+
     <div data-site-footer></div>
     <script src="/assets/js/site-config.js"></script>
     <script src="/assets/js/site.js"></script>

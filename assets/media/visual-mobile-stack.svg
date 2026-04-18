@@ -1,0 +1,47 @@
+<svg width="960" height="1280" viewBox="0 0 960 1280" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Mobile-first stacked screens</title>
+  <desc id="desc">A layered mobile interface composition with glowing cards, a circular signal, and structured premium styling.</desc>
+  <defs>
+    <linearGradient id="bg" x1="142" y1="96" x2="798" y2="1150" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111D" />
+      <stop offset="1" stop-color="#050811" />
+    </linearGradient>
+    <linearGradient id="phone" x1="202" y1="182" x2="690" y2="1026" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E1A2D" />
+      <stop offset="1" stop-color="#09111D" />
+    </linearGradient>
+    <radialGradient id="cyan" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(286 282) rotate(48.6) scale(290 220)">
+      <stop stop-color="#7FE5FF" stop-opacity="0.9" />
+      <stop offset="1" stop-color="#7FE5FF" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="amber" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(694 976) rotate(135) scale(260 210)">
+      <stop stop-color="#FFB186" stop-opacity="0.88" />
+      <stop offset="1" stop-color="#FFB186" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="960" height="1280" rx="40" fill="url(#bg)" />
+  <ellipse cx="276" cy="280" rx="220" ry="160" fill="url(#cyan)" />
+  <ellipse cx="702" cy="978" rx="210" ry="160" fill="url(#amber)" />
+  <rect x="224" y="110" width="512" height="1060" rx="62" fill="#040A12" stroke="#A8BFE6" stroke-opacity="0.2" stroke-width="2" />
+  <rect x="244" y="134" width="472" height="1012" rx="48" fill="url(#phone)" stroke="#82DEFF" stroke-opacity="0.18" />
+  <rect x="392" y="154" width="176" height="24" rx="12" fill="#0B1524" />
+  <circle cx="480" cy="388" r="122" stroke="#84E4FF" stroke-opacity="0.18" stroke-width="2" />
+  <circle cx="480" cy="388" r="88" stroke="#84E4FF" stroke-opacity="0.48" stroke-width="2" />
+  <circle cx="480" cy="388" r="48" stroke="#FFB084" stroke-width="3" />
+  <circle cx="480" cy="388" r="12" fill="#F4FBFF" />
+  <rect x="304" y="612" width="352" height="188" rx="32" fill="#0D1830" stroke="#85E5FF" stroke-opacity="0.22" />
+  <rect x="304" y="828" width="352" height="140" rx="28" fill="#0C1525" stroke="#FFB084" stroke-opacity="0.2" />
+  <rect x="334" y="660" width="182" height="16" rx="8" fill="#85E5FF" fill-opacity="0.18" />
+  <rect x="334" y="694" width="138" height="12" rx="6" fill="#EAF2FF" fill-opacity="0.18" />
+  <path d="M334 736C374 710 416 708 456 734C496 760 538 760 626 722" stroke="#85E5FF" stroke-width="3.5" stroke-linecap="round" />
+  <path d="M334 762C380 744 420 750 460 780C500 810 548 808 626 778" stroke="#FFB084" stroke-opacity="0.6" stroke-width="2.4" stroke-linecap="round" />
+  <rect x="334" y="868" width="128" height="40" rx="20" fill="#85E5FF" fill-opacity="0.12" stroke="#85E5FF" stroke-opacity="0.28" />
+  <rect x="476" y="868" width="150" height="40" rx="20" fill="#13243A" stroke="#85E5FF" stroke-opacity="0.16" />
+  <rect x="296" y="236" width="116" height="40" rx="20" fill="#85E5FF" fill-opacity="0.1" stroke="#85E5FF" stroke-opacity="0.24" />
+  <rect x="424" y="236" width="184" height="40" rx="20" fill="#13243A" stroke="#FFB084" stroke-opacity="0.18" />
+  <rect x="620" y="236" width="56" height="40" rx="20" fill="#13243A" stroke="#85E5FF" stroke-opacity="0.18" />
+  <path d="M146 170L198 224" stroke="#7EE4FF" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round" />
+  <path d="M146 1110L198 1056" stroke="#FFB084" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round" />
+  <path d="M760 170L814 224" stroke="#7EE4FF" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round" />
+  <path d="M760 1110L814 1056" stroke="#FFB084" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round" />
+</svg>

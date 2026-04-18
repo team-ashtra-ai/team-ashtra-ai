@@ -1,0 +1,23 @@
+<svg width="1400" height="980" viewBox="0 0 1400 980" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Pulse direction study</title>
+  <desc id="desc">A motion-led premium concept with stacked signal lines and luminous color transitions.</desc>
+  <defs>
+    <linearGradient id="bg" x1="100" y1="82" x2="1260" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111D" />
+      <stop offset="0.56" stop-color="#0C1830" />
+      <stop offset="1" stop-color="#050811" />
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="980" rx="36" fill="url(#bg)" />
+  <rect x="108" y="120" width="1184" height="740" rx="34" fill="#08111F" fill-opacity="0.5" stroke="#82E5FF" stroke-opacity="0.18" />
+  <rect x="176" y="190" width="1048" height="600" rx="30" fill="#0A1322" stroke="#82E5FF" stroke-opacity="0.18" />
+  <path d="M244 332C368 246 484 238 610 306C736 374 860 386 984 312C1084 252 1148 254 1160 256" stroke="#82E5FF" stroke-width="4" stroke-linecap="round" />
+  <path d="M244 408C372 354 482 360 610 420C738 480 872 486 996 430C1080 392 1138 392 1160 394" stroke="#FFB68A" stroke-opacity="0.78" stroke-width="3.5" stroke-linecap="round" />
+  <path d="M244 486C368 460 490 486 608 558C728 632 870 642 1002 590C1084 558 1140 558 1160 560" stroke="#82E5FF" stroke-opacity="0.72" stroke-width="3" stroke-linecap="round" />
+  <path d="M244 564C372 560 500 604 612 678C726 754 866 754 1006 706C1096 676 1142 678 1160 680" stroke="#FFB68A" stroke-opacity="0.54" stroke-width="2.6" stroke-linecap="round" />
+  <rect x="244" y="236" width="176" height="14" rx="7" fill="#82E5FF" fill-opacity="0.18" />
+  <rect x="244" y="266" width="136" height="12" rx="6" fill="#EAF4FF" fill-opacity="0.18" />
+  <circle cx="1046" cy="268" r="16" fill="#82E5FF" />
+  <circle cx="1092" cy="268" r="16" fill="#FFB68A" />
+  <circle cx="1138" cy="268" r="16" fill="#F5FBFF" fill-opacity="0.84" />
+</svg>

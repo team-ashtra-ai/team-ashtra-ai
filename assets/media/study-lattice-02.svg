@@ -1,0 +1,25 @@
+<svg width="1400" height="980" viewBox="0 0 1400 980" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Lattice direction study</title>
+  <desc id="desc">A modular premium interface concept with a bright data pane and warm structural accents.</desc>
+  <defs>
+    <linearGradient id="bg" x1="88" y1="78" x2="1258" y2="876" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#091321" />
+      <stop offset="1" stop-color="#060A12" />
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="980" rx="36" fill="url(#bg)" />
+  <rect x="104" y="110" width="1192" height="760" rx="34" fill="#08111F" fill-opacity="0.56" stroke="#82E5FF" stroke-opacity="0.18" />
+  <rect x="162" y="170" width="444" height="288" rx="30" fill="#0F1830" stroke="#82E5FF" stroke-opacity="0.2" />
+  <rect x="634" y="170" width="604" height="468" rx="30" fill="#0C1525" stroke="#82E5FF" stroke-opacity="0.18" />
+  <rect x="162" y="490" width="444" height="320" rx="30" fill="#0A1322" stroke="#FFB68A" stroke-opacity="0.2" />
+  <rect x="634" y="668" width="286" height="142" rx="28" fill="#0E1830" stroke="#82E5FF" stroke-opacity="0.18" />
+  <rect x="952" y="668" width="286" height="142" rx="28" fill="#0A1322" stroke="#FFB68A" stroke-opacity="0.18" />
+  <rect x="204" y="214" width="188" height="14" rx="7" fill="#82E5FF" fill-opacity="0.18" />
+  <rect x="204" y="244" width="146" height="12" rx="6" fill="#EAF4FF" fill-opacity="0.18" />
+  <rect x="676" y="214" width="174" height="14" rx="7" fill="#82E5FF" fill-opacity="0.18" />
+  <circle cx="936" cy="408" r="120" stroke="#82E5FF" stroke-opacity="0.2" stroke-width="2" />
+  <circle cx="936" cy="408" r="76" stroke="#FFB68A" stroke-opacity="0.72" stroke-width="3" />
+  <circle cx="936" cy="408" r="14" fill="#F6FBFF" />
+  <path d="M706 546C782 500 850 496 928 538C1000 578 1064 580 1166 520" stroke="#82E5FF" stroke-width="3.5" stroke-linecap="round" />
+  <path d="M706 580C792 548 858 556 932 602C1006 648 1078 648 1166 610" stroke="#FFB68A" stroke-opacity="0.62" stroke-width="2.5" stroke-linecap="round" />
+</svg>

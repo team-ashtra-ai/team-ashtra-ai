@@ -1,0 +1,24 @@
+<svg width="1400" height="980" viewBox="0 0 1400 980" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Orbit direction study</title>
+  <desc id="desc">A launch-style interface concept with orbit rings, deep blue space, and bold orange highlights.</desc>
+  <defs>
+    <linearGradient id="bg" x1="92" y1="84" x2="1260" y2="874" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111D" />
+      <stop offset="1" stop-color="#050811" />
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="980" rx="36" fill="url(#bg)" />
+  <rect x="102" y="102" width="1196" height="776" rx="34" fill="#08111F" fill-opacity="0.48" stroke="#82E5FF" stroke-opacity="0.18" />
+  <circle cx="734" cy="490" r="218" stroke="#82E5FF" stroke-opacity="0.18" stroke-width="2" />
+  <circle cx="734" cy="490" r="168" stroke="#82E5FF" stroke-opacity="0.42" stroke-width="2" />
+  <circle cx="734" cy="490" r="106" stroke="#FFB68A" stroke-width="3" />
+  <circle cx="734" cy="490" r="18" fill="#F6FBFF" />
+  <rect x="178" y="214" width="236" height="118" rx="28" fill="#0E1830" stroke="#82E5FF" stroke-opacity="0.18" />
+  <rect x="986" y="214" width="236" height="118" rx="28" fill="#0E1830" stroke="#FFB68A" stroke-opacity="0.2" />
+  <rect x="178" y="648" width="236" height="118" rx="28" fill="#0A1322" stroke="#82E5FF" stroke-opacity="0.18" />
+  <rect x="986" y="648" width="236" height="118" rx="28" fill="#0A1322" stroke="#82E5FF" stroke-opacity="0.18" />
+  <path d="M276 276C348 314 426 344 570 414" stroke="#82E5FF" stroke-opacity="0.4" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M1124 276C1044 326 980 364 896 414" stroke="#FFB68A" stroke-opacity="0.44" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M276 706C362 658 420 622 570 556" stroke="#82E5FF" stroke-opacity="0.3" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M1124 706C1030 650 968 614 896 566" stroke="#82E5FF" stroke-opacity="0.36" stroke-width="2.5" stroke-linecap="round" />
+</svg>

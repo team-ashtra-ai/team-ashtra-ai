@@ -1,0 +1,82 @@
+<svg width="1600" height="1080" viewBox="0 0 1600 1080" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Command center interface study</title>
+  <desc id="desc">A cinematic technology composition with layered interface panels, glowing orbits, and warm blue lighting.</desc>
+  <defs>
+    <linearGradient id="bg" x1="154" y1="102" x2="1334" y2="968" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#040B16" />
+      <stop offset="0.52" stop-color="#0A1631" />
+      <stop offset="1" stop-color="#060A13" />
+    </linearGradient>
+    <radialGradient id="glowOne" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(318 202) rotate(42.8) scale(474 287)">
+      <stop stop-color="#74E3FF" stop-opacity="0.92" />
+      <stop offset="1" stop-color="#74E3FF" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glowTwo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1180 860) rotate(155.4) scale(554 324)">
+      <stop stop-color="#FF9C6A" stop-opacity="0.85" />
+      <stop offset="1" stop-color="#FF9C6A" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="panel" x1="319" y1="166" x2="1238" y2="905" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D1731" stop-opacity="0.92" />
+      <stop offset="1" stop-color="#09111F" stop-opacity="0.74" />
+    </linearGradient>
+    <linearGradient id="panelSoft" x1="1014" y1="276" x2="1362" y2="783" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#13223E" />
+      <stop offset="1" stop-color="#0B1222" />
+    </linearGradient>
+    <linearGradient id="line" x1="266" y1="745" x2="1263" y2="745" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#79DFFF" stop-opacity="0.1" />
+      <stop offset="0.48" stop-color="#79DFFF" stop-opacity="0.92" />
+      <stop offset="1" stop-color="#F8A77C" stop-opacity="0.12" />
+    </linearGradient>
+    <filter id="blur" x="-200" y="-200" width="2000" height="1480" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="50" />
+    </filter>
+  </defs>
+  <rect width="1600" height="1080" rx="44" fill="url(#bg)" />
+  <g filter="url(#blur)">
+    <ellipse cx="330" cy="206" rx="230" ry="142" fill="url(#glowOne)" />
+    <ellipse cx="1204" cy="842" rx="254" ry="152" fill="url(#glowTwo)" />
+  </g>
+  <g opacity="0.35" stroke="#84D8FF" stroke-width="1">
+    <path d="M72 176H1528" />
+    <path d="M72 356H1528" />
+    <path d="M72 536H1528" />
+    <path d="M72 716H1528" />
+    <path d="M72 896H1528" />
+    <path d="M244 60V1020" />
+    <path d="M520 60V1020" />
+    <path d="M796 60V1020" />
+    <path d="M1072 60V1020" />
+    <path d="M1348 60V1020" />
+  </g>
+  <rect x="146" y="134" width="1310" height="812" rx="32" fill="#08111E" fill-opacity="0.36" stroke="#7CCBFF" stroke-opacity="0.24" />
+  <rect x="202" y="200" width="882" height="540" rx="28" fill="url(#panel)" stroke="#7ED6FF" stroke-opacity="0.22" />
+  <rect x="1110" y="200" width="288" height="352" rx="28" fill="url(#panelSoft)" stroke="#9BE8FF" stroke-opacity="0.18" />
+  <rect x="1110" y="580" width="288" height="160" rx="28" fill="#0F1730" stroke="#F3A883" stroke-opacity="0.24" />
+  <rect x="202" y="778" width="1196" height="112" rx="28" fill="#091322" fill-opacity="0.72" stroke="#81DCFF" stroke-opacity="0.18" />
+  <rect x="244" y="246" width="312" height="16" rx="8" fill="#7DE5FF" fill-opacity="0.22" />
+  <rect x="244" y="278" width="206" height="12" rx="6" fill="#DDEBFF" fill-opacity="0.22" />
+  <circle cx="734" cy="470" r="150" stroke="#7FE2FF" stroke-opacity="0.24" stroke-width="2" />
+  <circle cx="734" cy="470" r="114" stroke="#7FE2FF" stroke-opacity="0.45" stroke-width="2" />
+  <circle cx="734" cy="470" r="68" stroke="#F5B28A" stroke-opacity="0.9" stroke-width="3" />
+  <circle cx="734" cy="470" r="14" fill="#EBF9FF" />
+  <path d="M640 470C640 418.1 682.1 376 734 376" stroke="#7DE5FF" stroke-width="4" stroke-linecap="round" />
+  <path d="M734 564C785.9 564 828 521.9 828 470" stroke="#F6B38E" stroke-width="4" stroke-linecap="round" />
+  <path d="M284 602C402 558 496 564 616 626C730 685 824 689 950 622" stroke="url(#line)" stroke-width="4" stroke-linecap="round" />
+  <path d="M284 630C392 596 500 604 610 658C726 714 838 714 952 652" stroke="#7FE2FF" stroke-opacity="0.34" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M284 656C404 633 510 651 618 700C748 759 844 748 950 693" stroke="#F5A782" stroke-opacity="0.34" stroke-width="2.5" stroke-linecap="round" />
+  <rect x="1160" y="246" width="188" height="14" rx="7" fill="#7DE5FF" fill-opacity="0.2" />
+  <rect x="1160" y="278" width="134" height="12" rx="6" fill="#E6F2FF" fill-opacity="0.18" />
+  <rect x="1160" y="336" width="188" height="72" rx="18" fill="#101A31" stroke="#80DCFF" stroke-opacity="0.2" />
+  <rect x="1160" y="430" width="188" height="72" rx="18" fill="#101A31" stroke="#F5A782" stroke-opacity="0.2" />
+  <rect x="1158" y="608" width="132" height="40" rx="20" fill="#75E2FF" fill-opacity="0.14" stroke="#75E2FF" stroke-opacity="0.28" />
+  <rect x="1302" y="608" width="58" height="40" rx="20" fill="#F5A782" fill-opacity="0.14" stroke="#F5A782" stroke-opacity="0.28" />
+  <rect x="244" y="812" width="146" height="44" rx="22" fill="#7DE5FF" fill-opacity="0.12" stroke="#7DE5FF" stroke-opacity="0.24" />
+  <rect x="406" y="812" width="178" height="44" rx="22" fill="#13243C" stroke="#7DE5FF" stroke-opacity="0.14" />
+  <rect x="600" y="812" width="146" height="44" rx="22" fill="#13243C" stroke="#F5A782" stroke-opacity="0.16" />
+  <rect x="764" y="812" width="220" height="44" rx="22" fill="#13243C" stroke="#7DE5FF" stroke-opacity="0.14" />
+  <rect x="1002" y="812" width="170" height="44" rx="22" fill="#13243C" stroke="#7DE5FF" stroke-opacity="0.14" />
+  <circle cx="1250" cy="832" r="9" fill="#7EE5FF" />
+  <circle cx="1282" cy="832" r="9" fill="#F5A782" />
+  <circle cx="1314" cy="832" r="9" fill="#E8F5FF" fill-opacity="0.82" />
+</svg>
