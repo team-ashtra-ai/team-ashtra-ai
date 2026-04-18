@@ -750,6 +750,17 @@
     update();
   }
 
+  function setupPaymentPrefill() {
+    const field = document.querySelector("[data-payment-method-field]");
+    if (!field) return;
+
+    document.querySelectorAll("[data-payment-prefill]").forEach(function (trigger) {
+      trigger.addEventListener("click", function () {
+        field.value = trigger.getAttribute("data-payment-prefill") || "";
+      });
+    });
+  }
+
   function resolveFormEndpoint(key) {
     if (key === "contact") return contactFormEndpoint;
     if (key === "consultation") return consultationFormEndpoint;
@@ -918,7 +929,7 @@
       },
       {
         match: ["pay", "payment", "stripe", "paypal", "pix"],
-        answer: "Use Pay Consultation to choose the paid strategy route, review the payment options, and move into scheduling once the payment is handled.",
+        answer: "Use Pay Consultation to choose the paid strategy route, request the payment method that fits best, and move into scheduling once payment is confirmed.",
         results: siteIndex.filter(function (item) {
           return item.url === "/pay-consultation/" || item.url === "/schedule-meeting/" || item.url === "/discovery/";
         })
@@ -1118,6 +1129,7 @@
     setupTiltCards();
     setupSceneMotion();
     setupBackToTop();
+    setupPaymentPrefill();
     setupForms();
     setupFaq();
     setupCommandPalette();

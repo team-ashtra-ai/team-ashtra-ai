@@ -65,15 +65,15 @@
               </p>
               <p class="page-hero__punch">Clear first. Build second.</p>
               <div class="hero__actions">
-                <a class="button button--primary" href="#payment-routes">Pay and Book</a>
+                <a class="button button--primary" href="#payment-request">Pay and Book</a>
                 <a class="button button--secondary" href="/discovery/">Start Discovery Instead</a>
               </div>
             </div>
             <div class="page-hero__media">
               <div class="image-frame">
                 <img
-                  src="/assets/media/visual-process-signal.svg"
-                  alt="Signal-focused ASH-TRA visual representing clearer direction before the build starts."
+                  src="/assets/media/space-exoplanet-frame.jpg"
+                  alt="ASH-TRA cinematic space frame representing a clearer strategic starting point."
                 />
               </div>
             </div>
@@ -142,48 +142,139 @@
             <span class="eyebrow">Payment Routes</span>
             <h2 class="section-title">Choose the route that works best.</h2>
             <p class="section-text">
-              Use the payment method that fits your setup, then continue into scheduling once the
-              consultation is handled.
+              Choose the payment method that fits your setup, request the route below, then
+              continue into scheduling once the consultation is handled.
             </p>
           </div>
 
-          <div class="route-grid">
-            <article class="surface route-card" data-reveal>
-              <span class="route-card__label">Stripe</span>
-              <h3>Card route</h3>
-              <p>
-                Use Stripe if you want the consultation handled through a simple online card
-                payment route.
-              </p>
-              <a class="button button--primary button--block" href="/contact/" data-track="contact_click">Request Stripe Link</a>
-            </article>
+          <div class="payment-flow">
+            <div class="route-grid">
+              <article class="surface route-card" data-reveal>
+                <span class="route-card__label">Stripe</span>
+                <h3>Card route</h3>
+                <p>
+                  Use Stripe if you want the consultation handled through a simple online card
+                  payment route.
+                </p>
+                <a
+                  class="button button--primary button--block"
+                  href="#payment-request"
+                  data-payment-prefill="Stripe"
+                  data-track="payment_request_click"
+                  data-track-label="Stripe"
+                >
+                  Request Stripe Route
+                </a>
+              </article>
 
-            <article class="surface route-card" data-reveal>
-              <span class="route-card__label">PayPal</span>
-              <h3>Flexible online route</h3>
-              <p>
-                Use PayPal if that fits the way you already pay suppliers, consultants, or service
-                providers.
-              </p>
-              <a class="button button--secondary button--block" href="/contact/" data-track="contact_click">Request PayPal Link</a>
-            </article>
+              <article class="surface route-card" data-reveal>
+                <span class="route-card__label">PayPal</span>
+                <h3>Flexible online route</h3>
+                <p>
+                  Use PayPal if that fits the way you already pay suppliers, consultants, or
+                  service providers.
+                </p>
+                <a
+                  class="button button--secondary button--block"
+                  href="#payment-request"
+                  data-payment-prefill="PayPal"
+                  data-track="payment_request_click"
+                  data-track-label="PayPal"
+                >
+                  Request PayPal Route
+                </a>
+              </article>
 
-            <article class="surface route-card" data-reveal>
-              <span class="route-card__label">Pix</span>
-              <h3>Brazil route</h3>
-              <p>
-                Use Pix if you want the fastest local transfer route. Once confirmed, move straight
-                into booking the session.
-              </p>
-              <a
-                class="button button--secondary button--block"
-                href="https://api.whatsapp.com/send/?phone=5543991324028"
-                target="_blank"
-                rel="noreferrer"
-                data-track="whatsapp_click"
+              <article class="surface route-card" data-reveal>
+                <span class="route-card__label">Pix</span>
+                <h3>Brazil route</h3>
+                <p>
+                  Use Pix if you want the fastest local transfer route and then move straight into
+                  booking the session.
+                </p>
+                <a
+                  class="button button--secondary button--block"
+                  href="#payment-request"
+                  data-payment-prefill="Pix"
+                  data-track="payment_request_click"
+                  data-track-label="Pix"
+                >
+                  Request Pix Route
+                </a>
+              </article>
+            </div>
+
+            <article class="surface form-card" data-reveal id="payment-request">
+              <div class="form-card__head">
+                <h2 class="card__title">Request the payment route</h2>
+                <p>
+                  Send the preferred method and contact details here, and ASH-TRA will reply with
+                  the payment route plus the next booking step.
+                </p>
+              </div>
+              <div class="payment-note">
+                <strong>How this works</strong>
+                <p>
+                  Choose Stripe, PayPal, or Pix, send the request, then move into scheduling once
+                  payment is confirmed.
+                </p>
+              </div>
+              <form
+                method="POST"
+                data-enquiry-form
+                data-form-endpoint="consultation"
+                data-form-kind="consultation-payment"
+                data-success-copy="Your consultation payment request was sent. ASH-TRA will reply with the chosen payment route and the next booking step."
+                name="consultation-payment-request"
               >
-                Arrange Pix
-              </a>
+                <input type="hidden" name="_subject" value="ASH-TRA consultation payment request" />
+                <input type="hidden" name="Route" value="Paid Consultation" />
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="payment-name">Name</label>
+                    <input id="payment-name" name="Name" type="text" required />
+                  </div>
+                  <div class="field">
+                    <label for="payment-email">Email</label>
+                    <input id="payment-email" name="Email" type="email" required />
+                  </div>
+                  <div class="field">
+                    <label for="payment-business">Business / brand</label>
+                    <input id="payment-business" name="Business or brand" type="text" />
+                  </div>
+                  <div class="field">
+                    <label for="payment-method">Preferred payment method</label>
+                    <select id="payment-method" name="Preferred payment method" data-payment-method-field required>
+                      <option value="">Select a route</option>
+                      <option value="Stripe">Stripe</option>
+                      <option value="PayPal">PayPal</option>
+                      <option value="Pix">Pix</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="payment-whatsapp">Phone / WhatsApp</label>
+                    <input id="payment-whatsapp" name="Phone or WhatsApp" type="tel" />
+                  </div>
+                  <div class="field">
+                    <label for="payment-market">Country / currency</label>
+                    <input id="payment-market" name="Country or currency" type="text" placeholder="Optional" />
+                  </div>
+                  <div class="field field--full">
+                    <label for="payment-notes">Anything we should know before sending the route?</label>
+                    <textarea
+                      id="payment-notes"
+                      name="Payment request notes"
+                      placeholder="Optional, but helpful if you need invoice details or a faster reply route."
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="hero__actions">
+                  <button class="button button--primary" type="submit">Request payment route</button>
+                  <a class="button button--subtle" href="/schedule-meeting/">Go to Schedule Meeting</a>
+                </div>
+              </form>
+              <p class="success-note" hidden data-form-success></p>
+              <p class="error-note" hidden data-form-error></p>
             </article>
           </div>
         </div>
