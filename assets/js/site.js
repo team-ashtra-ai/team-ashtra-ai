@@ -5,9 +5,16 @@
   const navItems = [
     { href: "/services/", label: "Services", match: "/services/" },
     { href: "/process/", label: "Process", match: "/process/" },
-    { href: "/examples/", label: "Examples", match: "/examples/" },
+    { href: "/examples/", label: "Portfolio", match: "/examples/" },
     { href: "/about/", label: "About", match: "/about/" },
     { href: "/contact/", label: "Contact", match: "/contact/" }
+  ];
+
+  const supportPages = [
+    { title: "Privacy", url: "/privacy/" },
+    { title: "Terms", url: "/terms/" },
+    { title: "Cookies", url: "/cookies/" },
+    { title: "Accessibility", url: "/accessibility/" }
   ];
 
   const siteIndex = [
@@ -24,9 +31,9 @@
       keywords: ["process", "steps", "timeline", "how", "workflow", "launch"]
     },
     {
-      title: "Examples",
+      title: "Portfolio",
       url: "/examples/",
-      description: "Direction studies that show ASH-TRA's visual standard without turning client work into filler.",
+      description: "Portfolio direction studies that show ASH-TRA's visual standard without turning client work into filler.",
       keywords: ["examples", "portfolio", "study", "direction", "gallery", "private"]
     },
     {
@@ -93,10 +100,10 @@
       <header class="site-header">
         <div class="site-header__inner">
           <a class="brand-lockup" href="/" aria-label="ASH-TRA home">
-            <img class="brand-lockup__mark" src="/brand/ash-tra-mark.svg" alt="ASH-TRA mark" />
+            <img class="brand-lockup__mark" src="/brand/ash-tra-favicon.svg" alt="ASH-TRA mark" />
             <span class="brand-lockup__meta">
               <span class="brand-lockup__title">ASH-TRA</span>
-              <span class="brand-lockup__tag">Where ambition meets momentum.</span>
+              <span class="brand-lockup__tag">Orbital websites for ambitious brands.</span>
             </span>
           </a>
           <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
@@ -112,13 +119,13 @@
                 .join("")}
             </div>
             <div class="site-nav__cta">
-              <button class="button button--subtle" type="button" data-command-open>
+              <button class="button button--subtle button--bot" type="button" data-command-open>
                 ${icon("search")}
-                <span>Explore</span>
+                <span>Ask Astra</span>
               </button>
               <a class="button button--primary" href="/start-project/" data-track="start_project_click">
                 ${icon("arrow")}
-                <span>Start project</span>
+                <span>Launch a rebuild</span>
               </a>
             </div>
           </nav>
@@ -128,46 +135,72 @@
   }
 
   function footerMarkup() {
+    const atlasLinks = [
+      { title: "Home", url: "/" },
+      ...siteIndex.map((item) => ({ title: item.title, url: item.url })),
+      ...supportPages
+    ];
+
     return `
       <footer class="site-footer">
         <div class="site-footer__inner">
-          <div class="site-footer__main surface">
+          <div class="site-footer__main surface footer-mega">
             <div class="footer-brand">
               <div class="footer-brand__lockup">
                 <img src="/brand/ash-tra-mark.svg" alt="ASH-TRA mark" />
                 <div>
                   <p class="footer-brand__title">ASH-TRA</p>
-                  <p class="footer-brand__tag">Where ambition meets momentum.</p>
+                  <p class="footer-brand__tag">Sci-fi polish. Real business momentum.</p>
                 </div>
               </div>
               <p class="footer-brand__text">
-                Design-led websites for ambitious brands that want to look more like serious modern technology companies.
+                Design-led websites for ambitious brands that want to feel more advanced, more cinematic, and more unmistakably premium online.
               </p>
+              <div class="footer-brand__actions">
+                <a class="button button--primary" href="/start-project/" data-track="start_project_click">Start a project</a>
+                <a class="button button--secondary" href="/contact/" data-track="contact_click">Talk to ASH-TRA</a>
+              </div>
             </div>
-          </div>
-          <div class="site-footer__columns">
-            <div class="footer-column">
-              <strong>Explore</strong>
-              <a href="/">Home</a>
-              <a href="/services/">Services</a>
-              <a href="/process/">Process</a>
-              <a href="/examples/">Examples</a>
-              <a href="/about/">About</a>
+
+            <div class="footer-sitemap">
+              <div class="footer-sitemap__head">
+                <strong>Site atlas</strong>
+                <p>Everything in the system, mapped in one place.</p>
+              </div>
+              <div class="footer-sitemap__grid">
+                ${atlasLinks
+                  .map(
+                    (item) => `
+                      <a class="footer-sitemap__link" href="${item.url}">
+                        <span>${item.title}</span>
+                        ${icon("arrow")}
+                      </a>
+                    `
+                  )
+                  .join("")}
+              </div>
             </div>
-            <div class="footer-column">
-              <strong>Connect</strong>
-              <a href="/start-project/" data-track="start_project_click">Start a project</a>
-              <a href="/contact/" data-track="contact_click">Contact</a>
-              <a href="mailto:${config.formEmail || "team.ashtra.ai@gmail.com"}" data-track="email_click">${config.formEmail || "team.ashtra.ai@gmail.com"}</a>
-              <a href="${config.whatsappUrl || "#"}" target="_blank" rel="noreferrer" data-track="whatsapp_click">WhatsApp</a>
-            </div>
-            <div class="footer-column">
-              <strong>Support</strong>
-              <a href="/faq/">FAQ</a>
-              <a href="/privacy/">Privacy</a>
-              <a href="/terms/">Terms</a>
-              <a href="/cookies/">Cookies</a>
-              <a href="/accessibility/">Accessibility</a>
+
+            <div class="site-footer__columns">
+              <div class="footer-column">
+                <strong>Portfolio</strong>
+                <a href="/examples/">Direction studies</a>
+                <a href="/services/">Services</a>
+                <a href="/process/">Process</a>
+              </div>
+              <div class="footer-column">
+                <strong>Connect</strong>
+                <a href="/contact/" data-track="contact_click">Contact</a>
+                <a href="/start-project/" data-track="start_project_click">Start a project</a>
+                <a href="mailto:${config.formEmail || "team.ashtra.ai@gmail.com"}" data-track="email_click">${config.formEmail || "team.ashtra.ai@gmail.com"}</a>
+                <a href="${config.whatsappUrl || "#"}" target="_blank" rel="noreferrer" data-track="whatsapp_click">WhatsApp</a>
+              </div>
+              <div class="footer-column">
+                <strong>Standards</strong>
+                <a href="/about/">About</a>
+                <a href="/faq/">FAQ</a>
+                <a href="/accessibility/">Accessibility</a>
+              </div>
             </div>
           </div>
           <div class="site-footer__bottom">
@@ -182,7 +215,7 @@
     return `
       <div class="floating-rail" data-site-utilities>
         <a
-          class="floating-action"
+          class="floating-action floating-action--whatsapp"
           href="${config.whatsappUrl || "#"}"
           target="_blank"
           rel="noreferrer"
@@ -192,9 +225,9 @@
           ${icon("whatsapp")}
           <span class="floating-action__label">WhatsApp</span>
         </a>
-        <button class="floating-action" type="button" data-command-open aria-label="Open site navigator">
-          ${icon("search")}
-          <span class="floating-action__label">Explore</span>
+        <button class="floating-action floating-action--bot" type="button" data-command-open aria-label="Open site navigator">
+          <img class="floating-action__avatar" src="/brand/ash-tra-bot.svg" alt="" aria-hidden="true" />
+          <span class="floating-action__label">Astra Bot</span>
         </button>
         <button class="floating-action" type="button" data-back-to-top aria-label="Back to top" hidden>
           ${icon("top")}
@@ -205,10 +238,13 @@
         <button class="command-root__backdrop" type="button" aria-label="Close site navigator" data-command-close></button>
         <section class="command-panel" aria-label="Site navigator">
           <div class="command-panel__header">
+            <div class="command-panel__avatar">
+              <img src="/brand/ash-tra-bot.svg" alt="" aria-hidden="true" />
+            </div>
             <div>
-              <span class="eyebrow">Site navigator</span>
-              <h2>Explore the system</h2>
-              <p>Ask about fit, services, process, motion, or jump directly to a page.</p>
+              <span class="eyebrow">Astra navigator</span>
+              <h2>Talk to the little orbital bot.</h2>
+              <p>Ask about portfolio, fit, services, process, or jump straight to the right page.</p>
             </div>
             <button class="command-panel__close" type="button" aria-label="Close site navigator" data-command-close>
               ${icon("close")}
@@ -217,25 +253,26 @@
           <div class="command-panel__body">
             <div class="command-panel__suggestions">
               <button type="button" class="command-panel__suggestion" data-command-suggestion="What does ASH-TRA do?">What does ASH-TRA do?</button>
+              <button type="button" class="command-panel__suggestion" data-command-suggestion="Show me the portfolio direction">Show me the portfolio</button>
               <button type="button" class="command-panel__suggestion" data-command-suggestion="Who is this for?">Who is this for?</button>
               <button type="button" class="command-panel__suggestion" data-command-suggestion="How does the process work?">How does the process work?</button>
-              <button type="button" class="command-panel__suggestion" data-command-suggestion="How do I start a project?">How do I start a project?</button>
+              <button type="button" class="command-panel__suggestion" data-command-suggestion="How do I start a project?">How do I start?</button>
             </div>
             <form class="command-panel__form" data-command-form>
               <label class="sr-only" for="command-input">Search the site or ask a question</label>
               <div class="command-panel__field">
                 ${icon("search")}
-                <input id="command-input" name="query" type="text" autocomplete="off" placeholder="Search pages or ask a question..." />
+                <input id="command-input" name="query" type="text" autocomplete="off" placeholder="Ask Astra about the site..." />
               </div>
               <button class="button button--primary" type="submit">
                 ${icon("arrow")}
-                <span>Search</span>
+                <span>Send</span>
               </button>
             </form>
             <div class="command-panel__log" data-command-log aria-live="polite"></div>
           </div>
           <div class="command-panel__footer">
-            <p>Fastest human reply: WhatsApp or a direct email.</p>
+            <p>Fastest human reply still comes from WhatsApp or a direct email.</p>
           </div>
         </section>
       </div>
@@ -250,6 +287,32 @@
     if (!document.querySelector("[data-site-utilities]")) {
       document.body.insertAdjacentHTML("beforeend", utilityMarkup());
     }
+  }
+
+  function decorateStage() {
+    const stage = document.querySelector(".site-stage");
+    if (!stage || stage.querySelector(".site-stage__stars")) return;
+
+    const starLayer = document.createElement("div");
+    starLayer.className = "site-stage__stars";
+    for (let index = 0; index < 56; index += 1) {
+      const star = document.createElement("span");
+      star.className = "site-stage__star";
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 6}s`;
+      star.style.animationDuration = `${4 + Math.random() * 6}s`;
+      star.style.opacity = (0.28 + Math.random() * 0.72).toFixed(2);
+      star.style.transform = `scale(${0.55 + Math.random() * 1.4})`;
+      starLayer.appendChild(star);
+    }
+
+    const cometLayer = document.createElement("div");
+    cometLayer.className = "site-stage__comets";
+    cometLayer.innerHTML = '<span class="site-stage__comet"></span><span class="site-stage__comet site-stage__comet--alt"></span>';
+
+    stage.appendChild(starLayer);
+    stage.appendChild(cometLayer);
   }
 
   function trackEvent(name, detail = {}) {
@@ -534,7 +597,7 @@
       },
       {
         match: ["portfolio", "private", "examples", "case study"],
-        answer: "Public work stays as direction studies. Approved client work can be discussed privately when it helps the brief.",
+        answer: "The public portfolio stays as direction studies. Approved client work can be discussed privately when it helps the brief.",
         results: siteIndex.filter((item) => item.url === "/examples/" || item.url === "/contact/")
       },
       {
@@ -600,7 +663,7 @@
     if (!root || !log || !form || !input) return;
 
     function addEntry(role, text, results) {
-      const label = role === "assistant" ? "Navigator" : "You";
+      const label = role === "assistant" ? "Astra Bot" : "You";
       log.insertAdjacentHTML(
         "beforeend",
         `
@@ -620,7 +683,7 @@
       if (!log.childElementCount) {
         addEntry(
           "assistant",
-          "Ask about the offer, fit, process, motion, or jump directly to the right page.",
+          "Ask about the portfolio, fit, services, process, or where to go next in the site atlas.",
           siteIndex.filter((item) => item.url === "/services/" || item.url === "/start-project/" || item.url === "/examples/")
         );
       }
@@ -682,6 +745,7 @@
 
   function init() {
     injectShell();
+    decorateStage();
     setupTrackedClicks();
     setupNav();
     setupHeaderState();
