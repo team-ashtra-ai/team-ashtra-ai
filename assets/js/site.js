@@ -5,6 +5,46 @@
   const consultationFormEndpoint = config.consultationFormEndpoint || "https://formspree.io/f/xaqaogoo";
   const discoveryFormEndpoint =
     config.discoveryFormEndpoint || consultationFormEndpoint || "https://formspree.io/f/xaqaogoo";
+  const orbotConfig = resolveOrbotConfig(config.orbot);
+
+  function clampNumber(value, fallback, min, max) {
+    const parsed = Number(value);
+    if (!Number.isFinite(parsed)) return fallback;
+    return Math.min(max, Math.max(min, parsed));
+  }
+
+  function resolveOrbotConfig(input) {
+    const source = input && typeof input === "object" ? input : {};
+    const orbitSource = source.orbit && typeof source.orbit === "object" ? source.orbit : {};
+    return {
+      enabled: source.enabled !== false,
+      excludePages: Array.isArray(source.excludePages) ? source.excludePages.map(String) : ["404"],
+      primaryCtaPriority:
+        typeof source.primaryCtaPriority === "string" && source.primaryCtaPriority.trim()
+          ? source.primaryCtaPriority.trim()
+          : "start-project",
+      languageMode:
+        typeof source.languageMode === "string" && source.languageMode.trim()
+          ? source.languageMode.trim()
+          : "en_with_pt_fallback",
+      maxQueryLength: clampNumber(source.maxQueryLength, 280, 80, 420),
+      shortcutKey:
+        typeof source.shortcutKey === "string" && source.shortcutKey.trim()
+          ? source.shortcutKey.trim().slice(0, 1)
+          : "/",
+      orbit: {
+        enabled: orbitSource.enabled !== false,
+        pulseDurationMs: clampNumber(orbitSource.pulseDurationMs, 3600, 1200, 9000),
+        idleDelayMs: clampNumber(orbitSource.idleDelayMs, 18000, 5000, 90000),
+        idleRepeatMs: clampNumber(orbitSource.idleRepeatMs, 32000, 9000, 120000),
+        heroThreshold: clampNumber(orbitSource.heroThreshold, 0.08, 0.02, 0.4)
+      }
+    };
+  }
+
+  function shouldEnableOrbot() {
+    return orbotConfig.enabled && !orbotConfig.excludePages.includes(page);
+  }
 
   const navItems = [
     { href: "/", label: "Home", match: "/" },
@@ -689,6 +729,69 @@
   }
 
   function utilityMarkup() {
+    const orbotEnabled = shouldEnableOrbot();
+    const orbotMarkup = orbotEnabled
+      ? `
+      <div class="orbot" data-orbot-root data-orbot-state="closed" hidden>
+        <button class="orbot__backdrop" type="button" aria-label="Close Orbot help" data-orbot-close></button>
+        <section
+          class="orbot__panel"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="orbot-title"
+          aria-describedby="orbot-subtitle"
+          tabindex="-1"
+        >
+          <header class="orbot__header">
+            <div class="orbot__avatar-shell" aria-hidden="true">
+              <img src="/brand/orbot-avatar.svg" alt="" />
+            </div>
+            <div class="orbot__intro">
+              <span class="orbot__eyebrow">Orbot</span>
+              <h2 id="orbot-title">Pick a goal. Get the right route.</h2>
+              <p id="orbot-subtitle">I route you to the exact page: Launch, Discovery, Services, Process, Contact, Payment, or Schedule.</p>
+            </div>
+            <button class="orbot__close" type="button" aria-label="Close Orbot help" data-orbot-close>
+              ${icon("close")}
+            </button>
+          </header>
+          <div class="orbot__body">
+            <div class="orbot__suggestions">
+              <button type="button" class="orbot__suggestion" data-orbot-suggestion="Show me the best launch route">Launch Route</button>
+              <button type="button" class="orbot__suggestion" data-orbot-suggestion="How does your process work?">Process</button>
+              <button type="button" class="orbot__suggestion" data-orbot-suggestion="What services are available?">Services</button>
+              <button type="button" class="orbot__suggestion" data-orbot-suggestion="Preciso de ajuda com descoberta em portugues">PT-BR</button>
+            </div>
+            <form class="orbot__form" data-orbot-form>
+              <label class="sr-only" for="orbot-input">Ask Orbot for the best route</label>
+              <div class="orbot__field">
+                ${icon("search")}
+                <input
+                  id="orbot-input"
+                  name="query"
+                  type="text"
+                  autocomplete="off"
+                  maxlength="${Math.trunc(orbotConfig.maxQueryLength)}"
+                  placeholder="Ask Orbot where to start and it will map the cleanest route..."
+                  data-orbot-input
+                />
+              </div>
+              <button class="button button--primary orbot__send" type="submit" data-orbot-submit>
+                ${icon("arrow")}
+                <span>Send</span>
+              </button>
+            </form>
+            <p class="orbot__status" data-orbot-status hidden>Routing...</p>
+            <div class="orbot__log" data-orbot-log aria-live="polite"></div>
+          </div>
+          <footer class="orbot__footer">
+            <p>Chat gives routing only. Forms stay on official pages.</p>
+          </footer>
+        </section>
+      </div>
+    `
+      : "";
+
     return `
       <div class="floating-rail" data-site-utilities>
         <a
@@ -702,56 +805,31 @@
           ${icon("whatsapp")}
           <span class="floating-action__label">WhatsApp</span>
         </a>
-        <button class="floating-action floating-action--bot" type="button" data-command-open aria-label="Open Orbot help">
-          <img class="floating-action__avatar" src="/brand/orbot-avatar.svg" alt="" aria-hidden="true" />
+        ${
+          orbotEnabled
+            ? `
+        <button
+          class="floating-action floating-action--bot orbot-launcher"
+          type="button"
+          data-orbot-launcher
+          data-orbit-size="full"
+          aria-label="Open Orbot assistant"
+          aria-haspopup="dialog"
+          aria-expanded="false"
+        >
+          <span class="orbot-launcher__halo" aria-hidden="true"></span>
+          <img class="floating-action__avatar orbot-launcher__avatar" src="/brand/orbot-avatar.svg" alt="" aria-hidden="true" />
           <span class="floating-action__label">Orbot</span>
         </button>
+        `
+            : ""
+        }
         <button class="floating-action floating-action--top" type="button" data-back-to-top aria-label="Back to top" hidden>
           ${icon("top")}
           <span class="floating-action__label">Top</span>
         </button>
       </div>
-      <div class="command-root" data-command-root hidden>
-        <button class="command-root__backdrop" type="button" aria-label="Close Orbot help" data-command-close></button>
-        <section class="command-panel" aria-label="Orbot help">
-          <div class="command-panel__header">
-            <div class="command-panel__avatar">
-              <img src="/brand/orbot-avatar.svg" alt="" aria-hidden="true" />
-            </div>
-            <div>
-              <span class="eyebrow">Orbot</span>
-              <h2>Clear routes, faster starts.</h2>
-              <p>Ask about services, process, work, discovery, or the cleanest next step.</p>
-            </div>
-            <button class="command-panel__close" type="button" aria-label="Close Orbot help" data-command-close>
-              ${icon("close")}
-            </button>
-          </div>
-          <div class="command-panel__body">
-            <div class="command-panel__suggestions">
-              <button type="button" class="command-panel__suggestion" data-command-suggestion="Show me the services">Services</button>
-              <button type="button" class="command-panel__suggestion" data-command-suggestion="How does the process work?">Process</button>
-              <button type="button" class="command-panel__suggestion" data-command-suggestion="Show me the work">Work</button>
-              <button type="button" class="command-panel__suggestion" data-command-suggestion="How do I start with discovery?">Discovery</button>
-            </div>
-            <form class="command-panel__form" data-command-form>
-              <label class="sr-only" for="command-input">Ask Orbot about the site</label>
-              <div class="command-panel__field">
-                ${icon("search")}
-                <input id="command-input" name="query" type="text" autocomplete="off" placeholder="Ask Orbot about services, work, process, or the cleanest next step..." />
-              </div>
-              <button class="button button--primary" type="submit">
-                ${icon("arrow")}
-                <span>Send</span>
-              </button>
-            </form>
-            <div class="command-panel__log" data-command-log aria-live="polite"></div>
-          </div>
-          <div class="command-panel__footer">
-            <p>Use Launch Site when the work is clear, Pay Consultation for strategy first, or Discovery for a lighter start.</p>
-          </div>
-        </section>
-      </div>
+      ${orbotMarkup}
     `;
   }
 
@@ -1057,6 +1135,39 @@
     update();
   }
 
+  function setupHeroMediaLayers() {
+    const mediaByPage = {
+      home: "/assets/media/space-exoplanet-frame.jpg",
+      about: "/assets/media/visual-vision-signal.svg",
+      services: "/assets/media/space-moon-frame.jpg",
+      process: "/assets/media/visual-process-signal.svg",
+      discovery: "/assets/media/space-exoplanet-frame.jpg",
+      contact: "/assets/media/visual-contact-beacon.svg",
+      "pay-consultation": "/assets/media/visual-command-center.svg",
+      "schedule-meeting": "/assets/media/visual-command-center.svg",
+      faq: "/assets/media/visual-studio-atlas.svg",
+      privacy: "/assets/media/visual-contact-beacon.svg",
+      terms: "/assets/media/visual-command-center.svg",
+      cookies: "/assets/media/visual-mobile-stack.svg",
+      accessibility: "/assets/media/visual-mobile-stack.svg",
+      "start-project": "/assets/media/visual-command-center.svg",
+      examples: "/assets/media/space-moon-frame.jpg"
+    };
+
+    const fallback = mediaByPage[page] || "/assets/media/space-exoplanet-frame.jpg";
+
+    document.querySelectorAll(".hero-mast__stage").forEach(function (stage) {
+      let media = stage.querySelector(".hero-mast__media");
+      if (!media) {
+        media = document.createElement("div");
+        media.className = "hero-mast__media hero-mast__media--ambient";
+        media.innerHTML = `<img src="${fallback}" alt="" aria-hidden="true" loading="eager" />`;
+        stage.prepend(media);
+      }
+      stage.dataset.heroMedia = "true";
+    });
+  }
+
   // Add simple sequence classes to the handwritten body sections so the CSS can
   // alternate depth and keep long pages from feeling visually repetitive.
   function setupLayoutScaffold() {
@@ -1196,23 +1307,205 @@
     });
   }
 
-  function normalize(text) {
-    return String(text || "").trim().toLowerCase();
+  const orbotTypos = {
+    servces: "services",
+    proccess: "process",
+    procress: "process",
+    discovert: "discovery",
+    paymant: "payment",
+    schedul: "schedule",
+    calender: "calendly",
+    whatsap: "whatsapp",
+    projeto: "projeto",
+    orcamento: "orcamento",
+    consultoriaa: "consultoria",
+    descobreta: "descoberta"
+  };
+
+  const orbotIntents = [
+    {
+      id: "services",
+      phrases: ["what services", "show services", "servicos", "servicos voce oferece", "service options"],
+      tokens: ["services", "service", "design", "redesign", "rebuild", "servicos", "servico", "site"],
+      routes: ["/services/", "/examples/"],
+      reply: {
+        en: "Best route: Services. Open Portfolio after that if you want proof of style and quality.",
+        pt: "Melhor rota: Services. Depois abra Portfolio para ver qualidade e direcao."
+      }
+    },
+    {
+      id: "process",
+      phrases: ["how process works", "como funciona o processo", "project timeline", "etapas do projeto"],
+      tokens: ["process", "timeline", "steps", "workflow", "processo", "etapas", "prazo"],
+      routes: ["/process/", "/discovery/"],
+      reply: {
+        en: "Best route: Process. It shows each phase and what happens next.",
+        pt: "Melhor rota: Process. Mostra fases e proximos passos."
+      }
+    },
+    {
+      id: "work",
+      phrases: ["show work", "show portfolio", "mostrar portfolio", "case studies", "trabalhos"],
+      tokens: ["work", "portfolio", "examples", "case", "trabalhos", "portfolio", "exemplos"],
+      routes: ["/examples/", "/services/"],
+      reply: {
+        en: "Best route: Portfolio. Use Services next if you want exact deliverables.",
+        pt: "Melhor rota: Portfolio. Depois use Services para ver entregaveis."
+      }
+    },
+    {
+      id: "discovery",
+      phrases: ["start discovery", "discovery route", "rota de descoberta", "descoberta", "discovery questionnaire"],
+      tokens: ["discovery", "questionnaire", "brief", "descoberta", "questionario", "estrategia"],
+      routes: ["/discovery/", "/pay-consultation/"],
+      reply: {
+        en: "Best route: Discovery. Use this when you need strategy before build.",
+        pt: "Melhor rota: Discovery. Use quando quiser estrategia antes da execucao."
+      }
+    },
+    {
+      id: "start_project",
+      phrases: ["start project", "launch site", "iniciar projeto", "site novo", "quote request"],
+      tokens: ["start", "launch", "project", "quote", "budget", "projeto", "orcamento", "iniciar"],
+      routes: ["/start-project/", "/contact/", "/discovery/"],
+      reply: {
+        en: "Best route: Launch Site. This is the direct intake when you are ready to start now.",
+        pt: "Melhor rota: Launch Site. Entrada direta para iniciar agora."
+      }
+    },
+    {
+      id: "contact",
+      phrases: ["contact route", "talk to someone", "falar com voces", "mandar mensagem"],
+      tokens: ["contact", "email", "whatsapp", "message", "contato", "mensagem", "falar"],
+      routes: ["/contact/", "/discovery/"],
+      reply: {
+        en: "Best route: Contact. Fast human route for quick alignment.",
+        pt: "Melhor rota: Contact. Rota humana rapida para alinhar contexto."
+      }
+    },
+    {
+      id: "payments",
+      phrases: ["how to pay", "payment options", "forma de pagamento", "stripe paypal pix"],
+      tokens: ["payment", "pay", "stripe", "paypal", "pix", "pagamento", "pagar", "consultoria"],
+      routes: ["/pay-consultation/", "/schedule-meeting/", "/discovery/"],
+      reply: {
+        en: "Best route: Pay Consultation. After payment, continue to Schedule Meeting.",
+        pt: "Melhor rota: Pay Consultation. Depois do pagamento, siga para Schedule Meeting."
+      }
+    },
+    {
+      id: "schedule",
+      phrases: ["book meeting", "schedule call", "agendar reuniao", "marcar horario"],
+      tokens: ["schedule", "meeting", "book", "slot", "calendly", "agendar", "reuniao", "horario"],
+      routes: ["/schedule-meeting/", "/pay-consultation/"],
+      reply: {
+        en: "Best route: Schedule Meeting. Use it to lock your consultation slot.",
+        pt: "Melhor rota: Schedule Meeting. Use para travar seu horario."
+      }
+    }
+  ];
+
+  const orbotSiteByUrl = siteIndex.reduce(function (collection, entry) {
+    collection[entry.url] = entry;
+    return collection;
+  }, {});
+
+  function resolvePriorityRoutePath() {
+    const trimmed = String(orbotConfig.primaryCtaPriority || "start-project")
+      .trim()
+      .replace(/^\/+|\/+$/g, "");
+    return trimmed ? `/${trimmed}/` : "/start-project/";
   }
 
-  function searchSite(query) {
-    const q = normalize(query);
-    if (!q) return [];
+  const orbotPrimaryRoute = resolvePriorityRoutePath();
+
+  function normalizeOrbotText(text) {
+    return String(text || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9\s/-]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function tokenizeOrbotQuery(normalizedText) {
+    return normalizedText
+      .split(" ")
+      .map(function (token) {
+        return token.trim();
+      })
+      .filter(Boolean)
+      .map(function (token) {
+        return orbotTypos[token] || token;
+      });
+  }
+
+  function detectOrbotLanguage(normalizedText, tokens) {
+    if (orbotConfig.languageMode !== "en_with_pt_fallback") return "en";
+    const ptSignals = [
+      "como",
+      "quero",
+      "preciso",
+      "servicos",
+      "servico",
+      "descoberta",
+      "agendar",
+      "pagamento",
+      "contato",
+      "projeto",
+      "orcamento"
+    ];
+    let score = 0;
+    ptSignals.forEach(function (signal) {
+      if (tokens.includes(signal) || normalizedText.includes(signal)) score += 1;
+    });
+    return score >= 2 ? "pt" : "en";
+  }
+
+  function scoreOrbotIntent(intent, normalizedText, tokens, tokenSet) {
+    let score = 0;
+    intent.phrases.forEach(function (phrase) {
+      if (normalizedText.includes(phrase)) score += 7;
+    });
+    intent.tokens.forEach(function (token) {
+      if (tokenSet.has(token)) {
+        score += 4;
+      } else if (token.length > 4) {
+        const stem = token.slice(0, 4);
+        if (tokens.some(function (word) { return word.startsWith(stem); })) score += 2;
+      }
+    });
+    if (tokens.length <= 2 && intent.tokens.some(function (token) { return token === normalizedText; })) {
+      score += 3;
+    }
+    return score;
+  }
+
+  function searchSiteIndex(query) {
+    const normalizedText = normalizeOrbotText(query);
+    const tokens = tokenizeOrbotQuery(normalizedText);
+    const tokenSet = new Set(tokens);
+    if (!tokens.length) return [];
 
     return siteIndex
       .map(function (entry) {
+        const title = normalizeOrbotText(entry.title);
+        const description = normalizeOrbotText(entry.description);
+        const keywords = entry.keywords.map(normalizeOrbotText);
         let score = 0;
-        if (normalize(entry.title).includes(q)) score += 5;
-        if (normalize(entry.description).includes(q)) score += 2;
-        entry.keywords.forEach(function (keyword) {
-          const token = normalize(keyword);
-          if (q.includes(token) || token.includes(q)) score += 3;
+
+        if (title.includes(normalizedText)) score += 8;
+        if (description.includes(normalizedText)) score += 4;
+        tokens.forEach(function (token) {
+          if (title.includes(token)) score += 4;
+          if (description.includes(token)) score += 2;
+          keywords.forEach(function (keyword) {
+            if (keyword === token) score += 4;
+            if (keyword.includes(token) || token.includes(keyword)) score += 2;
+          });
         });
+        if (tokenSet.has("launch") && entry.url === "/start-project/") score += 3;
         return { entry, score };
       })
       .filter(function (item) {
@@ -1227,195 +1520,267 @@
       });
   }
 
-  function resolveReply(query) {
-    const q = normalize(query);
-    const rules = [
-      {
-        match: ["what does", "services", "offer", "redesign", "rebuild"],
-        answer: "ASH-TRA helps companies launch, rebuild, refine, and optimise digital presence so they look sharper, feel more credible, and move with more force.",
-        results: siteIndex.filter(function (item) {
-          return item.url === "/services/" || item.url === "/examples/";
-        })
-      },
-      {
-        match: ["who is", "fit", "best for", "ideal client"],
-        answer: "The work is built for ambitious companies, founders, consultants, agencies, and service brands that care how the business is read online.",
-        results: siteIndex.filter(function (item) {
-          return item.url === "/about/" || item.url === "/services/";
-        })
-      },
-      {
-        match: ["pay", "payment", "stripe", "paypal", "pix"],
-        answer: "Use Pay Consultation to choose the paid strategy route, request the payment method that fits best, and move into scheduling once payment is confirmed.",
-        results: siteIndex.filter(function (item) {
-          return item.url === "/pay-consultation/" || item.url === "/schedule-meeting/" || item.url === "/discovery/";
-        })
-      },
-      {
-        match: ["schedule", "calendly", "meeting", "slot", "book a time"],
-        answer: "Use Schedule Meeting to lock the consultation slot once the paid consultation has been handled.",
-        results: siteIndex.filter(function (item) {
-          return item.url === "/schedule-meeting/" || item.url === "/pay-consultation/" || item.url === "/discovery/";
-        })
-      },
-      {
-        match: ["process", "timeline", "steps", "launch"],
-        answer: "Projects move through discovery, direction, build, refinement, optimisation, and support with a clear commercial rhythm.",
-        results: siteIndex.filter(function (item) {
-          return item.url === "/process/" || item.url === "/start-project/";
-        })
-      },
-      {
-        match: ["portfolio", "private", "examples", "case study", "industries"],
-        answer: "The public work page stays curated and contextual. It is there to prove the standard without turning private projects into filler.",
-        results: siteIndex.filter(function (item) {
-          return item.url === "/examples/" || item.url === "/contact/";
-        })
-      },
-      {
-        match: ["seo", "mobile", "performance", "accessibility", "motion"],
-        answer: "Those are part of the quality bar. The site is designed to feel expensive without getting bloated or fragile.",
-        results: siteIndex.filter(function (item) {
-          return item.url === "/services/" || item.url === "/faq/";
-        })
-      },
-      {
-        match: ["start", "brief", "project", "quote", "budget", "consultation"],
-        answer: "Use Launch Site for the direct project form, Pay Consultation for the paid strategy route, or Discovery if you want the fuller questionnaire first.",
-        results: siteIndex.filter(function (item) {
-          return item.url === "/start-project/" || item.url === "/pay-consultation/" || item.url === "/discovery/";
-        })
-      },
-      {
-        match: ["contact", "email", "whatsapp", "message", "discovery"],
-        answer: "Use Contact for a fast project enquiry, Discovery for the deeper intake, or WhatsApp for a quick human reply.",
-        results: siteIndex.filter(function (item) {
-          return item.url === "/contact/" || item.url === "/discovery/" || item.url === "/start-project/";
-        })
-      }
-    ];
+  function buildOrbotResults(urls, fallbackQuery) {
+    const mergedUrls = [orbotPrimaryRoute].concat(urls || []);
+    const searchMatches = searchSiteIndex(fallbackQuery || "").map(function (entry) {
+      return entry.url;
+    });
+    mergedUrls.push.apply(mergedUrls, searchMatches);
 
-    const matched = rules.find(function (rule) {
-      return rule.match.some(function (item) {
-        return q.includes(item);
-      });
+    const seen = new Set();
+    const entries = [];
+    mergedUrls.forEach(function (url) {
+      if (!orbotSiteByUrl[url] || seen.has(url)) return;
+      seen.add(url);
+      entries.push(orbotSiteByUrl[url]);
     });
 
-    if (matched) return matched;
+    return entries.slice(0, 3);
+  }
 
-    const results = searchSite(query);
-    if (results.length) {
+  function resolveOrbotReply(query) {
+    const normalizedText = normalizeOrbotText(query);
+    const tokens = tokenizeOrbotQuery(normalizedText);
+    const tokenSet = new Set(tokens);
+    const language = detectOrbotLanguage(normalizedText, tokens);
+
+    if (!tokens.length) {
       return {
-        answer: "These are the closest matching pages in the site structure.",
-        results: results
+        intent: "fallback",
+        state: "fallback",
+        confidence: "low",
+        language: language,
+        message:
+          language === "pt"
+            ? "Diga seu objetivo em uma frase e eu envio a rota certa."
+            : "Tell me your goal in one sentence and I will route you directly.",
+        results: buildOrbotResults(["/discovery/", "/contact/"], normalizedText)
+      };
+    }
+
+    let winner = null;
+    let winnerScore = 0;
+    orbotIntents.forEach(function (intent) {
+      const score = scoreOrbotIntent(intent, normalizedText, tokens, tokenSet);
+      if (score > winnerScore) {
+        winner = intent;
+        winnerScore = score;
+      }
+    });
+
+    if (!winner || winnerScore < 6) {
+      return {
+        intent: "fallback",
+        state: "fallback",
+        confidence: "low",
+        language: language,
+        message:
+          language === "pt"
+            ? "Nao foi claro ainda. Use uma destas rotas seguras."
+            : "Not clear yet. Use one of these safe routes.",
+        results: buildOrbotResults(["/discovery/", "/contact/"], normalizedText)
       };
     }
 
     return {
-      answer: "I could not map that cleanly, but Contact, Launch Site, or Discovery should get you to the right next step.",
-      results: siteIndex.filter(function (item) {
-        return item.url === "/contact/" || item.url === "/start-project/" || item.url === "/discovery/";
-      })
+      intent: winner.id,
+      state: "resolved",
+      confidence: winnerScore >= 14 ? "high" : winnerScore >= 9 ? "medium" : "low",
+      language: language,
+      message: winner.reply[language] || winner.reply.en,
+      results: buildOrbotResults(winner.routes, normalizedText)
     };
   }
 
-  function renderResults(results) {
+  function renderOrbotResults(intent, results) {
     if (!results?.length) return "";
     return `
-      <div class="command-results">
+      <div class="orbot-results">
         ${results
-          .map(
-            (result) => `
-              <a href="${result.url}" data-track="navigator_result_click" data-track-label="${escapeHtml(result.title)}">
+          .map(function (result) {
+            return `
+              <a
+                class="orbot-results__item"
+                href="${result.url}"
+                data-track="orbot_cta_click"
+                data-track-label="${escapeHtml(`${intent}:${result.title}`)}"
+              >
                 <span>
                   <strong>${escapeHtml(result.title)}</strong>
-                  <small>${escapeHtml(result.description)}</small>
+                  <small>Open route</small>
                 </span>
                 ${icon("arrow")}
               </a>
-            `
-          )
+            `;
+          })
           .join("")}
       </div>
     `;
   }
 
-  function setupCommandPalette() {
-    const root = document.querySelector("[data-command-root]");
-    const log = document.querySelector("[data-command-log]");
-    const form = document.querySelector("[data-command-form]");
-    const input = document.querySelector("#command-input");
-    if (!root || !log || !form || !input) return;
+  function createOrbotOrbitController(launcher) {
+    if (launcher) {
+      launcher.classList.remove("is-orbit-pulse", "is-orbit-glow");
+      launcher.dataset.orbitSize = "full";
+    }
+    return {
+      trigger: function () {}
+    };
+  }
 
-    function addEntry(role, text, results) {
+  function setupOrbotAssistant() {
+    const launcher = document.querySelector("[data-orbot-launcher]");
+    const root = document.querySelector("[data-orbot-root]");
+    const panel = root?.querySelector(".orbot__panel");
+    const log = root?.querySelector("[data-orbot-log]");
+    const form = root?.querySelector("[data-orbot-form]");
+    const input = root?.querySelector("[data-orbot-input]");
+    const submit = root?.querySelector("[data-orbot-submit]");
+    const status = root?.querySelector("[data-orbot-status]");
+    if (!launcher || !root || !panel || !log || !form || !input || !submit || !status) return;
+
+    const orbit = createOrbotOrbitController(launcher);
+    const shortcut = orbotConfig.shortcutKey || "/";
+    let isOpen = false;
+    let replyTimer = 0;
+    let previousFocus = null;
+
+    function getFocusableNodes() {
+      return Array.from(
+        panel.querySelectorAll(
+          'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter(function (node) {
+        return !node.hasAttribute("hidden") && node.offsetParent !== null;
+      });
+    }
+
+    function setState(state) {
+      root.dataset.orbotState = state;
+      launcher.dataset.orbotState = state;
+    }
+
+    function resetSession() {
+      window.clearTimeout(replyTimer);
+      log.innerHTML = "";
+      input.value = "";
+      submit.disabled = false;
+      status.hidden = true;
+      status.textContent = "";
+      setState("closed");
+    }
+
+    function addEntry(role, text, intent, results) {
       const label = role === "assistant" ? "Orbot" : "You";
       log.insertAdjacentHTML(
         "beforeend",
         `
-          <div class="command-entry command-entry--${role}">
-            <span class="command-entry__label">${label}</span>
-            <span class="command-entry__text">${escapeHtml(text)}</span>
-            ${role === "assistant" ? renderResults(results) : ""}
-          </div>
+          <article class="orbot-entry orbot-entry--${role}">
+            <span class="orbot-entry__label">${label}</span>
+            <p class="orbot-entry__text">${escapeHtml(text)}</p>
+            ${role === "assistant" ? renderOrbotResults(intent || "route", results) : ""}
+          </article>
         `
       );
       log.scrollTop = log.scrollHeight;
     }
 
-    function openPalette() {
+    function addWelcome() {
+      addEntry(
+        "assistant",
+        "Tell me your goal. I will route you directly.",
+        "welcome",
+        buildOrbotResults(["/discovery/", "/services/"], "welcome")
+      );
+    }
+
+    function openPanel(source) {
+      if (isOpen) return;
+      isOpen = true;
+      previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       root.hidden = false;
+      launcher.setAttribute("aria-expanded", "true");
       document.body.style.overflow = "hidden";
-      if (!log.childElementCount) {
-        addEntry(
-          "assistant",
-          "Ask about services, process, work, discovery, or the right route to start.",
-          siteIndex.filter(function (item) {
-            return item.url === "/services/" || item.url === "/start-project/" || item.url === "/discovery/" || item.url === "/examples/";
-          })
-        );
-      }
+      setState("open");
+      if (!log.childElementCount) addWelcome();
       window.setTimeout(function () {
         input.focus();
-      }, 30);
+      }, 24);
+      trackEvent("orbot_open", { label: source || "launcher" });
+      orbit.trigger("open_panel");
     }
 
-    function closePalette() {
+    function closePanel(reason) {
+      if (!isOpen) return;
+      isOpen = false;
       root.hidden = true;
+      launcher.setAttribute("aria-expanded", "false");
       document.body.style.overflow = "";
+      resetSession();
+      trackEvent("orbot_close", { label: reason || "dismiss" });
+      orbit.trigger("close_panel");
+      if (previousFocus && typeof previousFocus.focus === "function") {
+        previousFocus.focus();
+      } else {
+        launcher.focus();
+      }
     }
 
-    function submitQuery(query) {
-      const value = String(query || "").trim();
-      if (!value) return;
-      addEntry("user", value);
-      const reply = resolveReply(value);
-      addEntry("assistant", reply.answer, reply.results);
-      trackEvent("navigator_query", { label: value.slice(0, 80) });
+    function submitQuery(rawValue, source) {
+      const value = String(rawValue || "").trim();
+      if (!value || submit.disabled) return;
+
+      const limited = value.slice(0, orbotConfig.maxQueryLength);
+      addEntry("user", limited);
       input.value = "";
+      status.hidden = false;
+      status.textContent = "Routing...";
+      submit.disabled = true;
+      setState("processing");
+      trackEvent("orbot_query", { label: limited.slice(0, 80), source: source || "input" });
+
+      replyTimer = window.setTimeout(function () {
+        const reply = resolveOrbotReply(limited);
+        addEntry("assistant", reply.message, reply.intent, reply.results);
+        submit.disabled = false;
+        status.hidden = true;
+        status.textContent = "";
+        setState(reply.state === "fallback" ? "fallback" : "resolved");
+        trackEvent("orbot_intent", {
+          label: reply.intent,
+          confidence: reply.confidence,
+          language: reply.language
+        });
+        if (reply.state === "fallback") {
+          trackEvent("orbot_fallback", { label: limited.slice(0, 80) });
+        }
+      }, 260);
     }
 
-    document.querySelectorAll("[data-command-open]").forEach(function (button) {
-      button.addEventListener("click", openPalette);
+    launcher.addEventListener("click", function () {
+      openPanel("launcher");
     });
 
-    document.querySelectorAll("[data-command-close]").forEach(function (button) {
-      button.addEventListener("click", closePalette);
+    root.querySelectorAll("[data-orbot-close]").forEach(function (control) {
+      control.addEventListener("click", function () {
+        closePanel("close_control");
+      });
     });
 
-    document.querySelectorAll("[data-command-suggestion]").forEach(function (button) {
+    root.querySelectorAll("[data-orbot-suggestion]").forEach(function (button) {
       button.addEventListener("click", function () {
-        submitQuery(button.getAttribute("data-command-suggestion"));
+        submitQuery(button.getAttribute("data-orbot-suggestion"), "suggestion");
       });
     });
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
-      submitQuery(input.value);
+      submitQuery(input.value, "input");
     });
 
     root.addEventListener("click", function (event) {
-      if (event.target.closest(".command-results a")) {
-        closePalette();
+      if (event.target.closest(".orbot-results__item")) {
+        closePanel("result_click");
       }
     });
 
@@ -1423,35 +1788,55 @@
       const active = document.activeElement;
       const inField =
         active &&
-        (active.tagName === "INPUT" || active.tagName === "TEXTAREA" || active.tagName === "SELECT");
+        (active.tagName === "INPUT" ||
+          active.tagName === "TEXTAREA" ||
+          active.tagName === "SELECT" ||
+          active.isContentEditable);
 
-      if (event.key === "/" && !inField) {
+      if (event.key === shortcut && !inField) {
         event.preventDefault();
-        openPalette();
+        openPanel("shortcut");
       }
 
-      if (event.key === "Escape" && !root.hidden) {
-        closePalette();
+      if (!isOpen) return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closePanel("escape");
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+      const nodes = getFocusableNodes();
+      if (!nodes.length) return;
+      const first = nodes[0];
+      const last = nodes[nodes.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     });
   }
 
   function init() {
-  injectShell();
-  setupSeo();
-  decorateStage();
+    injectShell();
+    setupSeo();
+    decorateStage();
     setupTrackedClicks();
     setupNav();
     setupHeaderState();
     setupReveal();
     setupTiltCards();
+    setupHeroMediaLayers();
     setupSceneMotion();
     setupBackToTop();
+    setupOrbotAssistant();
     setupLayoutScaffold();
     setupPaymentPrefill();
     setupForms();
     setupFaq();
-    setupCommandPalette();
     trackEvent("page_view", {
       title: document.title,
       path: window.location.pathname
