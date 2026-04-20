@@ -51,7 +51,7 @@
     </div>
     <div data-site-header></div>
 
-    <main class="policy-main">
+    <main class="layout-page policy-main">
       <section class="section hero-mast">
         <div class="hero-mast__shell">
           <article class="hero-mast__frame surface" data-reveal>
@@ -91,9 +91,28 @@
         </div>
       </section>
 
-      <section class="section section--flush">
-        <div class="shell service-detail-grid">
-          <article class="surface policy-card" data-reveal>
+      <section class="section section--flush policy-band policy-band--atlas" data-layout-sequence>
+        <div class="shell policy-atlas__frame">
+          <aside class="surface policy-summary" data-reveal>
+            <span class="layout-section__kicker">Accessibility at a glance</span>
+            <h2 class="layout-section__title">Readable, navigable, responsive, improving.</h2>
+            <p class="layout-section__body">
+              ASH-TRA treats accessibility as an ongoing standard built around clear structure,
+              usable interactions, and practical support when issues appear.
+            </p>
+            <ul class="detail-list">
+              <li>Structure, contrast, readability, and keyboard use are part of the baseline.</li>
+              <li>The site should continue improving as pages and features evolve.</li>
+              <li>Third-party tools may behave differently from the main site.</li>
+              <li>Accessibility issues can be reported directly by email.</li>
+            </ul>
+            <p class="policy-summary__note">
+              Feedback:
+              <a class="inline-link" href="mailto:team.ashtra.ai@gmail.com">team.ashtra.ai@gmail.com</a>
+            </p>
+          </aside>
+          <div class="service-detail-grid policy-atlas__cards">
+            <article class="surface policy-card" data-reveal>
             <div class="policy-card__body">
               <h2>1. Approach</h2>
               <p>ASH-TRA aims to support:</p>
@@ -113,9 +132,9 @@
                 may continue to evolve as features change, pages grow, and improvements are made.
               </p>
             </div>
-          </article>
+            </article>
 
-          <article class="surface policy-card" data-reveal>
+            <article class="surface policy-card" data-reveal>
             <div class="policy-card__body">
               <h2>3. Third-party tools</h2>
               <p>
@@ -136,7 +155,8 @@
                 <li>the help you need</li>
               </ul>
             </div>
-          </article>
+            </article>
+          </div>
         </div>
       </section>
     </main>

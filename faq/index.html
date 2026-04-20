@@ -51,7 +51,7 @@
     </div>
     <div data-site-header></div>
 
-    <main>
+    <main class="layout-page page-flow page-flow--faq">
       <section class="section hero-mast">
         <div class="hero-mast__shell">
           <article class="hero-mast__frame surface" data-reveal>
@@ -92,9 +92,31 @@
         </div>
       </section>
 
-      <section class="section">
+      <section class="section section--contrast faq-band faq-band--overview" data-layout-sequence>
+        <div class="shell faq-overview">
+          <article class="surface faq-summary" data-reveal>
+            <span class="layout-section__kicker">Question atlas</span>
+            <h2 class="layout-section__title">Move by topic, not by endless scroll.</h2>
+            <p class="layout-section__body">
+              The FAQ is grouped by fit, discovery, messaging, systems, build quality, and next
+              steps so you can jump straight to the answers that matter.
+            </p>
+            <p class="page-hero__punch">Pick the topic. Get the signal.</p>
+          </article>
+          <nav class="surface faq-compass" data-reveal aria-label="FAQ topics">
+            <a href="#faq-offer"><span>01</span><strong>Offer and fit</strong></a>
+            <a href="#faq-discovery"><span>02</span><strong>Discovery</strong></a>
+            <a href="#faq-messaging"><span>03</span><strong>Messaging and pages</strong></a>
+            <a href="#faq-systems"><span>04</span><strong>Search and systems</strong></a>
+            <a href="#faq-quality"><span>05</span><strong>Build quality</strong></a>
+            <a href="#faq-next"><span>06</span><strong>Support and next steps</strong></a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="section faq-band faq-band--atlas" data-layout-sequence>
         <div class="shell service-detail-grid">
-          <article class="surface faq-shell" data-reveal>
+          <article class="surface faq-shell" data-reveal id="faq-offer">
             <div class="faq-category__head">
               <span class="route-card__label">Offer And Fit</span>
               <h2>What ASH-TRA does and who it suits.</h2>
@@ -114,7 +136,7 @@
             </div>
           </article>
 
-          <article class="surface faq-shell" data-reveal>
+          <article class="surface faq-shell" data-reveal id="faq-discovery">
             <div class="faq-category__head">
               <span class="route-card__label">Discovery</span>
               <h2>How consultation and discovery work.</h2>
@@ -133,7 +155,7 @@
             </div>
           </article>
 
-          <article class="surface faq-shell" data-reveal>
+          <article class="surface faq-shell" data-reveal id="faq-messaging">
             <div class="faq-category__head">
               <span class="route-card__label">Messaging And Pages</span>
               <h2>What happens to the content layer.</h2>
@@ -148,7 +170,7 @@
             </div>
           </article>
 
-          <article class="surface faq-shell" data-reveal>
+          <article class="surface faq-shell" data-reveal id="faq-systems">
             <div class="faq-category__head">
               <span class="route-card__label">Search And Systems</span>
               <h2>Search, insight, and business-side setup.</h2>
@@ -167,7 +189,7 @@
             </div>
           </article>
 
-          <article class="surface faq-shell" data-reveal>
+          <article class="surface faq-shell" data-reveal id="faq-quality">
             <div class="faq-category__head">
               <span class="route-card__label">Build Quality</span>
               <h2>Performance, mobile, brand feel, and multilingual work.</h2>
@@ -185,7 +207,7 @@
             </div>
           </article>
 
-          <article class="surface faq-shell" data-reveal>
+          <article class="surface faq-shell" data-reveal id="faq-next">
             <div class="faq-category__head">
               <span class="route-card__label">Support And Next Steps</span>
               <h2>Support, payment routes, booking, and what happens after you enquire.</h2>
@@ -206,7 +228,7 @@
         </div>
       </section>
 
-      <section class="section">
+      <section class="section faq-band faq-band--closing" data-layout-sequence>
         <div class="shell">
           <article class="surface callout" data-reveal>
             <h2 class="callout__title">Need the clearer route?</h2>

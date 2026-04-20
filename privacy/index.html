@@ -51,7 +51,7 @@
     </div>
     <div data-site-header></div>
 
-    <main class="policy-main">
+    <main class="layout-page policy-main">
       <section class="section hero-mast">
         <div class="hero-mast__shell">
           <article class="hero-mast__frame surface" data-reveal>
@@ -92,9 +92,28 @@
         </div>
       </section>
 
-      <section class="section section--flush">
-        <div class="shell service-detail-grid">
-          <article class="surface policy-card" data-reveal>
+      <section class="section section--flush policy-band policy-band--atlas" data-layout-sequence>
+        <div class="shell policy-atlas__frame">
+          <aside class="surface policy-summary" data-reveal>
+            <span class="layout-section__kicker">Privacy at a glance</span>
+            <h2 class="layout-section__title">The short read before the full policy.</h2>
+            <p class="layout-section__body">
+              This page explains what may be collected, why it is used, how long it may be kept,
+              and where to send privacy-related requests.
+            </p>
+            <ul class="detail-list">
+              <li>Collection stays tied to enquiries, consultations, operations, and analytics.</li>
+              <li>Information may be shared with service providers only where reasonably needed.</li>
+              <li>ASH-TRA does not sell personal information.</li>
+              <li>Privacy questions can be sent directly to the team email listed below.</li>
+            </ul>
+            <p class="policy-summary__note">
+              Contact:
+              <a class="inline-link" href="mailto:team.ashtra.ai@gmail.com">team.ashtra.ai@gmail.com</a>
+            </p>
+          </aside>
+          <div class="service-detail-grid policy-atlas__cards">
+            <article class="surface policy-card" data-reveal>
             <div class="policy-card__body">
               <h2>1. What information may be collected</h2>
               <p>Depending on how you use ash-tra.com, this may include:</p>
@@ -131,9 +150,9 @@
               </p>
               <p>ASH-TRA does not sell personal information.</p>
             </div>
-          </article>
+            </article>
 
-          <article class="surface policy-card" data-reveal>
+            <article class="surface policy-card" data-reveal>
             <div class="policy-card__body">
               <h2>4. Who information may be shared with</h2>
               <p>
@@ -168,9 +187,9 @@
                 <a class="inline-link" href="mailto:team.ashtra.ai@gmail.com">team.ashtra.ai@gmail.com</a>.
               </p>
             </div>
-          </article>
+            </article>
 
-          <article class="surface policy-card" data-reveal>
+            <article class="surface policy-card" data-reveal>
             <div class="policy-card__body">
               <h2>7. Security</h2>
               <p>
@@ -198,7 +217,8 @@
                 <a class="inline-link" href="mailto:team.ashtra.ai@gmail.com">team.ashtra.ai@gmail.com</a>.
               </p>
             </div>
-          </article>
+            </article>
+          </div>
         </div>
       </section>
     </main>

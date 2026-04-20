@@ -51,7 +51,7 @@
     </div>
     <div data-site-header></div>
 
-    <main class="policy-main">
+    <main class="layout-page policy-main">
       <section class="section hero-mast">
         <div class="hero-mast__shell">
           <article class="hero-mast__frame surface" data-reveal>
@@ -92,9 +92,24 @@
         </div>
       </section>
 
-      <section class="section section--flush">
-        <div class="shell service-detail-grid">
-          <article class="surface policy-card" data-reveal>
+      <section class="section section--flush policy-band policy-band--atlas" data-layout-sequence>
+        <div class="shell policy-atlas__frame">
+          <aside class="surface policy-summary" data-reveal>
+            <span class="layout-section__kicker">Cookies at a glance</span>
+            <h2 class="layout-section__title">Essential, analytics, preferences, and choice.</h2>
+            <p class="layout-section__body">
+              This page explains what cookies are, how ash-tra.com may use them, what types may be
+              present, and where user choice matters.
+            </p>
+            <ul class="detail-list">
+              <li>Essential cookies support core site function and security.</li>
+              <li>Analytics cookies may be used for measurement and performance improvement.</li>
+              <li>Preference cookies help remember settings or saved choices.</li>
+              <li>Non-essential cookies should depend on consent where required.</li>
+            </ul>
+          </aside>
+          <div class="service-detail-grid policy-atlas__cards">
+            <article class="surface policy-card" data-reveal>
             <div class="policy-card__body">
               <h2>1. What cookies are</h2>
               <p>
@@ -114,9 +129,9 @@
                 <li>improving future user experience</li>
               </ul>
             </div>
-          </article>
+            </article>
 
-          <article class="surface policy-card" data-reveal>
+            <article class="surface policy-card" data-reveal>
             <div class="policy-card__body">
               <h2>3. Types of cookies that may be used</h2>
               <p><strong>Essential cookies</strong><br />These help the site function properly.</p>
@@ -143,7 +158,8 @@
                 on ash-tra.com will apply.
               </p>
             </div>
-          </article>
+            </article>
+          </div>
         </div>
       </section>
     </main>

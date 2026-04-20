@@ -15,7 +15,6 @@
 
   function resolveOrbotConfig(input) {
     const source = input && typeof input === "object" ? input : {};
-    const orbitSource = source.orbit && typeof source.orbit === "object" ? source.orbit : {};
     return {
       enabled: source.enabled !== false,
       excludePages: Array.isArray(source.excludePages) ? source.excludePages.map(String) : ["404"],
@@ -23,22 +22,11 @@
         typeof source.primaryCtaPriority === "string" && source.primaryCtaPriority.trim()
           ? source.primaryCtaPriority.trim()
           : "start-project",
-      languageMode:
-        typeof source.languageMode === "string" && source.languageMode.trim()
-          ? source.languageMode.trim()
-          : "en_with_pt_fallback",
       maxQueryLength: clampNumber(source.maxQueryLength, 280, 80, 420),
       shortcutKey:
         typeof source.shortcutKey === "string" && source.shortcutKey.trim()
           ? source.shortcutKey.trim().slice(0, 1)
-          : "/",
-      orbit: {
-        enabled: orbitSource.enabled !== false,
-        pulseDurationMs: clampNumber(orbitSource.pulseDurationMs, 3600, 1200, 9000),
-        idleDelayMs: clampNumber(orbitSource.idleDelayMs, 18000, 5000, 90000),
-        idleRepeatMs: clampNumber(orbitSource.idleRepeatMs, 32000, 9000, 120000),
-        heroThreshold: clampNumber(orbitSource.heroThreshold, 0.08, 0.02, 0.4)
-      }
+          : "/"
     };
   }
 
@@ -74,88 +62,17 @@
     { title: "Accessibility", url: "/accessibility/" }
   ];
 
-  const discoveryQuestions = [
-    {
-      step: "01",
-      title: "Business",
-      prompt: "What kind of business are we building around?",
-      choiceName: "Business mode",
-      noteName: "Business notes",
-      options: ["Service-led", "Product-led", "Consulting", "Hybrid"],
-      placeholder: "What do you sell, who buys it, and why does this moment matter?"
-    },
-    {
-      step: "02",
-      title: "Urgency",
-      prompt: "Why does the next version need to happen now?",
-      choiceName: "Urgency lane",
-      noteName: "Urgency notes",
-      options: ["Launch", "Rebrand", "Underperforming", "Expansion"],
-      placeholder: "Explain the trigger, pressure, or opportunity behind the rebuild."
-    },
-    {
-      step: "03",
-      title: "Audience",
-      prompt: "Who needs to trust the site fastest?",
-      choiceName: "Audience priority",
-      noteName: "Audience notes",
-      options: ["B2B buyers", "Premium clients", "Investors", "Partners"],
-      placeholder: "Describe the exact people you want the site to attract and convince."
-    },
-    {
-      step: "04",
-      title: "Mood",
-      prompt: "What should the brand feel like on first contact?",
-      choiceName: "Brand mood",
-      noteName: "Brand mood notes",
-      options: ["Cinematic", "Technical", "Minimal", "Editorial"],
-      placeholder: "What should visitors feel immediately, and what should the brand never feel like?"
-    },
-    {
-      step: "05",
-      title: "Goal",
-      prompt: "What is the primary job of the site?",
-      choiceName: "Primary site goal",
-      noteName: "Primary site goal notes",
-      options: ["Leads", "Authority", "Bookings", "Applications"],
-      placeholder: "What is the one action or understanding the site must create quickly?"
-    },
-    {
-      step: "06",
-      title: "Visuals",
-      prompt: "What balance feels right for the new system?",
-      choiceName: "Visual balance",
-      noteName: "Visual balance notes",
-      options: ["Image-led", "Type-led", "Motion-led", "Balanced"],
-      placeholder: "Share references, visual cues, colors, motion ideas, or examples you admire."
-    },
-    {
-      step: "07",
-      title: "Content",
-      prompt: "How ready is the content layer today?",
-      choiceName: "Content readiness",
-      noteName: "Content readiness notes",
-      options: ["Ready", "Partial", "Needs help", "Starting fresh"],
-      placeholder: "What copy, imagery, proof, testimonials, or assets already exist?"
-    },
-    {
-      step: "08",
-      title: "Tech",
-      prompt: "What technical support should the build include?",
-      choiceName: "Technical needs",
-      noteName: "Technical needs notes",
-      options: ["CMS", "Integrations", "Multilingual", "Low maintenance"],
-      placeholder: "List the must-have features, integrations, or technical constraints."
-    },
-    {
-      step: "09",
-      title: "Timing",
-      prompt: "How quickly do you want to move if the fit is right?",
-      choiceName: "Project timing",
-      noteName: "Project timing notes",
-      options: ["Two weeks", "Thirty days", "This quarter", "Flexible"],
-      placeholder: "Add any launch dates, deadlines, budget context, or decision windows."
-    }
+  const infoStripItems = [
+    "Where ambition meets momentum.",
+    "Clear signal. Sharp strategy.",
+    "Design that lifts and lands.",
+    "Built to rank and resonate.",
+    "Stronger presence. Deeper trust.",
+    "Built to win attention.",
+    "Give your brand gravity.",
+    "More traction. Less drag.",
+    "Better reach. Bigger trajectory.",
+    "Launch stronger. Scale smarter."
   ];
 
   const siteIndex = [
@@ -488,135 +405,14 @@
       .replace(/'/g, "&#39;");
   }
 
-  function renderDiscoveryQuestion(question, questionIndex) {
+  function infoStripMarkup(extraClass) {
+    const items = infoStripItems.concat(infoStripItems.slice(0, 4));
     return `
-      <article class="discovery-question" data-reveal>
-        <div class="discovery-question__head">
-          <span class="discovery-question__step">${question.step}</span>
-          <div>
-            <h3>${question.title}</h3>
-            <p>${question.prompt}</p>
-          </div>
+      <div class="info-strip surface ${extraClass || ""}" aria-label="ASH-TRA promise lines">
+        <div class="info-strip__track">
+          ${items.map((item) => `<span class="info-strip__item">${item}</span>`).join("")}
         </div>
-        <fieldset class="choice-fieldset">
-          <legend class="sr-only">${question.prompt}</legend>
-          <div class="choice-grid">
-            ${question.options
-              .map(
-                (option, optionIndex) => `
-                  <label class="choice-chip">
-                    <input
-                      type="radio"
-                      name="${question.choiceName}"
-                      value="${option}"
-                      ${optionIndex === 0 ? "required" : ""}
-                    />
-                    <span>${option}</span>
-                  </label>
-                `
-              )
-              .join("")}
-          </div>
-        </fieldset>
-        <div class="field field--note">
-          <label for="discovery-note-${questionIndex}">${question.title} notes</label>
-          <textarea
-            id="discovery-note-${questionIndex}"
-            name="${question.noteName}"
-            placeholder="${question.placeholder}"
-          ></textarea>
-        </div>
-      </article>
-    `;
-  }
-
-  function discoveryFormMarkup() {
-    return `
-      <section class="footer-discovery" id="discovery">
-        <div class="footer-discovery__intro" data-reveal>
-          <div>
-            <span class="eyebrow">Discovery</span>
-            <h2 class="section-title">Build the consultation brief with a guided discovery flow.</h2>
-          </div>
-          <p class="section-text">
-            Choose the closest answer for each question, then add detail in the note field beside
-            it. The full packet goes to the consultation inbox with your contact details attached.
-          </p>
-        </div>
-        <form
-          class="discovery-form"
-          action="${discoveryFormEndpoint}"
-          method="POST"
-          name="discovery-consultation"
-          data-enquiry-form
-          data-form-kind="discovery"
-          data-success-copy="The discovery brief was sent. The connected discovery inbox should now have the full brief."
-        >
-          <input type="hidden" name="_subject" value="ASH-TRA discovery consultation" />
-          <div class="discovery-form__identity">
-            <div class="field">
-              <label for="discovery-name">Name</label>
-              <input id="discovery-name" name="Name" type="text" required />
-            </div>
-            <div class="field">
-              <label for="discovery-email">Email</label>
-              <input id="discovery-email" name="Email" type="email" required />
-            </div>
-            <div class="field">
-              <label for="discovery-brand">Brand</label>
-              <input id="discovery-brand" name="Brand" type="text" required />
-            </div>
-            <div class="field">
-              <label for="discovery-site">Website</label>
-              <input id="discovery-site" name="Website" type="url" placeholder="https://..." />
-            </div>
-          </div>
-          <div class="discovery-form__grid">
-            ${discoveryQuestions.map(renderDiscoveryQuestion).join("")}
-          </div>
-          <div class="discovery-form__actions">
-            <button class="button button--primary" type="submit">Send discovery</button>
-            <p class="form-note">This goes to the consultation form with every answer labeled and grouped.</p>
-          </div>
-        </form>
-        <p class="success-note" hidden data-form-success></p>
-        <p class="error-note" hidden data-form-error>
-          The send did not complete. Please try again, or use the contact page while we retry.
-        </p>
-      </section>
-    `;
-  }
-
-  function footerDiscoveryMarkup() {
-    return `
-      <section class="footer-discovery" data-reveal>
-        <div class="footer-discovery__intro">
-          <div>
-            <span class="eyebrow">Discovery</span>
-            <h2 class="section-title">Need a deeper consultation route?</h2>
-          </div>
-          <p class="section-text">
-            The dedicated Discovery page keeps the footer clean while still giving the longer
-            consultation path a proper place to live.
-          </p>
-        </div>
-        <div class="footer-discovery__route">
-          <div class="footer-discovery__meta">
-            <p class="footer-discovery__label">What it covers</p>
-            <ul class="footer-discovery__list">
-              <li>Business model and audience</li>
-              <li>Brand mood and visual direction</li>
-              <li>Content, timing, and technical needs</li>
-            </ul>
-          </div>
-          <div class="footer-discovery__card">
-            <p class="footer-discovery__label">Separate page</p>
-            <h3>Open Discovery.</h3>
-            <p>Brand direction, strategic context, and the fuller consultation path all live in one calmer route.</p>
-            <a class="button button--primary" href="/discovery/">Discovery</a>
-          </div>
-        </div>
-      </section>
+      </div>
     `;
   }
 
@@ -729,6 +525,22 @@
   }
 
   function utilityMarkup() {
+    let whatsappHref = config.whatsappUrl || "#";
+    if (whatsappHref !== "#") {
+      try {
+        const url = new URL(whatsappHref);
+        if (!url.searchParams.get("text")) {
+          url.searchParams.set(
+            "text",
+            "Hi ASH-TRA, I found you through ash-tra.com and I want to talk about a website project."
+          );
+        }
+        whatsappHref = url.toString();
+      } catch (error) {
+        whatsappHref = config.whatsappUrl || "#";
+      }
+    }
+
     const orbotEnabled = shouldEnableOrbot();
     const orbotMarkup = orbotEnabled
       ? `
@@ -748,8 +560,8 @@
             </div>
             <div class="orbot__intro">
               <span class="orbot__eyebrow">Orbot</span>
-              <h2 id="orbot-title">Pick a goal. Get the right route.</h2>
-              <p id="orbot-subtitle">I route you to the exact page: Launch, Discovery, Services, Process, Contact, Payment, or Schedule.</p>
+              <h2 id="orbot-title">Pick a goal. Get the right page.</h2>
+              <p id="orbot-subtitle">I send you to the exact page: Launch, Discovery, Services, Process, Contact, Payment, or Schedule.</p>
             </div>
             <button class="orbot__close" type="button" aria-label="Close Orbot help" data-orbot-close>
               ${icon("close")}
@@ -757,13 +569,12 @@
           </header>
           <div class="orbot__body">
             <div class="orbot__suggestions">
-              <button type="button" class="orbot__suggestion" data-orbot-suggestion="Show me the best launch route">Launch Route</button>
+              <button type="button" class="orbot__suggestion" data-orbot-suggestion="Show me the best launch page">Launch</button>
               <button type="button" class="orbot__suggestion" data-orbot-suggestion="How does your process work?">Process</button>
               <button type="button" class="orbot__suggestion" data-orbot-suggestion="What services are available?">Services</button>
-              <button type="button" class="orbot__suggestion" data-orbot-suggestion="Preciso de ajuda com descoberta em portugues">PT-BR</button>
             </div>
             <form class="orbot__form" data-orbot-form>
-              <label class="sr-only" for="orbot-input">Ask Orbot for the best route</label>
+              <label class="sr-only" for="orbot-input">Ask Orbot for the best page</label>
               <div class="orbot__field">
                 ${icon("search")}
                 <input
@@ -772,7 +583,7 @@
                   type="text"
                   autocomplete="off"
                   maxlength="${Math.trunc(orbotConfig.maxQueryLength)}"
-                  placeholder="Ask Orbot where to start and it will map the cleanest route..."
+                  placeholder="Ask Orbot where to start and it will map the best page..."
                   data-orbot-input
                 />
               </div>
@@ -784,9 +595,6 @@
             <p class="orbot__status" data-orbot-status hidden>Routing...</p>
             <div class="orbot__log" data-orbot-log aria-live="polite"></div>
           </div>
-          <footer class="orbot__footer">
-            <p>Chat gives routing only. Forms stay on official pages.</p>
-          </footer>
         </section>
       </div>
     `
@@ -796,7 +604,7 @@
       <div class="floating-rail" data-site-utilities>
         <a
           class="floating-action floating-action--whatsapp"
-          href="${config.whatsappUrl || "#"}"
+          href="${whatsappHref}"
           target="_blank"
           rel="noreferrer"
           aria-label="Chat with ASH-TRA on WhatsApp"
@@ -812,7 +620,6 @@
           class="floating-action floating-action--bot orbot-launcher"
           type="button"
           data-orbot-launcher
-          data-orbit-size="full"
           aria-label="Open Orbot assistant"
           aria-haspopup="dialog"
           aria-expanded="false"
@@ -924,12 +731,33 @@
     const footerTarget = document.querySelector("[data-site-footer]");
     if (headerTarget) headerTarget.innerHTML = headerMarkup();
     if (footerTarget) footerTarget.innerHTML = footerMarkup();
-    document.querySelectorAll("[data-discovery-form]").forEach(function (target) {
-      target.innerHTML = discoveryFormMarkup();
-    });
     if (!document.querySelector("[data-site-utilities]")) {
       document.body.insertAdjacentHTML("beforeend", utilityMarkup());
     }
+  }
+
+  function setupPageStructure() {
+    const main = document.querySelector("main");
+    if (main) {
+      main.classList.add("layout-page");
+    }
+
+    if (page === "home") return;
+    if (!main || main.querySelector(".page-info-strip")) return;
+
+    const hero = main.querySelector(".hero-mast, .hero-cinema, .hero, .policy-hero");
+    if (!hero) return;
+
+    hero.insertAdjacentHTML(
+      "afterend",
+      `
+        <section class="section section--flush page-info-strip">
+          <div class="shell">
+            ${infoStripMarkup("info-strip--site")}
+          </div>
+        </section>
+      `
+    );
   }
 
   function decorateStage() {
@@ -1029,7 +857,7 @@
   }
 
   function setupReveal() {
-    const revealItems = document.querySelectorAll("[data-reveal]");
+    const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
     if (!revealItems.length) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       revealItems.forEach(function (item) {
@@ -1038,21 +866,57 @@
       return;
     }
 
-    revealItems.forEach(function (item, index) {
-      item.style.transitionDelay = `${Math.min(index * 40, 320)}ms`;
+    if (!("IntersectionObserver" in window)) {
+      revealItems.forEach(function (item) {
+        item.classList.add("is-visible");
+      });
+      return;
+    }
+
+    revealItems.forEach(function (item) {
+      const siblings = Array.from(item.parentElement?.children || []).filter(function (candidate) {
+        return candidate instanceof HTMLElement && candidate.hasAttribute("data-reveal");
+      });
+      const index = Math.max(0, siblings.indexOf(item));
+      item.style.transitionDelay = `${Math.min(index * 70, 280)}ms`;
     });
 
-    window.requestAnimationFrame(function () {
-      window.requestAnimationFrame(function () {
-        revealItems.forEach(function (item) {
-          item.classList.add("is-visible");
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
         });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -12% 0px"
+      }
+    );
+
+    window.requestAnimationFrame(function () {
+      revealItems.forEach(function (item) {
+        observer.observe(item);
       });
     });
+
+    window.setTimeout(function () {
+      revealItems.forEach(function (item) {
+        item.classList.add("is-visible");
+      });
+      observer.disconnect();
+    }, 2200);
   }
 
   function setupTiltCards() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 960px)").matches) {
+      document.querySelectorAll("[data-tilt]").forEach(function (card) {
+        card.style.transform = "";
+      });
+      return;
+    }
 
     document.querySelectorAll("[data-tilt]").forEach(function (card) {
       let raf = 0;
@@ -1078,6 +942,66 @@
       card.addEventListener("pointerleave", reset);
       card.addEventListener("pointercancel", reset);
     });
+  }
+
+  function setupBriefNav() {
+    const nav = document.querySelector("[data-brief-nav]");
+    const sections = Array.from(document.querySelectorAll(".brief-section"));
+    if (!nav || !sections.length) return;
+
+    nav.innerHTML = sections
+      .map(function (section, index) {
+        const id = section.id || `brief-${String(index + 1).padStart(2, "0")}`;
+        const label =
+          section.querySelector(".brief-section__number")?.textContent.trim() ||
+          String(index + 1).padStart(2, "0");
+        const title = section.querySelector("h3")?.textContent.trim() || `Section ${label}`;
+        section.id = id;
+        return `<a href="#${id}"><span>${escapeHtml(label)}</span><strong>${escapeHtml(title)}</strong></a>`;
+      })
+      .join("");
+
+    const links = Array.from(nav.querySelectorAll("a"));
+    if (!links.length || !("IntersectionObserver" in window)) return;
+
+    function setActive(id) {
+      links.forEach(function (link) {
+        link.classList.toggle("is-active", link.getAttribute("href") === `#${id}`);
+      });
+    }
+
+    const observer = new IntersectionObserver(
+      function (entries) {
+        const visible = entries
+          .filter(function (entry) {
+            return entry.isIntersecting;
+          })
+          .sort(function (left, right) {
+            return right.intersectionRatio - left.intersectionRatio;
+          })[0];
+
+        if (visible) {
+          setActive(visible.target.id);
+        }
+      },
+      {
+        threshold: [0.2, 0.4, 0.65],
+        rootMargin: "-18% 0px -55% 0px"
+      }
+    );
+
+    sections.forEach(function (section) {
+      observer.observe(section);
+    });
+
+    links.forEach(function (link) {
+      link.addEventListener("click", function () {
+        const targetId = link.getAttribute("href")?.slice(1);
+        if (targetId) setActive(targetId);
+      });
+    });
+
+    setActive(sections[0].id);
   }
 
   function setupSceneMotion() {
@@ -1137,34 +1061,115 @@
 
   function setupHeroMediaLayers() {
     const mediaByPage = {
-      home: "/assets/media/space-exoplanet-frame.jpg",
-      about: "/assets/media/visual-vision-signal.svg",
-      services: "/assets/media/space-moon-frame.jpg",
-      process: "/assets/media/visual-process-signal.svg",
-      discovery: "/assets/media/space-exoplanet-frame.jpg",
-      contact: "/assets/media/visual-contact-beacon.svg",
-      "pay-consultation": "/assets/media/visual-command-center.svg",
-      "schedule-meeting": "/assets/media/visual-command-center.svg",
-      faq: "/assets/media/visual-studio-atlas.svg",
-      privacy: "/assets/media/visual-contact-beacon.svg",
-      terms: "/assets/media/visual-command-center.svg",
-      cookies: "/assets/media/visual-mobile-stack.svg",
-      accessibility: "/assets/media/visual-mobile-stack.svg",
-      "start-project": "/assets/media/visual-command-center.svg",
-      examples: "/assets/media/space-moon-frame.jpg"
+      home: {
+        src: "/assets/media/space-exoplanet-frame.jpg",
+        alt: "Dark orbital view above a planet horizon matching the ASH-TRA launch atmosphere."
+      },
+      about: {
+        src: "/assets/media/space-titan-frame.jpg",
+        alt: "Deep space atmosphere representing a stronger brand read and larger trajectory."
+      },
+      services: {
+        src: "/assets/media/space-moon-frame.jpg",
+        alt: "Moonlit space scene representing the ASH-TRA service range and technical depth."
+      },
+      process: {
+        src: "/assets/media/visual-process-signal.svg",
+        alt: "Process signal graphic showing a guided route from discovery through support."
+      },
+      discovery: {
+        src: "/assets/media/space-exoplanet-frame.jpg",
+        alt: "Cinematic space view representing discovery, direction, and launch preparation."
+      },
+      contact: {
+        src: "/assets/media/visual-contact-beacon.svg",
+        alt: "Contact beacon graphic representing a clear route into the next project step."
+      },
+      "pay-consultation": {
+        src: "/assets/media/space-titan-frame.jpg",
+        alt: "Dark galaxy atmosphere representing paid consultation and strategic direction."
+      },
+      "schedule-meeting": {
+        src: "/assets/media/visual-command-center.svg",
+        alt: "Scheduling interface graphic representing a focused consultation booking route."
+      },
+      faq: {
+        src: "/assets/media/visual-studio-atlas.svg",
+        alt: "Atlas-style studio graphic representing clear answers and mapped decision paths."
+      },
+      privacy: {
+        src: "/assets/media/visual-contact-beacon.svg",
+        alt: "Privacy beacon graphic representing careful handling of information."
+      },
+      terms: {
+        src: "/assets/media/visual-command-center.svg",
+        alt: "Command center graphic representing clear commercial expectations."
+      },
+      cookies: {
+        src: "/assets/media/visual-mobile-stack.svg",
+        alt: "Mobile systems graphic representing site settings and cookie controls."
+      },
+      accessibility: {
+        src: "/assets/media/visual-mobile-stack.svg",
+        alt: "Accessible interface graphic representing usability across devices."
+      },
+      "start-project": {
+        src: "/assets/media/visual-command-center.svg",
+        alt: "Command center graphic representing direct project intake and launch readiness."
+      },
+      examples: {
+        src: "/assets/media/space-titan-frame.jpg",
+        alt: "Cinematic space horizon representing premium website directions and portfolio context."
+      }
     };
 
-    const fallback = mediaByPage[page] || "/assets/media/space-exoplanet-frame.jpg";
+    const fallback = mediaByPage[page] || mediaByPage.home;
 
     document.querySelectorAll(".hero-mast__stage").forEach(function (stage) {
       let media = stage.querySelector(".hero-mast__media");
       if (!media) {
         media = document.createElement("div");
         media.className = "hero-mast__media hero-mast__media--ambient";
-        media.innerHTML = `<img src="${fallback}" alt="" aria-hidden="true" loading="eager" />`;
+        media.innerHTML = `<img src="${fallback.src}" alt="${fallback.alt}" loading="eager" />`;
         stage.prepend(media);
+      } else if (media.querySelector("video")) {
+        media.classList.add("hero-mast__media--ambient");
+        media.innerHTML = `<img src="${fallback.src}" alt="${fallback.alt}" loading="eager" />`;
       }
       stage.dataset.heroMedia = "true";
+    });
+  }
+
+  function setupContentSequencing() {
+    const gridSelectors = [
+      ".card-grid",
+      ".contact-grid",
+      ".crosslink-grid",
+      ".layout-category-grid",
+      ".layout-metric-grid",
+      ".layout-panel-grid",
+      ".layout-panel-grid--offset",
+      ".layout-service-mosaic",
+      ".layout-step-grid",
+      ".route-grid",
+      ".service-category-grid",
+      ".service-detail-grid",
+      ".study-grid",
+      ".values-grid"
+    ];
+
+    document.querySelectorAll(gridSelectors.join(",")).forEach(function (grid) {
+      Array.from(grid.children).forEach(function (item, index) {
+        if (!(item instanceof HTMLElement)) return;
+        if (
+          item.querySelector(
+            ".route-card__label, .service-detail__index, .layout-panel__index, .layout-timeline__step, .card__icon, .process-step__number, .brief-section__number"
+          )
+        ) {
+          return;
+        }
+        item.dataset.cardSeq = String(index + 1).padStart(2, "0");
+      });
     });
   }
 
@@ -1329,8 +1334,8 @@
       tokens: ["services", "service", "design", "redesign", "rebuild", "servicos", "servico", "site"],
       routes: ["/services/", "/examples/"],
       reply: {
-        en: "Best route: Services. Open Portfolio after that if you want proof of style and quality.",
-        pt: "Melhor rota: Services. Depois abra Portfolio para ver qualidade e direcao."
+        en: "Best page: Services. Open Portfolio after that if you want proof of style and quality.",
+        pt: "Melhor pagina: Services. Depois abra Portfolio para ver qualidade e direcao."
       }
     },
     {
@@ -1339,8 +1344,8 @@
       tokens: ["process", "timeline", "steps", "workflow", "processo", "etapas", "prazo"],
       routes: ["/process/", "/discovery/"],
       reply: {
-        en: "Best route: Process. It shows each phase and what happens next.",
-        pt: "Melhor rota: Process. Mostra fases e proximos passos."
+        en: "Best page: Process. It shows each phase and what happens next.",
+        pt: "Melhor pagina: Process. Mostra fases e proximos passos."
       }
     },
     {
@@ -1349,8 +1354,8 @@
       tokens: ["work", "portfolio", "examples", "case", "trabalhos", "portfolio", "exemplos"],
       routes: ["/examples/", "/services/"],
       reply: {
-        en: "Best route: Portfolio. Use Services next if you want exact deliverables.",
-        pt: "Melhor rota: Portfolio. Depois use Services para ver entregaveis."
+        en: "Best page: Portfolio. Use Services next if you want exact deliverables.",
+        pt: "Melhor pagina: Portfolio. Depois use Services para ver entregaveis."
       }
     },
     {
@@ -1359,8 +1364,8 @@
       tokens: ["discovery", "questionnaire", "brief", "descoberta", "questionario", "estrategia"],
       routes: ["/discovery/", "/pay-consultation/"],
       reply: {
-        en: "Best route: Discovery. Use this when you need strategy before build.",
-        pt: "Melhor rota: Discovery. Use quando quiser estrategia antes da execucao."
+        en: "Best page: Discovery. Use this when you need strategy before build.",
+        pt: "Melhor pagina: Discovery. Use quando quiser estrategia antes da execucao."
       }
     },
     {
@@ -1369,8 +1374,8 @@
       tokens: ["start", "launch", "project", "quote", "budget", "projeto", "orcamento", "iniciar"],
       routes: ["/start-project/", "/contact/", "/discovery/"],
       reply: {
-        en: "Best route: Launch Site. This is the direct intake when you are ready to start now.",
-        pt: "Melhor rota: Launch Site. Entrada direta para iniciar agora."
+        en: "Best page: Launch Site. This is the direct intake when you are ready to start now.",
+        pt: "Melhor pagina: Launch Site. Entrada direta para iniciar agora."
       }
     },
     {
@@ -1379,8 +1384,8 @@
       tokens: ["contact", "email", "whatsapp", "message", "contato", "mensagem", "falar"],
       routes: ["/contact/", "/discovery/"],
       reply: {
-        en: "Best route: Contact. Fast human route for quick alignment.",
-        pt: "Melhor rota: Contact. Rota humana rapida para alinhar contexto."
+        en: "Best page: Contact. Fast human page for quick alignment.",
+        pt: "Melhor pagina: Contact. Pagina humana rapida para alinhar contexto."
       }
     },
     {
@@ -1389,8 +1394,8 @@
       tokens: ["payment", "pay", "stripe", "paypal", "pix", "pagamento", "pagar", "consultoria"],
       routes: ["/pay-consultation/", "/schedule-meeting/", "/discovery/"],
       reply: {
-        en: "Best route: Pay Consultation. After payment, continue to Schedule Meeting.",
-        pt: "Melhor rota: Pay Consultation. Depois do pagamento, siga para Schedule Meeting."
+        en: "Best page: Pay Consultation. After payment, continue to Schedule Meeting.",
+        pt: "Melhor pagina: Pay Consultation. Depois do pagamento, siga para Schedule Meeting."
       }
     },
     {
@@ -1399,8 +1404,8 @@
       tokens: ["schedule", "meeting", "book", "slot", "calendly", "agendar", "reuniao", "horario"],
       routes: ["/schedule-meeting/", "/pay-consultation/"],
       reply: {
-        en: "Best route: Schedule Meeting. Use it to lock your consultation slot.",
-        pt: "Melhor rota: Schedule Meeting. Use para travar seu horario."
+        en: "Best page: Schedule Meeting. Use it to lock your consultation slot.",
+        pt: "Melhor pagina: Schedule Meeting. Use para travar seu horario."
       }
     }
   ];
@@ -1441,26 +1446,12 @@
       });
   }
 
-  function detectOrbotLanguage(normalizedText, tokens) {
-    if (orbotConfig.languageMode !== "en_with_pt_fallback") return "en";
-    const ptSignals = [
-      "como",
-      "quero",
-      "preciso",
-      "servicos",
-      "servico",
-      "descoberta",
-      "agendar",
-      "pagamento",
-      "contato",
-      "projeto",
-      "orcamento"
-    ];
-    let score = 0;
-    ptSignals.forEach(function (signal) {
-      if (tokens.includes(signal) || normalizedText.includes(signal)) score += 1;
-    });
-    return score >= 2 ? "pt" : "en";
+  function detectOrbotLanguage() {
+    const siteLang = String(document.documentElement.getAttribute("lang") || "en")
+      .toLowerCase()
+      .trim();
+    if (siteLang.startsWith("pt")) return "pt";
+    return "en";
   }
 
   function scoreOrbotIntent(intent, normalizedText, tokens, tokenSet) {
@@ -1542,7 +1533,7 @@
     const normalizedText = normalizeOrbotText(query);
     const tokens = tokenizeOrbotQuery(normalizedText);
     const tokenSet = new Set(tokens);
-    const language = detectOrbotLanguage(normalizedText, tokens);
+    const language = detectOrbotLanguage();
 
     if (!tokens.length) {
       return {
@@ -1552,8 +1543,8 @@
         language: language,
         message:
           language === "pt"
-            ? "Diga seu objetivo em uma frase e eu envio a rota certa."
-            : "Tell me your goal in one sentence and I will route you directly.",
+            ? "Diga seu objetivo em uma frase e eu envio a pagina certa."
+            : "Tell me your goal in one sentence and I will send the right page.",
         results: buildOrbotResults(["/discovery/", "/contact/"], normalizedText)
       };
     }
@@ -1576,8 +1567,8 @@
         language: language,
         message:
           language === "pt"
-            ? "Nao foi claro ainda. Use uma destas rotas seguras."
-            : "Not clear yet. Use one of these safe routes.",
+            ? "Nao ficou claro ainda. Use uma destas paginas seguras."
+            : "Not clear yet. Use one of these safe pages.",
         results: buildOrbotResults(["/discovery/", "/contact/"], normalizedText)
       };
     }
@@ -1607,7 +1598,7 @@
               >
                 <span>
                   <strong>${escapeHtml(result.title)}</strong>
-                  <small>Open route</small>
+                  <small>Open page</small>
                 </span>
                 ${icon("arrow")}
               </a>
@@ -1616,16 +1607,6 @@
           .join("")}
       </div>
     `;
-  }
-
-  function createOrbotOrbitController(launcher) {
-    if (launcher) {
-      launcher.classList.remove("is-orbit-pulse", "is-orbit-glow");
-      launcher.dataset.orbitSize = "full";
-    }
-    return {
-      trigger: function () {}
-    };
   }
 
   function setupOrbotAssistant() {
@@ -1639,7 +1620,6 @@
     const status = root?.querySelector("[data-orbot-status]");
     if (!launcher || !root || !panel || !log || !form || !input || !submit || !status) return;
 
-    const orbit = createOrbotOrbitController(launcher);
     const shortcut = orbotConfig.shortcutKey || "/";
     let isOpen = false;
     let replyTimer = 0;
@@ -1678,7 +1658,7 @@
           <article class="orbot-entry orbot-entry--${role}">
             <span class="orbot-entry__label">${label}</span>
             <p class="orbot-entry__text">${escapeHtml(text)}</p>
-            ${role === "assistant" ? renderOrbotResults(intent || "route", results) : ""}
+            ${role === "assistant" ? renderOrbotResults(intent || "page", results) : ""}
           </article>
         `
       );
@@ -1688,7 +1668,7 @@
     function addWelcome() {
       addEntry(
         "assistant",
-        "Tell me your goal. I will route you directly.",
+        "Tell me your goal. I will send you to the right page.",
         "welcome",
         buildOrbotResults(["/discovery/", "/services/"], "welcome")
       );
@@ -1707,7 +1687,6 @@
         input.focus();
       }, 24);
       trackEvent("orbot_open", { label: source || "launcher" });
-      orbit.trigger("open_panel");
     }
 
     function closePanel(reason) {
@@ -1718,7 +1697,6 @@
       document.body.style.overflow = "";
       resetSession();
       trackEvent("orbot_close", { label: reason || "dismiss" });
-      orbit.trigger("close_panel");
       if (previousFocus && typeof previousFocus.focus === "function") {
         previousFocus.focus();
       } else {
@@ -1823,6 +1801,7 @@
   function init() {
     injectShell();
     setupSeo();
+    setupPageStructure();
     decorateStage();
     setupTrackedClicks();
     setupNav();
@@ -1830,10 +1809,12 @@
     setupReveal();
     setupTiltCards();
     setupHeroMediaLayers();
+    setupContentSequencing();
     setupSceneMotion();
     setupBackToTop();
     setupOrbotAssistant();
     setupLayoutScaffold();
+    setupBriefNav();
     setupPaymentPrefill();
     setupForms();
     setupFaq();

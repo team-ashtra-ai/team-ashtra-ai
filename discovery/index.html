@@ -109,7 +109,7 @@
       </section>
 
       <!-- Discovery: Route selection section -->
-      <section class="section layout-section section--contrast" data-layout-sequence>
+      <section class="section layout-section section--contrast discovery-band discovery-band--routes" data-layout-sequence>
         <div class="shell">
           <div class="surface layout-section__intro" data-reveal>
             <div class="layout-mark">
@@ -155,7 +155,7 @@
       </section>
 
       <!-- Discovery: Why this matters section -->
-      <section class="section layout-section" data-layout-sequence>
+      <section class="section layout-section discovery-band discovery-band--why" data-layout-sequence>
         <div class="shell">
           <div class="surface layout-section__intro" data-reveal>
             <span class="layout-section__kicker">Why this matters</span>
@@ -176,7 +176,7 @@
       </section>
 
       <!-- Discovery: Guidance comparison section -->
-      <section class="section layout-section section--contrast" data-layout-sequence>
+      <section class="section layout-section section--contrast discovery-band discovery-band--comparison" data-layout-sequence>
         <div class="shell service-detail-grid">
           <article class="surface service-detail" data-reveal>
             <span class="service-detail__index">What we cover</span>
@@ -216,7 +216,11 @@
       </section>
 
       <!-- Discovery: Questionnaire form section -->
-      <section class="section layout-section" id="discovery-questionnaire" data-layout-sequence>
+      <section
+        class="section layout-section discovery-band discovery-band--brief"
+        id="discovery-questionnaire"
+        data-layout-sequence
+      >
         <div class="shell">
           <div class="surface layout-section__intro" data-reveal>
             <span class="layout-section__kicker">Discovery brief</span>
@@ -226,6 +230,17 @@
               the estimate.
             </p>
           </div>
+          <article class="surface brief-hub__mast" data-reveal>
+            <div class="brief-hub__meta">
+              <span class="brief-hub__eyebrow">21 sections</span>
+              <h3>Use the brief like a navigation deck.</h3>
+              <p>
+                Move straight through from top to bottom, or skip to the section that matters first.
+                The section list below is generated from the form itself and follows your scroll.
+              </p>
+            </div>
+            <nav class="brief-hub__nav" data-brief-nav aria-label="Discovery brief sections"></nav>
+          </article>
           <form
             class="stacked-form"
             method="POST"
@@ -1651,7 +1666,7 @@
       </section>
 
       <!-- Discovery: Closing CTA section -->
-      <section class="section layout-section section--contrast" data-layout-sequence>
+      <section class="section layout-section section--contrast discovery-band discovery-band--closing" data-layout-sequence>
         <div class="shell">
           <article class="surface layout-callout" data-reveal>
             <span class="layout-section__kicker">Want the human route?</span>
