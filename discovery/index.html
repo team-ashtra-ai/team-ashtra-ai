@@ -32,7 +32,7 @@
     <meta name="twitter:image" content="https://ash-tra.com/brand/ash-tra-social-lockup.png" />
     <meta name="twitter:image:alt" content="ASH-TRA discovery page preview" />
     <meta name="theme-color" content="#090d16" />
-    <link rel="icon" href="/brand/ash-tra-favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/brand/favicon-32.png" type="image/png" />
     <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -51,124 +51,179 @@
     </div>
     <div data-site-header></div>
 
-    <main>
-      <section class="hero section">
-        <div class="shell">
-          <article class="surface page-hero" data-reveal>
-            <div class="page-hero__copy">
-              <span class="eyebrow">Discovery</span>
-              <h1 class="hero__title">Choose the route that matches how much clarity you need.</h1>
-              <p class="hero__lede">
-                Discovery should reduce friction, not create it. If you already know the project,
-                start there. If you want strategic direction first, book a call. If you want to
-                send context before talking, use the discovery form and ASH-TRA will review it with
-                a rough direction and next step.
-              </p>
-              <div class="hero__actions">
-                <a class="button button--primary" href="/start-project/" data-track="start_project_click">Start Project</a>
-                <a class="button button--secondary" href="/pay-consultation/" data-track="pay_consultation_view">Book Call</a>
-                <a class="button button--subtle" href="#discovery-questionnaire" data-track="discovery_view">Discovery Form</a>
+    <main class="layout-page">
+      <!-- Discovery: Hero section -->
+      <section class="section hero-mast layout-section" data-layout-sequence>
+        <div class="hero-mast__shell">
+          <article class="hero-mast__frame surface" data-reveal>
+            <div class="hero-mast__layout">
+              <div class="hero-mast__copy">
+                <span class="hero-mast__eyebrow">Discovery</span>
+                <h1 class="hero-mast__title">Start with clarity. Move with confidence.</h1>
+                <p class="hero-mast__lede">
+                  There are two ways to start with ASH-TRA. If you want a real strategy conversation,
+                  book a paid consultation and we will break down what your company needs, what is
+                  holding it back, and what direction makes the most sense. If you do not want to pay
+                  for a consultation or speak to someone yet, fill out the discovery questionnaire and
+                  receive an approximate offer within 48 hours, excluding weekends, as soon as possible.
+                </p>
+                <p class="hero-mast__punch">Pick the route. Keep the momentum.</p>
+                <div class="hero-mast__actions">
+                  <a class="button button--primary" href="/pay-consultation/" data-track="pay_consultation_view">Book Paid Consultation</a>
+                  <a class="button button--secondary" href="#discovery-questionnaire" data-track="discovery_view">Get an Approximate Offer</a>
+                </div>
               </div>
-            </div>
-            <div class="page-hero__media">
-              <div class="video-frame">
-                <video autoplay muted loop playsinline poster="/assets/media/space-moon-frame.jpg">
-                  <source src="/assets/media/space-travel-poster.webm" type="video/webm" />
-                </video>
+
+              <div class="hero-mast__stage">
+                <div class="hero-mast__card">
+                  <div class="hero-mast__logo">
+                    <img src="/brand/ash-tra-logo.png" alt="ASH-TRA logo mark featured on the discovery page" />
+                  </div>
+                  <div class="hero-mast__chip-row">
+                    <span class="hero-mast__chip">Paid consultation</span>
+                    <span class="hero-mast__chip">Questionnaire only</span>
+                    <span class="hero-mast__chip">Approximate offer</span>
+                  </div>
+                </div>
+
+                <div class="hero-mast__signal-grid">
+                  <div class="hero-mast__signal">
+                    <strong>Route 1</strong>
+                    <span>Human strategy input, sharper direction, and a proper starting point.</span>
+                  </div>
+                  <div class="hero-mast__signal">
+                    <strong>Route 2</strong>
+                    <span>No call required. Fill in the brief and get a rough idea of scope and pricing first.</span>
+                  </div>
+                </div>
+
+                <div class="hero-mast__route-row">
+                  <a class="hero-mast__route" href="#paid-consultation">Paid consultation</a>
+                  <a class="hero-mast__route" href="#questionnaire-only">Questionnaire only</a>
+                  <a class="hero-mast__route" href="#discovery-questionnaire">Send the brief</a>
+                </div>
               </div>
             </div>
           </article>
         </div>
       </section>
 
-      <section class="section section--contrast">
+      <!-- Discovery: Route selection section -->
+      <section class="section layout-section section--contrast" data-layout-sequence>
         <div class="shell">
-          <div class="section-heading" data-reveal>
-            <span class="eyebrow">Choose your route</span>
-            <h2 class="section-title">Three clean ways to start, depending on how ready the project is.</h2>
-            <p class="section-text">
-              Not every visitor needs the same level of support. The route should match the level
-              of certainty, urgency, and context you already have.
+          <div class="surface layout-section__intro" data-reveal>
+            <div class="layout-mark">
+              <img src="/brand/ash-tra-logo.png" alt="ASH-TRA logo mark" />
+            </div>
+            <span class="layout-section__kicker">Two ways to start</span>
+            <h2 class="layout-section__title">Choose the level of support you want first.</h2>
+            <p class="layout-section__body">
+              Start with the human route if you want sharper direction first. Start with the
+              questionnaire if you want to skip the call for now and receive a rough idea of scope
+              and pricing first.
             </p>
           </div>
-          <div class="route-grid">
-            <article class="surface route-card" data-reveal data-tilt>
-              <span class="route-card__label">Primary</span>
-              <h3>Start Project</h3>
-              <p>Best when you already know the business needs a launch, rebuild, or focused page work.</p>
+          <div class="layout-twin-grid">
+            <article class="surface layout-panel" data-reveal data-tilt>
+              <span class="route-card__label">Route 1</span>
+              <h3>Paid Consultation</h3>
+              <p>For companies that want human input, sharper direction, and a proper strategic start before any build begins.</p>
               <ul class="check-list">
-                <li>Shorter intake form.</li>
-                <li>Best for ready-to-move teams.</li>
-                <li>Fastest route into project review.</li>
+                <li>A paid discovery consultation.</li>
+                <li>Human feedback on what feels weak, what is missing, and what needs to change.</li>
+                <li>Clear direction on the best next move before money gets spent in the wrong place.</li>
               </ul>
-              <p><strong>Outcome:</strong> A quicker path into the actual build conversation.</p>
-              <a class="button button--primary button--block" href="/start-project/" data-track="start_project_click">Start Project</a>
+              <p><strong>Outcome:</strong> A sharper brief, a clearer direction, and a far stronger starting point.</p>
+              <a class="button button--primary button--block" href="/pay-consultation/" data-track="pay_consultation_view">Book Discovery Consultation</a>
+              <p class="service-detail__punch">Clarity first. Build second.</p>
             </article>
-            <article class="surface route-card" data-reveal data-tilt>
-              <span class="route-card__label">Secondary</span>
-              <h3>Book Call</h3>
-              <p>Best when you want a paid strategic review before committing to the build.</p>
+            <article class="surface layout-panel" data-reveal data-tilt>
+              <span class="route-card__label">Route 2</span>
+              <h3>Questionnaire Only</h3>
+              <p>For companies that want to skip the call for now, answer the questions, and receive a rough idea of scope and pricing first.</p>
               <ul class="check-list">
-                <li>Human diagnosis of the current gap.</li>
-                <li>Clearer direction before money is spent in the wrong place.</li>
-                <li>Best for complex or high-stakes decisions.</li>
+                <li>No consultation required.</li>
+                <li>No need to speak to someone first.</li>
+                <li>An approximate offer sent within 48 hours, excluding weekends.</li>
               </ul>
-              <p><strong>Outcome:</strong> A sharper brief and stronger decision-making.</p>
-              <a class="button button--secondary button--block" href="/pay-consultation/" data-track="pay_consultation_view">Book Call</a>
-            </article>
-            <article class="surface route-card" data-reveal data-tilt>
-              <span class="route-card__label">Tertiary</span>
-              <h3>Discovery Form</h3>
-              <p>Best when you want to send context first and receive an approximate direction before booking anything.</p>
-              <ul class="check-list">
-                <li>No call required to begin.</li>
-                <li>Useful for lighter or earlier-stage enquiries.</li>
-                <li>Approximate offer returned within 48 hours, excluding weekends.</li>
-              </ul>
-              <p><strong>Outcome:</strong> A rough scope, fit, and next-step recommendation.</p>
-              <a class="button button--subtle button--block" href="#discovery-questionnaire" data-track="discovery_view">Open Discovery Form</a>
+              <p><strong>Outcome:</strong> A quick first direction on scope, fit, and likely budget.</p>
+              <a class="button button--secondary button--block" href="#discovery-questionnaire" data-track="discovery_view">Fill Out the Discovery Brief</a>
+              <p class="service-detail__punch">No call. No pressure. Just clarity.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section">
+      <!-- Discovery: Why this matters section -->
+      <section class="section layout-section" data-layout-sequence>
         <div class="shell">
-          <div class="section-heading" data-reveal>
-            <span class="eyebrow">What happens next</span>
-            <h2 class="section-title">The flow is simple on purpose.</h2>
-            <p class="section-text">
-              The discovery system should feel obvious. Choose the route, send the right amount of
-              context, and move into the next step without extra decision fatigue.
+          <div class="surface layout-section__intro" data-reveal>
+            <span class="layout-section__kicker">Why this matters</span>
+            <h2 class="layout-section__title">A better brief creates a better build.</h2>
+            <p class="layout-section__body">
+              Strong websites do not come from vague ideas. They come from clarity. The more
+              clearly the direction is set, the stronger the result feels when it goes live.
             </p>
           </div>
-          <div class="card-grid">
-            <article class="surface card" data-reveal data-tilt>
-              <div class="card__icon">01</div>
-              <h3 class="card__title">Choose the right level of support</h3>
-              <p class="card__text">Project ready means start the form. Strategy needed means book the call. Lighter first contact means use discovery.</p>
-            </article>
-            <article class="surface card" data-reveal data-tilt>
-              <div class="card__icon">02</div>
-              <h3 class="card__title">Send the clearest context you can</h3>
-              <p class="card__text">The more accurate the context, the sharper the guidance, quote direction, or review response can be.</p>
-            </article>
-            <article class="surface card" data-reveal data-tilt>
-              <div class="card__icon">03</div>
-              <h3 class="card__title">Move into the best next step</h3>
-              <p class="card__text">That might be project review, a paid strategy call, or a follow-up after the discovery form is reviewed.</p>
-            </article>
+          <div class="layout-metric-grid">
+            <article class="surface layout-metric" data-reveal data-tilt><span class="layout-metric__label">01 You avoid guesswork</span><p class="layout-metric__value">You get clear on what the company actually needs instead of building blind.</p></article>
+            <article class="surface layout-metric" data-reveal data-tilt><span class="layout-metric__label">02 You save time</span><p class="layout-metric__value">The right direction early means less backtracking later.</p></article>
+            <article class="surface layout-metric" data-reveal data-tilt><span class="layout-metric__label">03 You get a stronger result</span><p class="layout-metric__value">The build lands harder when the thinking behind it is already sharp.</p></article>
+            <article class="surface layout-metric" data-reveal data-tilt><span class="layout-metric__label">04 You understand the scope</span><p class="layout-metric__value">You know whether this is a fresh launch, a redesign, a rebuild, or something more focused.</p></article>
           </div>
+          <p class="page-hero__punch" data-reveal>Get clear before you commit.</p>
         </div>
       </section>
 
-      <section class="section" id="discovery-questionnaire">
+      <!-- Discovery: Guidance comparison section -->
+      <section class="section layout-section section--contrast" data-layout-sequence>
+        <div class="shell service-detail-grid">
+          <article class="surface service-detail" data-reveal>
+            <span class="service-detail__index">What we cover</span>
+            <h3>A real conversation about what the company needs next.</h3>
+            <p>
+              The paid consultation is for companies that want more than a rough estimate. It is
+              for teams that want proper guidance, sharper thinking, and a real human read on the
+              project before the work starts.
+            </p>
+            <ul class="detail-list">
+              <li>What feels weak right now.</li>
+              <li>What is missing.</li>
+              <li>What the company needs to communicate more clearly.</li>
+              <li>What level the brand needs to rise to.</li>
+              <li>What kind of site or system makes the most sense.</li>
+              <li>What should come first and what is likely to create the biggest lift.</li>
+            </ul>
+            <p class="service-detail__punch">Not just a quote. Real direction.</p>
+          </article>
+          <article class="surface service-detail" data-reveal>
+            <span class="service-detail__index">What to expect</span>
+            <h3>Straight answers in. Approximate offer out.</h3>
+            <p>
+              If you choose the questionnaire route, fill it out with as much clarity as you can.
+              Once it is submitted, ASH-TRA will review it and send back an approximate offer
+              within 48 hours, excluding weekends, as soon as possible.
+            </p>
+            <ul class="detail-list">
+              <li>The offer is approximate, not final.</li>
+              <li>Complex projects may need a follow-up conversation before a final quote.</li>
+              <li>The better your answers, the sharper the estimate.</li>
+              <li>You can still move into a paid consultation afterwards if needed.</li>
+            </ul>
+            <p class="service-detail__punch">Quick route. Clear next step.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Discovery: Questionnaire form section -->
+      <section class="section layout-section" id="discovery-questionnaire" data-layout-sequence>
         <div class="shell">
-          <div class="section-heading" data-reveal>
-            <span class="eyebrow">Discovery brief</span>
-            <h2 class="section-title">Send the context and ASH-TRA will map the likely route.</h2>
-            <p class="section-text">
-              The more detail you give, the sharper the estimate and the cleaner the next step.
+          <div class="surface layout-section__intro" data-reveal>
+            <span class="layout-section__kicker">Discovery brief</span>
+            <h2 class="layout-section__title">Tell us what you need built and what level you want to reach.</h2>
+            <p class="layout-section__body">
+              Fill this out with as much clarity as you can. The more detail you give, the sharper
+              the estimate.
             </p>
           </div>
           <form
@@ -1595,20 +1650,22 @@
         </div>
       </section>
 
-      <section class="section">
+      <!-- Discovery: Closing CTA section -->
+      <section class="section layout-section section--contrast" data-layout-sequence>
         <div class="shell">
-          <article class="surface quote-banner" data-reveal>
-            <span class="eyebrow">Need a stronger read first?</span>
-            <blockquote>Move into the route that matches the level of guidance you need.</blockquote>
+          <article class="surface layout-callout" data-reveal>
+            <span class="layout-section__kicker">Want the human route?</span>
+            <blockquote>Start with clarity. Build with force.</blockquote>
             <p>
-              If the project is already clear, start it. If you want human strategic input before
-              the build, book the paid call and get the sharper outside read first.
+              If you want to speak with the human behind ASH-TRA, receive real feedback, clearer
+              direction, and a stronger starting point before the build, book the paid consultation
+              instead.
             </p>
             <div class="hero__actions">
-              <a class="button button--primary" href="/start-project/" data-track="start_project_click">Start Project</a>
-              <a class="button button--secondary" href="/pay-consultation/" data-track="pay_consultation_view">Book Call</a>
+              <a class="button button--primary" href="/pay-consultation/" data-track="pay_consultation_view">Pay Consultation</a>
+              <a class="button button--secondary" href="/schedule-meeting/">Schedule Meeting</a>
             </div>
-            <p>Choose the cleanest next step and keep the momentum intact.</p>
+            <p>Start with clarity. Build with force.</p>
           </article>
         </div>
       </section>

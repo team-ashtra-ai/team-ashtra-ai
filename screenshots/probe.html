@@ -1,0 +1,24 @@
+<!doctype html>
+<meta charset='utf-8'>
+<body style='font-family:monospace;white-space:pre-wrap;background:#111;color:#eee'>loading
+<script>
+const iframe=document.createElement('iframe');
+iframe.src='http://127.0.0.1:8123/';
+iframe.style.width='1440px';
+iframe.style.height='900px';
+iframe.onload=()=>{
+  const d=iframe.contentDocument;
+  const w=iframe.contentWindow;
+  function info(sel){
+    const e=d.querySelector(sel);
+    if(!e) return {sel, missing:true};
+    const b=e.getBoundingClientRect(); const cs=w.getComputedStyle(e);
+    return {sel,x:b.x,y:b.y,w:b.width,h:b.height,display:cs.display,pos:cs.position,marginLeft:cs.marginLeft,marginRight:cs.marginRight,grid:cs.gridTemplateColumns,justify:cs.justifyContent};
+  }
+  document.body.textContent = JSON.stringify({
+    scrollX:w.scrollX, scrollY:w.scrollY, innerWidth:w.innerWidth, bodyScrollWidth:d.body.scrollWidth, docScrollWidth:d.documentElement.scrollWidth,
+    body: info('body'), main: info('main'), shell: info('.shell'), hero: info('.layout-hero-grid'), surface: info('.surface'), heroTitle: info('.layout-section__title')
+  }, null, 2);
+};
+document.body.appendChild(iframe);
+</script>

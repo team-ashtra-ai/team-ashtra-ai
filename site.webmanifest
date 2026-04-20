@@ -1,7 +1,7 @@
 {
   "name": "ASH-TRA",
   "short_name": "ASH-TRA",
-  "description": "Cinematic blue-black website systems for ambitious brands.",
+  "description": "Modern websites and sharper digital presence for ambitious businesses.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#050A12",
@@ -20,8 +20,8 @@
       "purpose": "any"
     },
     {
-      "src": "/brand/ash-tra-logo-with-text.png",
-      "sizes": "1024x1024",
+      "src": "/brand/ash-tra-logo.png",
+      "sizes": "780x780",
       "type": "image/png",
       "purpose": "any"
     }

@@ -7,27 +7,31 @@
     config.discoveryFormEndpoint || consultationFormEndpoint || "https://formspree.io/f/xaqaogoo";
 
   const navItems = [
+    { href: "/", label: "Home", match: "/" },
+    { href: "/about/", label: "About", match: "/about/" },
     { href: "/services/", label: "Services", match: "/services/" },
-    { href: "/examples/", label: "Work", match: "/examples/" },
     { href: "/process/", label: "Process", match: "/process/" },
-    { href: "/about/", label: "About", match: "/about/" }
-  ];
-
-  const secondaryNavItems = [
-    { href: "/contact/", label: "Contact" },
-    { href: "/discovery/#discovery-questionnaire", label: "Discovery Form" },
-    { href: "/faq/", label: "FAQ" }
+    { href: "/examples/", label: "Portfolio", match: "/examples/" },
+    { href: "/discovery/", label: "Discovery", match: "/discovery/" },
+    { href: "/contact/", label: "Contact", match: "/contact/" }
   ];
 
   const footerAtlasLinks = [
-    { title: "Start Project", url: "/start-project/" },
-    { title: "Book Call", url: "/pay-consultation/" },
-    { title: "Discovery Form", url: "/discovery/#discovery-questionnaire" },
-    { title: "Services", url: "/services/" },
-    { title: "Work", url: "/examples/" },
-    { title: "Process", url: "/process/" },
+    { title: "Home", url: "/" },
     { title: "About", url: "/about/" },
-    { title: "Contact", url: "/contact/" }
+    { title: "Services", url: "/services/" },
+    { title: "Process", url: "/process/" },
+    { title: "Portfolio", url: "/examples/" },
+    { title: "Discovery", url: "/discovery/" },
+    { title: "Contact", url: "/contact/" },
+    { title: "Launch Site", url: "/start-project/" },
+    { title: "Pay Consultation", url: "/pay-consultation/" },
+    { title: "Schedule Meeting", url: "/schedule-meeting/" },
+    { title: "FAQ", url: "/faq/" },
+    { title: "Privacy", url: "/privacy/" },
+    { title: "Terms", url: "/terms/" },
+    { title: "Cookies", url: "/cookies/" },
+    { title: "Accessibility", url: "/accessibility/" }
   ];
 
   const discoveryQuestions = [
@@ -152,7 +156,7 @@
       keywords: ["contact", "enquiry", "form", "message", "reach", "talk"]
     },
     {
-      title: "Start Project",
+      title: "Launch Site",
       url: "/start-project/",
       description: "The direct project intake form for businesses ready to launch, rebuild, or upgrade key pages.",
       keywords: ["start", "project", "consultation", "brief", "quote", "kickoff"]
@@ -164,7 +168,7 @@
       keywords: ["discovery", "consultation", "brief", "strategy", "planning", "questionnaire"]
     },
     {
-      title: "Book Call",
+      title: "Pay Consultation",
       url: "/pay-consultation/",
       description: "The paid consultation page with coverage, payment routes, and the sharper strategy-first path.",
       keywords: ["book", "call", "payment", "consultation", "stripe", "paypal", "pix", "strategy"]
@@ -182,6 +186,227 @@
       keywords: ["faq", "questions", "answers", "seo", "mobile", "fit", "discovery"]
     }
   ];
+
+  const pageSeo = {
+    home: {
+      title: "ASH-TRA | Modern websites for ambitious businesses",
+      description:
+        "ASH-TRA builds modern websites and sharper digital presence for ambitious businesses that want more trust, more pull, and more momentum.",
+      path: "/",
+      ogAlt: "ASH-TRA homepage social preview",
+      schemas: [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "ASH-TRA",
+          url: "https://ash-tra.com/",
+          logo: "https://ash-tra.com/brand/ash-tra-logo.png",
+          image: "https://ash-tra.com/brand/ash-tra-social-lockup.png",
+          description:
+            "ASH-TRA builds modern digital presence for ambitious companies that want more trust, more pull, and more momentum.",
+          sameAs: ["https://ash-tra.com/"],
+          contactPoint: {
+            "@type": "ContactPoint",
+            contactType: "sales",
+            url: "https://ash-tra.com/contact/"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "ASH-TRA",
+          url: "https://ash-tra.com/"
+        }
+      ]
+    },
+    about: {
+      title: "About ASH-TRA | Built for companies that are done looking behind",
+      description:
+        "Learn what ASH-TRA stands for, who it helps, and how stronger digital presence changes trust, positioning, and momentum.",
+      path: "/about/",
+      ogAlt: "ASH-TRA about page social preview",
+      schemas: [
+        {
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          name: "About ASH-TRA",
+          url: "https://ash-tra.com/about/",
+          description:
+            "ASH-TRA helps ambitious companies build digital presence that earns trust faster and supports real growth.",
+          isPartOf: { "@type": "WebSite", name: "ASH-TRA", url: "https://ash-tra.com/" }
+        }
+      ]
+    },
+    services: {
+      title: "Services | ASH-TRA",
+      description:
+        "Explore ASH-TRA services for strategy, message, website launches, redesigns, full rebuilds, SEO foundations, systems, performance, and support.",
+      path: "/services/",
+      ogAlt: "ASH-TRA services page social preview",
+      schemas: [
+        {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "ASH-TRA Services",
+          url: "https://ash-tra.com/services/",
+          description:
+            "Services built to make ambitious companies look sharper, feel more credible, and move with more momentum.",
+          hasPart: [
+            { "@type": "Service", name: "Direction Session" },
+            { "@type": "Service", name: "Message and Position" },
+            { "@type": "Service", name: "Launch Build" },
+            { "@type": "Service", name: "Presence Upgrade" },
+            { "@type": "Service", name: "Full Reset" },
+            { "@type": "Service", name: "Pages That Sell" },
+            { "@type": "Service", name: "Search Lift" },
+            { "@type": "Service", name: "Insight Setup" },
+            { "@type": "Service", name: "Systems Connection" },
+            { "@type": "Service", name: "Performance Polish" },
+            { "@type": "Service", name: "Global Reach" },
+            { "@type": "Service", name: "Momentum Support" }
+          ]
+        }
+      ]
+    },
+    process: {
+      title: "Process | ASH-TRA",
+      description:
+        "See the ASH-TRA process from discovery and direction through build, refinement, optimisation, and support.",
+      path: "/process/",
+      ogAlt: "ASH-TRA process page social preview",
+      schemas: [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "ASH-TRA Process",
+          url: "https://ash-tra.com/process/",
+          description:
+            "A clear process built to create trust, traction, and momentum from the ground up."
+        }
+      ]
+    },
+    discovery: {
+      title: "Discovery | ASH-TRA",
+      description:
+        "Choose the ASH-TRA discovery route that fits: paid consultation for real strategy or the questionnaire for an approximate offer within 48 hours excluding weekends.",
+      path: "/discovery/",
+      ogAlt: "ASH-TRA discovery page social preview",
+      schemas: [
+        {
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          name: "ASH-TRA Discovery",
+          url: "https://ash-tra.com/discovery/",
+          description:
+            "Start with a paid consultation or a detailed discovery brief and receive clearer direction on the right next move."
+        }
+      ]
+    },
+    "pay-consultation": {
+      title: "Pay Consultation | ASH-TRA",
+      description:
+        "Choose the paid consultation route, request Stripe, PayPal, or Pix, and start your project with real strategic direction.",
+      path: "/pay-consultation/",
+      ogAlt: "ASH-TRA paid consultation page social preview",
+      schemas: [
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: "ASH-TRA Paid Consultation",
+          serviceType: "Discovery consultation",
+          provider: { "@type": "Organization", name: "ASH-TRA", url: "https://ash-tra.com/" },
+          url: "https://ash-tra.com/pay-consultation/",
+          description:
+            "A paid consultation for founders and teams who want sharper direction before the build begins."
+        }
+      ]
+    },
+    "schedule-meeting": {
+      title: "Schedule Meeting | ASH-TRA",
+      description:
+        "Book your paid ASH-TRA consultation slot, prepare properly, and move into the strongest next direction for the project.",
+      path: "/schedule-meeting/",
+      ogAlt: "ASH-TRA schedule meeting page social preview",
+      schemas: [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Schedule Meeting",
+          url: "https://ash-tra.com/schedule-meeting/",
+          description:
+            "Choose your consultation slot and come ready with the context that matters."
+        }
+      ]
+    },
+    faq: {
+      title: "FAQ | ASH-TRA",
+      description:
+        "Read clear answers about ASH-TRA services, paid consultations, discovery, SEO, analytics, performance, support, and fit.",
+      path: "/faq/",
+      ogAlt: "ASH-TRA FAQ page social preview",
+      schemas: []
+    },
+    terms: {
+      title: "Terms of Service | ASH-TRA",
+      description:
+        "Read the ASH-TRA terms covering consultations, project scope, payments, revisions, ownership, and general site use.",
+      path: "/terms/",
+      ogAlt: "ASH-TRA terms of service page social preview",
+      schemas: [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Terms of Service",
+          url: "https://ash-tra.com/terms/"
+        }
+      ]
+    },
+    privacy: {
+      title: "Privacy Policy | ASH-TRA",
+      description:
+        "Read how ASH-TRA collects, uses, stores, and protects information submitted through the website, forms, scheduling, and payment routes.",
+      path: "/privacy/",
+      ogAlt: "ASH-TRA privacy policy page social preview",
+      schemas: [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Privacy Policy",
+          url: "https://ash-tra.com/privacy/"
+        }
+      ]
+    },
+    cookies: {
+      title: "Cookie Policy | ASH-TRA",
+      description:
+        "Read how cookies and similar technologies may be used on ash-tra.com for functionality, measurement, and performance improvement.",
+      path: "/cookies/",
+      ogAlt: "ASH-TRA cookie policy page social preview",
+      schemas: [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Cookie Policy",
+          url: "https://ash-tra.com/cookies/"
+        }
+      ]
+    },
+    accessibility: {
+      title: "Accessibility Statement | ASH-TRA",
+      description:
+        "Read the ASH-TRA accessibility approach, ongoing improvements, third-party tool notes, and ways to report access issues.",
+      path: "/accessibility/",
+      ogAlt: "ASH-TRA accessibility statement page social preview",
+      schemas: [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Accessibility Statement",
+          url: "https://ash-tra.com/accessibility/"
+        }
+      ]
+    }
+  };
 
   function icon(name) {
     const icons = {
@@ -360,42 +585,28 @@
       <header class="site-header">
         <div class="site-header__inner">
           <a class="brand-lockup" href="/" aria-label="ASH-TRA home">
-            <img class="brand-lockup__mark" src="/brand/ash-tra-favicon.svg" alt="ASH-TRA mark" />
+            <img class="brand-lockup__mark" src="/brand/ash-tra-logo.png" alt="ASH-TRA logo mark" />
             <span class="brand-lockup__meta">
               <span class="brand-lockup__title">ASH-TRA</span>
-              <span class="brand-lockup__tag">Premium websites for ambitious businesses.</span>
+              <span class="brand-lockup__tag">Where ambition meets momentum.</span>
             </span>
           </a>
           <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
             ${icon("menu")}
           </button>
           <nav class="site-nav" id="site-nav" aria-label="Primary">
-            <div class="site-nav__group">
-              <span class="site-nav__eyebrow">Explore</span>
-              <div class="site-nav__links">
-                ${navItems
-                  .map(
-                    (item) =>
-                      `<a href="${item.href}" class="${isActive(item.match) ? "is-active" : ""}">${item.label}</a>`
-                  )
-                  .join("")}
-              </div>
-            </div>
-            <div class="site-nav__group site-nav__group--support">
-              <span class="site-nav__eyebrow">Helpful Routes</span>
-              <div class="site-nav__meta">
-                ${secondaryNavItems
-                  .map((item) => `<a href="${item.href}">${item.label}</a>`)
-                  .join("")}
-              </div>
+            <div class="site-nav__links">
+              ${navItems
+                .map(
+                  (item) =>
+                    `<a href="${item.href}" class="${isActive(item.match) ? "is-active" : ""}">${item.label}</a>`
+                )
+                .join("")}
             </div>
             <div class="site-nav__cta">
-              <a class="button button--secondary" href="/pay-consultation/" data-track="pay_consultation_view">
-                <span>Book Call</span>
-              </a>
               <a class="button button--primary" href="/start-project/" data-track="start_project_click">
                 ${icon("arrow")}
-                <span>Start Project</span>
+                <span>Launch Site</span>
               </a>
             </div>
           </nav>
@@ -411,30 +622,26 @@
           <div class="site-footer__main surface footer-mega">
             <section class="footer-brand" data-reveal>
               <div class="footer-brand__lockup">
-                <img src="/brand/ash-tra-favicon.svg" alt="ASH-TRA mark" />
+                <img src="/brand/ash-tra-logo.png" alt="ASH-TRA logo mark" />
                 <div>
                   <p class="footer-brand__title">ASH-TRA</p>
-                  <p class="footer-brand__tag">PREMIUM WEBSITES FOR AMBITIOUS BUSINESSES.</p>
+                  <p class="footer-brand__tag">LOOK LIKE THE BUSINESS YOU ARE BECOMING.</p>
                 </div>
               </div>
               <p class="footer-brand__text">
-                ASH-TRA plans, writes, and builds premium websites for ambitious businesses that
-                need clearer positioning, stronger trust, and better conversion paths.
+                ASH-TRA builds modern digital presence for ambitious companies that want more
+                trust, more pull, and more momentum.
               </p>
               <div class="footer-brand__actions">
-                <a class="button button--primary" href="/start-project/" data-track="start_project_click">Start Project</a>
-                <a class="button button--secondary" href="/pay-consultation/" data-track="pay_consultation_view">Book Call</a>
-              </div>
-              <div class="route-cloud">
-                <a href="/discovery/#discovery-questionnaire">Discovery Form</a>
-                <a href="/contact/">Contact</a>
+                <a class="button button--primary" href="/start-project/" data-track="start_project_click">Launch Site</a>
+                <a class="button button--secondary" href="/discovery/" data-track="discovery_view">Discover your voice</a>
               </div>
             </section>
 
-            <section class="footer-sitemap" data-reveal aria-label="Primary routes">
+            <section class="footer-sitemap" data-reveal aria-label="Site Atlas">
               <div class="footer-sitemap__head">
-                <strong>Start Here</strong>
-                <p>Choose the route that matches how much clarity you already have.</p>
+                <strong>Site Atlas</strong>
+                <p>Clear signal. Strong routes. No dead ends.</p>
               </div>
               <div class="footer-sitemap__grid">
                 ${footerAtlasLinks
@@ -453,24 +660,23 @@
             <div class="site-footer__columns">
               <section class="footer-column" data-reveal>
                 <strong>Explore</strong>
-                <a href="/services/">Services</a>
-                <a href="/examples/">Work</a>
-                <a href="/process/">Process</a>
                 <a href="/about/">About</a>
+                <a href="/services/">Services</a>
+                <a href="/process/">Process</a>
               </section>
               <section class="footer-column" data-reveal>
                 <strong>Start</strong>
-                <a href="/start-project/">Start Project</a>
-                <a href="/pay-consultation/">Book Call</a>
-                <a href="/discovery/#discovery-questionnaire">Discovery Form</a>
+                <a href="/start-project/">Launch Site</a>
+                <a href="/pay-consultation/">Pay Consultation</a>
+                <a href="/schedule-meeting/">Schedule Meeting</a>
+                <a href="/discovery/">Discovery</a>
                 <a href="/contact/">Contact</a>
               </section>
               <section class="footer-column" data-reveal>
                 <strong>Reference</strong>
+                <a href="/examples/">Portfolio</a>
                 <a href="/faq/">FAQ</a>
                 <a href="/accessibility/">Accessibility</a>
-                <a href="/privacy/">Privacy</a>
-                <a href="/terms/">Terms</a>
               </section>
             </div>
           </div>
@@ -484,11 +690,6 @@
 
   function utilityMarkup() {
     return `
-      <div class="mobile-cta-bar" data-mobile-cta>
-        <a class="button button--secondary" href="/pay-consultation/" data-track="pay_consultation_view">Book Call</a>
-        <a class="button button--primary" href="/start-project/" data-track="start_project_click">Start Project</a>
-        <a class="mobile-cta-bar__link" href="/discovery/#discovery-questionnaire" data-track="discovery_view">Discovery Form</a>
-      </div>
       <div class="floating-rail" data-site-utilities>
         <a
           class="floating-action floating-action--whatsapp"
@@ -547,11 +748,97 @@
             <div class="command-panel__log" data-command-log aria-live="polite"></div>
           </div>
           <div class="command-panel__footer">
-            <p>Use Start Project when the work is clear, Book Call for strategy first, or Discovery Form for a lighter start.</p>
+            <p>Use Launch Site when the work is clear, Pay Consultation for strategy first, or Discovery for a lighter start.</p>
           </div>
         </section>
       </div>
     `;
+  }
+
+  function setMeta(name, content, attribute) {
+    if (!content) return;
+    const attr = attribute || "name";
+    let tag = document.head.querySelector(`meta[${attr}="${name}"]`);
+    if (!tag) {
+      tag = document.createElement("meta");
+      tag.setAttribute(attr, name);
+      document.head.appendChild(tag);
+    }
+    tag.setAttribute("content", content);
+  }
+
+  function setLink(rel, href) {
+    if (!href) return;
+    let tag = document.head.querySelector(`link[rel="${rel}"]`);
+    if (!tag) {
+      tag = document.createElement("link");
+      tag.setAttribute("rel", rel);
+      document.head.appendChild(tag);
+    }
+    tag.setAttribute("href", href);
+  }
+
+  function setupSeo() {
+    const seo = pageSeo[page];
+    if (!seo) return;
+
+    document.title = seo.title;
+    setMeta("description", seo.description);
+    setMeta("robots", "index,follow,max-image-preview:large");
+    setMeta("theme-color", "#090d16");
+    setMeta("og:title", seo.title, "property");
+    setMeta("og:description", seo.description, "property");
+    setMeta("og:type", "website", "property");
+    setMeta("og:site_name", "ASH-TRA", "property");
+    setMeta("og:url", `https://ash-tra.com${seo.path}`, "property");
+    setMeta("og:image", "https://ash-tra.com/brand/ash-tra-social-lockup.png", "property");
+    setMeta("og:image:alt", seo.ogAlt, "property");
+    setMeta("twitter:card", "summary_large_image");
+    setMeta("twitter:title", seo.title);
+    setMeta("twitter:description", seo.description);
+    setMeta("twitter:image", "https://ash-tra.com/brand/ash-tra-social-lockup.png");
+    setMeta("twitter:image:alt", seo.ogAlt);
+    setLink("canonical", `https://ash-tra.com${seo.path}`);
+    setLink("icon", "/brand/favicon-32.png");
+    setLink("apple-touch-icon", "/brand/apple-touch-icon.png");
+    setLink("manifest", "/site.webmanifest");
+
+    document.querySelectorAll('script[data-seo-schema="dynamic"]').forEach(function (tag) {
+      tag.remove();
+    });
+
+    const schemas = Array.isArray(seo.schemas) ? seo.schemas.slice() : [];
+
+    if (page === "faq") {
+      const entities = Array.from(document.querySelectorAll(".faq-list details[data-faq]"))
+        .map(function (item) {
+          const question = item.querySelector("summary")?.textContent.trim();
+          const answer = item.querySelector("p")?.textContent.trim();
+          if (!question || !answer) return null;
+          return {
+            "@type": "Question",
+            name: question.replace(/^\d+\.\s*/, ""),
+            acceptedAnswer: { "@type": "Answer", text: answer }
+          };
+        })
+        .filter(Boolean);
+
+      if (entities.length) {
+        schemas.push({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: entities
+        });
+      }
+    }
+
+    schemas.forEach(function (schema) {
+      const tag = document.createElement("script");
+      tag.type = "application/ld+json";
+      tag.dataset.seoSchema = "dynamic";
+      tag.textContent = JSON.stringify(schema);
+      document.head.appendChild(tag);
+    });
   }
 
   function injectShell() {
@@ -770,6 +1057,16 @@
     update();
   }
 
+  // Add simple sequence classes to the handwritten body sections so the CSS can
+  // alternate depth and keep long pages from feeling visually repetitive.
+  function setupLayoutScaffold() {
+    document.querySelectorAll("[data-layout-sequence]").forEach(function (section, index) {
+      section.dataset.layoutIndex = String(index + 1);
+      section.classList.toggle("is-even", index % 2 === 1);
+      section.classList.toggle("is-odd", index % 2 === 0);
+    });
+  }
+
   function setupPaymentPrefill() {
     const field = document.querySelector("[data-payment-method-field]");
     if (!field) return;
@@ -949,7 +1246,7 @@
       },
       {
         match: ["pay", "payment", "stripe", "paypal", "pix"],
-        answer: "Use Book Call to choose the paid strategy route, request the payment method that fits best, and move into scheduling once payment is confirmed.",
+        answer: "Use Pay Consultation to choose the paid strategy route, request the payment method that fits best, and move into scheduling once payment is confirmed.",
         results: siteIndex.filter(function (item) {
           return item.url === "/pay-consultation/" || item.url === "/schedule-meeting/" || item.url === "/discovery/";
         })
@@ -984,7 +1281,7 @@
       },
       {
         match: ["start", "brief", "project", "quote", "budget", "consultation"],
-        answer: "Use Start Project for the direct project form, Book Call for the paid strategy route, or Discovery if you want the fuller questionnaire first.",
+        answer: "Use Launch Site for the direct project form, Pay Consultation for the paid strategy route, or Discovery if you want the fuller questionnaire first.",
         results: siteIndex.filter(function (item) {
           return item.url === "/start-project/" || item.url === "/pay-consultation/" || item.url === "/discovery/";
         })
@@ -1015,7 +1312,7 @@
     }
 
     return {
-      answer: "I could not map that cleanly, but Contact, Start Project, or Discovery should get you to the right next step.",
+      answer: "I could not map that cleanly, but Contact, Launch Site, or Discovery should get you to the right next step.",
       results: siteIndex.filter(function (item) {
         return item.url === "/contact/" || item.url === "/start-project/" || item.url === "/discovery/";
       })
@@ -1140,8 +1437,9 @@
   }
 
   function init() {
-    injectShell();
-    decorateStage();
+  injectShell();
+  setupSeo();
+  decorateStage();
     setupTrackedClicks();
     setupNav();
     setupHeaderState();
@@ -1149,6 +1447,7 @@
     setupTiltCards();
     setupSceneMotion();
     setupBackToTop();
+    setupLayoutScaffold();
     setupPaymentPrefill();
     setupForms();
     setupFaq();
