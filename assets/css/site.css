@@ -8808,3 +8808,142 @@ body[data-page="home"] main.layout-page .home-band--values a.route-card:focus-vi
   box-shadow: 0 28px 64px rgba(0, 0, 0, 0.22);
   outline: none;
 }
+
+/* Sitewide spacing normalization:
+   keep the editorial redesign, but tighten the vertical rhythm and unify
+   surface padding so every page reads on the same spacing system. */
+body[data-page] main.layout-page {
+  --site-flow-gap: clamp(0.55rem, 1.2vw, 1rem);
+  --site-section-space: clamp(2.6rem, 6.6vw, 5.9rem);
+  --site-frame-gap: clamp(1rem, 1.9vw, 1.35rem);
+  --site-panel-pad: clamp(1.2rem, 2.15vw, 1.7rem);
+  --site-panel-gap: clamp(0.8rem, 1.5vw, 1rem);
+  --site-surface-pad: clamp(1.2rem, 2.1vw, 1.8rem);
+  --site-surface-gap: clamp(0.8rem, 1.4vw, 1rem);
+  --site-text-surface-pad: clamp(1.3rem, 2.4vw, 2rem);
+  --site-text-surface-gap: clamp(0.9rem, 1.6vw, 1.15rem);
+  --site-surface-radius: clamp(1.75rem, 2.1vw, 2.125rem);
+  gap: var(--site-flow-gap);
+  padding-bottom: clamp(1.2rem, 2.5vw, 1.9rem);
+}
+
+body[data-page] main.layout-page > .section {
+  padding-block: var(--site-section-space);
+}
+
+body[data-page] main.layout-page > .section.section--flush {
+  padding-top: clamp(0.75rem, 1.8vw, 1.1rem);
+}
+
+body[data-page] main.layout-page .layout-section__frame,
+body[data-page] main.layout-page .faq-overview,
+body[data-page] main.layout-page .policy-atlas__frame,
+body[data-page] main.layout-page .contact-band--routes .shell,
+body[data-page] main.layout-page .examples-band--studies .shell,
+body[data-page] main.layout-page .examples-band--principles .shell,
+body[data-page] main.layout-page .start-band--fit .shell,
+body[data-page] main.layout-page .start-band--after .shell,
+body[data-page] main.layout-page .pay-band--routes .shell,
+body[data-page] main.layout-page .discovery-band--routes .shell,
+body[data-page] main.layout-page .discovery-band--brief .shell,
+body[data-page] main.layout-page .contact-grid,
+body[data-page] main.layout-page .payment-flow,
+body[data-page] main.layout-page .route-grid,
+body[data-page] main.layout-page .card-grid,
+body[data-page] main.layout-page .service-detail-grid,
+body[data-page] main.layout-page .study-grid,
+body[data-page] main.layout-page .layout-panel-grid,
+body[data-page] main.layout-page .layout-metric-grid,
+body[data-page] main.layout-page .layout-step-grid,
+body[data-page] main.layout-page .layout-category-grid,
+body[data-page] main.layout-page .home-decision-grid,
+body[data-page] main.layout-page .policy-atlas__cards {
+  gap: var(--site-frame-gap);
+}
+
+body[data-page] main.layout-page .section-heading--panel,
+body[data-page] main.layout-page .layout-section__intro,
+body[data-page] main.layout-page .faq-summary,
+body[data-page] main.layout-page .policy-summary {
+  gap: var(--site-panel-gap);
+  padding: var(--site-panel-pad);
+}
+
+body[data-page] main.layout-page .route-card,
+body[data-page] main.layout-page .service-detail,
+body[data-page] main.layout-page .card,
+body[data-page] main.layout-page .study-card,
+body[data-page] main.layout-page .contact-card,
+body[data-page] main.layout-page .form-card,
+body[data-page] main.layout-page .faq-shell,
+body[data-page] main.layout-page .policy-card,
+body[data-page] main.layout-page .layout-panel,
+body[data-page] main.layout-page .layout-metric,
+body[data-page] main.layout-page .layout-category,
+body[data-page] main.layout-page .layout-timeline,
+body[data-page] main.layout-page .brief-section,
+body[data-page] main.layout-page .embed-card,
+body[data-page] main.layout-page .home-decision-card {
+  gap: var(--site-surface-gap);
+  padding: var(--site-surface-pad);
+  border-radius: var(--site-surface-radius);
+}
+
+body[data-page] main.layout-page .quote-banner,
+body[data-page] main.layout-page .callout,
+body[data-page] main.layout-page .layout-callout,
+body[data-page] main.layout-page .story-grid__copy,
+body[data-page] main.layout-page .brief-hub__mast {
+  gap: var(--site-text-surface-gap);
+  padding: var(--site-text-surface-pad);
+  border-radius: var(--site-surface-radius);
+}
+
+body[data-page] main.layout-page .form-card__head,
+body[data-page] main.layout-page .faq-category__head,
+body[data-page] main.layout-page .brief-hub__meta {
+  gap: clamp(0.65rem, 1.2vw, 0.9rem);
+}
+
+body[data-page] main.layout-page .form-grid,
+body[data-page] main.layout-page .stacked-form,
+body[data-page] main.layout-page [data-form-success],
+body[data-page] main.layout-page [data-form-error] {
+  gap: clamp(0.95rem, 1.6vw, 1.25rem);
+}
+
+body[data-page] main.layout-page .field {
+  gap: 0.5rem;
+}
+
+body[data-page] main.layout-page .check-list,
+body[data-page] main.layout-page .detail-list,
+body[data-page] main.layout-page .layout-bullet-list,
+body[data-page] main.layout-page .policy-card ul {
+  gap: clamp(0.7rem, 1.2vw, 0.95rem);
+}
+
+body[data-page] main.layout-page .check-list li,
+body[data-page] main.layout-page .detail-list li,
+body[data-page] main.layout-page .layout-bullet-list li,
+body[data-page] main.layout-page .policy-card li {
+  gap: clamp(0.7rem, 1.2vw, 0.9rem);
+}
+
+body[data-page] main.layout-page .route-cloud,
+body[data-page] main.layout-page .hero__actions,
+body[data-page] main.layout-page .layout-actions,
+body[data-page] main.layout-page .hero-mast__actions {
+  gap: clamp(0.7rem, 1.35vw, 0.95rem);
+}
+
+body[data-page] main.layout-page .route-cloud a {
+  min-height: 40px;
+  padding: 0.55rem 0.9rem;
+}
+
+body[data-page] main.layout-page .hero__actions,
+body[data-page] main.layout-page .layout-actions,
+body[data-page] main.layout-page .hero-mast__actions {
+  margin-top: clamp(0.65rem, 1.4vw, 0.95rem);
+}
