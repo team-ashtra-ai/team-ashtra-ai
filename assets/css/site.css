@@ -2494,6 +2494,14 @@ body {
 }
 
 @media (max-width: 699px) {
+  .floating-rail {
+    right: max(0.35rem, env(safe-area-inset-right, 0px));
+    bottom: calc(0.45rem + env(safe-area-inset-bottom, 0px));
+    gap: 0.35rem;
+    transform: scale(0.92);
+    transform-origin: right bottom;
+  }
+
   .brand-lockup__mark {
     width: 46px;
     height: 46px;
@@ -2521,9 +2529,10 @@ body {
   }
 
   .floating-action {
-    min-width: 40px;
-    min-height: 40px;
-    padding: 0.55rem;
+    min-width: 38px;
+    min-height: 38px;
+    padding: 0.5rem;
+    border-radius: 16px;
     justify-content: center;
   }
 
@@ -6752,5 +6761,1708 @@ main.layout-page .schedule-band--closing .callout {
   main.layout-page .discovery-band--routes .layout-panel:last-child,
   main.layout-page .process-band--steps .layout-timeline:nth-child(even) {
     transform: none;
+  }
+}
+
+/* Interior standardization pass:
+   unify section order with DOM order, tighten the section headings into
+   clear intro panels, and smooth the card/form rhythm across all pages. */
+body[data-page] main.layout-page {
+  gap: clamp(0.45rem, 1vw, 0.9rem);
+  padding-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+body[data-page] main.layout-page > .section {
+  order: 0;
+  padding-block: clamp(1.55rem, 3.4vw, 3.3rem);
+}
+
+body[data-page] main.layout-page > .section.section--flush {
+  padding-top: 0.35rem;
+}
+
+body[data-page] main.layout-page > .hero-mast {
+  padding-top: 0.18rem;
+}
+
+body[data-page] main.layout-page .section-heading--panel {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+  padding: clamp(1.15rem, 2.3vw, 1.7rem);
+  align-content: start;
+}
+
+body[data-page] main.layout-page .section-heading--panel .section-mark {
+  margin-bottom: 0;
+}
+
+body[data-page] main.layout-page .section-heading--panel .eyebrow {
+  width: fit-content;
+}
+
+body[data-page] main.layout-page .section-heading--panel .section-title,
+body[data-page] main.layout-page .section-heading--panel .section-text {
+  margin: 0;
+}
+
+body[data-page] main.layout-page .section-heading--panel .section-title {
+  max-width: 14ch;
+}
+
+body[data-page] main.layout-page .section-heading--panel .section-text {
+  max-width: 42rem;
+}
+
+body[data-page] main.layout-page .contact-band--routes .shell,
+body[data-page] main.layout-page .examples-band--studies .shell,
+body[data-page] main.layout-page .examples-band--principles .shell,
+body[data-page] main.layout-page .start-band--fit .shell,
+body[data-page] main.layout-page .start-band--after .shell,
+body[data-page] main.layout-page .pay-band--routes .shell {
+  display: grid;
+  gap: clamp(0.95rem, 2vw, 1.2rem);
+}
+
+body[data-page] main.layout-page .layout-section__frame,
+body[data-page] main.layout-page .service-detail-grid,
+body[data-page] main.layout-page .route-grid,
+body[data-page] main.layout-page .card-grid,
+body[data-page] main.layout-page .study-grid,
+body[data-page] main.layout-page .contact-grid,
+body[data-page] main.layout-page .home-decision-grid,
+body[data-page] main.layout-page .faq-overview,
+body[data-page] main.layout-page .policy-atlas__frame {
+  gap: clamp(0.95rem, 2vw, 1.2rem);
+}
+
+body[data-page] main.layout-page .layout-section__intro,
+body[data-page] main.layout-page .layout-panel,
+body[data-page] main.layout-page .layout-metric,
+body[data-page] main.layout-page .layout-category,
+body[data-page] main.layout-page .layout-timeline,
+body[data-page] main.layout-page .layout-callout,
+body[data-page] main.layout-page .route-card,
+body[data-page] main.layout-page .service-detail,
+body[data-page] main.layout-page .card,
+body[data-page] main.layout-page .study-card,
+body[data-page] main.layout-page .contact-card,
+body[data-page] main.layout-page .policy-card,
+body[data-page] main.layout-page .faq-shell,
+body[data-page] main.layout-page .home-decision-card,
+body[data-page] main.layout-page .form-card,
+body[data-page] main.layout-page .brief-section,
+body[data-page] main.layout-page .embed-card {
+  display: grid;
+  gap: 0.8rem;
+  padding: clamp(1.08rem, 2.2vw, 1.55rem);
+}
+
+body[data-page] main.layout-page .layout-callout,
+body[data-page] main.layout-page .quote-banner {
+  padding: clamp(1.2rem, 2.4vw, 1.8rem);
+}
+
+body[data-page] main.layout-page .route-card,
+body[data-page] main.layout-page .service-detail,
+body[data-page] main.layout-page .card,
+body[data-page] main.layout-page .study-card,
+body[data-page] main.layout-page .contact-card,
+body[data-page] main.layout-page .policy-card,
+body[data-page] main.layout-page .faq-shell,
+body[data-page] main.layout-page .home-decision-card,
+body[data-page] main.layout-page .form-card,
+body[data-page] main.layout-page .brief-section,
+body[data-page] main.layout-page .embed-card {
+  border-radius: calc(var(--radius-xl) - 2px);
+}
+
+body[data-page] main.layout-page .route-card p,
+body[data-page] main.layout-page .service-detail p,
+body[data-page] main.layout-page .card__text,
+body[data-page] main.layout-page .study-card__text,
+body[data-page] main.layout-page .contact-card p,
+body[data-page] main.layout-page .policy-card p,
+body[data-page] main.layout-page .layout-panel__text,
+body[data-page] main.layout-page .layout-timeline__text,
+body[data-page] main.layout-page .brief-section p {
+  margin: 0;
+}
+
+body[data-page] main.layout-page .study-card__content,
+body[data-page] main.layout-page .form-card__head,
+body[data-page] main.layout-page .policy-card__body,
+body[data-page] main.layout-page .faq-category__head {
+  display: grid;
+  gap: 0.75rem;
+}
+
+body[data-page] main.layout-page .form-card__head,
+body[data-page] main.layout-page .faq-category__head {
+  margin: 0;
+  padding: 0;
+}
+
+body[data-page] main.layout-page .form-card__head p,
+body[data-page] main.layout-page .faq-category__head p {
+  margin: 0;
+}
+
+body[data-page] main.layout-page .form-grid,
+body[data-page] main.layout-page .brief-section__grid {
+  gap: 0.9rem;
+}
+
+body[data-page] main.layout-page .policy-card__body > * {
+  margin: 0;
+}
+
+body[data-page] main.layout-page .policy-card__body h2 {
+  padding-top: 0.95rem;
+  border-top: 1px solid rgba(121, 227, 255, 0.12);
+}
+
+body[data-page] main.layout-page .policy-card__body h2:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+body[data-page] main.layout-page .policy-card__body ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+body[data-page] main.layout-page .faq-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+body[data-page] main.layout-page .faq-list details {
+  padding: 0.95rem 1rem;
+  border-radius: 22px;
+  border: 1px solid rgba(121, 227, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+body[data-page] main.layout-page .faq-list summary {
+  padding-right: 1.8rem;
+  font-weight: 700;
+  line-height: 1.42;
+}
+
+body[data-page] main.layout-page .faq-list details p {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(121, 227, 255, 0.1);
+}
+
+body[data-page] main.layout-page .contact-grid,
+body[data-page] main.layout-page .payment-flow {
+  align-items: start;
+}
+
+body[data-page] main.layout-page .route-cloud {
+  margin-top: auto;
+}
+
+body[data-page] main.layout-page .quote-banner blockquote,
+body[data-page] main.layout-page .layout-story-copy blockquote {
+  text-wrap: balance;
+}
+
+body[data-page] main.layout-page .schedule-embed {
+  min-height: clamp(36rem, 66vh, 48rem);
+}
+
+body[data-page] main.layout-page .schedule-embed iframe {
+  min-height: clamp(36rem, 66vh, 48rem);
+}
+
+@media (min-width: 980px) {
+  body[data-page] main.layout-page .contact-band--routes .shell,
+  body[data-page] main.layout-page .examples-band--studies .shell,
+  body[data-page] main.layout-page .examples-band--principles .shell,
+  body[data-page] main.layout-page .start-band--fit .shell,
+  body[data-page] main.layout-page .start-band--after .shell,
+  body[data-page] main.layout-page .pay-band--routes .shell {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    align-items: start;
+  }
+
+  body[data-page] main.layout-page .section-heading--panel {
+    position: sticky;
+    top: 6.45rem;
+    align-self: start;
+  }
+
+  body[data-page] main.layout-page .examples-band--studies .study-grid {
+    grid-column: 2;
+  }
+
+  body[data-page] main.layout-page .examples-band--principles .card-grid,
+  body[data-page] main.layout-page .contact-band--routes .route-grid,
+  body[data-page] main.layout-page .start-band--fit .card-grid,
+  body[data-page] main.layout-page .start-band--after .card-grid,
+  body[data-page] main.layout-page .pay-band--routes .payment-flow {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 759px) {
+  body[data-page] main.layout-page > .section {
+    padding-block: clamp(1.35rem, 5.4vw, 1.9rem);
+  }
+
+  body[data-page] main.layout-page .section-heading--panel,
+  body[data-page] main.layout-page .layout-section__intro,
+  body[data-page] main.layout-page .layout-panel,
+  body[data-page] main.layout-page .layout-metric,
+  body[data-page] main.layout-page .layout-category,
+  body[data-page] main.layout-page .layout-timeline,
+  body[data-page] main.layout-page .layout-callout,
+  body[data-page] main.layout-page .route-card,
+  body[data-page] main.layout-page .service-detail,
+  body[data-page] main.layout-page .card,
+  body[data-page] main.layout-page .study-card,
+  body[data-page] main.layout-page .contact-card,
+  body[data-page] main.layout-page .policy-card,
+  body[data-page] main.layout-page .faq-shell,
+  body[data-page] main.layout-page .home-decision-card,
+  body[data-page] main.layout-page .form-card,
+  body[data-page] main.layout-page .brief-section,
+  body[data-page] main.layout-page .embed-card {
+    padding: 1rem;
+  }
+
+  body[data-page] main.layout-page .schedule-embed,
+  body[data-page] main.layout-page .schedule-embed iframe {
+    min-height: 34rem;
+  }
+}
+
+/* Editorial launch-system override:
+   this layer intentionally wins over the previous page-body rules and
+   re-casts the site into a more dramatic editorial space-launch language
+   without touching the shared header, footer, or floating widgets. */
+
+@keyframes editorialOrbit {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.62;
+  }
+  50% {
+    transform: rotate(8deg) scale(1.03);
+    opacity: 1;
+  }
+}
+
+@keyframes editorialSweep {
+  0% {
+    transform: translate3d(-8%, 0, 0) rotate(-10deg);
+    opacity: 0.08;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translate3d(8%, 0, 0) rotate(-10deg);
+    opacity: 0.08;
+  }
+}
+
+@keyframes editorialRise {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+body[data-page] {
+  background:
+    radial-gradient(circle at 18% 8%, rgba(95, 126, 255, 0.16), transparent 28%),
+    radial-gradient(circle at 85% 12%, rgba(120, 228, 255, 0.12), transparent 24%),
+    radial-gradient(circle at 50% 110%, rgba(255, 142, 93, 0.1), transparent 28%),
+    linear-gradient(180deg, #03050b 0%, #050915 36%, #02040a 100%);
+}
+
+body[data-page] .site-stage {
+  background:
+    radial-gradient(circle at 14% 18%, rgba(92, 123, 255, 0.12), transparent 22%),
+    radial-gradient(circle at 84% 14%, rgba(120, 228, 255, 0.08), transparent 24%);
+}
+
+body[data-page] .site-stage::before,
+body[data-page] .site-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+body[data-page] .site-stage::before {
+  background:
+    radial-gradient(circle at 12% 22%, rgba(255, 255, 255, 0.38) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 34% 18%, rgba(255, 255, 255, 0.3) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 52% 28%, rgba(255, 255, 255, 0.32) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 78% 16%, rgba(255, 255, 255, 0.26) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 86% 34%, rgba(255, 255, 255, 0.22) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 66% 10%, rgba(255, 255, 255, 0.26) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 24% 38%, rgba(255, 255, 255, 0.22) 0 1px, transparent 1.6px);
+  opacity: 0.72;
+}
+
+body[data-page] .site-stage::after {
+  background:
+    linear-gradient(116deg, transparent 0%, rgba(114, 204, 255, 0.12) 34%, transparent 52%),
+    radial-gradient(circle at 52% 72%, rgba(255, 146, 96, 0.1), transparent 28%);
+  filter: blur(34px);
+  animation: editorialSweep 22s ease-in-out infinite alternate;
+  opacity: 0.9;
+}
+
+body[data-page] .site-stage__grid {
+  opacity: 0.28;
+  background-size: 88px 88px;
+  mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.92), transparent 84%);
+}
+
+body[data-page] .site-stage__noise {
+  opacity: 0.14;
+  background:
+    linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.03) 14%, transparent 28%),
+    linear-gradient(transparent 0%, rgba(255, 255, 255, 0.018) 50%, transparent 100%);
+}
+
+body[data-page] main.layout-page {
+  --editorial-text: #f3f7ff;
+  --editorial-soft: rgba(243, 247, 255, 0.76);
+  --editorial-muted: rgba(243, 247, 255, 0.48);
+  --editorial-line: rgba(138, 170, 255, 0.14);
+  --editorial-line-strong: rgba(149, 228, 255, 0.3);
+  --editorial-panel: rgba(5, 9, 18, 0.7);
+  --editorial-panel-strong: rgba(6, 10, 20, 0.86);
+  --editorial-cold: #91e7ff;
+  --editorial-cold-strong: #6f84ff;
+  --editorial-hot: #ff935f;
+  --editorial-hot-soft: rgba(255, 147, 95, 0.22);
+  --editorial-shadow: 0 30px 90px rgba(0, 0, 0, 0.34);
+  position: relative;
+  overflow: clip;
+  isolation: isolate;
+  counter-reset: editorial-section;
+}
+
+body[data-page] main.layout-page::before,
+body[data-page] main.layout-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+body[data-page] main.layout-page::before {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(92, 123, 255, 0.08), transparent 22%),
+    radial-gradient(circle at 50% 100%, rgba(255, 147, 95, 0.08), transparent 24%);
+  opacity: 0.92;
+}
+
+body[data-page] main.layout-page::after {
+  inset: 4rem auto auto 56%;
+  width: min(56vw, 920px);
+  height: min(120vh, 1280px);
+  border-radius: 999px;
+  border: 1px solid rgba(139, 172, 255, 0.12);
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.03), transparent 58%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent);
+  transform: rotate(-18deg);
+  opacity: 0.55;
+  filter: blur(0.2px);
+  animation: editorialOrbit 26s ease-in-out infinite;
+}
+
+body[data-page] main.layout-page > * {
+  position: relative;
+  z-index: 1;
+}
+
+body[data-page] main.layout-page .shell {
+  width: min(1440px, calc(100% - clamp(1.4rem, 4vw, 4rem)));
+}
+
+body[data-page] main.layout-page > .section {
+  position: relative;
+  padding-block: clamp(4rem, 8vw, 8rem);
+  counter-increment: editorial-section;
+}
+
+body[data-page] main.layout-page > .section::before {
+  content: "";
+  position: absolute;
+  left: clamp(1rem, 4vw, 3rem);
+  right: clamp(1rem, 4vw, 3rem);
+  top: 0;
+  height: 1px;
+  background:
+    linear-gradient(90deg, transparent, rgba(149, 228, 255, 0.28), rgba(255, 147, 95, 0.18), transparent);
+  opacity: 0.9;
+}
+
+body[data-page] main.layout-page > .section::after {
+  content: counter(editorial-section, decimal-leading-zero);
+  position: absolute;
+  top: clamp(0.9rem, 1.5vw, 1.3rem);
+  right: clamp(1rem, 4vw, 3rem);
+  color: rgba(243, 247, 255, 0.055);
+  font-family: var(--font-mono);
+  font-size: clamp(2.8rem, 8vw, 7rem);
+  line-height: 1;
+  letter-spacing: -0.08em;
+  pointer-events: none;
+}
+
+body[data-page] main.layout-page .surface {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--editorial-line);
+  border-radius: 34px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.008)),
+    linear-gradient(180deg, rgba(6, 11, 22, 0.9), rgba(4, 8, 16, 0.76));
+  box-shadow: var(--editorial-shadow);
+  backdrop-filter: blur(18px);
+}
+
+body[data-page] main.layout-page .surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 14%, rgba(111, 132, 255, 0.12), transparent 32%),
+    radial-gradient(circle at 88% 18%, rgba(255, 147, 95, 0.11), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 26%);
+  pointer-events: none;
+}
+
+body[data-page] main.layout-page .layout-section__intro,
+body[data-page] main.layout-page .section-heading--panel,
+body[data-page] main.layout-page .faq-summary,
+body[data-page] main.layout-page .policy-summary {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  overflow: visible;
+}
+
+body[data-page] main.layout-page .layout-section__intro::before,
+body[data-page] main.layout-page .section-heading--panel::before,
+body[data-page] main.layout-page .faq-summary::before,
+body[data-page] main.layout-page .policy-summary::before {
+  display: none;
+}
+
+body[data-page] main.layout-page .layout-section__intro,
+body[data-page] main.layout-page .section-heading--panel,
+body[data-page] main.layout-page .faq-summary,
+body[data-page] main.layout-page .policy-summary,
+body[data-page] main.layout-page .brief-hub__mast {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+body[data-page] main.layout-page .layout-section__kicker,
+body[data-page] main.layout-page .hero-mast__eyebrow,
+body[data-page] main.layout-page .eyebrow,
+body[data-page] main.layout-page .route-card__label,
+body[data-page] main.layout-page .layout-panel__index,
+body[data-page] main.layout-page .layout-metric__label,
+body[data-page] main.layout-page .layout-timeline__step,
+body[data-page] main.layout-page .service-detail__index,
+body[data-page] main.layout-page .brief-hub__eyebrow,
+body[data-page] main.layout-page .tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: fit-content;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--editorial-soft);
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+body[data-page] main.layout-page .layout-section__kicker::before,
+body[data-page] main.layout-page .hero-mast__eyebrow::before,
+body[data-page] main.layout-page .eyebrow::before,
+body[data-page] main.layout-page .route-card__label::before,
+body[data-page] main.layout-page .layout-panel__index::before,
+body[data-page] main.layout-page .layout-metric__label::before,
+body[data-page] main.layout-page .layout-timeline__step::before,
+body[data-page] main.layout-page .service-detail__index::before,
+body[data-page] main.layout-page .brief-hub__eyebrow::before,
+body[data-page] main.layout-page .tag::before {
+  content: "";
+  width: 1.8rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(149, 228, 255, 0.8), rgba(255, 147, 95, 0.08));
+  box-shadow: 0 0 18px rgba(145, 231, 255, 0.22);
+}
+
+body[data-page] main.layout-page .layout-section__title,
+body[data-page] main.layout-page .section-title,
+body[data-page] main.layout-page .hero-mast__title,
+body[data-page] main.layout-page .callout__title,
+body[data-page] main.layout-page .policy-hero__title,
+body[data-page] main.layout-page .quote-banner blockquote,
+body[data-page] main.layout-page .layout-highlight blockquote,
+body[data-page] main.layout-page .layout-callout blockquote {
+  margin: 0;
+  color: var(--editorial-text);
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+  text-wrap: balance;
+}
+
+body[data-page] main.layout-page .layout-section__title,
+body[data-page] main.layout-page .section-title {
+  max-width: 11ch;
+  font-size: clamp(2.4rem, 6vw, 5.2rem);
+}
+
+body[data-page] main.layout-page .hero-mast__title {
+  max-width: 7.2ch;
+  font-size: clamp(3.6rem, 11vw, 8.8rem);
+}
+
+body[data-page] main.layout-page .quote-banner blockquote,
+body[data-page] main.layout-page .layout-highlight blockquote,
+body[data-page] main.layout-page .layout-callout blockquote {
+  max-width: 11ch;
+  font-size: clamp(2.8rem, 8vw, 6.5rem);
+}
+
+body[data-page] main.layout-page .layout-section__body,
+body[data-page] main.layout-page .section-text,
+body[data-page] main.layout-page .hero-mast__lede,
+body[data-page] main.layout-page .layout-callout__text,
+body[data-page] main.layout-page .policy-summary__note,
+body[data-page] main.layout-page .brief-hub__mast p,
+body[data-page] main.layout-page .media-caption,
+body[data-page] main.layout-page .layout-caption {
+  margin: 0;
+  max-width: 38rem;
+  color: var(--editorial-soft);
+  font-size: clamp(1rem, 1.6vw, 1.12rem);
+  line-height: 1.72;
+}
+
+body[data-page] main.layout-page .hero-mast__lede {
+  max-width: 34rem;
+  padding-left: 1rem;
+  border-left: 1px solid rgba(149, 228, 255, 0.16);
+}
+
+body[data-page] main.layout-page .page-hero__punch,
+body[data-page] main.layout-page .hero-mast__punch,
+body[data-page] main.layout-page .service-detail__punch {
+  margin: 0;
+  color: var(--editorial-text);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+body[data-page] main.layout-page .layout-actions,
+body[data-page] main.layout-page .hero-mast__actions,
+body[data-page] main.layout-page .hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+body[data-page] main.layout-page .button {
+  min-height: 56px;
+  padding: 0.9rem 1.35rem;
+  border-radius: 999px;
+  font-size: 0.94rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+body[data-page] main.layout-page .button--primary {
+  color: #081018;
+  background: linear-gradient(135deg, #ff9a62 0%, #ffc67a 52%, #b9f6ff 100%);
+  border-color: rgba(255, 189, 120, 0.38);
+  box-shadow: 0 18px 44px rgba(255, 147, 95, 0.18);
+}
+
+body[data-page] main.layout-page .button--secondary {
+  color: var(--editorial-text);
+  border-color: rgba(149, 228, 255, 0.22);
+  background: rgba(255, 255, 255, 0.032);
+}
+
+body[data-page] main.layout-page .button--secondary:hover,
+body[data-page] main.layout-page .button--secondary:focus-visible {
+  border-color: rgba(149, 228, 255, 0.36);
+  background: rgba(255, 255, 255, 0.065);
+}
+
+body[data-page] main.layout-page .button--subtle {
+  color: var(--editorial-soft);
+  border-color: rgba(149, 228, 255, 0.12);
+  background: rgba(12, 23, 44, 0.42);
+}
+
+body[data-page] main.layout-page .route-card .button--subtle,
+body[data-page] main.layout-page .layout-panel .button--subtle {
+  border-color: rgba(149, 228, 255, 0.18);
+  background: rgba(255, 255, 255, 0.032);
+}
+
+body[data-page] main.layout-page .button--block {
+  width: fit-content;
+}
+
+body[data-page] main.layout-page .hero-mast__shell {
+  width: min(1440px, calc(100% - clamp(1.4rem, 4vw, 4rem)));
+  margin: 0 auto;
+}
+
+body[data-page] main.layout-page .hero-mast__frame {
+  min-height: clamp(34rem, 78vh, 56rem);
+  padding: clamp(1.2rem, 2vw, 2rem);
+  border-radius: 42px;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(111, 132, 255, 0.15), transparent 28%),
+    radial-gradient(circle at 78% 18%, rgba(255, 147, 95, 0.12), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.008)),
+    linear-gradient(180deg, rgba(8, 13, 24, 0.96), rgba(4, 8, 16, 0.9));
+}
+
+body[data-page] main.layout-page .hero-mast__frame::after {
+  content: "";
+  position: absolute;
+  inset: auto -10% -28% 46%;
+  height: 62%;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 30% 50%, rgba(255, 147, 95, 0.25), transparent 22%),
+    radial-gradient(circle at 48% 50%, rgba(149, 228, 255, 0.1), transparent 26%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  filter: blur(36px);
+  transform: rotate(-16deg);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+body[data-page] main.layout-page .hero-mast__layout {
+  display: grid;
+  gap: clamp(1.2rem, 2vw, 2rem);
+  min-height: 100%;
+  align-items: end;
+}
+
+body[data-page] main.layout-page .hero-mast__copy,
+body[data-page] main.layout-page .hero-mast__stage {
+  min-width: 0;
+}
+
+body[data-page] main.layout-page .hero-mast__copy {
+  display: grid;
+  align-content: end;
+  gap: 1rem;
+  width: auto;
+  max-width: none;
+  min-height: 0;
+  padding: clamp(0.5rem, 1.4vw, 1.1rem);
+  position: relative;
+  z-index: 1;
+}
+
+body[data-page] main.layout-page .hero-mast__stage {
+  display: grid;
+  gap: 1rem;
+  align-content: stretch;
+  padding: clamp(0.2rem, 1vw, 0.6rem);
+  position: relative;
+  inset: auto;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+body[data-page] main.layout-page .hero-mast__card,
+body[data-page] main.layout-page .hero-mast__panel,
+body[data-page] main.layout-page .hero-mast__signal,
+body[data-page] main.layout-page .hero-mast__stat,
+body[data-page] main.layout-page .hero-mast__lane,
+body[data-page] main.layout-page .hero-mast__tile,
+body[data-page] main.layout-page .hero-mast__topic,
+body[data-page] main.layout-page .hero-mast__legal-item {
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(149, 228, 255, 0.14);
+  border-top-color: rgba(149, 228, 255, 0.3);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.008)),
+    rgba(6, 11, 22, 0.72);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+}
+
+body[data-page] main.layout-page .hero-mast__card {
+  justify-items: start;
+  gap: 0.85rem;
+}
+
+body[data-page] main.layout-page .hero-mast__signal-grid,
+body[data-page] main.layout-page .hero-mast__stat-grid,
+body[data-page] main.layout-page .hero-mast__lane-grid,
+body[data-page] main.layout-page .hero-mast__topic-grid,
+body[data-page] main.layout-page .hero-mast__legal-grid {
+  display: grid;
+  gap: 0.9rem;
+}
+
+body[data-page] main.layout-page .hero-mast__signal strong,
+body[data-page] main.layout-page .hero-mast__stat strong,
+body[data-page] main.layout-page .hero-mast__lane strong,
+body[data-page] main.layout-page .hero-mast__topic strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--editorial-text);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+body[data-page] main.layout-page .hero-mast__signal span,
+body[data-page] main.layout-page .hero-mast__stat span,
+body[data-page] main.layout-page .hero-mast__lane span,
+body[data-page] main.layout-page .hero-mast__topic span,
+body[data-page] main.layout-page .hero-mast__legal-item span,
+body[data-page] main.layout-page .hero-mast__card p,
+body[data-page] main.layout-page .hero-mast__panel p {
+  color: var(--editorial-soft);
+  line-height: 1.62;
+}
+
+body[data-page="home"] main.layout-page .hero-mast__copy {
+  padding-right: clamp(1rem, 2vw, 1.6rem);
+}
+
+body[data-page="home"] main.layout-page .hero-mast__title {
+  max-width: 100%;
+  font-size: clamp(4.4rem, 6.4vw, 5.9rem);
+  line-height: 0.92;
+  text-wrap: balance;
+}
+
+body[data-page="home"] main.layout-page .hero-mast__card,
+body[data-page="home"] main.layout-page .hero-mast__signal-grid {
+  display: none;
+}
+
+body[data-page="home"] main.layout-page .hero-mast__media {
+  min-height: clamp(24rem, 44vw, 38rem);
+}
+
+body[data-page] main.layout-page .hero-mast__logo,
+body[data-page] main.layout-page .layout-mark,
+body[data-page] main.layout-page .section-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  padding: 0.45rem;
+  border-radius: 24px;
+  border: 1px solid rgba(149, 228, 255, 0.18);
+  background:
+    linear-gradient(145deg, rgba(111, 132, 255, 0.16), rgba(255, 147, 95, 0.12)),
+    rgba(8, 15, 29, 0.88);
+  box-shadow: 0 20px 50px rgba(18, 29, 62, 0.24);
+}
+
+body[data-page] main.layout-page .hero-mast__logo img,
+body[data-page] main.layout-page .layout-mark img,
+body[data-page] main.layout-page .section-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+body[data-page] main.layout-page .hero-mast__chip-row,
+body[data-page] main.layout-page .hero-mast__route-row,
+body[data-page] main.layout-page .hero-mast__meta-row,
+body[data-page] main.layout-page .layout-pill-list,
+body[data-page] main.layout-page .layout-signal-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+body[data-page] main.layout-page .hero-mast__chip,
+body[data-page] main.layout-page .hero-mast__route,
+body[data-page] main.layout-page .layout-pill,
+body[data-page] main.layout-page .layout-signal {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(149, 228, 255, 0.14);
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--editorial-soft);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+body[data-page] main.layout-page .hero-mast__media,
+body[data-page] main.layout-page .media-frame,
+body[data-page] main.layout-page .image-frame,
+body[data-page] main.layout-page .video-frame,
+body[data-page] main.layout-page .scene__window {
+  position: relative;
+  overflow: hidden;
+  border-radius: 34px;
+  border: 1px solid rgba(149, 228, 255, 0.16);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05), transparent 28%),
+    linear-gradient(180deg, rgba(7, 13, 24, 0.76), rgba(4, 8, 16, 0.96)),
+    #04070d;
+}
+
+body[data-page] main.layout-page .hero-mast__media {
+  min-height: clamp(18rem, 38vw, 39rem);
+  position: relative;
+  inset: auto;
+}
+
+body[data-page] main.layout-page .hero-mast__media::after,
+body[data-page] main.layout-page .media-frame::after,
+body[data-page] main.layout-page .image-frame::after,
+body[data-page] main.layout-page .video-frame::after,
+body[data-page] main.layout-page .scene__window::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 86%, rgba(255, 147, 95, 0.28), transparent 18%),
+    linear-gradient(180deg, rgba(6, 9, 14, 0.08), rgba(6, 9, 14, 0.78) 84%);
+  pointer-events: none;
+}
+
+body[data-page] main.layout-page .hero-mast__media img,
+body[data-page] main.layout-page .hero-mast__media video,
+body[data-page] main.layout-page .media-frame img,
+body[data-page] main.layout-page .image-frame img,
+body[data-page] main.layout-page .video-frame img,
+body[data-page] main.layout-page .video-frame video,
+body[data-page] main.layout-page .study-card img,
+body[data-page] main.layout-page .visual-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.8) contrast(1.08) brightness(0.84);
+}
+
+body[data-page] main.layout-page .hero-mast__orbital {
+  min-height: clamp(18rem, 40vw, 34rem);
+  border-radius: 38px;
+  border: 1px solid rgba(149, 228, 255, 0.14);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(149, 228, 255, 0.08), transparent 16%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.008)),
+    rgba(5, 10, 18, 0.82);
+}
+
+body[data-page] main.layout-page .hero-mast__orbital::before,
+body[data-page] main.layout-page .hero-mast__orbital::after,
+body[data-page] main.layout-page .hero-mast__ring {
+  border-color: rgba(149, 228, 255, 0.18);
+}
+
+body[data-page] main.layout-page .hero-mast__node {
+  box-shadow: 0 0 20px rgba(145, 231, 255, 0.56);
+  animation: editorialRise 6s ease-in-out infinite;
+}
+
+body[data-page] main.layout-page .hero-mast__node--c {
+  background: linear-gradient(135deg, #ff8d63, #ff6a58);
+}
+
+body[data-page] main.layout-page .hero-mast__note {
+  width: min(17rem, calc(100% - 2rem));
+  padding: 0.9rem 1rem;
+  border-radius: 20px;
+  border: 1px solid rgba(149, 228, 255, 0.14);
+  background: rgba(8, 13, 24, 0.8);
+  backdrop-filter: blur(16px);
+}
+
+body[data-page] main.layout-page .crosslink-grid,
+body[data-page] main.layout-page .layout-metric-grid,
+body[data-page] main.layout-page .layout-panel-grid,
+body[data-page] main.layout-page .layout-panel-grid--offset,
+body[data-page] main.layout-page .layout-service-mosaic,
+body[data-page] main.layout-page .layout-category-grid,
+body[data-page] main.layout-page .home-decision-grid,
+body[data-page] main.layout-page .route-grid,
+body[data-page] main.layout-page .service-detail-grid,
+body[data-page] main.layout-page .card-grid,
+body[data-page] main.layout-page .study-grid,
+body[data-page] main.layout-page .layout-step-grid,
+body[data-page] main.layout-page .layout-proof-grid {
+  display: grid;
+  gap: clamp(1rem, 1.6vw, 1.6rem);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-auto-flow: dense;
+}
+
+body[data-page] main.layout-page .crosslink-grid > *,
+body[data-page] main.layout-page .layout-metric-grid > *,
+body[data-page] main.layout-page .layout-panel-grid > *,
+body[data-page] main.layout-page .layout-panel-grid--offset > *,
+body[data-page] main.layout-page .layout-service-mosaic > *,
+body[data-page] main.layout-page .layout-category-grid > *,
+body[data-page] main.layout-page .home-decision-grid > *,
+body[data-page] main.layout-page .route-grid > *,
+body[data-page] main.layout-page .service-detail-grid > *,
+body[data-page] main.layout-page .card-grid > *,
+body[data-page] main.layout-page .study-grid > *,
+body[data-page] main.layout-page .layout-step-grid > *,
+body[data-page] main.layout-page .layout-proof-grid > * {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+body[data-page] main.layout-page .route-card,
+body[data-page] main.layout-page .layout-panel,
+body[data-page] main.layout-page .layout-metric,
+body[data-page] main.layout-page .layout-timeline,
+body[data-page] main.layout-page .card,
+body[data-page] main.layout-page .service-detail,
+body[data-page] main.layout-page .policy-card,
+body[data-page] main.layout-page .faq-shell,
+body[data-page] main.layout-page .contact-card,
+body[data-page] main.layout-page .form-card,
+body[data-page] main.layout-page .study-card,
+body[data-page] main.layout-page .quote-banner,
+body[data-page] main.layout-page .callout,
+body[data-page] main.layout-page .layout-callout,
+body[data-page] main.layout-page .layout-highlight,
+body[data-page] main.layout-page .brief-hub__mast,
+body[data-page] main.layout-page .embed-card,
+body[data-page] main.layout-page .brief-section {
+  padding: clamp(1.2rem, 2vw, 2rem);
+  border-radius: 34px;
+}
+
+body[data-page] main.layout-page .route-card,
+body[data-page] main.layout-page .layout-panel,
+body[data-page] main.layout-page .layout-metric,
+body[data-page] main.layout-page .layout-timeline,
+body[data-page] main.layout-page .card,
+body[data-page] main.layout-page .service-detail {
+  border-top-color: rgba(149, 228, 255, 0.28);
+}
+
+body[data-page] main.layout-page .layout-panel,
+body[data-page] main.layout-page .layout-metric,
+body[data-page] main.layout-page .layout-timeline,
+body[data-page] main.layout-page .route-card,
+body[data-page] main.layout-page .service-detail,
+body[data-page] main.layout-page .card {
+  display: grid;
+  align-content: start;
+  gap: 0.8rem;
+}
+
+body[data-page] main.layout-page .study-card {
+  display: grid;
+  gap: 1.2rem;
+}
+
+body[data-page] main.layout-page .study-card__content {
+  margin-top: 0;
+}
+
+body[data-page] main.layout-page .card__title,
+body[data-page] main.layout-page .study-card__title,
+body[data-page] main.layout-page .contact-card__title,
+body[data-page] main.layout-page .policy-card__title,
+body[data-page] main.layout-page .faq-shell__title,
+body[data-page] main.layout-page .route-card h3,
+body[data-page] main.layout-page .service-detail h3,
+body[data-page] main.layout-page .layout-panel__title,
+body[data-page] main.layout-page .layout-timeline h3,
+body[data-page] main.layout-page .layout-category h3 {
+  margin: 0;
+  color: var(--editorial-text);
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+  text-wrap: balance;
+}
+
+body[data-page] main.layout-page .card__text,
+body[data-page] main.layout-page .study-card__text,
+body[data-page] main.layout-page .contact-card__text,
+body[data-page] main.layout-page .policy-card__text,
+body[data-page] main.layout-page .route-card p,
+body[data-page] main.layout-page .service-detail p,
+body[data-page] main.layout-page .layout-panel__text,
+body[data-page] main.layout-page .layout-timeline__text,
+body[data-page] main.layout-page .layout-metric__value,
+body[data-page] main.layout-page .layout-category p,
+body[data-page] main.layout-page .quote-banner p {
+  margin: 0;
+  color: var(--editorial-soft);
+  line-height: 1.68;
+}
+
+body[data-page] main.layout-page .layout-metric__value {
+  font-size: clamp(1.05rem, 1.5vw, 1.18rem);
+  font-weight: 700;
+}
+
+body[data-page] main.layout-page .card__icon,
+body[data-page] main.layout-page .phase-card__number {
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 18px;
+  border: 1px solid rgba(149, 228, 255, 0.18);
+  background:
+    linear-gradient(145deg, rgba(111, 132, 255, 0.12), rgba(255, 147, 95, 0.08)),
+    rgba(8, 14, 26, 0.9);
+  color: var(--editorial-text);
+}
+
+body[data-page] main.layout-page .layout-inline-list,
+body[data-page] main.layout-page .check-list,
+body[data-page] main.layout-page .detail-list,
+body[data-page] main.layout-page .layout-bullet-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+body[data-page] main.layout-page .layout-inline-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+body[data-page] main.layout-page .layout-inline-list li,
+body[data-page] main.layout-page .check-list li,
+body[data-page] main.layout-page .detail-list li,
+body[data-page] main.layout-page .layout-bullet-list li {
+  color: var(--editorial-soft);
+}
+
+body[data-page] main.layout-page .layout-inline-list li {
+  padding: 0.95rem 1.05rem;
+  border: 1px solid rgba(149, 228, 255, 0.12);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.028);
+}
+
+body[data-page] main.layout-page .check-list li::before,
+body[data-page] main.layout-page .icon-list li::before,
+body[data-page] main.layout-page .detail-list li::before {
+  width: 0.62rem;
+  height: 0.62rem;
+  margin-top: 0.55rem;
+  background: linear-gradient(135deg, var(--editorial-cold), var(--editorial-hot));
+  box-shadow: 0 0 18px rgba(145, 231, 255, 0.32);
+}
+
+body[data-page] main.layout-page .quote-banner {
+  gap: 1.2rem;
+  padding: clamp(1.5rem, 2.4vw, 2.3rem);
+}
+
+body[data-page] main.layout-page .quote-banner p {
+  max-width: 34rem;
+}
+
+body[data-page] main.layout-page .faq-list details {
+  border-color: rgba(149, 228, 255, 0.14);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.026);
+}
+
+body[data-page] main.layout-page .faq-list summary {
+  padding: 1.1rem 1.1rem;
+  color: var(--editorial-text);
+}
+
+body[data-page] main.layout-page .faq-list details p {
+  padding: 0 1.1rem 1.1rem;
+  color: var(--editorial-soft);
+}
+
+body[data-page] main.layout-page .form-card {
+  gap: 1.15rem;
+}
+
+body[data-page] main.layout-page .form-card__head,
+body[data-page] main.layout-page .brief-hub__meta {
+  display: grid;
+  gap: 0.7rem;
+}
+
+body[data-page] main.layout-page .field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+body[data-page] main.layout-page .field label {
+  color: var(--editorial-soft);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+body[data-page] main.layout-page .field input,
+body[data-page] main.layout-page .field textarea,
+body[data-page] main.layout-page .field select {
+  min-height: 56px;
+  padding: 1rem 1rem;
+  border: 1px solid rgba(149, 228, 255, 0.14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.026);
+  color: var(--editorial-text);
+}
+
+body[data-page] main.layout-page .field textarea {
+  min-height: 154px;
+}
+
+body[data-page] main.layout-page .field input:focus,
+body[data-page] main.layout-page .field textarea:focus,
+body[data-page] main.layout-page .field select:focus {
+  border-color: rgba(149, 228, 255, 0.34);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 4px rgba(111, 132, 255, 0.12);
+  outline: none;
+}
+
+body[data-page] main.layout-page .success-note,
+body[data-page] main.layout-page .error-note {
+  border-radius: 18px;
+}
+
+body[data-page] main.layout-page .faq-compass,
+body[data-page] main.layout-page .brief-hub__nav {
+  gap: 0.75rem;
+}
+
+body[data-page] main.layout-page .faq-compass a,
+body[data-page] main.layout-page .brief-hub__nav a {
+  border-color: rgba(149, 228, 255, 0.12);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.028);
+}
+
+body[data-page] main.layout-page .faq-compass a:hover,
+body[data-page] main.layout-page .brief-hub__nav a:hover,
+body[data-page] main.layout-page .brief-hub__nav a.is-active {
+  border-color: rgba(149, 228, 255, 0.26);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+body[data-page] main.layout-page .faq-compass a span,
+body[data-page] main.layout-page .brief-hub__nav a span {
+  border-color: rgba(149, 228, 255, 0.18);
+  background: rgba(7, 12, 22, 0.92);
+}
+
+@media (min-width: 700px) {
+  body[data-page] main.layout-page .crosslink-grid > *,
+  body[data-page] main.layout-page .layout-panel-grid > *,
+  body[data-page] main.layout-page .layout-panel-grid--offset > *,
+  body[data-page] main.layout-page .layout-category-grid > *,
+  body[data-page] main.layout-page .card-grid > *,
+  body[data-page] main.layout-page .study-grid > *,
+  body[data-page] main.layout-page .route-grid > *,
+  body[data-page] main.layout-page .service-detail-grid > * {
+    grid-column: span 6;
+  }
+
+  body[data-page] main.layout-page .layout-metric-grid > *,
+  body[data-page] main.layout-page .layout-step-grid > *,
+  body[data-page] main.layout-page .layout-proof-grid > *,
+  body[data-page] main.layout-page .layout-service-mosaic > *,
+  body[data-page] main.layout-page .home-decision-grid > * {
+    grid-column: span 6;
+  }
+
+  body[data-page] main.layout-page .hero-mast__signal-grid,
+  body[data-page] main.layout-page .hero-mast__lane-grid,
+  body[data-page] main.layout-page .hero-mast__legal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 980px) {
+  body[data-page] main.layout-page .hero-mast__layout {
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  }
+
+  body[data-page] main.layout-page .hero-mast__stage {
+    align-content: end;
+  }
+
+  body[data-page]:not([data-page="home"]) main.layout-page .hero-mast__title {
+    font-size: clamp(3.2rem, 8vw, 6.8rem);
+    max-width: 8.2ch;
+  }
+
+  body[data-page] main.layout-page .layout-section__frame,
+  body[data-page] main.layout-page .policy-atlas__frame,
+  body[data-page] main.layout-page .faq-overview,
+  body[data-page] main.layout-page .contact-band--routes .shell,
+  body[data-page] main.layout-page .examples-band--studies .shell,
+  body[data-page] main.layout-page .examples-band--principles .shell,
+  body[data-page] main.layout-page .start-band--fit .shell,
+  body[data-page] main.layout-page .start-band--after .shell,
+  body[data-page] main.layout-page .pay-band--routes .shell,
+  body[data-page] main.layout-page .discovery-band--routes .shell,
+  body[data-page] main.layout-page .discovery-band--brief .shell {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 2rem);
+    align-items: start;
+  }
+
+  body[data-page] main.layout-page .layout-section__frame > .layout-section__intro,
+  body[data-page] main.layout-page .section-heading--panel,
+  body[data-page] main.layout-page .faq-summary,
+  body[data-page] main.layout-page .policy-summary {
+    grid-column: 1 / span 4;
+    position: sticky;
+    top: 7rem;
+    align-self: start;
+  }
+
+  body[data-page] main.layout-page .layout-section__frame > :not(.layout-section__intro),
+  body[data-page] main.layout-page .contact-band--routes .shell > :not(.section-heading--panel),
+  body[data-page] main.layout-page .examples-band--studies .shell > :not(.section-heading--panel),
+  body[data-page] main.layout-page .examples-band--principles .shell > :not(.section-heading--panel),
+  body[data-page] main.layout-page .start-band--fit .shell > :not(.section-heading--panel),
+  body[data-page] main.layout-page .start-band--after .shell > :not(.section-heading--panel),
+  body[data-page] main.layout-page .pay-band--routes .shell > :not(.section-heading--panel),
+  body[data-page] main.layout-page .faq-overview > :not(.faq-summary),
+  body[data-page] main.layout-page .policy-atlas__frame > :not(.policy-summary),
+  body[data-page] main.layout-page .discovery-band--routes .shell > :not(.layout-section__intro),
+  body[data-page] main.layout-page .discovery-band--brief .shell > :not(.layout-section__intro) {
+    grid-column: 5 / -1;
+  }
+
+  body[data-page] main.layout-page .home-band--fit .layout-rail-grid,
+  body[data-page] main.layout-page .about-band--premise .layout-split-grid,
+  body[data-page] main.layout-page .about-band--method .layout-split-grid {
+    grid-template-columns: minmax(0, 1.04fr) minmax(18rem, 0.96fr);
+    align-items: end;
+  }
+
+  body[data-page] main.layout-page .about-band--difference .layout-rail-grid {
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+    align-items: start;
+  }
+
+  body[data-page="home"] main.layout-page .home-band--offers .crosslink-grid > :nth-child(1) {
+    grid-column: span 7;
+  }
+
+  body[data-page="home"] main.layout-page .home-band--offers .crosslink-grid > :nth-child(2) {
+    grid-column: span 5;
+  }
+
+  body[data-page="home"] main.layout-page .home-band--offers .crosslink-grid > :nth-child(3) {
+    grid-column: 3 / -1;
+  }
+
+  body[data-page="home"] main.layout-page .home-band--outcomes .layout-metric-grid > * {
+    grid-column: span 6;
+  }
+
+  body[data-page="home"] main.layout-page .home-band--process .layout-step-grid > * {
+    grid-column: span 4;
+  }
+
+  body[data-page="home"] main.layout-page .home-band--routes .layout-twin-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.8rem);
+  }
+
+  body[data-page="about"] main.layout-page .about-band--mission .layout-panel-grid > * {
+    grid-column: span 6;
+  }
+
+  body[data-page="about"] main.layout-page .about-band--fit .layout-metric-grid > * {
+    grid-column: span 6;
+  }
+
+  body[data-page="services"] main.layout-page .services-band--taxonomy .layout-category-grid > * {
+    grid-column: span 4;
+  }
+
+  body[data-page="services"] main.layout-page .services-band--taxonomy .layout-category-grid > *:first-child {
+    grid-column: 1 / -1;
+  }
+
+  body[data-page="services"] main.layout-page .services-band--mosaic .layout-service-mosaic > * {
+    grid-column: span 4;
+  }
+
+  body[data-page="services"] main.layout-page .services-band--mosaic .layout-service-mosaic > *:nth-child(1),
+  body[data-page="services"] main.layout-page .services-band--mosaic .layout-service-mosaic > *:nth-child(5),
+  body[data-page="services"] main.layout-page .services-band--mosaic .layout-service-mosaic > *:nth-child(9) {
+    grid-column: span 8;
+  }
+
+  body[data-page="process"] main.layout-page .process-band--steps .layout-service-mosaic {
+    position: relative;
+    counter-reset: process-step;
+  }
+
+  body[data-page="process"] main.layout-page .process-band--steps .layout-service-mosaic::before {
+    content: "";
+    position: absolute;
+    top: 1.2rem;
+    bottom: 1.2rem;
+    left: calc(50% - 0.5px);
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(149, 228, 255, 0.26), rgba(255, 147, 95, 0.16), transparent);
+    pointer-events: none;
+  }
+
+  body[data-page="process"] main.layout-page .process-band--steps .layout-timeline {
+    counter-increment: process-step;
+  }
+
+  body[data-page="process"] main.layout-page .process-band--steps .layout-timeline::after {
+    content: counter(process-step, decimal-leading-zero);
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    color: rgba(243, 247, 255, 0.06);
+    font-family: var(--font-mono);
+    font-size: clamp(2.8rem, 6vw, 5.6rem);
+    line-height: 1;
+    letter-spacing: -0.08em;
+  }
+
+  body[data-page="process"] main.layout-page .process-band--steps .layout-service-mosaic > * {
+    grid-column: span 6;
+  }
+
+  body[data-page="process"] main.layout-page .process-band--steps .layout-service-mosaic > *:nth-child(3),
+  body[data-page="process"] main.layout-page .process-band--steps .layout-service-mosaic > *:nth-child(6) {
+    grid-column: 3 / -1;
+  }
+
+  body[data-page="examples"] main.layout-page .examples-band--studies .study-grid > :first-child {
+    grid-column: 1 / -1;
+  }
+
+  body[data-page="examples"] main.layout-page .examples-band--studies .study-grid > :nth-child(2),
+  body[data-page="examples"] main.layout-page .examples-band--studies .study-grid > :nth-child(3) {
+    grid-column: span 6;
+  }
+
+  body[data-page="examples"] main.layout-page .study-card {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    align-items: end;
+  }
+
+  body[data-page="examples"] main.layout-page .examples-band--studies .study-grid > :first-child .study-card,
+  body[data-page="examples"] main.layout-page .examples-band--studies .study-card:first-child {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  body[data-page="examples"] main.layout-page .examples-band--principles .card-grid > * {
+    grid-column: span 6;
+  }
+
+  body[data-page="examples"] main.layout-page .examples-band--principles .card-grid > :nth-child(1),
+  body[data-page="examples"] main.layout-page .examples-band--principles .card-grid > :nth-child(4) {
+    grid-column: span 7;
+  }
+
+  body[data-page="contact"] main.layout-page .contact-band--routes .route-grid > *,
+  body[data-page="start-project"] main.layout-page .start-band--fit .card-grid > *,
+  body[data-page="start-project"] main.layout-page .start-band--after .card-grid > * {
+    grid-column: span 4;
+  }
+
+  body[data-page="contact"] main.layout-page .contact-grid,
+  body[data-page="start-project"] main.layout-page .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 2rem);
+  }
+
+  body[data-page="contact"] main.layout-page .contact-grid > .form-card,
+  body[data-page="start-project"] main.layout-page .contact-grid > .form-card {
+    grid-column: 1 / span 8;
+  }
+
+  body[data-page="contact"] main.layout-page .contact-grid > .contact-card,
+  body[data-page="start-project"] main.layout-page .contact-grid > .contact-card {
+    grid-column: 9 / -1;
+    position: sticky;
+    top: 7rem;
+    align-self: start;
+  }
+
+  body[data-page="pay-consultation"] main.layout-page .payment-flow {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 2rem);
+    align-items: start;
+  }
+
+  body[data-page="pay-consultation"] main.layout-page .payment-flow > .route-grid {
+    grid-column: 1 / span 5;
+  }
+
+  body[data-page="pay-consultation"] main.layout-page .payment-flow > .form-card {
+    grid-column: 6 / -1;
+  }
+
+  body[data-page="pay-consultation"] main.layout-page .route-grid > :first-child {
+    grid-column: 1 / -1;
+  }
+
+  body[data-page="discovery"] main.layout-page .layout-twin-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.8rem);
+  }
+
+  body[data-page="discovery"] main.layout-page .discovery-band--brief .brief-hub__mast {
+    grid-column: 1 / span 4;
+    position: sticky;
+    top: 7rem;
+    align-self: start;
+  }
+
+  body[data-page="discovery"] main.layout-page .discovery-band--brief .stacked-form,
+  body[data-page="discovery"] main.layout-page .discovery-band--brief [data-form-success],
+  body[data-page="discovery"] main.layout-page .discovery-band--brief [data-form-error] {
+    grid-column: 5 / -1;
+  }
+
+  body[data-page="faq"] main.layout-page .faq-band--atlas .faq-shell,
+  body[data-page="privacy"] main.layout-page .policy-atlas__cards > *,
+  body[data-page="terms"] main.layout-page .policy-atlas__cards > *,
+  body[data-page="cookies"] main.layout-page .policy-atlas__cards > *,
+  body[data-page="accessibility"] main.layout-page .policy-atlas__cards > * {
+    grid-column: span 6;
+  }
+
+  body[data-page="faq"] main.layout-page .faq-band--atlas .faq-shell:nth-child(1),
+  body[data-page="faq"] main.layout-page .faq-band--atlas .faq-shell:nth-child(6),
+  body[data-page="privacy"] main.layout-page .policy-atlas__cards > *:last-child:nth-child(odd),
+  body[data-page="terms"] main.layout-page .policy-atlas__cards > *:last-child:nth-child(odd),
+  body[data-page="cookies"] main.layout-page .policy-atlas__cards > *:last-child:nth-child(odd),
+  body[data-page="accessibility"] main.layout-page .policy-atlas__cards > *:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 979px) {
+  body[data-page] main.layout-page > .section::after {
+    font-size: clamp(2.4rem, 10vw, 4.8rem);
+    opacity: 0.07;
+  }
+
+  body[data-page] main.layout-page .hero-mast__frame {
+    min-height: auto;
+  }
+
+  body[data-page] main.layout-page .hero-mast__title {
+    max-width: 8ch;
+    font-size: clamp(3rem, 12vw, 6rem);
+  }
+
+  body[data-page] main.layout-page .layout-section__title,
+  body[data-page] main.layout-page .section-title {
+    max-width: 12ch;
+    font-size: clamp(2.2rem, 9vw, 4.4rem);
+  }
+
+  body[data-page="process"] main.layout-page .process-band--steps .layout-service-mosaic::before {
+    display: none;
+  }
+}
+
+@media (max-width: 759px) {
+  body[data-page] main.layout-page .shell,
+  body[data-page] main.layout-page .hero-mast__shell {
+    width: min(100%, calc(100% - 1.25rem));
+  }
+
+  body[data-page] main.layout-page > .section {
+    padding-block: clamp(2.6rem, 10vw, 4rem);
+  }
+
+  body[data-page] main.layout-page > .section::after {
+    top: 0.8rem;
+    right: 0.9rem;
+    font-size: clamp(2.2rem, 14vw, 3.6rem);
+  }
+
+  body[data-page] main.layout-page .hero-mast__frame,
+  body[data-page] main.layout-page .route-card,
+  body[data-page] main.layout-page .layout-panel,
+  body[data-page] main.layout-page .layout-metric,
+  body[data-page] main.layout-page .layout-timeline,
+  body[data-page] main.layout-page .card,
+  body[data-page] main.layout-page .service-detail,
+  body[data-page] main.layout-page .study-card,
+  body[data-page] main.layout-page .policy-card,
+  body[data-page] main.layout-page .faq-shell,
+  body[data-page] main.layout-page .contact-card,
+  body[data-page] main.layout-page .form-card,
+  body[data-page] main.layout-page .quote-banner,
+  body[data-page] main.layout-page .callout,
+  body[data-page] main.layout-page .layout-callout,
+  body[data-page] main.layout-page .layout-highlight,
+  body[data-page] main.layout-page .brief-hub__mast {
+    border-radius: 28px;
+  }
+
+  body[data-page] main.layout-page .button {
+    width: 100%;
+  }
+
+  body[data-page] main.layout-page .hero-mast__actions,
+  body[data-page] main.layout-page .layout-actions,
+  body[data-page] main.layout-page .hero__actions {
+    display: grid;
+  }
+
+  body[data-page] main.layout-page .hero-mast__signal-grid,
+  body[data-page] main.layout-page .hero-mast__lane-grid,
+  body[data-page] main.layout-page .hero-mast__legal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-page] main.layout-page .hero-mast__media {
+    min-height: 16rem;
+  }
+
+  body[data-page] main.layout-page .study-card {
+    gap: 1rem;
+  }
+
+  body[data-page="process"] main.layout-page .hero-mast__title {
+    max-width: 6.2ch;
+    font-size: clamp(2.5rem, 12vw, 4.4rem);
+  }
+
+  body[data-page="process"] main.layout-page .hero-mast__lede {
+    padding-left: 0.8rem;
+    font-size: 0.98rem;
+  }
+
+  body[data-page="process"] main.layout-page .hero-mast__lane-grid {
+    display: none;
+  }
+
+  body[data-page="process"] main.layout-page .layout-section__frame {
+    display: grid;
+    gap: 1rem;
+  }
+
+  body[data-page="process"] main.layout-page .layout-section__intro {
+    padding: 1.2rem 1.25rem;
+    border: 1px solid rgba(149, 228, 255, 0.14);
+    border-top-color: rgba(149, 228, 255, 0.28);
+    border-radius: 28px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.028), rgba(255, 255, 255, 0.01)),
+      rgba(6, 10, 20, 0.72);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+  }
+
+  body[data-page="process"] main.layout-page .layout-section__intro .layout-section__body,
+  body[data-page="process"] main.layout-page .layout-section__intro .layout-section__kicker,
+  body[data-page="process"] main.layout-page .layout-section__intro .layout-section__title {
+    color: var(--editorial-text);
+  }
+
+  body[data-page="process"] main.layout-page .layout-section__intro .layout-section__body {
+    color: var(--editorial-soft);
+  }
+
+  body[data-page="contact"] main.layout-page .hero-mast__stage,
+  body[data-page="discovery"] main.layout-page .hero-mast__stage,
+  body[data-page="start-project"] main.layout-page .hero-mast__stage,
+  body[data-page="home"] main.layout-page .hero-mast__stage,
+  body[data-page="pay-consultation"] main.layout-page .hero-mast__stage,
+  body[data-page="schedule-meeting"] main.layout-page .hero-mast__stage,
+  body[data-page="faq"] main.layout-page .hero-mast__stage,
+  body[data-page="privacy"] main.layout-page .hero-mast__stage,
+  body[data-page="terms"] main.layout-page .hero-mast__stage,
+  body[data-page="cookies"] main.layout-page .hero-mast__stage,
+  body[data-page="accessibility"] main.layout-page .hero-mast__stage {
+    display: none;
+  }
+
+  body[data-page="contact"] main.layout-page .hero-mast__title,
+  body[data-page="discovery"] main.layout-page .hero-mast__title,
+  body[data-page="start-project"] main.layout-page .hero-mast__title,
+  body[data-page="home"] main.layout-page .hero-mast__title,
+  body[data-page="pay-consultation"] main.layout-page .hero-mast__title,
+  body[data-page="schedule-meeting"] main.layout-page .hero-mast__title,
+  body[data-page="faq"] main.layout-page .hero-mast__title,
+  body[data-page="privacy"] main.layout-page .hero-mast__title,
+  body[data-page="terms"] main.layout-page .hero-mast__title,
+  body[data-page="cookies"] main.layout-page .hero-mast__title,
+  body[data-page="accessibility"] main.layout-page .hero-mast__title {
+    max-width: 7ch;
+    font-size: clamp(2.7rem, 12vw, 4.8rem);
+  }
+
+  body[data-page="home"] main.layout-page .hero-mast__title {
+    max-width: 100%;
+    font-size: clamp(2.85rem, 10.8vw, 4.2rem);
+    line-height: 0.94;
+  }
+
+  body[data-page="contact"] main.layout-page .hero-mast__title {
+    font-size: clamp(2.3rem, 10vw, 3.7rem);
+    line-height: 1.04;
+  }
+
+  body[data-page="home"] main.layout-page .hero-mast__actions .button {
+    width: 100%;
   }
 }

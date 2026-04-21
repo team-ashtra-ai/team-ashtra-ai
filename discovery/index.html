@@ -51,7 +51,7 @@
     </div>
     <div data-site-header></div>
 
-    <main class="layout-page">
+    <main class="layout-page page-flow page-flow--discovery">
       <!-- Discovery: Hero section -->
       <section class="section hero-mast layout-section" data-layout-sequence>
         <div class="hero-mast__shell">
@@ -108,24 +108,20 @@
         </div>
       </section>
 
-      <!-- Discovery: Route selection section -->
-      <section class="section layout-section section--contrast discovery-band discovery-band--routes" data-layout-sequence>
+      <section class="section section--contrast discovery-band discovery-band--routes" data-layout-sequence>
         <div class="shell">
-          <div class="surface layout-section__intro" data-reveal>
-            <div class="layout-mark">
-              <img src="/brand/ash-tra-logo.png" alt="ASH-TRA logo mark" />
-            </div>
-            <span class="layout-section__kicker">Two ways to start</span>
-            <h2 class="layout-section__title">Choose the level of support you want first.</h2>
-            <p class="layout-section__body">
+          <div class="surface section-heading section-heading--panel" data-reveal>
+            <span class="eyebrow">Start routes</span>
+            <h2 class="section-title">Choose the level of support you want first.</h2>
+            <p class="section-text">
               Start with the human route if you want sharper direction first. Start with the
               questionnaire if you want to skip the call for now and receive a rough idea of scope
               and pricing first.
             </p>
           </div>
-          <div class="layout-twin-grid">
-            <article class="surface layout-panel" data-reveal data-tilt>
-              <span class="route-card__label">Route 1</span>
+          <div class="route-grid">
+            <article class="surface route-card" data-reveal data-tilt id="paid-consultation">
+              <span class="route-card__label">Route 01</span>
               <h3>Paid Consultation</h3>
               <p>For companies that want human input, sharper direction, and a proper strategic start before any build begins.</p>
               <ul class="check-list">
@@ -133,12 +129,11 @@
                 <li>Human feedback on what feels weak, what is missing, and what needs to change.</li>
                 <li>Clear direction on the best next move before money gets spent in the wrong place.</li>
               </ul>
-              <p><strong>Outcome:</strong> A sharper brief, a clearer direction, and a far stronger starting point.</p>
               <a class="button button--primary button--block" href="/pay-consultation/" data-track="pay_consultation_view">Book Discovery Consultation</a>
               <p class="service-detail__punch">Clarity first. Build second.</p>
             </article>
-            <article class="surface layout-panel" data-reveal data-tilt>
-              <span class="route-card__label">Route 2</span>
+            <article class="surface route-card" data-reveal data-tilt id="questionnaire-only">
+              <span class="route-card__label">Route 02</span>
               <h3>Questionnaire Only</h3>
               <p>For companies that want to skip the call for now, answer the questions, and receive a rough idea of scope and pricing first.</p>
               <ul class="check-list">
@@ -146,40 +141,58 @@
                 <li>No need to speak to someone first.</li>
                 <li>An approximate offer sent within 48 hours, excluding weekends.</li>
               </ul>
-              <p><strong>Outcome:</strong> A quick first direction on scope, fit, and likely budget.</p>
               <a class="button button--secondary button--block" href="#discovery-questionnaire" data-track="discovery_view">Fill Out the Discovery Brief</a>
               <p class="service-detail__punch">No call. No pressure. Just clarity.</p>
+            </article>
+            <article class="surface route-card" data-reveal data-tilt id="project-route">
+              <span class="route-card__label">Route 03</span>
+              <h3>Start Project Directly</h3>
+              <p>For companies that already know the route and do not need diagnosis before the project review starts.</p>
+              <ul class="check-list">
+                <li>Fastest route for launch, rebuild, or focused page work.</li>
+                <li>Best when the shape of the project is already clear.</li>
+                <li>Useful when the business is ready to move now.</li>
+              </ul>
+              <a class="button button--subtle button--block" href="/start-project/" data-track="start_project_click">Start Project</a>
+              <p class="service-detail__punch">Skip the extra step if you already know the move.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- Discovery: Why this matters section -->
-      <section class="section layout-section discovery-band discovery-band--why" data-layout-sequence>
-        <div class="shell">
-          <div class="surface layout-section__intro" data-reveal>
-            <span class="layout-section__kicker">Why this matters</span>
-            <h2 class="layout-section__title">A better brief creates a better build.</h2>
-            <p class="layout-section__body">
+      <section class="section discovery-band discovery-band--why" data-layout-sequence>
+        <div class="shell story-grid">
+          <article class="story-grid__copy surface" data-reveal>
+            <span class="eyebrow">Why this matters</span>
+            <h2 class="section-title">A better brief creates a better build.</h2>
+            <p class="section-text">
               Strong websites do not come from vague ideas. They come from clarity. The more
               clearly the direction is set, the stronger the result feels when it goes live.
             </p>
-          </div>
-          <div class="layout-metric-grid">
-            <article class="surface layout-metric" data-reveal data-tilt><span class="layout-metric__label">01 You avoid guesswork</span><p class="layout-metric__value">You get clear on what the company actually needs instead of building blind.</p></article>
-            <article class="surface layout-metric" data-reveal data-tilt><span class="layout-metric__label">02 You save time</span><p class="layout-metric__value">The right direction early means less backtracking later.</p></article>
-            <article class="surface layout-metric" data-reveal data-tilt><span class="layout-metric__label">03 You get a stronger result</span><p class="layout-metric__value">The build lands harder when the thinking behind it is already sharp.</p></article>
-            <article class="surface layout-metric" data-reveal data-tilt><span class="layout-metric__label">04 You understand the scope</span><p class="layout-metric__value">You know whether this is a fresh launch, a redesign, a rebuild, or something more focused.</p></article>
-          </div>
-          <p class="page-hero__punch" data-reveal>Get clear before you commit.</p>
+            <ul class="check-list">
+              <li>You avoid guesswork.</li>
+              <li>You save time.</li>
+              <li>You get a stronger result.</li>
+              <li>You understand the scope earlier.</li>
+            </ul>
+          </article>
+          <article class="story-grid__media surface" data-reveal data-tilt>
+            <div class="image-frame">
+              <img src="/assets/media/space-moon-frame.jpg" alt="ASH-TRA moon frame representing clarity before a stronger website build." />
+            </div>
+            <p class="media-caption">Get clear before you commit.</p>
+            <div class="route-cloud">
+              <a href="/pay-consultation/">Book Call</a>
+              <a href="/start-project/">Start Project</a>
+            </div>
+          </article>
         </div>
       </section>
 
-      <!-- Discovery: Guidance comparison section -->
-      <section class="section layout-section section--contrast discovery-band discovery-band--comparison" data-layout-sequence>
+      <section class="section section--contrast discovery-band discovery-band--comparison" data-layout-sequence>
         <div class="shell service-detail-grid">
           <article class="surface service-detail" data-reveal>
-            <span class="service-detail__index">What we cover</span>
+            <span class="service-detail__index">Paid route</span>
             <h3>A real conversation about what the company needs next.</h3>
             <p>
               The paid consultation is for companies that want more than a rough estimate. It is
@@ -197,7 +210,7 @@
             <p class="service-detail__punch">Not just a quote. Real direction.</p>
           </article>
           <article class="surface service-detail" data-reveal>
-            <span class="service-detail__index">What to expect</span>
+            <span class="service-detail__index">Async route</span>
             <h3>Straight answers in. Approximate offer out.</h3>
             <p>
               If you choose the questionnaire route, fill it out with as much clarity as you can.
@@ -212,6 +225,20 @@
             </ul>
             <p class="service-detail__punch">Quick route. Clear next step.</p>
           </article>
+          <article class="surface service-detail" data-reveal>
+            <span class="service-detail__index">What happens next</span>
+            <h3>Choose the route, then keep moving.</h3>
+            <p>
+              The page is not meant to trap you in research. It is meant to make the next move
+              obvious based on how much clarity you already have.
+            </p>
+            <ul class="detail-list">
+              <li>Need diagnosis first: paid consultation.</li>
+              <li>Need a lighter async start: questionnaire only.</li>
+              <li>Already know the project: start project directly.</li>
+            </ul>
+            <p class="service-detail__punch">Pick the route. Keep the momentum.</p>
+          </div>
         </div>
       </section>
 
