@@ -7689,6 +7689,200 @@ body[data-page] main.layout-page .visual-frame img {
   filter: saturate(0.8) contrast(1.08) brightness(0.84);
 }
 
+body[data-page] main.layout-page .hero-mast__stage[data-hero-mode="cinematic"] {
+  position: relative;
+  min-height: clamp(22rem, 42vw, 40rem);
+  display: grid;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+body[data-page] main.layout-page .hero-mast__backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(120, 227, 255, 0.12), transparent 22%),
+    radial-gradient(circle at 82% 76%, rgba(255, 156, 104, 0.12), transparent 20%),
+    linear-gradient(130deg, rgba(4, 8, 16, 0.38), rgba(4, 8, 16, 0.08) 42%, rgba(4, 8, 16, 0.44));
+  pointer-events: none;
+}
+
+body[data-page] main.layout-page .hero-mast__visual {
+  position: relative;
+  min-height: inherit;
+  isolation: isolate;
+}
+
+body[data-page] main.layout-page .hero-mast__media--cinematic {
+  position: absolute;
+  inset: 0;
+  min-height: 100%;
+  border-radius: 34px;
+}
+
+body[data-page] main.layout-page .hero-mast__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+body[data-page] main.layout-page .hero-mast__overlay--grid {
+  background:
+    linear-gradient(rgba(142, 228, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(142, 228, 255, 0.06) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: linear-gradient(180deg, transparent 0, black 16%, black 72%, transparent 100%);
+}
+
+body[data-page] main.layout-page .hero-mast__overlay--glow {
+  background:
+    radial-gradient(circle at 22% 30%, rgba(125, 228, 255, 0.16), transparent 16%),
+    radial-gradient(circle at 74% 72%, rgba(255, 161, 112, 0.12), transparent 18%);
+}
+
+body[data-page] main.layout-page .hero-mast__route-line {
+  position: absolute;
+  left: clamp(1rem, 2vw, 1.6rem);
+  bottom: clamp(1.2rem, 2vw, 1.8rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  background: rgba(5, 12, 23, 0.78);
+  border: 1px solid rgba(149, 228, 255, 0.18);
+  z-index: 4;
+}
+
+body[data-page] main.layout-page .hero-mast__route-line::before {
+  content: "";
+  width: 3.6rem;
+  height: 0.24rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(149, 228, 255, 0.92), rgba(255, 159, 112, 0.95));
+  box-shadow: 0 0 16px rgba(121, 227, 255, 0.24);
+}
+
+body[data-page] main.layout-page .hero-mast__route-line span,
+body[data-page] main.layout-page .hero-mast__badge,
+body[data-page] main.layout-page .hero-mast__stat-card strong,
+body[data-page] main.layout-page .hero-mast__stat-card span,
+body[data-page] main.layout-page .section-visual__label {
+  font-family: var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+body[data-page] main.layout-page .hero-mast__route-line span,
+body[data-page] main.layout-page .hero-mast__badge {
+  font-size: 0.72rem;
+  color: var(--editorial-text);
+}
+
+body[data-page] main.layout-page .hero-mast__badge {
+  position: absolute;
+  top: clamp(1rem, 2vw, 1.6rem);
+  right: clamp(1rem, 2vw, 1.6rem);
+  padding: 0.7rem 0.95rem;
+  border-radius: 999px;
+  background: rgba(8, 17, 29, 0.84);
+  border: 1px solid rgba(149, 228, 255, 0.18);
+  z-index: 4;
+}
+
+body[data-page] main.layout-page .hero-mast__chip-row--hero {
+  position: absolute;
+  top: clamp(1rem, 2vw, 1.6rem);
+  left: clamp(1rem, 2vw, 1.6rem);
+  width: min(24rem, calc(100% - 11rem));
+  z-index: 4;
+}
+
+body[data-page] main.layout-page .hero-mast__stats {
+  position: absolute;
+  right: clamp(1rem, 2vw, 1.6rem);
+  bottom: clamp(4.6rem, 7vw, 6rem);
+  display: grid;
+  gap: 0.8rem;
+  width: min(17rem, calc(100% - 2rem));
+  z-index: 4;
+}
+
+body[data-page] main.layout-page .hero-mast__stat-card {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.95rem 1rem;
+  border-radius: 22px;
+  background: rgba(7, 14, 26, 0.78);
+  border: 1px solid rgba(149, 228, 255, 0.16);
+  backdrop-filter: blur(14px);
+}
+
+body[data-page] main.layout-page .hero-mast__stat-card strong {
+  font-size: 0.68rem;
+  color: var(--editorial-text);
+}
+
+body[data-page] main.layout-page .hero-mast__stat-card span {
+  font-size: 0.7rem;
+  color: var(--editorial-soft);
+}
+
+body[data-page] main.layout-page .section-visual {
+  position: relative;
+  margin: -0.3rem -0.3rem 1rem;
+  min-height: 8rem;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(149, 228, 255, 0.14);
+  background: rgba(4, 10, 18, 0.72);
+}
+
+body[data-page] main.layout-page .section-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.85) contrast(1.05) brightness(0.88);
+}
+
+body[data-page] main.layout-page .section-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(4, 8, 16, 0.12), rgba(4, 8, 16, 0.72)),
+    linear-gradient(90deg, rgba(4, 8, 16, 0.46), rgba(4, 8, 16, 0.06));
+}
+
+body[data-page] main.layout-page .section-visual__label {
+  position: absolute;
+  left: 1rem;
+  bottom: 0.95rem;
+  z-index: 2;
+  padding: 0.46rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(7, 15, 28, 0.8);
+  border: 1px solid rgba(149, 228, 255, 0.16);
+  font-size: 0.64rem;
+  color: var(--editorial-text);
+}
+
+body[data-page] main.layout-page .surface-arrow {
+  position: absolute;
+  right: 0.9rem;
+  top: 0.9rem;
+  width: 6rem;
+  opacity: 0.82;
+  pointer-events: none;
+}
+
+body[data-page] main.layout-page .surface-arrow img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 body[data-page] main.layout-page .hero-mast__orbital {
   min-height: clamp(18rem, 40vw, 34rem);
   border-radius: 38px;
@@ -8946,4 +9140,314 @@ body[data-page] main.layout-page .hero__actions,
 body[data-page] main.layout-page .layout-actions,
 body[data-page] main.layout-page .hero-mast__actions {
   margin-top: clamp(0.65rem, 1.4vw, 0.95rem);
+}
+
+@media (max-width: 759px) {
+  body[data-page] main.layout-page .hero-mast__chip-row--hero {
+    width: calc(100% - 2rem);
+  }
+
+  body[data-page] main.layout-page .hero-mast__stats {
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+    bottom: 4.9rem;
+  }
+
+  body[data-page] main.layout-page .hero-mast__route-line {
+    right: 1rem;
+  }
+
+  body[data-page] main.layout-page .surface-arrow {
+    width: 4.4rem;
+  }
+}
+
+body[data-page] main.layout-page .hero-mast__brand-panel {
+  position: absolute;
+  left: clamp(1rem, 2vw, 1.6rem);
+  top: 5.25rem;
+  z-index: 4;
+  display: grid;
+  gap: 0.8rem;
+  width: min(17rem, calc(100% - 2rem));
+  padding: 1rem 1.05rem;
+  border-radius: 24px;
+  border: 1px solid rgba(149, 228, 255, 0.16);
+  background: rgba(6, 12, 22, 0.72);
+  backdrop-filter: blur(14px);
+}
+
+body[data-page] main.layout-page .hero-mast__brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0.55rem;
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(121, 227, 255, 0.12), rgba(255, 159, 112, 0.12));
+  border: 1px solid rgba(149, 228, 255, 0.16);
+}
+
+body[data-page] main.layout-page .hero-mast__brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+body[data-page] main.layout-page .hero-mast__brand-panel p {
+  margin: 0;
+  color: var(--editorial-soft);
+  line-height: 1.55;
+}
+
+body[data-page] main.layout-page .hero-mast__ticker {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 7.65rem;
+  overflow: hidden;
+  z-index: 3;
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+body[data-page] main.layout-page .hero-mast__ticker span {
+  display: inline-block;
+  min-width: max-content;
+  color: rgba(234, 244, 255, 0.16);
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.65rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  animation: ashtraHeroTicker 26s linear infinite;
+}
+
+body[data-page="about"] main.layout-page .hero-mast__layout,
+body[data-page="examples"] main.layout-page .hero-mast__layout,
+body[data-page="contact"] main.layout-page .hero-mast__layout {
+  grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+  align-items: center;
+}
+
+body[data-page="about"] main.layout-page .hero-mast__copy,
+body[data-page="examples"] main.layout-page .hero-mast__copy,
+body[data-page="contact"] main.layout-page .hero-mast__copy {
+  align-content: center;
+}
+
+body[data-page="about"] main.layout-page .hero-mast__stage,
+body[data-page="examples"] main.layout-page .hero-mast__stage,
+body[data-page="contact"] main.layout-page .hero-mast__stage {
+  min-height: clamp(26rem, 44vw, 42rem);
+}
+
+body[data-page="about"] main.layout-page .hero-mast__brand-panel,
+body[data-page="examples"] main.layout-page .hero-mast__brand-panel,
+body[data-page="contact"] main.layout-page .hero-mast__brand-panel {
+  width: min(18.5rem, calc(100% - 2rem));
+}
+
+body[data-page="contact"] main.layout-page .hero-mast__stats {
+  bottom: 5.4rem;
+}
+
+body[data-page="examples"] main.layout-page .hero-mast__ticker {
+  bottom: 6.9rem;
+}
+
+body[data-page="about"] main.layout-page .hero-mast__title {
+  max-width: 9.8ch;
+  font-size: clamp(2.6rem, 3.6vw, 3.8rem);
+}
+
+body[data-page="examples"] main.layout-page .hero-mast__title {
+  max-width: 9.6ch;
+  font-size: clamp(2.6rem, 3.5vw, 3.8rem);
+}
+
+body[data-page="contact"] main.layout-page .hero-mast__title {
+  max-width: 8.8ch;
+  font-size: clamp(2.4rem, 3.4vw, 3.6rem);
+}
+
+body[data-page] main.layout-page .section-heading--with-rail {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+body[data-page] main.layout-page .section-heading__rail {
+  display: grid;
+  gap: 0.9rem;
+  width: 100%;
+  margin-top: 0.45rem;
+}
+
+body[data-page] main.layout-page .section-heading__rail-media {
+  position: relative;
+  min-height: 11rem;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(149, 228, 255, 0.14);
+  background: rgba(4, 10, 18, 0.72);
+}
+
+body[data-page] main.layout-page .section-heading__rail-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+body[data-page] main.layout-page .section-heading__rail-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(4, 8, 16, 0.12), rgba(4, 8, 16, 0.72)),
+    linear-gradient(90deg, rgba(4, 8, 16, 0.42), rgba(4, 8, 16, 0.08));
+}
+
+body[data-page] main.layout-page .section-heading__rail-mark {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0.42rem;
+  border-radius: 18px;
+  background: rgba(8, 16, 28, 0.84);
+  border: 1px solid rgba(149, 228, 255, 0.18);
+}
+
+body[data-page] main.layout-page .section-heading__rail-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+body[data-page] main.layout-page .section-heading__rail-kicker {
+  color: var(--editorial-text);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+body[data-page] main.layout-page .section-heading__rail-copy {
+  display: grid;
+  gap: 0.45rem;
+}
+
+body[data-page] main.layout-page .section-heading__rail-copy p {
+  margin: 0;
+  color: var(--editorial-soft);
+  max-width: 24rem;
+}
+
+body[data-page] main.layout-page .section-visual__mark {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0.34rem;
+  border-radius: 16px;
+  background: rgba(8, 16, 28, 0.82);
+  border: 1px solid rgba(149, 228, 255, 0.16);
+}
+
+body[data-page] main.layout-page .section-visual__mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+body[data-page] main.layout-page .hero-mast__punch,
+body[data-page] main.layout-page .page-hero__punch,
+body[data-page] main.layout-page .service-detail__punch {
+  width: 100%;
+  justify-self: end;
+  text-align: right;
+}
+
+body[data-page] main.layout-page .section-heading.section-heading--panel .page-hero__punch,
+body[data-page] main.layout-page .story-grid__copy .page-hero__punch,
+body[data-page] main.layout-page .callout .page-hero__punch,
+body[data-page] main.layout-page .layout-section__intro .page-hero__punch {
+  justify-self: end;
+  text-align: right;
+}
+
+[data-tilt] {
+  transition: transform 220ms ease-out, box-shadow 220ms ease-out;
+}
+
+@media (min-width: 1100px) {
+  body[data-page] main.layout-page .section-heading--with-rail {
+    grid-template-columns: minmax(0, 1.05fr) minmax(15rem, 0.95fr);
+    align-items: start;
+    column-gap: 1rem;
+  }
+
+  body[data-page] main.layout-page .section-heading--with-rail > :not(.section-heading__rail) {
+    grid-column: 1;
+  }
+
+  body[data-page] main.layout-page .section-heading--with-rail > .section-heading__rail {
+    grid-column: 2;
+    grid-row: 1 / span 6;
+    align-self: stretch;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 979px) {
+  body[data-page="about"] main.layout-page .hero-mast__layout,
+  body[data-page="examples"] main.layout-page .hero-mast__layout,
+  body[data-page="contact"] main.layout-page .hero-mast__layout {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-page] main.layout-page .hero-mast__brand-panel {
+    width: min(16rem, calc(100% - 2rem));
+  }
+}
+
+@media (max-width: 759px) {
+  body[data-page] main.layout-page .hero-mast__ticker {
+    display: none;
+  }
+
+  body[data-page] main.layout-page .hero-mast__brand-panel {
+    top: 1rem;
+    width: calc(100% - 2rem);
+  }
+
+  body[data-page] main.layout-page .section-heading__rail-media {
+    min-height: 9rem;
+  }
+
+  body[data-page] main.layout-page .hero-mast__punch,
+  body[data-page] main.layout-page .page-hero__punch,
+  body[data-page] main.layout-page .service-detail__punch {
+    text-align: left;
+  }
+}
+
+@keyframes ashtraHeroTicker {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-33.333%, 0, 0);
+  }
 }

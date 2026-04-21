@@ -959,7 +959,7 @@
 
         cancelAnimationFrame(raf);
         raf = requestAnimationFrame(function () {
-          card.style.transform = `perspective(1200px) rotateX(${(-y * 6).toFixed(2)}deg) rotateY(${(x * 8).toFixed(2)}deg) translateY(-4px)`;
+          card.style.transform = `perspective(1200px) rotateX(${(-y * 2.1).toFixed(2)}deg) rotateY(${(x * 2.8).toFixed(2)}deg) translateY(-1.5px)`;
         });
       });
 
@@ -1084,83 +1084,358 @@
   }
 
   function setupHeroMediaLayers() {
-    const mediaByPage = {
+    const heroManifest = {
       home: {
-        src: "/assets/media/space-exoplanet-frame.jpg",
-        alt: "Dark orbital view above a planet horizon matching the ASH-TRA launch atmosphere."
+        src: "/assets/media/heroes/home-hero-orbital-launch-business-growth.svg",
+        alt: "Cinematic orbital launch scene representing premium website design and business growth for ambitious brands.",
+        label: "Launch stronger",
+        route: "Trajectory locked",
+        ticker: "LOOK SHARPER • LAND HARDER • GROW WITH MORE PULL • ",
+        blurb: "A stronger front door changes the first read before you ever speak.",
+        chips: ["Premium website design", "Sharper signal", "Business growth"],
+        stats: [
+          ["Focus", "Front-door authority"],
+          ["Direction", "Orbit to action"]
+        ]
       },
       about: {
-        src: "/assets/media/space-titan-frame.jpg",
-        alt: "Deep space atmosphere representing a stronger brand read and larger trajectory."
+        src: "/assets/media/heroes/about-hero-deep-space-brand-positioning.svg",
+        alt: "Deep-space horizon with orbital rings representing stronger brand positioning and a higher-level public read.",
+        label: "Stronger read",
+        route: "Larger trajectory",
+        ticker: "LOOK STRONGER • READ STRONGER • HARDER TO IGNORE • ",
+        blurb: "The company gets judged at the level the surface suggests. Raise the read.",
+        chips: ["Brand positioning", "Public read", "Momentum"],
+        stats: [
+          ["Bias", "Clear signal"],
+          ["Fit", "Ambitious businesses"]
+        ]
       },
       services: {
-        src: "/assets/media/space-moon-frame.jpg",
-        alt: "Moonlit space scene representing the ASH-TRA service range and technical depth."
+        src: "/assets/media/heroes/services-hero-satellite-network-website-services.svg",
+        alt: "Dark satellite network over a blue orbital body representing connected website services, SEO systems, and digital momentum.",
+        label: "Connected services",
+        route: "Strategy to systems",
+        ticker: "STRATEGY • BUILD • SYSTEMS • MOMENTUM • ",
+        blurb: "Different jobs. Same standard. Every lane should move the company forward.",
+        chips: ["Strategy", "Build", "SEO systems"],
+        stats: [
+          ["Signal", "Technical depth"],
+          ["Outcome", "Harder to ignore"]
+        ]
       },
       process: {
-        src: "/assets/media/visual-process-signal.svg",
-        alt: "Process signal graphic showing a guided route from discovery through support."
-      },
-      discovery: {
-        src: "/assets/media/space-exoplanet-frame.jpg",
-        alt: "Cinematic space view representing discovery, direction, and launch preparation."
+        src: "/assets/media/heroes/process-hero-flight-path-web-design-process.svg",
+        alt: "Flight-path route diagram representing a clear website design process from discovery through support.",
+        label: "No drift",
+        route: "Discovery to support",
+        ticker: "DISCOVERY • DIRECTION • BUILD • SUPPORT • ",
+        blurb: "Clear stages keep the work moving without bloated loops or weak handoffs.",
+        chips: ["Discovery", "Direction", "Build", "Support"],
+        stats: [
+          ["System", "Clear milestones"],
+          ["Movement", "Forward only"]
+        ]
       },
       contact: {
-        src: "/assets/media/visual-contact-beacon.svg",
-        alt: "Contact beacon graphic representing a clear route into the next project step."
-      },
-      "pay-consultation": {
-        src: "/assets/media/space-titan-frame.jpg",
-        alt: "Dark galaxy atmosphere representing paid consultation and strategic direction."
-      },
-      "schedule-meeting": {
-        src: "/assets/media/visual-command-center.svg",
-        alt: "Scheduling interface graphic representing a focused consultation booking route."
-      },
-      faq: {
-        src: "/assets/media/visual-studio-atlas.svg",
-        alt: "Atlas-style studio graphic representing clear answers and mapped decision paths."
-      },
-      privacy: {
-        src: "/assets/media/visual-contact-beacon.svg",
-        alt: "Privacy beacon graphic representing careful handling of information."
-      },
-      terms: {
-        src: "/assets/media/visual-command-center.svg",
-        alt: "Command center graphic representing clear commercial expectations."
-      },
-      cookies: {
-        src: "/assets/media/visual-mobile-stack.svg",
-        alt: "Mobile systems graphic representing site settings and cookie controls."
-      },
-      accessibility: {
-        src: "/assets/media/visual-mobile-stack.svg",
-        alt: "Accessible interface graphic representing usability across devices."
+        src: "/assets/media/heroes/contact-hero-beacon-route-project-enquiry.svg",
+        alt: "Beacon-style space route visual representing a clear contact path for businesses ready to start a website project.",
+        label: "Choose a route",
+        route: "Fastest next step",
+        ticker: "START PROJECT • BOOK CALL • SEND THE BRIEF • ",
+        blurb: "Pick the route that matches the level of clarity you already have.",
+        chips: ["Start project", "Book call", "Discovery form"],
+        stats: [
+          ["Signal", "Route matched"],
+          ["Speed", "Less friction"]
+        ]
       },
       "start-project": {
-        src: "/assets/media/visual-command-center.svg",
-        alt: "Command center graphic representing direct project intake and launch readiness."
+        src: "/assets/media/heroes/start-project-hero-launch-control-website-projects.svg",
+        alt: "Launch-control scene representing direct website project intake for businesses ready to start.",
+        label: "Direct intake",
+        route: "Launch route ready",
+        ticker: "LAUNCH • REBUILD • HIGH-VALUE PAGES • ",
+        blurb: "If the job is clear, skip the drag and move straight into review.",
+        chips: ["Launch", "Rebuild", "High-value pages"],
+        stats: [
+          ["Use case", "Ready-to-move teams"],
+          ["State", "Project scope clear"]
+        ]
+      },
+      "schedule-meeting": {
+        src: "/assets/media/heroes/schedule-meeting-hero-docking-window-consultation-booking.svg",
+        alt: "Docking-window style scene representing consultation booking, scheduling precision, and a clear next step.",
+        label: "Window open",
+        route: "Book the slot",
+        ticker: "BOOKED • FOCUSED • MOVING • ",
+        blurb: "Lock the time, show up ready, and move straight into what matters.",
+        chips: ["Time locked", "Prepared call", "Clear next step"],
+        stats: [
+          ["Mode", "Precision booking"],
+          ["Rhythm", "Booked. Focused."]
+        ]
+      },
+      "pay-consultation": {
+        src: "/assets/media/heroes/pay-consultation-hero-strategic-briefing-website-consultation.svg",
+        alt: "Strategic briefing scene representing paid website consultation, clarity, and direction before the build begins.",
+        label: "Briefing route",
+        route: "Clarity first",
+        ticker: "CLEAR FIRST • BUILD SECOND • LOWER RISK • ",
+        blurb: "Start with the sharper outside read before the build commits in the wrong direction.",
+        chips: ["Consultation", "Direction", "Lower risk"],
+        stats: [
+          ["Goal", "Reduce guesswork"],
+          ["Result", "Stronger starting point"]
+        ]
+      },
+      faq: {
+        src: "/assets/media/heroes/faq-hero-knowledge-atlas-business-questions.svg",
+        alt: "Atlas-style space map representing business questions, clear answers, and decision guidance.",
+        label: "Question atlas",
+        route: "Move by topic",
+        ticker: "QUESTIONS • ANSWERS • CLEAR SIGNAL • ",
+        blurb: "Short answers. Clear signal. No endless scroll through noise.",
+        chips: ["Offer", "Discovery", "Systems", "Support"],
+        stats: [
+          ["Read", "Clear answers"],
+          ["Flow", "Mapped topics"]
+        ]
+      },
+      privacy: {
+        src: "/assets/media/heroes/privacy-hero-secure-data-grid-business-privacy.svg",
+        alt: "Secure data grid representing business privacy, controlled information handling, and clear protection standards.",
+        label: "Handled properly",
+        route: "Secure by design",
+        ticker: "COLLECTED CAREFULLY • USED DELIBERATELY • ",
+        blurb: "Professional handling should read clearly before anyone sends a detail.",
+        chips: ["Collection", "Use", "Retention"],
+        stats: [
+          ["Policy", "Controlled handling"],
+          ["Trust", "Not sold"]
+        ]
+      },
+      terms: {
+        src: "/assets/media/heroes/terms-hero-command-grid-commercial-clarity.svg",
+        alt: "Command-grid visual representing commercial clarity, scope control, and clear service expectations.",
+        label: "Scope matters",
+        route: "Commercial clarity",
+        ticker: "SCOPE • FEES • OWNERSHIP • EXPECTATIONS • ",
+        blurb: "Clear commercial terms remove friction before the real work starts.",
+        chips: ["Scope", "Fees", "Ownership"],
+        stats: [
+          ["Policy", "Clear expectations"],
+          ["Read", "Compressed terms"]
+        ]
+      },
+      cookies: {
+        src: "/assets/media/heroes/cookies-hero-settings-signal-control-cookie-preferences.svg",
+        alt: "Settings control scene representing cookie preferences, consent choices, and site functionality.",
+        label: "Preference control",
+        route: "Settings and choice",
+        ticker: "ESSENTIAL • ANALYTICS • PREFERENCES • CHOICE • ",
+        blurb: "Clean settings. Clear choice. No vague language doing too much work.",
+        chips: ["Essential", "Analytics", "Preferences"],
+        stats: [
+          ["Policy", "Functional clarity"],
+          ["Signal", "Consent aware"]
+        ]
+      },
+      accessibility: {
+        src: "/assets/media/heroes/accessibility-hero-clear-navigation-inclusive-web-usability.svg",
+        alt: "Clear navigation scene representing inclusive web usability, readable interfaces, and stronger accessibility standards.",
+        label: "Usability first",
+        route: "Clear navigation",
+        ticker: "READABLE • NAVIGABLE • RESPONSIVE • ",
+        blurb: "Clarity should hold up across devices, interactions, and real people using the site.",
+        chips: ["Readable", "Navigable", "Responsive"],
+        stats: [
+          ["Baseline", "Practical accessibility"],
+          ["Direction", "Continuous improvement"]
+        ]
       },
       examples: {
-        src: "/assets/media/space-titan-frame.jpg",
-        alt: "Cinematic space horizon representing premium website directions and portfolio context."
+        src: "/assets/media/heroes/examples-hero-editorial-space-direction-premium-websites.svg",
+        alt: "Editorial space horizon representing premium website directions, structured case studies, and stronger creative standards.",
+        label: "Selected directions",
+        route: "Premium context",
+        ticker: "DIRECTION • PACING • CONTRAST • IMPACT • ",
+        blurb: "The work should prove the shift, not just throw mood at the page.",
+        chips: ["Case direction", "Story pacing", "Visual standard"],
+        stats: [
+          ["Lens", "Context first"],
+          ["Result", "Sharper examples"]
+        ]
       }
     };
 
-    const fallback = mediaByPage[page] || mediaByPage.home;
+    const media = heroManifest[page];
 
-    document.querySelectorAll(".hero-mast__stage").forEach(function (stage) {
-      let media = stage.querySelector(".hero-mast__media");
-      if (!media) {
-        media = document.createElement("div");
-        media.className = "hero-mast__media hero-mast__media--ambient";
-        media.innerHTML = `<img src="${fallback.src}" alt="${fallback.alt}" loading="eager" />`;
-        stage.prepend(media);
-      } else if (media.querySelector("video")) {
-        media.classList.add("hero-mast__media--ambient");
-        media.innerHTML = `<img src="${fallback.src}" alt="${fallback.alt}" loading="eager" />`;
+    document.querySelectorAll(".hero-mast__stage").forEach(function (stage, index) {
+      if (page === "discovery") {
+        stage.dataset.heroMode = "discovery";
+        return;
       }
-      stage.dataset.heroMedia = "true";
+
+      if (!media || index > 0) return;
+
+      stage.dataset.heroMode = "cinematic";
+      stage.dataset.heroVariant = page;
+      stage.innerHTML = `
+        <div class="hero-mast__backdrop" aria-hidden="true"></div>
+        <div class="hero-mast__visual" data-scene>
+          <div class="hero-mast__media hero-mast__media--cinematic">
+            <img src="${media.src}" alt="${media.alt}" loading="eager" />
+          </div>
+          <div class="hero-mast__overlay hero-mast__overlay--grid" data-depth="0.5"></div>
+          <div class="hero-mast__overlay hero-mast__overlay--glow" data-depth="1.2"></div>
+          <div class="hero-mast__brand-panel" data-depth="0.4">
+            <span class="hero-mast__brand-mark"><img src="/brand/ash-tra-mark.svg" alt="" loading="eager" /></span>
+            <p>${media.blurb}</p>
+          </div>
+          <div class="hero-mast__route-line" data-depth="0.85"><span>${media.route}</span></div>
+          <div class="hero-mast__badge hero-mast__badge--primary" data-depth="0.6">${media.label}</div>
+          <div class="hero-mast__chip-row hero-mast__chip-row--hero" data-depth="0.8">
+            ${media.chips.map(function (chip) { return `<span class="hero-mast__chip">${chip}</span>`; }).join("")}
+          </div>
+          <div class="hero-mast__stats" data-depth="0.7">
+            ${media.stats.map(function (item) { return `<div class="hero-mast__stat-card"><strong>${item[0]}</strong><span>${item[1]}</span></div>`; }).join("")}
+          </div>
+          <div class="hero-mast__ticker" aria-hidden="true">
+            <span>${media.ticker}${media.ticker}${media.ticker}</span>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  function setupSectionVisuals() {
+    const replacements = [
+      {
+        selector: 'body[data-page="home"] .home-band--premise .media-frame img',
+        src: "/assets/media/sections/home-premise-signal-shift-brand-gravity.svg",
+        alt: "Signal-shift scene representing stronger brand gravity and a more credible first impression."
+      },
+      {
+        selector: 'body[data-page="process"] .process-band--summary .image-frame img',
+        src: "/assets/media/sections/process-summary-route-diagram-web-build.svg",
+        alt: "Route diagram representing the journey from discovery to build and support on a modern business website."
+      },
+      {
+        selector: 'body[data-page="examples"] .examples-band--premise .media-frame img',
+        src: "/assets/media/sections/examples-editorial-direction-premium-websites.svg",
+        alt: "Editorial space composition representing premium website direction and stronger visual hierarchy."
+      },
+      {
+        selector: 'body[data-page="discovery"] .discovery-band--why .story-grid__media img',
+        src: "/assets/media/sections/discovery-routes-navigation-space-brief.svg",
+        alt: "Navigation route visual representing discovery choices, project briefing, and a clearer starting point."
+      },
+      {
+        selector: 'body[data-page="about"] .about-band--method .image-frame img',
+        src: "/assets/media/sections/about-method-execution-orbit-momentum.svg",
+        alt: "Orbital execution scene representing controlled process, cleaner build decisions, and long-term momentum."
+      },
+      {
+        selector: 'body[data-page="home"] .home-band--examples .story-grid__media img',
+        src: "/assets/media/sections/home-examples-premium-direction-orbit.svg",
+        alt: "Premium orbit scene representing stronger website direction, contrast, and editorial pacing."
+      }
+    ];
+
+    replacements.forEach(function (item) {
+      document.querySelectorAll(item.selector).forEach(function (image) {
+        image.setAttribute("src", item.src);
+        image.setAttribute("alt", item.alt);
+      });
+    });
+
+    const pageVisuals = {
+      home: "/assets/media/sections/home-premise-signal-shift-brand-gravity.svg",
+      services: "/assets/media/heroes/services-hero-satellite-network-website-services.svg",
+      process: "/assets/media/sections/process-summary-route-diagram-web-build.svg",
+      examples: "/assets/media/sections/examples-editorial-direction-premium-websites.svg",
+      discovery: "/assets/media/sections/discovery-routes-navigation-space-brief.svg",
+      contact: "/assets/media/sections/contact-route-network-project-enquiry.svg",
+      "start-project": "/assets/media/heroes/start-project-hero-launch-control-website-projects.svg",
+      "schedule-meeting": "/assets/media/heroes/schedule-meeting-hero-docking-window-consultation-booking.svg",
+      "pay-consultation": "/assets/media/heroes/pay-consultation-hero-strategic-briefing-website-consultation.svg",
+      faq: "/assets/media/heroes/faq-hero-knowledge-atlas-business-questions.svg",
+      privacy: "/assets/media/sections/legal-atlas-systems-business-clarity.svg",
+      terms: "/assets/media/sections/legal-atlas-systems-business-clarity.svg",
+      cookies: "/assets/media/heroes/cookies-hero-settings-signal-control-cookie-preferences.svg",
+      accessibility: "/assets/media/heroes/accessibility-hero-clear-navigation-inclusive-web-usability.svg",
+      about: "/assets/media/heroes/about-hero-deep-space-brand-positioning.svg"
+    };
+
+    const src = pageVisuals[page];
+    if (!src) return;
+
+    document
+      .querySelectorAll(".route-card, .service-detail, .faq-shell, .policy-card, .study-card, .card")
+      .forEach(function (node, index) {
+        if (node.querySelector(".section-visual")) return;
+
+        const label = node.querySelector(".route-card__label, .service-detail__index, .card__icon");
+        const visual = document.createElement("div");
+        visual.className = "section-visual";
+        visual.innerHTML = `
+          <img src="${src}" alt="" loading="lazy" />
+          <span class="section-visual__mark"><img src="/brand/ash-tra-mark.svg" alt="" loading="lazy" /></span>
+          <span class="section-visual__label">${label ? label.textContent.trim() : "Route " + String(index + 1).padStart(2, "0")}</span>
+        `;
+        node.insertBefore(visual, node.firstChild);
+
+        const arrow = document.createElement("div");
+        arrow.className = "surface-arrow";
+        arrow.innerHTML = '<img src="/assets/media/overlays/route-arrow-overlay.svg" alt="" loading="lazy" />';
+        node.appendChild(arrow);
+      });
+  }
+
+  function setupSectionIntroRails() {
+    const rails = [
+      {
+        selector: 'body[data-page="home"] .home-band--fit .section-heading--panel',
+        src: "/assets/media/sections/home-fit-brand-trajectory-signal.svg",
+        alt: "Signal trajectory scene representing ambitious businesses building stronger digital presence.",
+        kicker: "Built for trajectory",
+        line: "Weak signal creates drag."
+      },
+      {
+        selector: 'body[data-page="about"] .about-band--fit .section-heading--panel',
+        src: "/assets/media/sections/about-fit-brand-trajectory-authority.svg",
+        alt: "Trajectory and authority scene representing businesses ready for a stronger public read.",
+        kicker: "Read at the right level",
+        line: "A better surface changes the read."
+      },
+      {
+        selector: 'body[data-page="home"] .home-band--offers .section-heading--panel',
+        src: "/assets/media/sections/home-offers-launch-optimise-growth.svg",
+        alt: "Launch and optimisation scene representing core website offers for growth-focused businesses.",
+        kicker: "Launch. Reset. Optimise.",
+        line: "Build the layer that carries the weight."
+      }
+    ];
+
+    rails.forEach(function (item) {
+      document.querySelectorAll(item.selector).forEach(function (panel) {
+        if (panel.querySelector(".section-heading__rail")) return;
+        panel.classList.add("section-heading--with-rail");
+        const rail = document.createElement("aside");
+        rail.className = "section-heading__rail";
+        rail.innerHTML = `
+          <div class="section-heading__rail-media">
+            <img src="${item.src}" alt="${item.alt}" loading="lazy" />
+            <span class="section-heading__rail-mark"><img src="/brand/ash-tra-logo.png" alt="ASH-TRA logo mark" loading="lazy" /></span>
+          </div>
+          <div class="section-heading__rail-copy">
+            <span class="section-heading__rail-kicker">${item.kicker}</span>
+            <p>${item.line}</p>
+          </div>
+        `;
+        panel.appendChild(rail);
+      });
     });
   }
 
@@ -1833,6 +2108,8 @@
     setupReveal();
     setupTiltCards();
     setupHeroMediaLayers();
+    setupSectionVisuals();
+    setupSectionIntroRails();
     setupContentSequencing();
     setupSceneMotion();
     setupBackToTop();

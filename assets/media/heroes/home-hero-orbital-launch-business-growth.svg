@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 980" role="img" aria-labelledby="t d">
+<title id="t">Orbital launch hero for business growth</title>
+<desc id="d">A cinematic orbital launch scene with a blue planetary horizon, route lines, satellites, and a warm engine glow.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#030712"/><stop offset=".55" stop-color="#071325"/><stop offset="1" stop-color="#02050b"/></linearGradient>
+<radialGradient id="planet" cx=".52" cy="1" r=".55"><stop offset="0" stop-color="#5bc6ff"/><stop offset=".22" stop-color="#1b4477"/><stop offset=".48" stop-color="#09152a"/><stop offset="1" stop-color="#02050b"/></radialGradient>
+<linearGradient id="trail" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#ff9d6c" stop-opacity=".1"/><stop offset=".55" stop-color="#ffb483" stop-opacity=".9"/><stop offset="1" stop-color="#b9ecff" stop-opacity="0"/></linearGradient>
+</defs>
+<rect width="1600" height="980" fill="url(#bg)"/>
+<g fill="#d8f4ff" opacity=".75"><circle cx="210" cy="130" r="2"/><circle cx="320" cy="200" r="1.6"/><circle cx="620" cy="128" r="2.2"/><circle cx="1045" cy="115" r="1.8"/><circle cx="1240" cy="210" r="1.4"/><circle cx="1410" cy="160" r="2.1"/></g>
+<ellipse cx="860" cy="1060" rx="840" ry="440" fill="url(#planet)"/>
+<path d="M330 695c120-98 250-145 389-141 136 4 258 39 354 106 122 85 218 116 422 132" fill="none" stroke="#97e4ff" stroke-opacity=".35" stroke-width="3"/>
+<path d="M420 742c150-118 292-169 429-162 125 6 231 47 333 127" fill="none" stroke="#b0eeff" stroke-opacity=".18" stroke-width="1.8"/>
+<path d="M822 714 948 480" fill="none" stroke="url(#trail)" stroke-width="10" stroke-linecap="round"/>
+<path d="M844 721 1030 328" fill="none" stroke="#9bd9ff" stroke-opacity=".22" stroke-width="2.5" stroke-dasharray="7 16"/>
+<path d="M980 397l50 17-34 41" fill="none" stroke="#bff4ff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<g transform="translate(1090 248)"><rect x="-78" y="-16" width="156" height="32" rx="16" fill="#071728" stroke="#7ed6ff" stroke-opacity=".25"/><text x="0" y="7" fill="#d3f3ff" font-size="18" font-family="IBM Plex Mono, monospace" text-anchor="middle" letter-spacing="2">TRAJECTORY LOCKED</text></g>
+</svg>
