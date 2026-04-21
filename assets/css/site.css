@@ -8466,3 +8466,278 @@ body[data-page] main.layout-page .brief-hub__nav a span {
     width: 100%;
   }
 }
+
+/* Flat section pass:
+   remove sticky split-panel behavior so every section reads in normal order
+   with the intro above the content instead of hanging beside it on scroll. */
+@media (min-width: 960px) {
+  body[data-page] main.layout-page .layout-section__frame,
+  body[data-page] main.layout-page .faq-overview,
+  body[data-page] main.layout-page .policy-atlas__frame,
+  body[data-page] main.layout-page .contact-band--routes .shell,
+  body[data-page] main.layout-page .examples-band--studies .shell,
+  body[data-page] main.layout-page .examples-band--principles .shell,
+  body[data-page] main.layout-page .start-band--fit .shell,
+  body[data-page] main.layout-page .start-band--after .shell,
+  body[data-page] main.layout-page .pay-band--routes .shell,
+  body[data-page] main.layout-page .discovery-band--routes .shell,
+  body[data-page] main.layout-page .discovery-band--brief .shell,
+  body[data-page] main.layout-page .contact-grid,
+  body[data-page] main.layout-page .payment-flow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(1.1rem, 2vw, 1.7rem);
+    align-items: start;
+  }
+
+  body[data-page] main.layout-page .layout-section__frame > *,
+  body[data-page] main.layout-page .faq-overview > *,
+  body[data-page] main.layout-page .policy-atlas__frame > *,
+  body[data-page] main.layout-page .contact-band--routes .shell > *,
+  body[data-page] main.layout-page .examples-band--studies .shell > *,
+  body[data-page] main.layout-page .examples-band--principles .shell > *,
+  body[data-page] main.layout-page .start-band--fit .shell > *,
+  body[data-page] main.layout-page .start-band--after .shell > *,
+  body[data-page] main.layout-page .pay-band--routes .shell > *,
+  body[data-page] main.layout-page .discovery-band--routes .shell > *,
+  body[data-page] main.layout-page .discovery-band--brief .shell > *,
+  body[data-page] main.layout-page .contact-grid > *,
+  body[data-page] main.layout-page .payment-flow > * {
+    grid-column: 1 / -1;
+  }
+
+  body[data-page] main.layout-page .layout-section__frame > .layout-section__intro,
+  body[data-page] main.layout-page .section-heading--panel,
+  body[data-page] main.layout-page .faq-summary,
+  body[data-page] main.layout-page .policy-summary,
+  body[data-page="discovery"] main.layout-page .discovery-band--brief .brief-hub__mast {
+    grid-column: 1 / -1;
+    position: static;
+    top: auto;
+    align-self: auto;
+  }
+
+  body[data-page] main.layout-page .layout-section__frame > :not(.layout-section__intro),
+  body[data-page] main.layout-page .contact-band--routes .shell > :not(.section-heading--panel),
+  body[data-page] main.layout-page .examples-band--studies .shell > :not(.section-heading--panel),
+  body[data-page] main.layout-page .examples-band--principles .shell > :not(.section-heading--panel),
+  body[data-page] main.layout-page .start-band--fit .shell > :not(.section-heading--panel),
+  body[data-page] main.layout-page .start-band--after .shell > :not(.section-heading--panel),
+  body[data-page] main.layout-page .pay-band--routes .shell > :not(.section-heading--panel),
+  body[data-page] main.layout-page .faq-overview > :not(.faq-summary),
+  body[data-page] main.layout-page .policy-atlas__frame > :not(.policy-summary),
+  body[data-page] main.layout-page .discovery-band--routes .shell > :not(.layout-section__intro),
+  body[data-page] main.layout-page .discovery-band--brief .shell > :not(.layout-section__intro) {
+    grid-column: 1 / -1;
+  }
+
+  body[data-page] main.layout-page .section-heading--panel,
+  body[data-page] main.layout-page .layout-section__intro,
+  body[data-page] main.layout-page .faq-summary,
+  body[data-page] main.layout-page .policy-summary,
+  body[data-page] main.layout-page .brief-hub__mast,
+  body[data-page] main.layout-page .contact-card {
+    position: static;
+    top: auto;
+    align-self: auto;
+  }
+
+  body[data-page] main.layout-page .section-heading--panel,
+  body[data-page] main.layout-page .layout-section__intro,
+  body[data-page] main.layout-page .faq-summary,
+  body[data-page] main.layout-page .policy-summary,
+  body[data-page] main.layout-page .brief-hub__mast {
+    max-width: none;
+  }
+
+  body[data-page] main.layout-page .section-heading--panel .section-title,
+  body[data-page] main.layout-page .layout-section__title,
+  body[data-page] main.layout-page .faq-summary .layout-section__title,
+  body[data-page] main.layout-page .policy-summary .layout-section__title {
+    max-width: 13ch;
+  }
+
+  body[data-page] main.layout-page .examples-band--studies .study-grid,
+  body[data-page] main.layout-page .examples-band--principles .card-grid,
+  body[data-page] main.layout-page .contact-band--routes .route-grid,
+  body[data-page] main.layout-page .start-band--fit .card-grid,
+  body[data-page] main.layout-page .start-band--after .card-grid,
+  body[data-page] main.layout-page .pay-band--routes .route-grid,
+  body[data-page] main.layout-page .discovery-band--routes .route-grid,
+  body[data-page] main.layout-page .discovery-band--brief .stacked-form,
+  body[data-page] main.layout-page .discovery-band--brief [data-form-success],
+  body[data-page] main.layout-page .discovery-band--brief [data-form-error] {
+    grid-column: 1 / -1;
+  }
+
+  body[data-page="discovery"] main.layout-page .discovery-band--brief .brief-hub__mast,
+  body[data-page="contact"] main.layout-page .contact-grid > .contact-card,
+  body[data-page="start-project"] main.layout-page .contact-grid > .contact-card,
+  body[data-page="contact"] main.layout-page .contact-grid > .form-card,
+  body[data-page="start-project"] main.layout-page .contact-grid > .form-card,
+  body[data-page="pay-consultation"] main.layout-page .payment-flow > .route-grid,
+  body[data-page="pay-consultation"] main.layout-page .payment-flow > .form-card {
+    grid-column: 1 / -1;
+  }
+
+  body[data-page] main.layout-page .route-grid,
+  body[data-page] main.layout-page .card-grid,
+  body[data-page] main.layout-page .service-detail-grid,
+  body[data-page] main.layout-page .study-grid,
+  body[data-page] main.layout-page .layout-panel-grid,
+  body[data-page] main.layout-page .layout-metric-grid,
+  body[data-page] main.layout-page .layout-step-grid,
+  body[data-page] main.layout-page .layout-category-grid,
+  body[data-page] main.layout-page .home-decision-grid,
+  body[data-page] main.layout-page .policy-atlas__cards {
+    grid-column: 1 / -1;
+  }
+
+  body[data-page] main.layout-page .process-band--steps .layout-service-mosaic::before {
+    display: none;
+  }
+
+  body[data-page] main.layout-page > .section::after {
+    opacity: 0.04;
+  }
+}
+
+body[data-page] main.layout-page .section-heading--panel,
+body[data-page] main.layout-page .layout-section__intro,
+body[data-page] main.layout-page .faq-summary,
+body[data-page] main.layout-page .policy-summary,
+body[data-page] main.layout-page .brief-hub__mast {
+  justify-items: start;
+  gap: 0.9rem;
+  padding: clamp(1.2rem, 2vw, 1.7rem);
+  border: 1px solid rgba(149, 228, 255, 0.14);
+  border-top-color: rgba(149, 228, 255, 0.3);
+  border-radius: 32px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.008)),
+    rgba(6, 11, 22, 0.74);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(18px);
+  overflow: hidden;
+}
+
+body[data-page] main.layout-page .section-heading--panel .section-title,
+body[data-page] main.layout-page .layout-section__title,
+body[data-page] main.layout-page .faq-summary .layout-section__title,
+body[data-page] main.layout-page .policy-summary .layout-section__title {
+  max-width: 9.5ch;
+  font-size: clamp(2.2rem, 4.2vw, 3.7rem);
+  line-height: 0.95;
+}
+
+body[data-page] main.layout-page .section-heading--panel .section-text,
+body[data-page] main.layout-page .layout-section__body,
+body[data-page] main.layout-page .faq-summary .layout-section__body,
+body[data-page] main.layout-page .policy-summary p,
+body[data-page] main.layout-page .brief-hub__mast p {
+  max-width: 48rem;
+}
+
+@media (min-width: 1100px) {
+  body[data-page="about"] main.layout-page .about-band--mission .card-grid > * {
+    grid-column: span 6;
+  }
+
+  body[data-page="home"] main.layout-page .home-band--outcomes .card-grid > * {
+    grid-column: span 6;
+  }
+
+  body[data-page="home"] main.layout-page .home-band--process .card-grid > * {
+    grid-column: span 6;
+  }
+
+  body[data-page="home"] main.layout-page .home-band--process .card-grid > :last-child,
+  body[data-page="home"] main.layout-page .home-band--offers .route-grid > :last-child {
+    grid-column: 1 / -1;
+  }
+
+  body[data-page="home"] main.layout-page .home-band--offers .route-grid > :not(:last-child) {
+    grid-column: span 6;
+  }
+}
+
+/* Sitewide body hierarchy pass:
+   keep section-level H2s left-led inside their boxes so the scan path stays
+   obvious across the main body on every page. */
+body[data-page] main.layout-page .section-heading.section-heading--panel,
+body[data-page] main.layout-page .layout-section__intro,
+body[data-page] main.layout-page .faq-summary,
+body[data-page] main.layout-page .policy-summary,
+body[data-page] main.layout-page .story-grid__copy,
+body[data-page] main.layout-page .callout,
+body[data-page] main.layout-page .form-card__head,
+body[data-page] main.layout-page .faq-category__head,
+body[data-page] main.layout-page .brief-hub__meta,
+body[data-page] main.layout-page .contact-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  justify-items: start;
+  gap: clamp(0.8rem, 1.4vw, 1rem);
+  text-align: left;
+}
+
+body[data-page] main.layout-page .section-heading.section-heading--panel > *,
+body[data-page] main.layout-page .layout-section__intro > *,
+body[data-page] main.layout-page .faq-summary > *,
+body[data-page] main.layout-page .policy-summary > *,
+body[data-page] main.layout-page .story-grid__copy > *,
+body[data-page] main.layout-page .callout > *,
+body[data-page] main.layout-page .form-card__head > *,
+body[data-page] main.layout-page .faq-category__head > *,
+body[data-page] main.layout-page .brief-hub__meta > *,
+body[data-page] main.layout-page .contact-card > * {
+  justify-self: start;
+  text-align: left;
+}
+
+body[data-page] main.layout-page .section-heading.section-heading--panel .section-title,
+body[data-page] main.layout-page .layout-section__title,
+body[data-page] main.layout-page .story-grid__copy .section-title,
+body[data-page] main.layout-page .faq-summary .layout-section__title,
+body[data-page] main.layout-page .policy-summary .layout-section__title,
+body[data-page] main.layout-page .callout__title {
+  max-width: 12.5ch;
+  font-size: clamp(2rem, 3.8vw, 3.35rem);
+  line-height: 0.96;
+}
+
+body[data-page] main.layout-page .faq-category__head h2,
+body[data-page] main.layout-page .form-card__head .card__title,
+body[data-page] main.layout-page .contact-card__title,
+body[data-page] main.layout-page .policy-card__body h2 {
+  max-width: 16ch;
+  text-align: left;
+}
+
+body[data-page] main.layout-page .section-heading.section-heading--panel .section-text,
+body[data-page] main.layout-page .layout-section__body,
+body[data-page] main.layout-page .story-grid__copy .section-text,
+body[data-page] main.layout-page .faq-summary .layout-section__body,
+body[data-page] main.layout-page .policy-summary p,
+body[data-page] main.layout-page .callout .section-text,
+body[data-page] main.layout-page .form-card__head p,
+body[data-page] main.layout-page .faq-category__head p,
+body[data-page] main.layout-page .brief-hub__meta p,
+body[data-page] main.layout-page .contact-card p {
+  max-width: 44rem;
+}
+
+body[data-page] main.layout-page .section-heading.section-heading--panel .hero__actions,
+body[data-page] main.layout-page .story-grid__copy .hero__actions,
+body[data-page] main.layout-page .callout .hero__actions {
+  margin-top: 0.15rem;
+  justify-content: flex-start;
+}
+
+body[data-page] main.layout-page .section-heading.section-heading--panel .page-hero__punch,
+body[data-page] main.layout-page .story-grid__copy .page-hero__punch,
+body[data-page] main.layout-page .callout .page-hero__punch,
+body[data-page] main.layout-page .layout-section__intro .page-hero__punch {
+  justify-self: start;
+}
