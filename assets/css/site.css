@@ -8741,3 +8741,70 @@ body[data-page] main.layout-page .callout .page-hero__punch,
 body[data-page] main.layout-page .layout-section__intro .page-hero__punch {
   justify-self: start;
 }
+
+body[data-page="home"] .home-band--premise {
+  order: 1;
+}
+
+body[data-page="home"] .home-band--fit {
+  order: 2;
+}
+
+body[data-page="home"] .home-band--offers {
+  order: 3;
+}
+
+body[data-page="home"] .home-band--services {
+  order: 4;
+}
+
+body[data-page="home"] .home-band--outcomes {
+  order: 5;
+}
+
+body[data-page="home"] .home-band--examples {
+  order: 6;
+}
+
+body[data-page="home"] .home-band--process {
+  order: 7;
+}
+
+body[data-page="home"] .home-band--decision {
+  order: 8;
+}
+
+body[data-page="home"] .home-band--atlas {
+  order: 9;
+}
+
+body[data-page="home"] .home-band--values {
+  order: 10;
+}
+
+body[data-page="home"] .home-band--routes {
+  order: 11;
+}
+
+body[data-page="home"] .home-band--closing {
+  order: 12;
+}
+
+body[data-page="home"] main.layout-page .home-band--decision a.route-card,
+body[data-page="home"] main.layout-page .home-band--values a.route-card {
+  color: inherit;
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+body[data-page="home"] main.layout-page .home-band--decision a.route-card:hover,
+body[data-page="home"] main.layout-page .home-band--decision a.route-card:focus-visible,
+body[data-page="home"] main.layout-page .home-band--values a.route-card:hover,
+body[data-page="home"] main.layout-page .home-band--values a.route-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(149, 228, 255, 0.28);
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.22);
+  outline: none;
+}

@@ -141,6 +141,30 @@
       url: "/faq/",
       description: "Short answers about fit, timing, motion, mobile, SEO, and how projects start.",
       keywords: ["faq", "questions", "answers", "seo", "mobile", "fit", "discovery"]
+    },
+    {
+      title: "Privacy",
+      url: "/privacy/",
+      description: "The privacy page covering what may be collected, why it is used, and how requests can be sent.",
+      keywords: ["privacy", "data", "information", "rights", "security", "policy"]
+    },
+    {
+      title: "Terms",
+      url: "/terms/",
+      description: "The terms page covering scope, payments, ownership, liability, and commercial expectations.",
+      keywords: ["terms", "payments", "scope", "ownership", "liability", "commercial"]
+    },
+    {
+      title: "Cookies",
+      url: "/cookies/",
+      description: "The cookies page covering essential, analytics, preference, and choice-related cookie use.",
+      keywords: ["cookies", "analytics", "preferences", "tracking", "choice", "policy"]
+    },
+    {
+      title: "Accessibility",
+      url: "/accessibility/",
+      description: "The accessibility page covering readability, navigation, responsiveness, and ongoing improvement.",
+      keywords: ["accessibility", "usable", "responsive", "readable", "navigation", "a11y"]
     }
   ];
 
