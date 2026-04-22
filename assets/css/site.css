@@ -9168,6 +9168,7 @@ body[data-page] main.layout-page .quote-banner,
 body[data-page] main.layout-page .callout,
 body[data-page] main.layout-page .layout-callout,
 body[data-page] main.layout-page .story-grid__copy,
+body[data-page] main.layout-page .story-grid__media,
 body[data-page] main.layout-page .brief-hub__mast {
   gap: var(--site-text-surface-gap);
   padding: var(--site-text-surface-pad);
@@ -9212,9 +9213,30 @@ body[data-page] main.layout-page .hero-mast__actions {
   gap: clamp(0.7rem, 1.35vw, 0.95rem);
 }
 
+body[data-page] main.layout-page .story-grid__media {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  justify-items: stretch;
+}
+
+body[data-page] main.layout-page .story-grid__media > * {
+  margin-top: 0;
+}
+
+body[data-page] main.layout-page .story-grid__media .media-caption {
+  max-width: 34rem;
+}
+
 body[data-page] main.layout-page .route-cloud a {
   min-height: 40px;
   padding: 0.55rem 0.9rem;
+}
+
+body[data-page] main.layout-page .story-grid__media .route-cloud {
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 body[data-page] main.layout-page .hero__actions,
@@ -9224,6 +9246,10 @@ body[data-page] main.layout-page .hero-mast__actions {
 }
 
 @media (max-width: 759px) {
+  body[data-page] main.layout-page .story-grid__media .route-cloud {
+    justify-content: flex-start;
+  }
+
   body[data-page] main.layout-page .hero-mast__chip-row--hero {
     width: calc(100% - 2rem);
   }

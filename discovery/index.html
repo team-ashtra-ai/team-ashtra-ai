@@ -3,21 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Discovery | ASH-TRA</title>
+    <title>Discovery | Paid Consultation Or Free Price Range | ASH-TRA</title>
     <meta
       name="description"
-      content="Choose the route that matches how much clarity you need: start the project, book a call, or send the discovery form."
+      content="Choose between the paid consultation route and the free price-range brief, then send the ASH-TRA discovery questionnaire."
     />
     <meta
       name="keywords"
-      content="discovery form, project brief, book call, start project, approximate website offer, ASH-TRA"
+      content="discovery form, project brief, paid consultation, free price range, website offer, ASH-TRA"
     />
     <link rel="canonical" href="https://ash-tra.com/discovery/" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Discovery | ASH-TRA" />
+    <meta property="og:title" content="Discovery | Paid Consultation Or Free Price Range | ASH-TRA" />
     <meta
       property="og:description"
-      content="Choose the route that matches how much clarity you need."
+      content="Choose the paid consultation route or the free price-range brief and start with clarity."
     />
     <meta property="og:site_name" content="ASH-TRA" />
     <meta property="og:url" content="https://ash-tra.com/discovery/" />
@@ -28,10 +28,10 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="ASH-TRA discovery page preview" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Discovery | ASH-TRA" />
+    <meta name="twitter:title" content="Discovery | Paid Consultation Or Free Price Range | ASH-TRA" />
     <meta
       name="twitter:description"
-      content="Start the project, book a call, or send the discovery form for an approximate offer."
+      content="Choose the paid consultation route or send the free brief for an approximate price range."
     />
     <meta name="twitter:image" content="https://ash-tra.com/assets/brand/discovery-social.png" />
     <meta name="twitter:image:alt" content="ASH-TRA discovery page preview" />
@@ -74,17 +74,17 @@
         <img src="/assets/media/overlays/generated/discovery-consultation-choice-neon-hero-overlay.svg" alt="" loading="lazy" decoding="async" style="top: clamp(5rem, 8vw, 8rem); right: clamp(-11rem, -4vw, -2rem); width: min(48vw, 42rem); opacity: 0.19; transform: rotate(-8deg);" />
         <img src="/assets/media/overlays/generated/discovery-project-questionnaire-neon-section-overlay.svg" alt="" loading="lazy" decoding="async" style="top: clamp(56rem, 75vw, 96rem); left: clamp(-14rem, -6vw, -3rem); width: min(46vw, 39rem); opacity: 0.12; transform: rotate(7deg);" />
       </div>
-      <!-- Discovery: Hero section -->
-
-      <!-- SECTION 01: Start with clarity. Move with confidence.
-           Edit this block to update this page section.
-           Main classes: page-local hero
-      -->
-      <section id="discovery-fork" data-layout-sequence>
+      <section id="discovery-switch" data-layout-sequence>
         <style>
-          #discovery-fork { --mx: 0; --my: 0; padding-top: clamp(1rem, 2vw, 2rem); }
-          #discovery-fork * { box-sizing: border-box; }
-          #discovery-fork .discovery-fork__frame {
+          #discovery-switch {
+            padding-top: clamp(1rem, 2vw, 2rem);
+          }
+
+          #discovery-switch * {
+            box-sizing: border-box;
+          }
+
+          #discovery-switch .discovery-switch__frame {
             width: min(94rem, calc(100% - 2rem));
             margin: 0 auto;
             padding: clamp(1rem, 1.8vw, 1.5rem);
@@ -95,107 +95,408 @@
               radial-gradient(circle at 84% 18%, rgba(255, 146, 101, 0.12), transparent 24%),
               linear-gradient(145deg, rgba(6, 10, 20, 0.98), rgba(9, 17, 31, 0.94));
             display: grid;
-            grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+            grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
             gap: 1.2rem;
             box-shadow: 0 30px 110px rgba(0, 0, 0, 0.28);
           }
-          #discovery-fork .discovery-fork__copy, #discovery-fork .discovery-fork__stage { display: grid; align-content: center; gap: 0.95rem; }
-          #discovery-fork .discovery-fork__eyebrow, #discovery-fork .discovery-fork__route-id {
+
+          #discovery-switch .discovery-switch__copy,
+          #discovery-switch .discovery-switch__board {
+            display: grid;
+            align-content: center;
+            gap: 0.95rem;
+          }
+
+          #discovery-switch .discovery-switch__eyebrow,
+          #discovery-switch .discovery-switch__route-id,
+          #discovery-switch .discovery-switch__mini,
+          .discovery-brief__guide-item span,
+          .discovery-guide__card span {
             font: 500 0.72rem/1 "IBM Plex Mono", monospace;
             letter-spacing: 0.18em;
             text-transform: uppercase;
             color: rgba(225, 232, 242, 0.72);
           }
-          #discovery-fork h1, #discovery-fork h2 {
+
+          #discovery-switch h1,
+          #discovery-switch h2,
+          #discovery-switch h3,
+          .discovery-brief__guide h3,
+          .discovery-guide__card h3 {
             margin: 0;
             color: #f5f7fb;
             font-family: "Syne", sans-serif;
             letter-spacing: -0.07em;
           }
-          #discovery-fork h1 { max-width: 7ch; font-size: clamp(3rem, 6vw, 5.8rem); line-height: 0.92; }
-          #discovery-fork p { margin: 0; color: rgba(220, 228, 239, 0.82); font: 500 clamp(0.98rem, 1.3vw, 1.06rem)/1.6 "Manrope", sans-serif; }
-          #discovery-fork .discovery-fork__actions, #discovery-fork .discovery-fork__footer { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-          #discovery-fork .discovery-fork__action, #discovery-fork .discovery-fork__footer a {
-            display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; padding: 0 1.1rem;
-            border-radius: 999px; border: 1px solid rgba(140, 226, 255, 0.16); text-decoration: none; color: #edf3fb;
-            background: rgba(255, 255, 255, 0.03); font: 700 0.92rem/1 "Manrope", sans-serif;
+
+          #discovery-switch h1 {
+            max-width: 8ch;
+            font-size: clamp(3rem, 6vw, 5.8rem);
+            line-height: 0.92;
           }
-          #discovery-fork .discovery-fork__action--primary { background: linear-gradient(135deg, #ff9064, #ffd677 72%, #bffbff); color: #07111d; border: 0; }
-          #discovery-fork .discovery-fork__stage { grid-template-columns: repeat(2, minmax(0, 1fr)); display: grid; }
-          #discovery-fork .discovery-fork__card {
-            position: relative; min-height: clamp(22rem, 30vw, 26rem); padding: 1.05rem; border-radius: 1.7rem;
-            border: 1px solid rgba(140, 226, 255, 0.14); background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.008)), rgba(8, 13, 24, 0.74);
-            overflow: hidden; display: grid; align-content: end; text-decoration: none; color: inherit;
+
+          #discovery-switch h2,
+          .discovery-brief__guide h3,
+          .discovery-guide__card h3 {
+            font-size: clamp(1.25rem, 2.3vw, 1.8rem);
+            line-height: 0.98;
           }
-          #discovery-fork .discovery-fork__card img {
-            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-            transform: scale(1.05) translate3d(calc(var(--mx) * 10px), calc(var(--my) * 10px), 0); transition: transform 180ms ease-out; opacity: 0.72;
+
+          #discovery-switch p,
+          .discovery-brief__guide p,
+          .discovery-guide__card p {
+            margin: 0;
+            color: rgba(220, 228, 239, 0.82);
+            font: 500 clamp(0.98rem, 1.3vw, 1.06rem) / 1.6 "Manrope", sans-serif;
           }
-          #discovery-fork .discovery-fork__card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(4, 8, 17, 0.12), rgba(4, 8, 17, 0.86)); }
-          #discovery-fork .discovery-fork__card-copy { position: relative; z-index: 1; display: grid; gap: 0.5rem; }
-          #discovery-fork .discovery-fork__card--primary { border-color: rgba(255, 146, 101, 0.32); }
+
+          #discovery-switch .discovery-switch__actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+          }
+
+          #discovery-switch .discovery-switch__action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 3rem;
+            padding: 0 1.1rem;
+            border-radius: 999px;
+            text-decoration: none;
+            font: 700 0.92rem/1 "Manrope", sans-serif;
+          }
+
+          #discovery-switch .discovery-switch__action--primary {
+            background: linear-gradient(135deg, #ff9064, #ffd677 72%, #bffbff);
+            color: #07111d;
+            border: 0;
+          }
+
+          #discovery-switch .discovery-switch__action--secondary {
+            border: 1px solid rgba(140, 226, 255, 0.16);
+            color: #edf3fb;
+            background: rgba(255, 255, 255, 0.03);
+          }
+
+          #discovery-switch .discovery-switch__hero {
+            position: relative;
+            min-height: clamp(15rem, 25vw, 19rem);
+            border-radius: 1.8rem;
+            overflow: hidden;
+            border: 1px solid rgba(140, 226, 255, 0.14);
+          }
+
+          #discovery-switch .discovery-switch__hero img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+
+          #discovery-switch .discovery-switch__hero-image {
+            transform: scale(1.05);
+            filter: saturate(0.94) contrast(1.08) brightness(0.86);
+          }
+
+          #discovery-switch .discovery-switch__hero-overlay {
+            opacity: 0.2;
+            mix-blend-mode: screen;
+          }
+
+          #discovery-switch .discovery-switch__hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(5, 9, 17, 0.08), rgba(5, 9, 17, 0.82));
+          }
+
+          #discovery-switch .discovery-switch__hero-copy {
+            position: absolute;
+            inset: auto 1rem 1rem 1rem;
+            z-index: 1;
+            display: grid;
+            gap: 0.45rem;
+          }
+
+          #discovery-switch .discovery-switch__route-grid,
+          .discovery-brief__guide-grid,
+          .discovery-guide__cards {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.85rem;
+          }
+
+          #discovery-switch .discovery-switch__route,
+          .discovery-brief__guide-item,
+          .discovery-guide__card {
+            display: grid;
+            gap: 0.55rem;
+            min-height: 100%;
+            padding: 1rem;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(140, 226, 255, 0.14);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.008)),
+              rgba(8, 13, 24, 0.74);
+          }
+
+          #discovery-switch .discovery-switch__route {
+            text-decoration: none;
+            color: inherit;
+          }
+
+          #discovery-switch .discovery-switch__route--primary {
+            border-color: rgba(255, 146, 101, 0.32);
+            background: linear-gradient(180deg, rgba(255, 146, 101, 0.05), rgba(255, 255, 255, 0.008)),
+              rgba(8, 13, 24, 0.82);
+          }
+
+          #discovery-switch .discovery-switch__micro {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.75rem;
+          }
+
+          #discovery-switch .discovery-switch__micro-item {
+            display: grid;
+            gap: 0.35rem;
+            padding: 0.9rem;
+            border-radius: 1.25rem;
+            border: 1px solid rgba(140, 226, 255, 0.14);
+            background: rgba(255, 255, 255, 0.025);
+          }
+
+          body[data-page="discovery"] .discovery-band--guide .shell {
+            display: grid;
+            gap: 1rem;
+          }
+
+          .discovery-guide__helper {
+            margin-top: 0.95rem;
+            padding-top: 0.95rem;
+            border-top: 1px solid rgba(140, 226, 255, 0.12);
+          }
+
+          body[data-page="discovery"] .discovery-band--brief .shell {
+            display: grid;
+            gap: 1rem;
+            align-items: start;
+          }
+
+          .discovery-brief__guide {
+            display: grid;
+            gap: 1rem;
+          }
+
+          .discovery-brief__guide-head {
+            display: grid;
+            gap: 0.55rem;
+          }
+
+          .discovery-brief__guide .brief-hub__nav {
+            margin-top: 0.15rem;
+          }
+
+          .discovery-brief__guide-note {
+            padding-top: 0.95rem;
+            border-top: 1px solid rgba(140, 226, 255, 0.12);
+          }
+
+          @media (min-width: 960px) {
+            body[data-page="discovery"] .discovery-band--guide .shell,
+            body[data-page="discovery"] .discovery-band--brief .shell {
+              grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+            }
+
+            body[data-page="discovery"] .discovery-band--guide .section-heading,
+            body[data-page="discovery"] .discovery-band--brief .layout-section__intro,
+            body[data-page="discovery"] .discovery-band--brief .discovery-brief__guide {
+              position: sticky;
+              top: 6.45rem;
+              align-self: start;
+            }
+
+            body[data-page="discovery"] .discovery-band--brief .layout-section__intro,
+            body[data-page="discovery"] .discovery-band--brief .discovery-brief__guide {
+              grid-column: 1;
+            }
+
+            body[data-page="discovery"] .discovery-band--brief .stacked-form,
+            body[data-page="discovery"] .discovery-band--brief [data-form-success],
+            body[data-page="discovery"] .discovery-band--brief [data-form-error] {
+              grid-column: 2;
+            }
+          }
+
           @media (max-width: 980px) {
-            #discovery-fork .discovery-fork__frame, #discovery-fork .discovery-fork__stage { grid-template-columns: 1fr; }
+            #discovery-switch .discovery-switch__frame {
+              grid-template-columns: 1fr;
+            }
           }
+
           @media (max-width: 720px) {
-            #discovery-fork .discovery-fork__frame { width: min(100%, calc(100% - 1rem)); }
-            #discovery-fork .discovery-fork__actions { display: grid; }
-            #discovery-fork .discovery-fork__action { width: 100%; }
+            #discovery-switch .discovery-switch__frame {
+              width: min(100%, calc(100% - 1rem));
+            }
+
+            #discovery-switch .discovery-switch__actions,
+            #discovery-switch .discovery-switch__route-grid,
+            #discovery-switch .discovery-switch__micro,
+            .discovery-brief__guide-grid,
+            .discovery-guide__cards {
+              display: grid;
+              grid-template-columns: 1fr;
+            }
+
+            #discovery-switch .discovery-switch__action {
+              width: 100%;
+            }
           }
         </style>
-        <div class="discovery-fork__frame">
-          <div class="discovery-fork__copy">
-            <span class="discovery-fork__eyebrow">Discovery</span>
-            <h1>Start with clarity. Move with confidence.</h1>
-            <p>There are two ways to start with ASH-TRA. Book a paid consultation for a real strategy conversation, or fill out the discovery questionnaire and receive an approximate offer within 48 hours, excluding weekends.</p>
-            <div class="discovery-fork__actions">
-              <a class="discovery-fork__action discovery-fork__action--primary" href="/payments/" data-track="pay_consultation_view">Book Paid Consultation</a>
-              <a class="discovery-fork__action" href="#discovery-questionnaire" data-track="discovery_view">Get an Approximate Offer</a>
+        <div class="discovery-switch__frame">
+          <div class="discovery-switch__copy">
+            <span class="discovery-switch__eyebrow">Discovery</span>
+            <h1>Choose how you want to start.</h1>
+            <p>
+              If you want to talk it through with a human first, choose the paid consultation. If
+              you want a free price range before speaking, use the brief below.
+            </p>
+            <p>
+              Both routes exist to give you clarity before the build. The difference is how much
+              live strategic input you want at the start.
+            </p>
+            <div class="discovery-switch__actions">
+              <a
+                class="discovery-switch__action discovery-switch__action--primary"
+                href="/payments/"
+                data-track="pay_consultation_view"
+                >Talk To A Human</a
+              >
+              <a
+                class="discovery-switch__action discovery-switch__action--secondary"
+                href="#discovery-questionnaire"
+                data-track="discovery_view"
+                >Get A Free Price Range</a
+              >
+              <a class="discovery-switch__action discovery-switch__action--secondary" href="/invest/"
+                >See Investment Levels</a
+              >
             </div>
-            <div class="discovery-fork__footer"><a href="/contact/">Need help choosing?</a></div>
           </div>
-          <div class="discovery-fork__stage">
-            <a class="discovery-fork__card discovery-fork__card--primary" href="/payments/">
-              <img src="/assets/media/stock/space/premium-website-spiral-galaxy-neon-blue.webp" alt="Spiral galaxy visual representing the paid consultation path." loading="eager" />
-              <div class="discovery-fork__card-copy">
-                <span class="discovery-fork__route-id">Route 01</span>
+
+          <div class="discovery-switch__board">
+            <div class="discovery-switch__hero" data-scene>
+              <img
+                class="discovery-switch__hero-image"
+                src="/assets/media/stock/space/premium-website-galaxy-network-space-atlas.webp"
+                alt="Galaxy field visual representing route choice, project clarity, and a cleaner starting point."
+                loading="eager"
+                data-depth="0.7"
+              />
+              <img
+                class="discovery-switch__hero-overlay"
+                src="/assets/media/overlays/premium-website-neon-orbit-grid-overlay.svg"
+                alt=""
+                loading="eager"
+                data-depth="1.1"
+              />
+              <div class="discovery-switch__hero-copy">
+                <span class="discovery-switch__mini">One decision first</span>
+                <h2>Human strategy or free price range.</h2>
+                <p>Pick the route that matches how much help you want before the project starts.</p>
+              </div>
+            </div>
+
+            <div class="discovery-switch__route-grid">
+              <a class="discovery-switch__route discovery-switch__route--primary" href="/payments/">
+                <span class="discovery-switch__route-id">Route 01</span>
                 <h2>Paid consultation</h2>
-                <p>Human strategy input, clearer diagnosis, and a stronger starting point before the build begins.</p>
+                <p>Best when the project is high-stakes, unclear, or needs a proper outside read first.</p>
+              </a>
+              <a class="discovery-switch__route" href="#discovery-questionnaire">
+                <span class="discovery-switch__route-id">Route 02</span>
+                <h2>Free price range</h2>
+                <p>Best when you want to send context asynchronously and get a rough direction before speaking.</p>
+              </a>
+            </div>
+
+            <div class="discovery-switch__micro">
+              <div class="discovery-switch__micro-item">
+                <span class="discovery-switch__mini">Human route</span>
+                <strong>Sharper diagnosis</strong>
               </div>
-            </a>
-            <a class="discovery-fork__card" href="#discovery-questionnaire">
-              <img src="/assets/media/stock/space/premium-website-brand-authority-giant-galaxy.webp" alt="Galaxy visual representing the questionnaire-only path." loading="eager" />
-              <div class="discovery-fork__card-copy">
-                <span class="discovery-fork__route-id">Route 02</span>
-                <h2>Questionnaire only</h2>
-                <p>No call required. Send the brief and get an approximate offer before committing to the next step.</p>
+              <div class="discovery-switch__micro-item">
+                <span class="discovery-switch__mini">Free route</span>
+                <strong>No call required</strong>
               </div>
-            </a>
+              <div class="discovery-switch__micro-item">
+                <span class="discovery-switch__mini">Shared goal</span>
+                <strong>Clarity before build</strong>
+              </div>
+            </div>
           </div>
         </div>
-        <script>
-          (() => {
-            const root = document.getElementById("discovery-fork");
-            if (!root || root.dataset.inlineHeroReady === "true") return;
-            root.dataset.inlineHeroReady = "true";
-            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-            const frame = root.querySelector(".discovery-fork__frame");
-            const move = (x, y) => { root.style.setProperty("--mx", x.toFixed(3)); root.style.setProperty("--my", y.toFixed(3)); };
-            move(0, 0);
-            frame.addEventListener("pointermove", (event) => {
-              const rect = frame.getBoundingClientRect();
-              move((event.clientX - rect.left) / rect.width - 0.5, (event.clientY - rect.top) / rect.height - 0.5);
-            });
-            frame.addEventListener("pointerleave", () => move(0, 0));
-          })();
-        </script>
       </section>
 
+      <section class="section section--contrast discovery-band discovery-band--guide" data-layout-sequence>
+        <div class="shell">
+          <div class="surface section-heading section-heading--panel" data-reveal>
+            <span class="eyebrow">What To Do</span>
+            <h2 class="section-title">Pick the route first. Then move properly.</h2>
+            <p class="section-text">
+              The page is simpler if you treat it like a fork in the road. Want live human input?
+              Book the consultation. Want a free price range first? Fill the brief.
+            </p>
+            <p class="page-hero__punch">Short answers are fine. Skip anything you do not know yet.</p>
+          </div>
 
-      <!-- SECTION 02: Tell us what you need built and what level you want to reach.
-           Edit this block to update this page section.
-           Main classes: section layout-section discovery-band discovery-band--brief
-      -->
+          <article class="surface" data-reveal>
+            <div class="discovery-guide__cards">
+              <div class="discovery-guide__card">
+                <span>Paid consultation</span>
+                <h3>Talk it through with a human.</h3>
+                <p>
+                  Use this if you want diagnosis, live feedback, and a stronger strategic starting
+                  point before any build decisions get made.
+                </p>
+              </div>
+              <div class="discovery-guide__card">
+                <span>Free price range</span>
+                <h3>Send the brief and stay async for now.</h3>
+                <p>
+                  Use this if you want a rough investment direction first and do not need the call
+                  yet. The response is an approximate range, not a final scoped quote.
+                </p>
+              </div>
+              <div class="discovery-guide__card">
+                <span>Prepare this</span>
+                <h3>Business basics, goals, and rough scope.</h3>
+                <p>
+                  You do not need everything worked out. The useful minimum is what the business
+                  does, who it helps, what you need the site to do, and the level you want to reach.
+                </p>
+              </div>
+              <div class="discovery-guide__card">
+                <span>After submission</span>
+                <h3>You move into the investment guide.</h3>
+                <p>
+                  After you send the brief, the site takes you to the investment page so you can
+                  compare what Foundation, Growth System, and Orbital Partnership actually mean.
+                </p>
+              </div>
+            </div>
+            <div class="discovery-guide__helper">
+              <p>
+                If you are unsure which route is right, the simplest rule is this: if the decision
+                itself feels heavy, take the paid route. If you mostly need an initial range, use
+                the free route.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
       <section
         class="section layout-section discovery-band discovery-band--brief"
         id="discovery-questionnaire"
@@ -203,35 +504,60 @@
       >
         <div class="shell">
           <div class="surface layout-section__intro" data-reveal>
-            <span class="layout-section__kicker">Discovery brief</span>
-            <h2 class="layout-section__title">Tell us what you need built and what level you want to reach.</h2>
+            <span class="layout-section__kicker">Free Price Range Brief</span>
+            <h2 class="layout-section__title">Tell ASH-TRA what you want, what matters, and what level you want to reach.</h2>
             <p class="layout-section__body">
-              Fill this out with as much clarity as you can. The more detail you give, the sharper
-              the estimate.
+              This route is for a free price range, not a paid strategy consultation. Fill it as
+              clearly as you can. Leave anything blank if you genuinely do not know yet.
             </p>
           </div>
-          <article class="surface brief-hub__mast" data-reveal>
-            <div class="brief-hub__meta">
-              <span class="brief-hub__eyebrow">21 sections</span>
-              <h3>Use the brief like a navigation deck.</h3>
+          <article class="surface discovery-brief__guide" data-reveal>
+            <div class="discovery-brief__guide-head">
+              <span class="brief-hub__eyebrow">21 chapters</span>
+              <h3>Use the brief like a guided map, not a test.</h3>
               <p>
-                Move straight through from top to bottom, or skip to the section that matters first.
-                The section list below is generated from the form itself and follows your scroll.
+                Start at the top if you want the full route. Jump around if needed. The first
+                section covers the required contact basics. Everything after that is there to make
+                the range sharper and the reply more useful.
               </p>
             </div>
-            <nav class="brief-hub__nav" data-brief-nav aria-label="Discovery brief sections"></nav>
+            <div class="discovery-brief__guide-grid">
+              <div class="discovery-brief__guide-item">
+                <span>Time</span>
+                <p>Usually around 10 to 15 minutes.</p>
+              </div>
+              <div class="discovery-brief__guide-item">
+                <span>Need</span>
+                <p>Business context, goals, and a rough sense of scope.</p>
+              </div>
+              <div class="discovery-brief__guide-item">
+                <span>Skip</span>
+                <p>Anything you do not know yet. Unknown is better than guessed.</p>
+              </div>
+              <div class="discovery-brief__guide-item">
+                <span>Reply</span>
+                <p>Approximate range within 48 hours, excluding weekends.</p>
+              </div>
+            </div>
+            <div class="discovery-brief__guide-note">
+              <p>Jump to any chapter below if you want to move faster.</p>
+              <nav class="brief-hub__nav" data-brief-nav aria-label="Discovery brief sections"></nav>
+            </div>
           </article>
           <form
             class="stacked-form"
             method="POST"
             data-enquiry-form
             data-form-endpoint="discovery"
+            data-form-fallback-endpoint="https://formspree.io/f/mqewqvqb"
             data-form-kind="discovery"
-            data-success-copy="Your discovery brief was sent. You should receive an approximate offer within 48 hours, excluding weekends, as soon as possible."
+            data-success-copy="Your discovery brief is on its way. Loading the investment guide now."
+            data-success-redirect="/invest/"
+            data-success-delay="350"
             name="discovery-brief"
           >
             <input type="hidden" name="_subject" value="ASH-TRA discovery brief" />
-            <input type="hidden" name="Route" value="Questionnaire Only" />
+            <input type="hidden" name="Route" value="Free Price Range Request" />
 
             <article class="surface brief-section" data-reveal>
               <div class="brief-section__head">
@@ -1629,15 +1955,15 @@
 
             <article class="surface quote-banner" data-reveal>
               <span class="eyebrow">Send the brief</span>
-              <blockquote>Send Discovery Brief</blockquote>
+              <blockquote>Send the free price range brief.</blockquote>
               <p>
                 Once submitted, you will receive an approximate offer within 48 hours, excluding
-                weekends, as soon as possible.
+                weekends, and the site will take you to the investment guide straight after.
               </p>
               <div class="hero__actions">
-                <button class="button button--primary" type="submit">Send Discovery Brief</button>
+                <button class="button button--primary" type="submit">Send Free Price Range Brief</button>
               </div>
-              <p>The more detail you give, the sharper the estimate.</p>
+              <p>The more detail you give, the sharper the range.</p>
             </article>
           </form>
           <p class="success-note" hidden data-form-success></p>
@@ -1654,18 +1980,20 @@
       <section class="section layout-section section--contrast discovery-band discovery-band--closing" data-layout-sequence>
         <div class="shell">
           <article class="surface layout-callout" data-reveal>
-            <span class="layout-section__kicker">Want the human route?</span>
-            <blockquote>Start with clarity. Build with force.</blockquote>
+            <span class="layout-section__kicker">Still want the human route?</span>
+            <blockquote>Talk it through first. Build second.</blockquote>
             <p>
-              If you want to speak with the human behind ASH-TRA, receive real feedback, clearer
-              direction, and a stronger starting point before the build, book the paid consultation
-              instead.
+              If you would rather speak with the human behind ASH-TRA, get live feedback, and start
+              from a sharper diagnosis before the project begins, take the paid consultation route
+              instead of the free brief.
             </p>
             <div class="hero__actions">
-              <a class="button button--primary" href="/payments/" data-track="pay_consultation_view">Payments</a>
-              <a class="button button--secondary" href="/schedule/">Schedule</a>
+              <a class="button button--primary" href="/payments/" data-track="pay_consultation_view"
+                >Book Consultation</a
+              >
+              <a class="button button--secondary" href="/contact/">Contact</a>
             </div>
-            <p>Start with clarity. Build with force.</p>
+            <p>More input up front. Less guesswork later.</p>
           </article>
         </div>
       </section>

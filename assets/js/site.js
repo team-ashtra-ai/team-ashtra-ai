@@ -145,8 +145,14 @@
     {
       title: "Discovery",
       url: "/discovery/",
-      description: "The two-route discovery page with a paid consultation option and the full project questionnaire.",
+      description: "Choose between the paid consultation route and the free price-range brief, then send the full discovery questionnaire.",
       keywords: ["discovery", "consultation", "brief", "strategy", "planning", "questionnaire"]
+    },
+    {
+      title: "Invest",
+      url: "/invest/",
+      description: "Compare the Foundation, Growth System, and Orbital Partnership investment levels.",
+      keywords: ["invest", "pricing", "investment", "foundation", "growth", "partnership"]
     },
     {
       title: "Payments",
@@ -225,9 +231,9 @@
       ]
     },
     about: {
-      title: "About ASH-TRA | Built for companies that are done looking behind",
+      title: "About ASH-TRA | Story, standards, and the signal behind the site",
       description:
-        "Learn what ASH-TRA stands for, who it helps, and how stronger digital presence changes trust, positioning, and momentum.",
+        "Read the story behind ASH-TRA, what it stands for, who it fits, and why ash-tra.com is built to feel clear, credible, and ready for momentum.",
       path: "/about/",
       ogAlt: "ASH-TRA about page social preview",
       schemas: [
@@ -291,9 +297,9 @@
       ]
     },
     discovery: {
-      title: "Discovery | ASH-TRA",
+      title: "Discovery | Paid Consultation Or Free Price Range | ASH-TRA",
       description:
-        "Choose the ASH-TRA discovery route that fits: paid consultation for real strategy or the questionnaire for an approximate offer within 48 hours excluding weekends.",
+        "Choose the ASH-TRA discovery route that fits: paid consultation for live strategic input or the free brief for an approximate price range within 48 hours excluding weekends.",
       path: "/discovery/",
       ogAlt: "ASH-TRA discovery page social preview",
       schemas: [
@@ -304,6 +310,23 @@
           url: "https://ash-tra.com/discovery/",
           description:
             "Start with a paid consultation or a detailed discovery brief and receive clearer direction on the right next move."
+        }
+      ]
+    },
+    invest: {
+      title: "Invest | ASH-TRA",
+      description:
+        "Compare the ASH-TRA investment levels and choose between Foundation, Growth System, and Orbital Partnership.",
+      path: "/invest/",
+      ogAlt: "ASH-TRA investment page social preview",
+      schemas: [
+        {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "ASH-TRA Investment Levels",
+          url: "https://ash-tra.com/invest/",
+          description:
+            "Three levels of website investment covering foundation presence, content-led growth, and ongoing partnership."
         }
       ]
     },
@@ -1301,6 +1324,41 @@
     return "";
   }
 
+  function buildFormDataFromEntries(entries) {
+    const data = new FormData();
+    (entries || []).forEach(function (entry) {
+      data.append(entry[0], entry[1]);
+    });
+    return data;
+  }
+
+  async function submitFormPayload(endpoint, method, entries) {
+    const response = await fetch(endpoint, {
+      method: method,
+      body: buildFormDataFromEntries(entries),
+      headers: { Accept: "application/json" }
+    });
+
+    const result = await response
+      .clone()
+      .json()
+      .catch(function () {
+        return {};
+      });
+
+    if (!response.ok) {
+      const message =
+        result?.errors
+          ?.map(function (item) {
+            return item.message;
+          })
+          .join(" ") || result?.error || "The form could not be sent right now.";
+      throw new Error(message);
+    }
+
+    return result;
+  }
+
   function setupForms() {
     document.querySelectorAll("[data-enquiry-form]").forEach(function (form) {
       const success = form.parentElement.querySelector("[data-form-success]");
@@ -1317,8 +1375,10 @@
         event.preventDefault();
         clearFeedback();
 
-        const endpoint =
-          form.getAttribute("action") || resolveFormEndpoint(form.getAttribute("data-form-endpoint"));
+        const endpoint = runtimeUrl(
+          form.getAttribute("action") || resolveFormEndpoint(form.getAttribute("data-form-endpoint"))
+        );
+        const fallbackEndpoint = runtimeUrl(form.getAttribute("data-form-fallback-endpoint") || "");
         if (!endpoint) {
           if (error) error.hidden = false;
           return;
@@ -1328,6 +1388,7 @@
         const payload = new FormData(form);
         payload.set("Page", window.location.href);
         payload.set("Page title", document.title);
+        const payloadEntries = Array.from(payload.entries());
 
         if (submit) {
           submit.disabled = true;
@@ -1338,25 +1399,15 @@
         form.setAttribute("aria-busy", "true");
 
         try {
-          const response = await fetch(endpoint, {
-            method: (form.getAttribute("method") || "POST").toUpperCase(),
-            body: payload,
-            headers: { Accept: "application/json" }
-          });
+          const method = (form.getAttribute("method") || "POST").toUpperCase();
 
-          const result = await response
-            .clone()
-            .json()
-            .catch(function () {
-              return {};
-            });
-
-          if (!response.ok) {
-            const message =
-              result?.errors?.map(function (item) {
-                return item.message;
-              }).join(" ") || "The form could not be sent right now.";
-            throw new Error(message);
+          try {
+            await submitFormPayload(endpoint, method, payloadEntries);
+          } catch (primaryError) {
+            if (!fallbackEndpoint || fallbackEndpoint === endpoint) {
+              throw primaryError;
+            }
+            await submitFormPayload(fallbackEndpoint, method, payloadEntries);
           }
 
           form.reset();
@@ -1366,6 +1417,13 @@
             success.hidden = false;
           }
           trackEvent("contact_form_submitted", { form: formName });
+
+          if (form.dataset.successRedirect) {
+            const redirectDelay = clampNumber(form.dataset.successDelay, 350, 0, 4000);
+            window.setTimeout(function () {
+              window.location.assign(runtimeUrl(form.dataset.successRedirect));
+            }, redirectDelay);
+          }
         } catch (submissionError) {
           if (error) {
             error.textContent = submissionError.message || "The form could not be sent right now.";
