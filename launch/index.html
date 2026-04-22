@@ -67,52 +67,117 @@
 
       <!-- SECTION 01: Use the direct route when the project is already clear enough to start.
            Edit this block to update this page section.
-           Main classes: section hero-mast
+           Main classes: page-local hero
       -->
-      <section class="section hero-mast">
-        <div class="hero-mast__shell">
-          <article class="hero-mast__frame surface" data-reveal>
-            <div class="hero-mast__layout">
-              <div class="hero-mast__copy">
-                <span class="hero-mast__eyebrow">Launch</span>
-                <h1 class="hero-mast__title">Use the direct route when the project is already clear enough to start.</h1>
-                <p class="hero-mast__lede">
-                  This is the fastest route for businesses that already know they need a launch,
-                  redesign, rebuild, or stronger page system. Send the essentials and ASH-TRA can
-                  review the fit, the likely direction, and the next move without extra friction.
-                </p>
-                <div class="hero-mast__actions">
-                  <a class="button button--primary" href="#project-form">Complete Project Form</a>
-                  <a class="button button--secondary" href="/payments/" data-track="pay_consultation_view">Book Call</a>
-                  <a class="button button--subtle" href="/discovery/#discovery-questionnaire" data-track="discovery_view">Discovery Form</a>
-                </div>
-              </div>
-
-              <div class="hero-mast__stage">
-                <div class="hero-mast__media">
-                  <img
-                    src="/assets/media/visual-command-center.svg"
-                    alt="ASH-TRA command center visual representing direct project intake."
-                  />
-                </div>
-                <div class="hero-mast__signal-grid">
-                  <div class="hero-mast__signal">
-                    <strong>Launch</strong>
-                    <span>For businesses starting properly instead of rushing a placeholder.</span>
-                  </div>
-                  <div class="hero-mast__signal">
-                    <strong>Rebuild</strong>
-                    <span>For companies that have outgrown the current site and need a stronger system.</span>
-                  </div>
-                  <div class="hero-mast__signal">
-                    <strong>Key pages</strong>
-                    <span>For focused improvements where a few pages carry the commercial weight.</span>
-                  </div>
-                </div>
+      <section id="launch-control" data-layout-sequence>
+        <style>
+          #launch-control { --mx: 0; --my: 0; padding-top: clamp(1rem, 2vw, 2rem); }
+          #launch-control * { box-sizing: border-box; }
+          #launch-control .launch-control__frame {
+            width: min(94rem, calc(100% - 2rem));
+            margin: 0 auto;
+            padding: clamp(1rem, 1.8vw, 1.5rem);
+            border-radius: 2.4rem;
+            border: 1px solid rgba(140, 226, 255, 0.14);
+            background:
+              radial-gradient(circle at 18% 16%, rgba(255, 148, 104, 0.12), transparent 20%),
+              radial-gradient(circle at 82% 18%, rgba(142, 229, 255, 0.1), transparent 22%),
+              linear-gradient(145deg, rgba(6, 10, 20, 0.98), rgba(9, 17, 31, 0.94));
+            display: grid;
+            grid-template-columns: minmax(0, 0.74fr) minmax(0, 1.26fr);
+            gap: 1.2rem;
+            box-shadow: 0 30px 110px rgba(0, 0, 0, 0.28);
+          }
+          #launch-control .launch-control__copy, #launch-control .launch-control__stage { display: grid; align-content: center; gap: 0.95rem; }
+          #launch-control .launch-control__eyebrow, #launch-control .launch-control__label {
+            font: 500 0.72rem/1 "IBM Plex Mono", monospace;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(225, 232, 242, 0.72);
+          }
+          #launch-control h1, #launch-control h2, #launch-control h3 {
+            margin: 0;
+            color: #f5f7fb;
+            font-family: "Syne", sans-serif;
+            letter-spacing: -0.07em;
+          }
+          #launch-control h1 { max-width: 7.2ch; font-size: clamp(3rem, 6vw, 5.8rem); line-height: 0.92; }
+          #launch-control p { margin: 0; color: rgba(220, 228, 239, 0.82); font: 500 clamp(0.98rem, 1.3vw, 1.06rem)/1.6 "Manrope", sans-serif; }
+          #launch-control .launch-control__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+          #launch-control .launch-control__action {
+            display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; padding: 0 1.1rem;
+            border-radius: 999px; border: 1px solid rgba(140, 226, 255, 0.16); text-decoration: none; color: #edf3fb;
+            background: rgba(255, 255, 255, 0.03); font: 700 0.92rem/1 "Manrope", sans-serif;
+          }
+          #launch-control .launch-control__action--primary { background: linear-gradient(135deg, #ff9064, #ffd677 72%, #bffbff); color: #07111d; border: 0; }
+          #launch-control .launch-control__stage { grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr); display: grid; }
+          #launch-control .launch-control__lead, #launch-control .launch-control__stack {
+            padding: 1rem; border-radius: 1.55rem; border: 1px solid rgba(140, 226, 255, 0.14);
+            background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.008)), rgba(8, 13, 24, 0.74);
+          }
+          #launch-control .launch-control__lead { position: relative; overflow: hidden; min-height: clamp(22rem, 30vw, 26rem); display: grid; align-content: end; }
+          #launch-control .launch-control__lead img {
+            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+            transform: scale(1.04) translate3d(calc(var(--mx) * 10px), calc(var(--my) * 10px), 0); transition: transform 180ms ease-out; opacity: 0.82;
+          }
+          #launch-control .launch-control__lead::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(4, 8, 17, 0.12), rgba(4, 8, 17, 0.84)); }
+          #launch-control .launch-control__lead-copy { position: relative; z-index: 1; display: grid; gap: 0.45rem; }
+          #launch-control .launch-control__stack { display: grid; gap: 0.85rem; }
+          #launch-control .launch-control__mini-card {
+            padding: 0.95rem; border-radius: 1.2rem; border: 1px solid rgba(140, 226, 255, 0.12); background: rgba(255, 255, 255, 0.02); display: grid; gap: 0.45rem;
+          }
+          @media (max-width: 980px) {
+            #launch-control .launch-control__frame, #launch-control .launch-control__stage { grid-template-columns: 1fr; }
+          }
+          @media (max-width: 720px) {
+            #launch-control .launch-control__frame { width: min(100%, calc(100% - 1rem)); }
+            #launch-control .launch-control__actions { display: grid; }
+            #launch-control .launch-control__action { width: 100%; }
+          }
+        </style>
+        <div class="launch-control__frame">
+          <div class="launch-control__copy">
+            <span class="launch-control__eyebrow">Launch</span>
+            <h1>Use the direct route when the project is already clear enough to start.</h1>
+            <p>This is the fastest route for businesses that already know they need a launch, redesign, rebuild, or stronger page system. Send the essentials and keep the momentum moving.</p>
+            <div class="launch-control__actions">
+              <a class="launch-control__action launch-control__action--primary" href="#project-form">Complete Project Form</a>
+              <a class="launch-control__action" href="/payments/" data-track="pay_consultation_view">Book Call</a>
+              <a class="launch-control__action" href="/discovery/#discovery-questionnaire" data-track="discovery_view">Discovery Form</a>
+            </div>
+          </div>
+          <div class="launch-control__stage">
+            <div class="launch-control__lead">
+              <img src="/assets/media/visual-command-center.svg" alt="Command-center visual representing direct project intake and rapid review." loading="eager" />
+              <div class="launch-control__lead-copy">
+                <span class="launch-control__label">Direct intake</span>
+                <h2>Fast lane for clear projects.</h2>
+                <p>Ready projects should not wait in a maze.</p>
               </div>
             </div>
-          </article>
+            <div class="launch-control__stack">
+              <article class="launch-control__mini-card"><span class="launch-control__label">Use case</span><h3>Launch build</h3><p>For companies starting properly instead of rushing a placeholder site.</p></article>
+              <article class="launch-control__mini-card"><span class="launch-control__label">Use case</span><h3>Rebuild</h3><p>For businesses that have outgrown the current site and need a stronger system.</p></article>
+              <article class="launch-control__mini-card"><span class="launch-control__label">Use case</span><h3>High-value pages</h3><p>For focused work where a few pages carry the commercial weight.</p></article>
+            </div>
+          </div>
         </div>
+        <script>
+          (() => {
+            const root = document.getElementById("launch-control");
+            if (!root || root.dataset.inlineHeroReady === "true") return;
+            root.dataset.inlineHeroReady = "true";
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+            const frame = root.querySelector(".launch-control__frame");
+            const move = (x, y) => { root.style.setProperty("--mx", x.toFixed(3)); root.style.setProperty("--my", y.toFixed(3)); };
+            move(0, 0);
+            frame.addEventListener("pointermove", (event) => {
+              const rect = frame.getBoundingClientRect();
+              move((event.clientX - rect.left) / rect.width - 0.5, (event.clientY - rect.top) / rect.height - 0.5);
+            });
+            frame.addEventListener("pointerleave", () => move(0, 0));
+          })();
+        </script>
       </section>
 
 

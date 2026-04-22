@@ -73,50 +73,83 @@
 
       <!-- SECTION 01: Selected directions that show the standard.
            Edit this block to update this page section.
-           Main classes: section hero-mast
+           Main classes: page-local hero
       -->
-      <section class="section hero-mast">
-        <div class="hero-mast__shell">
-          <article class="hero-mast__frame surface" data-reveal>
-            <div class="hero-mast__layout">
-              <div class="hero-mast__copy">
-                <span class="hero-mast__eyebrow">Work</span>
-                <h1 class="hero-mast__title">Selected directions that show the standard.</h1>
-                <p class="hero-mast__lede">
-                  This page is here to show context, not random visuals. The work examples focus on
-                  how different kinds of businesses need different story structures, different levels
-                  of contrast, and different ways of guiding people toward action.
-                </p>
-                <p class="hero-mast__punch">Direction first. Then impact.</p>
-                <div class="hero-mast__actions">
-                  <a class="button button--primary" href="/launch/" data-track="start_project_click">Launch</a>
-                  <a class="button button--secondary" href="/payments/" data-track="pay_consultation_view">Book Call</a>
-                  <a class="button button--subtle" href="/discovery/#discovery-questionnaire" data-track="discovery_view">Discovery Form</a>
-                </div>
-              </div>
-
-              <div class="hero-mast__stage">
-                <div class="hero-mast__media">
-                  <img
-                    src="/assets/media/space-titan-frame.jpg"
-                    alt="Dark space horizon representing premium website directions and portfolio context."
-                    loading="eager"
-                  />
-                </div>
-                <div class="hero-mast__signal-grid">
-                  <div class="hero-mast__signal">
-                    <strong>Context first</strong>
-                    <span>Client type, problem, and result should be visible, not implied.</span>
-                  </div>
-                  <div class="hero-mast__signal">
-                    <strong>Different structures</strong>
-                    <span>Different businesses need different story pacing, contrast, and emphasis.</span>
-                  </div>
-                </div>
-              </div>
+      <section id="examples-mosaic" data-layout-sequence>
+        <style>
+          #examples-mosaic { --mx: 0; --my: 0; padding-top: clamp(1rem, 2vw, 2rem); }
+          #examples-mosaic * { box-sizing: border-box; }
+          #examples-mosaic .examples-mosaic__frame {
+            width: min(94rem, calc(100% - 2rem)); margin: 0 auto; padding: clamp(1rem, 1.8vw, 1.5rem);
+            border-radius: 2.3rem; border: 1px solid rgba(140,226,255,0.14);
+            background: radial-gradient(circle at 14% 20%, rgba(140,226,255,0.12), transparent 20%), linear-gradient(145deg, rgba(7,11,21,0.98), rgba(10,18,33,0.94));
+            display: grid; grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr); gap: 1rem; box-shadow: 0 28px 100px rgba(0,0,0,0.26);
+          }
+          #examples-mosaic .examples-mosaic__copy, #examples-mosaic .examples-mosaic__grid { display: grid; align-content: center; gap: 0.95rem; }
+          #examples-mosaic .examples-mosaic__eyebrow, #examples-mosaic .examples-mosaic__label { font: 500 0.72rem/1 "IBM Plex Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(225,232,242,0.72); }
+          #examples-mosaic h1, #examples-mosaic h2 { margin: 0; color: #f5f7fb; font-family: "Syne", sans-serif; letter-spacing: -0.07em; }
+          #examples-mosaic h1 { max-width: 7ch; font-size: clamp(3rem, 6vw, 5.6rem); line-height: 0.92; }
+          #examples-mosaic p { margin: 0; color: rgba(220,228,239,0.82); font: 500 clamp(0.98rem, 1.3vw, 1.06rem)/1.6 "Manrope", sans-serif; }
+          #examples-mosaic .examples-mosaic__actions, #examples-mosaic .examples-mosaic__tags { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+          #examples-mosaic .examples-mosaic__action, #examples-mosaic .examples-mosaic__tag { display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; padding: 0 1.1rem; border-radius: 999px; text-decoration: none; font: 700 0.92rem/1 "Manrope", sans-serif; }
+          #examples-mosaic .examples-mosaic__action--primary { border: 0; color: #07111d; background: linear-gradient(135deg, #ff9064, #ffd677 72%, #bffbff); }
+          #examples-mosaic .examples-mosaic__action--secondary, #examples-mosaic .examples-mosaic__tag { border: 1px solid rgba(140,226,255,0.16); color: #edf3fb; background: rgba(255,255,255,0.03); }
+          #examples-mosaic .examples-mosaic__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); display: grid; }
+          #examples-mosaic .examples-mosaic__hero {
+            grid-column: span 2; grid-row: span 2; position: relative; min-height: clamp(20rem, 28vw, 24rem);
+            border-radius: 1.55rem; overflow: hidden; border: 1px solid rgba(140,226,255,0.12);
+          }
+          #examples-mosaic .examples-mosaic__hero img, #examples-mosaic .examples-mosaic__tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+          #examples-mosaic .examples-mosaic__hero img { transform: scale(1.04) translate3d(calc(var(--mx) * 8px), calc(var(--my) * 8px), 0); transition: transform 180ms ease-out; }
+          #examples-mosaic .examples-mosaic__hero::after, #examples-mosaic .examples-mosaic__tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,9,17,0.08), rgba(5,9,17,0.72)); }
+          #examples-mosaic .examples-mosaic__hero-copy, #examples-mosaic .examples-mosaic__tile-copy { position: relative; z-index: 1; padding: 1rem; display: grid; gap: 0.45rem; align-content: end; height: 100%; }
+          #examples-mosaic .examples-mosaic__tile {
+            position: relative; min-height: 11.5rem; border-radius: 1.35rem; overflow: hidden; border: 1px solid rgba(140,226,255,0.12);
+          }
+          @media (max-width: 980px) { #examples-mosaic .examples-mosaic__frame { grid-template-columns: 1fr; } }
+          @media (max-width: 720px) { #examples-mosaic .examples-mosaic__frame { width: min(100%, calc(100% - 1rem)); } #examples-mosaic .examples-mosaic__actions { display: grid; } #examples-mosaic .examples-mosaic__action { width: 100%; } #examples-mosaic .examples-mosaic__grid { grid-template-columns: 1fr; } #examples-mosaic .examples-mosaic__hero { grid-column: auto; grid-row: auto; } }
+        </style>
+        <div class="examples-mosaic__frame">
+          <div class="examples-mosaic__copy">
+            <span class="examples-mosaic__eyebrow">Selected directions</span>
+            <h1>Examples that prove the shift, not just the mood.</h1>
+            <p>The work should show who the site is for, what was weak before, and how the new structure, design, and pacing change the read for the business.</p>
+            <div class="examples-mosaic__actions">
+              <a class="examples-mosaic__action examples-mosaic__action--primary" href="/launch/">Start a Project</a>
+              <a class="examples-mosaic__action examples-mosaic__action--secondary" href="/process/">View Process</a>
             </div>
-          </article>
+            <div class="examples-mosaic__tags">
+              <span class="examples-mosaic__tag">Founder consultancy</span>
+              <span class="examples-mosaic__tag">Launch story</span>
+              <span class="examples-mosaic__tag">Service system</span>
+            </div>
+          </div>
+          <div class="examples-mosaic__grid">
+            <article class="examples-mosaic__hero">
+              <img src="/assets/media/heroes/examples-hero-editorial-space-direction-premium-websites.svg" alt="Editorial space horizon representing premium website directions and stronger visual hierarchy." loading="eager" />
+              <div class="examples-mosaic__hero-copy"><span class="examples-mosaic__label">Editorial contrast</span><h2>Structure makes the shift visible.</h2></div>
+            </article>
+            <article class="examples-mosaic__tile"><img src="/assets/media/space-moon-frame.jpg" alt="Case direction tile representing launch-story contrast." loading="lazy" /><div class="examples-mosaic__tile-copy"><span class="examples-mosaic__label">Launch story</span><p>Sharper pacing and cleaner contrast.</p></div></article>
+            <article class="examples-mosaic__tile"><img src="/assets/media/space-moon-frame.jpg" alt="Case direction tile representing service-system structure." loading="lazy" /><div class="examples-mosaic__tile-copy"><span class="examples-mosaic__label">Service system</span><p>Clear categories. Better read.</p></div></article>
+            <article class="examples-mosaic__tile"><img src="/assets/media/visual-command-center.svg" alt="Case direction tile representing founder-consultancy positioning." loading="lazy" /><div class="examples-mosaic__tile-copy"><span class="examples-mosaic__label">Founder consultancy</span><p>Context first. Surface second.</p></div></article>
+          </div>
         </div>
+        <script>
+          (() => {
+            const root = document.getElementById("examples-mosaic");
+            if (!root || root.dataset.inlineHeroReady === "true") return;
+            root.dataset.inlineHeroReady = "true";
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+            const frame = root.querySelector(".examples-mosaic__frame");
+            const move = (x, y) => { root.style.setProperty("--mx", x.toFixed(3)); root.style.setProperty("--my", y.toFixed(3)); };
+            move(0, 0);
+            frame.addEventListener("pointermove", (event) => {
+              const rect = frame.getBoundingClientRect();
+              move((event.clientX - rect.left) / rect.width - 0.5, (event.clientY - rect.top) / rect.height - 0.5);
+            });
+            frame.addEventListener("pointerleave", () => move(0, 0));
+          })();
+        </script>
       </section>
 
 

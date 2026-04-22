@@ -73,50 +73,113 @@
 
       <!-- SECTION 01: Choose the fastest route to the right next step.
            Edit this block to update this page section.
-           Main classes: section hero-mast
+           Main classes: page-local hero
       -->
-      <section class="section hero-mast">
-        <div class="hero-mast__shell">
-          <article class="hero-mast__frame surface" data-reveal>
-            <div class="hero-mast__layout">
-              <div class="hero-mast__copy">
-                <span class="hero-mast__eyebrow">Contact</span>
-                <h1 class="hero-mast__title">Choose the fastest route to the right next step.</h1>
-                <p class="hero-mast__lede">
-                  If you already know the project, start there. If you need sharper strategic input
-                  first, book a call. If you have a direct question before choosing a route, send the
-                  form below and ASH-TRA will point you to the cleanest next move.
-                </p>
-                <p class="hero-mast__punch">Three routes. One clean next step.</p>
-                <div class="hero-mast__actions">
-                  <a class="button button--primary" href="/launch/" data-track="start_project_click">Launch</a>
-                  <a class="button button--secondary" href="/payments/" data-track="pay_consultation_view">Book Call</a>
-                  <a class="button button--subtle" href="/discovery/#discovery-questionnaire" data-track="discovery_view">Discovery Form</a>
-                </div>
-              </div>
-
-              <div class="hero-mast__stage">
-                <div class="hero-mast__media">
-                  <img src="/assets/media/visual-contact-beacon.svg" alt="ASH-TRA contact beacon representing a cleaner project intake route." />
-                </div>
-                <div class="hero-mast__signal-grid">
-                  <div class="hero-mast__signal">
-                    <strong>Start project</strong>
-                    <span>Use this when the launch, rebuild, or page work is already clear enough to move.</span>
-                  </div>
-                  <div class="hero-mast__signal">
-                    <strong>Book call</strong>
-                    <span>Use this when the decision needs diagnosis, strategy input, and a clearer outside read.</span>
-                  </div>
-                  <div class="hero-mast__signal">
-                    <strong>Discovery form</strong>
-                    <span>Use this when you want to send the context first and keep the route async for now.</span>
-                  </div>
-                </div>
+      <section id="contact-routes" data-layout-sequence>
+        <style>
+          #contact-routes { --mx: 0; --my: 0; padding-top: clamp(1rem, 2vw, 2rem); }
+          #contact-routes * { box-sizing: border-box; }
+          #contact-routes .contact-routes__frame {
+            width: min(94rem, calc(100% - 2rem));
+            margin: 0 auto;
+            padding: clamp(1rem, 1.8vw, 1.5rem);
+            border-radius: 2.4rem;
+            border: 1px solid rgba(140, 226, 255, 0.14);
+            background:
+              radial-gradient(circle at 12% 18%, rgba(140, 226, 255, 0.12), transparent 20%),
+              radial-gradient(circle at 88% 16%, rgba(255, 145, 100, 0.12), transparent 24%),
+              linear-gradient(145deg, rgba(6, 10, 20, 0.98), rgba(9, 17, 31, 0.94));
+            display: grid;
+            grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+            gap: 1.2rem;
+            box-shadow: 0 30px 110px rgba(0, 0, 0, 0.28);
+          }
+          #contact-routes .contact-routes__copy { display: grid; align-content: center; gap: 0.95rem; }
+          #contact-routes .contact-routes__eyebrow, #contact-routes .contact-routes__route-id {
+            font: 500 0.72rem/1 "IBM Plex Mono", monospace;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(225, 232, 242, 0.72);
+          }
+          #contact-routes h1, #contact-routes h2 {
+            margin: 0;
+            color: #f5f7fb;
+            font-family: "Syne", sans-serif;
+            letter-spacing: -0.07em;
+          }
+          #contact-routes h1 { max-width: 7ch; font-size: clamp(3rem, 6vw, 5.8rem); line-height: 0.92; }
+          #contact-routes p { margin: 0; color: rgba(220, 228, 239, 0.82); font: 500 clamp(0.98rem, 1.3vw, 1.06rem)/1.6 "Manrope", sans-serif; }
+          #contact-routes .contact-routes__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+          #contact-routes .contact-routes__action {
+            display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; padding: 0 1.1rem;
+            border-radius: 999px; border: 1px solid rgba(140, 226, 255, 0.16); text-decoration: none; color: #edf3fb;
+            background: rgba(255, 255, 255, 0.03); font: 700 0.92rem/1 "Manrope", sans-serif;
+          }
+          #contact-routes .contact-routes__action--primary { background: linear-gradient(135deg, #ff9064, #ffd677 72%, #bffbff); color: #07111d; border: 0; }
+          #contact-routes .contact-routes__stage { display: grid; grid-template-columns: minmax(0, 1.1fr) repeat(3, minmax(0, 0.74fr)); gap: 0.9rem; align-items: stretch; }
+          #contact-routes .contact-routes__lead, #contact-routes .contact-routes__card {
+            padding: 1rem; border-radius: 1.55rem; border: 1px solid rgba(140, 226, 255, 0.14);
+            background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.008)), rgba(8, 13, 24, 0.74);
+          }
+          #contact-routes .contact-routes__lead { position: relative; overflow: hidden; display: grid; align-content: end; min-height: clamp(20rem, 28vw, 25rem); }
+          #contact-routes .contact-routes__lead img {
+            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+            transform: scale(1.05) translate3d(calc(var(--mx) * 12px), calc(var(--my) * 12px), 0); transition: transform 180ms ease-out; opacity: 0.82;
+          }
+          #contact-routes .contact-routes__lead::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5, 9, 17, 0.12), rgba(5, 9, 17, 0.84)); }
+          #contact-routes .contact-routes__lead-copy { position: relative; z-index: 1; display: grid; gap: 0.45rem; }
+          #contact-routes .contact-routes__card { display: grid; gap: 0.6rem; text-decoration: none; color: inherit; }
+          #contact-routes .contact-routes__card--primary { border-color: rgba(255, 150, 104, 0.32); background: linear-gradient(180deg, rgba(255,150,104,0.05), rgba(255,255,255,0.008)), rgba(8, 13, 24, 0.82); }
+          @media (max-width: 980px) {
+            #contact-routes .contact-routes__frame, #contact-routes .contact-routes__stage { grid-template-columns: 1fr; }
+          }
+          @media (max-width: 720px) {
+            #contact-routes .contact-routes__frame { width: min(100%, calc(100% - 1rem)); }
+            #contact-routes .contact-routes__actions { display: grid; }
+            #contact-routes .contact-routes__action { width: 100%; }
+          }
+        </style>
+        <div class="contact-routes__frame">
+          <div class="contact-routes__copy">
+            <span class="contact-routes__eyebrow">Contact</span>
+            <h1>Choose the fastest route to the right next step.</h1>
+            <p>If you already know the project, start there. If you need sharper strategic input first, book a call. If you want to send the context async, use the discovery form.</p>
+            <div class="contact-routes__actions">
+              <a class="contact-routes__action contact-routes__action--primary" href="/launch/" data-track="start_project_click">Launch</a>
+              <a class="contact-routes__action" href="/payments/" data-track="pay_consultation_view">Book Call</a>
+              <a class="contact-routes__action" href="/discovery/#discovery-questionnaire" data-track="discovery_view">Discovery Form</a>
+            </div>
+          </div>
+          <div class="contact-routes__stage">
+            <div class="contact-routes__lead">
+              <img src="/assets/media/visual-contact-beacon.svg" alt="Beacon visual representing route selection and cleaner project intake." loading="eager" />
+              <div class="contact-routes__lead-copy">
+                <span class="contact-routes__route-id">Move by readiness</span>
+                <h2>Pick the route that fits readiness.</h2>
+                <p>Three routes. One clean next step.</p>
               </div>
             </div>
-          </article>
+            <a class="contact-routes__card contact-routes__card--primary" href="/launch/"><span class="contact-routes__route-id">Primary</span><h2>Launch</h2><p>For businesses that already know they need a launch, rebuild, or focused page work.</p></a>
+            <a class="contact-routes__card" href="/payments/"><span class="contact-routes__route-id">Secondary</span><h2>Book Call</h2><p>For decisions that need diagnosis, strategy input, and a stronger outside read first.</p></a>
+            <a class="contact-routes__card" href="/discovery/#discovery-questionnaire"><span class="contact-routes__route-id">Tertiary</span><h2>Discovery Form</h2><p>For people who want to send context first and keep the route asynchronous for now.</p></a>
+          </div>
         </div>
+        <script>
+          (() => {
+            const root = document.getElementById("contact-routes");
+            if (!root || root.dataset.inlineHeroReady === "true") return;
+            root.dataset.inlineHeroReady = "true";
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+            const frame = root.querySelector(".contact-routes__frame");
+            const move = (x, y) => { root.style.setProperty("--mx", x.toFixed(3)); root.style.setProperty("--my", y.toFixed(3)); };
+            move(0, 0);
+            frame.addEventListener("pointermove", (event) => {
+              const rect = frame.getBoundingClientRect();
+              move((event.clientX - rect.left) / rect.width - 0.5, (event.clientY - rect.top) / rect.height - 0.5);
+            });
+            frame.addEventListener("pointerleave", () => move(0, 0));
+          })();
+        </script>
       </section>
 
 

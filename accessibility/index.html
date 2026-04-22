@@ -73,45 +73,39 @@
 
       <!-- SECTION 01: Built to be clearer. Built to be usable.
            Edit this block to update this page section.
-           Main classes: section hero-mast
+           Main classes: page-local hero
       -->
-      <section class="section hero-mast">
-        <div class="hero-mast__shell">
-          <article class="hero-mast__frame surface" data-reveal>
-            <div class="hero-mast__layout">
-              <div class="hero-mast__copy">
-                <span class="hero-mast__eyebrow">Accessibility</span>
-                <h1 class="hero-mast__title">Built to be clearer. Built to be usable.</h1>
-                <p class="hero-mast__lede">
-                  ASH-TRA aims to make ash-tra.com easier to use for more people by following
-                  practical accessibility best practices and improving the experience over time.
-                </p>
-                <p class="hero-mast__punch">Clarity is part of the standard.</p>
-              </div>
-
-              <div class="hero-mast__stage">
-                <div class="hero-mast__signal-grid">
-                  <div class="hero-mast__signal">
-                    <strong>Readable</strong>
-                    <span>Clear structure, sensible contrast, and readable text.</span>
-                  </div>
-                  <div class="hero-mast__signal">
-                    <strong>Navigable</strong>
-                    <span>Keyboard-friendly use, focus visibility, and reduced friction.</span>
-                  </div>
-                  <div class="hero-mast__signal">
-                    <strong>Responsive</strong>
-                    <span>Cleaner interactions across devices and screen sizes.</span>
-                  </div>
-                  <div class="hero-mast__signal">
-                    <strong>Improving</strong>
-                    <span>Accessibility is treated as an ongoing process, not a checkbox.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
+      <section id="access-grid" data-layout-sequence>
+        <style>
+          #access-grid { padding-top: clamp(1rem, 2vw, 2rem); }
+          #access-grid * { box-sizing: border-box; }
+          #access-grid .access-grid__frame {
+            width: min(90rem, calc(100% - 2rem)); margin: 0 auto; padding: clamp(1rem, 1.8vw, 1.5rem);
+            border-radius: 2.1rem; border: 1px solid rgba(140,226,255,0.14); background: linear-gradient(145deg, rgba(8,12,22,0.98), rgba(10,18,32,0.94));
+            display: grid; gap: 1rem; box-shadow: 0 28px 100px rgba(0,0,0,0.26);
+          }
+          #access-grid .access-grid__eyebrow, #access-grid .access-grid__item strong { font: 500 0.72rem/1 "IBM Plex Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(225,232,242,0.72); }
+          #access-grid h1 { margin: 0; max-width: 8ch; color: #f5f7fb; font: 700 clamp(2.8rem, 6vw, 5.2rem)/0.94 "Syne", sans-serif; letter-spacing: -0.07em; }
+          #access-grid p { margin: 0; color: rgba(220,228,239,0.82); font: 500 clamp(0.96rem, 1.2vw, 1.02rem)/1.6 "Manrope", sans-serif; }
+          #access-grid .access-grid__action { display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; padding: 0 1.1rem; border-radius: 999px; text-decoration: none; border: 1px solid rgba(140,226,255,0.16); color: #edf3fb; background: rgba(255,255,255,0.03); font: 700 0.92rem/1 "Manrope", sans-serif; }
+          #access-grid .access-grid__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; }
+          #access-grid .access-grid__item { padding: 1rem; border-radius: 1.25rem; border: 1px solid rgba(140,226,255,0.12); background: rgba(255,255,255,0.02); display: grid; gap: 0.45rem; }
+          @media (max-width: 900px) { #access-grid .access-grid__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+          @media (max-width: 720px) { #access-grid .access-grid__frame { width: min(100%, calc(100% - 1rem)); } #access-grid .access-grid__grid { grid-template-columns: 1fr; } #access-grid .access-grid__action { width: 100%; } }
+        </style>
+        <div class="access-grid__frame">
+          <span class="access-grid__eyebrow">Accessibility Statement</span>
+          <h1>Built to be clearer. Built to be usable.</h1>
+          <p>ASH-TRA aims to make ash-tra.com easier to use for more people by following practical accessibility best practices and improving the experience over time.</p>
+          <a class="access-grid__action" href="mailto:team.ashtra.ai@gmail.com">Report an Issue</a>
+          <div class="access-grid__grid">
+            <div class="access-grid__item"><strong>Readable</strong><p>Clear structure, sensible contrast, and readable text.</p></div>
+            <div class="access-grid__item"><strong>Navigable</strong><p>Keyboard-friendly use, focus visibility, and reduced friction.</p></div>
+            <div class="access-grid__item"><strong>Responsive</strong><p>Cleaner interactions across devices and screen sizes.</p></div>
+            <div class="access-grid__item"><strong>Improving</strong><p>Accessibility is treated as an ongoing process, not a checkbox.</p></div>
+          </div>
         </div>
+        <script>document.getElementById("access-grid")?.setAttribute("data-inline-hero", "ready");</script>
       </section>
 
 

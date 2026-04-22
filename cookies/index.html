@@ -73,46 +73,41 @@
 
       <!-- SECTION 01: Clear use. Clear choice.
            Edit this block to update this page section.
-           Main classes: section hero-mast
+           Main classes: page-local hero
       -->
-      <section class="section hero-mast">
-        <div class="hero-mast__shell">
-          <article class="hero-mast__frame surface" data-reveal>
-            <div class="hero-mast__layout">
-              <div class="hero-mast__copy">
-                <span class="hero-mast__eyebrow">Cookie Policy</span>
-                <h1 class="hero-mast__title">Clear use. Clear choice.</h1>
-                <p class="hero-mast__lede">
-                  This Cookie Policy explains how ash-tra.com may use cookies and similar
-                  technologies to support site functionality, understand usage, and improve
-                  performance.
-                </p>
-                <p class="hero-mast__punch">No vague tracking language. Just the basics.</p>
-              </div>
-
-              <div class="hero-mast__stage">
-                <div class="hero-mast__signal-grid">
-                  <div class="hero-mast__signal">
-                    <strong>Essential</strong>
-                    <span>Core website functionality and security.</span>
-                  </div>
-                  <div class="hero-mast__signal">
-                    <strong>Analytics</strong>
-                    <span>Usage and performance measurement where enabled.</span>
-                  </div>
-                  <div class="hero-mast__signal">
-                    <strong>Preferences</strong>
-                    <span>Remembering settings and user choices.</span>
-                  </div>
-                  <div class="hero-mast__signal">
-                    <strong>Choice</strong>
-                    <span>Non-essential cookies should depend on user consent where required.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
+      <section id="cookie-switchboard" data-layout-sequence>
+        <style>
+          #cookie-switchboard { padding-top: clamp(1rem, 2vw, 2rem); }
+          #cookie-switchboard * { box-sizing: border-box; }
+          #cookie-switchboard .cookie-switchboard__frame {
+            width: min(90rem, calc(100% - 2rem)); margin: 0 auto; padding: clamp(1rem, 1.8vw, 1.5rem);
+            border-radius: 2.1rem; border: 1px solid rgba(140,226,255,0.14); background: linear-gradient(145deg, rgba(8,12,22,0.98), rgba(10,18,32,0.94));
+            display: grid; gap: 1rem; box-shadow: 0 28px 100px rgba(0,0,0,0.26);
+          }
+          #cookie-switchboard .cookie-switchboard__eyebrow, #cookie-switchboard .cookie-switchboard__item strong { font: 500 0.72rem/1 "IBM Plex Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(225,232,242,0.72); }
+          #cookie-switchboard h1 { margin: 0; max-width: 8ch; color: #f5f7fb; font: 700 clamp(2.8rem, 6vw, 5.2rem)/0.94 "Syne", sans-serif; letter-spacing: -0.07em; }
+          #cookie-switchboard p { margin: 0; color: rgba(220,228,239,0.82); font: 500 clamp(0.96rem, 1.2vw, 1.02rem)/1.6 "Manrope", sans-serif; }
+          #cookie-switchboard .cookie-switchboard__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; }
+          #cookie-switchboard .cookie-switchboard__item { padding: 1rem; border-radius: 1.25rem; border: 1px solid rgba(140,226,255,0.12); background: rgba(255,255,255,0.02); display: grid; gap: 0.55rem; }
+          #cookie-switchboard .cookie-switchboard__toggle { width: 3rem; height: 1.7rem; border-radius: 999px; background: rgba(255,255,255,0.12); position: relative; }
+          #cookie-switchboard .cookie-switchboard__toggle::after { content: ""; position: absolute; top: 0.2rem; left: 0.2rem; width: 1.3rem; height: 1.3rem; border-radius: 50%; background: #fff; }
+          #cookie-switchboard .cookie-switchboard__item--active .cookie-switchboard__toggle { background: linear-gradient(135deg, #ff9064, #bffbff); }
+          #cookie-switchboard .cookie-switchboard__item--active .cookie-switchboard__toggle::after { left: 1.45rem; }
+          @media (max-width: 900px) { #cookie-switchboard .cookie-switchboard__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+          @media (max-width: 720px) { #cookie-switchboard .cookie-switchboard__frame { width: min(100%, calc(100% - 1rem)); } #cookie-switchboard .cookie-switchboard__grid { grid-template-columns: 1fr; } }
+        </style>
+        <div class="cookie-switchboard__frame">
+          <span class="cookie-switchboard__eyebrow">Cookie Policy</span>
+          <h1>Clear use. Clear choice.</h1>
+          <p>This Cookie Policy explains how ash-tra.com may use cookies and similar technologies to support site functionality, understand usage, and improve performance.</p>
+          <div class="cookie-switchboard__grid">
+            <div class="cookie-switchboard__item cookie-switchboard__item--active"><strong>Essential</strong><div class="cookie-switchboard__toggle"></div><p>Core website functionality and security.</p></div>
+            <div class="cookie-switchboard__item"><strong>Analytics</strong><div class="cookie-switchboard__toggle"></div><p>Usage and performance measurement where enabled.</p></div>
+            <div class="cookie-switchboard__item"><strong>Preferences</strong><div class="cookie-switchboard__toggle"></div><p>Remembering settings and user choices.</p></div>
+            <div class="cookie-switchboard__item"><strong>Choice</strong><div class="cookie-switchboard__toggle"></div><p>Non-essential cookies should depend on user consent where required.</p></div>
+          </div>
         </div>
+        <script>document.getElementById("cookie-switchboard")?.setAttribute("data-inline-hero", "ready");</script>
       </section>
 
 

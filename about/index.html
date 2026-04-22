@@ -63,55 +63,255 @@
            Page hero with headline, description, and key messages about the company.
            Shows brand positioning and visual elements.
            ======================================================================== -->
-      <section class="section hero-mast layout-section" data-layout-sequence>
-        <div class="hero-mast__shell">
-          <article class="hero-mast__frame surface" data-reveal>
-            <div class="hero-mast__layout">
-              <!-- LEFT SIDE: Text content -->
-              <div class="hero-mast__copy">
-                <span class="hero-mast__eyebrow">About ASH-TRA</span>
-                <h1 class="hero-mast__title">Built for companies that are done looking behind.</h1>
-                <p class="hero-mast__lede">
-                  ASH-TRA exists for ambitious companies that know how they look changes how they are
-                  judged. If the digital presence still feels weak, generic, dated, or too safe, the
-                  whole company gets read at a lower level than it deserves.
-                </p>
-                <p class="hero-mast__punch">Look stronger. Read stronger.</p>
-                <div class="hero-mast__actions">
-                  <a class="button button--primary" href="/launch/">Launch Your Project</a>
-                  <a class="button button--secondary" href="/services/">View Services</a>
-                </div>
-              </div>
+      <section id="about-manifesto" data-layout-sequence>
+        <style>
+          #about-manifesto {
+            --mx: 0;
+            --my: 0;
+            padding-top: clamp(1rem, 2vw, 2rem);
+          }
 
-              <!-- RIGHT SIDE: Visual elements and brand info -->
-              <div class="hero-mast__stage">
-                <!-- Card with logo and brand description -->
-                <div class="hero-mast__card">
-                  <div class="hero-mast__logo">
-                    <img src="/assets/brand/ash-tra-logo.png" alt="ASH-TRA logo mark used as the core brand emblem" />
-                  </div>
-                  <p>Modern websites and digital presence built to make companies look sharper, feel more credible, and move with more force.</p>
-                </div>
+          #about-manifesto * {
+            box-sizing: border-box;
+          }
 
-                <!-- Orbital element with brand values and ideal fit -->
-                <div class="hero-mast__orbital">
-                  <span class="hero-mast__ring"></span>
-                  <span class="hero-mast__node hero-mast__node--a"></span>
-                  <span class="hero-mast__node hero-mast__node--b"></span>
-                  <span class="hero-mast__node hero-mast__node--c"></span>
-                  <div class="hero-mast__note hero-mast__note--top">
-                    <strong>Bias</strong>
-                    <span>Clear signal. Strong design. Real business pull.</span>
-                  </div>
-                  <div class="hero-mast__note hero-mast__note--bottom">
-                    <strong>Ideal fit</strong>
-                    <span>Founders, consultants, agencies, service brands, AI companies, and teams that care how the company is read online.</span>
-                  </div>
-                </div>
+          #about-manifesto .about-manifesto__frame {
+            width: min(92rem, calc(100% - 2rem));
+            margin: 0 auto;
+            padding: clamp(1rem, 2vw, 1.6rem);
+            border-radius: 2.5rem;
+            border: 1px solid rgba(144, 229, 255, 0.14);
+            background:
+              radial-gradient(circle at 18% 16%, rgba(140, 226, 255, 0.12), transparent 20%),
+              radial-gradient(circle at 84% 18%, rgba(255, 142, 99, 0.12), transparent 24%),
+              linear-gradient(155deg, rgba(6, 11, 22, 0.98), rgba(10, 18, 33, 0.94));
+            display: grid;
+            gap: 1.25rem;
+            box-shadow: 0 30px 110px rgba(0, 0, 0, 0.3);
+          }
+
+          #about-manifesto .about-manifesto__intro {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(18rem, 24rem);
+            gap: 1rem;
+            align-items: end;
+          }
+
+          #about-manifesto .about-manifesto__copy {
+            display: grid;
+            gap: 0.95rem;
+          }
+
+          #about-manifesto .about-manifesto__eyebrow,
+          #about-manifesto .about-manifesto__label {
+            font: 500 0.72rem/1 "IBM Plex Mono", monospace;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(226, 233, 243, 0.72);
+          }
+
+          #about-manifesto h1,
+          #about-manifesto h2 {
+            margin: 0;
+            color: #f5f7fb;
+            font-family: "Syne", sans-serif;
+            letter-spacing: -0.07em;
+          }
+
+          #about-manifesto h1 {
+            max-width: 8ch;
+            font-size: clamp(3.2rem, 6vw, 6rem);
+            line-height: 0.92;
+          }
+
+          #about-manifesto p {
+            margin: 0;
+            max-width: 34rem;
+            color: rgba(220, 228, 238, 0.82);
+            font: 500 clamp(1rem, 1.35vw, 1.08rem)/1.62 "Manrope", sans-serif;
+          }
+
+          #about-manifesto .about-manifesto__actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+          }
+
+          #about-manifesto .about-manifesto__action,
+          #about-manifesto .about-manifesto__pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 3rem;
+            padding: 0 1.1rem;
+            border-radius: 999px;
+            border: 1px solid rgba(138, 225, 255, 0.16);
+            text-decoration: none;
+            color: #edf3fb;
+            font: 700 0.92rem/1 "Manrope", sans-serif;
+            background: rgba(255, 255, 255, 0.028);
+          }
+
+          #about-manifesto .about-manifesto__action--primary {
+            background: linear-gradient(135deg, #ff8c60, #ffd278 70%, #cbfbff);
+            color: #07111d;
+            border: 0;
+          }
+
+          #about-manifesto .about-manifesto__aside {
+            padding: 1rem 1.1rem;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(138, 225, 255, 0.14);
+            background: rgba(255, 255, 255, 0.03);
+            display: grid;
+            gap: 0.55rem;
+          }
+
+          #about-manifesto .about-manifesto__atlas {
+            position: relative;
+            min-height: clamp(23rem, 40vw, 38rem);
+            border-radius: 2rem;
+            overflow: hidden;
+            border: 1px solid rgba(138, 225, 255, 0.14);
+            background: rgba(4, 8, 18, 0.86);
+          }
+
+          #about-manifesto .about-manifesto__atlas img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.06) translate3d(calc(var(--mx) * 14px), calc(var(--my) * 14px), 0);
+            transition: transform 180ms ease-out;
+            filter: saturate(0.95) contrast(1.08) brightness(0.88);
+          }
+
+          #about-manifesto .about-manifesto__shade {
+            position: absolute;
+            inset: 0;
+            background:
+              linear-gradient(180deg, rgba(4, 8, 18, 0.08), rgba(4, 8, 18, 0.82)),
+              linear-gradient(100deg, rgba(4, 8, 18, 0.72), rgba(4, 8, 18, 0.18) 48%, rgba(4, 8, 18, 0.84));
+          }
+
+          #about-manifesto .about-manifesto__note {
+            position: absolute;
+            z-index: 2;
+            width: min(14rem, calc(100% - 2rem));
+            padding: 0.9rem 1rem;
+            border-radius: 1.35rem;
+            border: 1px solid rgba(138, 225, 255, 0.16);
+            background: rgba(8, 14, 27, 0.7);
+            backdrop-filter: blur(16px);
+            display: grid;
+            gap: 0.35rem;
+          }
+
+          #about-manifesto .about-manifesto__note--top {
+            top: 1rem;
+            left: 1rem;
+          }
+
+          #about-manifesto .about-manifesto__note--bottom {
+            right: 1rem;
+            bottom: 1rem;
+          }
+
+          #about-manifesto .about-manifesto__route {
+            position: absolute;
+            left: 1rem;
+            bottom: 1rem;
+            z-index: 2;
+            padding: 0.78rem 0.95rem;
+            border-radius: 999px;
+            border: 1px solid rgba(138, 225, 255, 0.16);
+            background: rgba(8, 14, 27, 0.7);
+          }
+
+          @media (max-width: 980px) {
+            #about-manifesto .about-manifesto__intro {
+              grid-template-columns: 1fr;
+            }
+          }
+
+          @media (max-width: 720px) {
+            #about-manifesto .about-manifesto__frame {
+              width: min(100%, calc(100% - 1rem));
+            }
+
+            #about-manifesto .about-manifesto__actions {
+              display: grid;
+            }
+
+            #about-manifesto .about-manifesto__action {
+              width: 100%;
+            }
+
+            #about-manifesto .about-manifesto__note,
+            #about-manifesto .about-manifesto__route {
+              position: static;
+              width: auto;
+              margin: 1rem;
+            }
+          }
+        </style>
+        <div class="about-manifesto__frame">
+          <div class="about-manifesto__intro">
+            <div class="about-manifesto__copy">
+              <span class="about-manifesto__eyebrow">About ASH-TRA</span>
+              <h1>Built for companies that are done looking behind.</h1>
+              <p>
+                ASH-TRA exists for ambitious businesses that know how the company is read online
+                changes trust, perceived value, and momentum. A weak-looking presence holds back a
+                stronger company than it suggests.
+              </p>
+              <div class="about-manifesto__actions">
+                <a class="about-manifesto__action about-manifesto__action--primary" href="/services/">View Services</a>
+                <a class="about-manifesto__action" href="/examples/">See Work Directions</a>
               </div>
             </div>
-          </article>
+            <aside class="about-manifesto__aside">
+              <span class="about-manifesto__label">Manifesto</span>
+              <h2>Perception moves business.</h2>
+              <p>Clear beats generic. Premium should feel clean. Momentum needs signal.</p>
+            </aside>
+          </div>
+          <div class="about-manifesto__atlas">
+            <img src="/assets/media/heroes/about-hero-deep-space-brand-positioning.svg" alt="Celestial atlas visual representing positioning, trust, and stronger public read." loading="eager" />
+            <div class="about-manifesto__shade" aria-hidden="true"></div>
+            <div class="about-manifesto__note about-manifesto__note--top">
+              <span class="about-manifesto__label">Bias</span>
+              <p>Clear signal. Real pull.</p>
+            </div>
+            <div class="about-manifesto__note about-manifesto__note--bottom">
+              <span class="about-manifesto__label">Effect</span>
+              <p>Stronger read. Faster trust.</p>
+            </div>
+            <div class="about-manifesto__route">
+              <span class="about-manifesto__label">Perception as leverage</span>
+            </div>
+          </div>
         </div>
+        <script>
+          (() => {
+            const root = document.getElementById("about-manifesto");
+            if (!root || root.dataset.inlineHeroReady === "true") return;
+            root.dataset.inlineHeroReady = "true";
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+            const frame = root.querySelector(".about-manifesto__frame");
+            const move = (x, y) => {
+              root.style.setProperty("--mx", x.toFixed(3));
+              root.style.setProperty("--my", y.toFixed(3));
+            };
+            move(0, 0);
+            frame.addEventListener("pointermove", (event) => {
+              const rect = frame.getBoundingClientRect();
+              move((event.clientX - rect.left) / rect.width - 0.5, (event.clientY - rect.top) / rect.height - 0.5);
+            });
+            frame.addEventListener("pointerleave", () => move(0, 0));
+          })();
+        </script>
       </section>
 
       <!-- ========================================================================

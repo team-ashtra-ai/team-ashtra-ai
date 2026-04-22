@@ -64,53 +64,73 @@
 
       <!-- SECTION 01: Start with clarity.
            Edit this block to update this page section.
-           Main classes: section hero-mast
+           Main classes: page-local hero
       -->
-      <section class="section hero-mast">
-        <div class="hero-mast__shell">
-          <article class="hero-mast__frame surface" data-reveal>
-            <div class="hero-mast__layout">
-              <div class="hero-mast__copy">
-                <span class="hero-mast__eyebrow">Payments</span>
-                <h1 class="hero-mast__title">Start with clarity.</h1>
-                <p class="hero-mast__lede">
-                  If you want real direction before anything gets built, start here. The paid
-                  consultation is the fastest way to get a sharper read on what your company needs,
-                  what is holding it back, and what the right next move looks like.
-                </p>
-                <p class="hero-mast__punch">Clear first. Build second.</p>
-                <div class="hero-mast__actions">
-                  <a class="button button--primary" href="#payment-request">Pay and Book</a>
-                  <a class="button button--secondary" href="/discovery/">Start Discovery Instead</a>
-                </div>
-              </div>
-
-              <div class="hero-mast__stage">
-                <div class="hero-mast__signal-grid">
-                  <div class="hero-mast__signal">
-                    <strong>What we look at</strong>
-                    <span>What feels weak, what is missing, and what should happen first.</span>
-                  </div>
-                  <div class="hero-mast__signal">
-                    <strong>What you leave with</strong>
-                    <span>A stronger starting point, clearer direction, and less risk of building the wrong thing.</span>
-                  </div>
-                </div>
-                <div class="hero-mast__route-row">
-                  <a class="hero-mast__route" href="#payment-request">Stripe</a>
-                  <a class="hero-mast__route" href="#payment-request">PayPal</a>
-                  <a class="hero-mast__route" href="#payment-request">Pix</a>
-                </div>
-                <div class="hero-mast__card">
-                  <div class="hero-mast__logo">
-                    <img src="/assets/brand/ash-tra-logo.png" alt="ASH-TRA logo mark on the paid consultation page" />
-                  </div>
-                  <p>Not just a quote. Real direction before the build begins.</p>
-                </div>
-              </div>
+      <section id="payments-briefing" data-layout-sequence>
+        <style>
+          #payments-briefing { --mx: 0; --my: 0; padding-top: clamp(1rem, 2vw, 2rem); }
+          #payments-briefing * { box-sizing: border-box; }
+          #payments-briefing .payments-briefing__frame {
+            width: min(92rem, calc(100% - 2rem)); margin: 0 auto; padding: clamp(1rem, 1.8vw, 1.5rem);
+            border-radius: 2.3rem; border: 1px solid rgba(140,226,255,0.14);
+            background: radial-gradient(circle at 16% 18%, rgba(255,148,104,0.12), transparent 20%), linear-gradient(145deg, rgba(8,12,22,0.98), rgba(10,18,32,0.94));
+            display: grid; grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr); gap: 1rem; box-shadow: 0 28px 100px rgba(0,0,0,0.26);
+          }
+          #payments-briefing .payments-briefing__copy, #payments-briefing .payments-briefing__board { display: grid; align-content: center; gap: 0.95rem; }
+          #payments-briefing .payments-briefing__eyebrow, #payments-briefing .payments-briefing__mini { font: 500 0.72rem/1 "IBM Plex Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(225,232,242,0.72); }
+          #payments-briefing h1, #payments-briefing h2 { margin: 0; color: #f5f7fb; font-family: "Syne", sans-serif; letter-spacing: -0.07em; }
+          #payments-briefing h1 { max-width: 7ch; font-size: clamp(3rem, 6vw, 5.6rem); line-height: 0.92; }
+          #payments-briefing p { margin: 0; color: rgba(220,228,239,0.82); font: 500 clamp(0.98rem, 1.3vw, 1.06rem)/1.6 "Manrope", sans-serif; }
+          #payments-briefing .payments-briefing__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+          #payments-briefing .payments-briefing__action { display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; padding: 0 1.1rem; border-radius: 999px; text-decoration: none; font: 700 0.92rem/1 "Manrope", sans-serif; }
+          #payments-briefing .payments-briefing__action--primary { border: 0; color: #07111d; background: linear-gradient(135deg, #ff9064, #ffd677 72%, #bffbff); }
+          #payments-briefing .payments-briefing__action--secondary { border: 1px solid rgba(140,226,255,0.16); color: #edf3fb; background: rgba(255,255,255,0.03); }
+          #payments-briefing .payments-briefing__board { padding: 1rem; border-radius: 1.7rem; border: 1px solid rgba(140,226,255,0.14); background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.008)), rgba(8,13,24,0.74); }
+          #payments-briefing .payments-briefing__hero { position: relative; min-height: clamp(13rem, 20vw, 17rem); border-radius: 1.35rem; overflow: hidden; border: 1px solid rgba(140,226,255,0.12); }
+          #payments-briefing .payments-briefing__hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.04) translate3d(calc(var(--mx) * 8px), calc(var(--my) * 8px), 0); transition: transform 180ms ease-out; opacity: 0.88; }
+          #payments-briefing .payments-briefing__hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,9,17,0.08), rgba(5,9,17,0.72)); }
+          #payments-briefing .payments-briefing__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+          #payments-briefing .payments-briefing__item { padding: 0.95rem; border-radius: 1.2rem; border: 1px solid rgba(140,226,255,0.12); background: rgba(255,255,255,0.02); display: grid; gap: 0.4rem; }
+          @media (max-width: 980px) { #payments-briefing .payments-briefing__frame { grid-template-columns: 1fr; } }
+          @media (max-width: 720px) { #payments-briefing .payments-briefing__frame { width: min(100%, calc(100% - 1rem)); } #payments-briefing .payments-briefing__actions, #payments-briefing .payments-briefing__grid { display: grid; } #payments-briefing .payments-briefing__action { width: 100%; } }
+        </style>
+        <div class="payments-briefing__frame">
+          <div class="payments-briefing__copy">
+            <span class="payments-briefing__eyebrow">Payments</span>
+            <h1>Start with clarity before the build begins.</h1>
+            <p>This route is for founders and teams who want more than a rough quote. It starts with a serious conversation about what is weak, what is missing, and what should happen first.</p>
+            <div class="payments-briefing__actions">
+              <a class="payments-briefing__action payments-briefing__action--primary" href="#payment-request">Pay and Book</a>
+              <a class="payments-briefing__action payments-briefing__action--secondary" href="/discovery/">Start Discovery Instead</a>
             </div>
-          </article>
+          </div>
+          <div class="payments-briefing__board">
+            <div class="payments-briefing__hero"><img src="/assets/media/heroes/pay-consultation-hero-strategic-briefing-website-consultation.svg" alt="Strategic briefing visual representing paid consultation, direction, and lower risk." loading="eager" /></div>
+            <h2>Clarity first. Risk down.</h2>
+            <div class="payments-briefing__grid">
+              <div class="payments-briefing__item"><span class="payments-briefing__mini">Goal</span><strong>Reduce guesswork</strong></div>
+              <div class="payments-briefing__item"><span class="payments-briefing__mini">Result</span><strong>Stronger starting point</strong></div>
+              <div class="payments-briefing__item"><span class="payments-briefing__mini">Focus</span><strong>Outside read</strong></div>
+              <div class="payments-briefing__item"><span class="payments-briefing__mini">Benefit</span><strong>Lower risk</strong></div>
+            </div>
+          </div>
         </div>
+        <script>
+          (() => {
+            const root = document.getElementById("payments-briefing");
+            if (!root || root.dataset.inlineHeroReady === "true") return;
+            root.dataset.inlineHeroReady = "true";
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+            const frame = root.querySelector(".payments-briefing__frame");
+            const move = (x, y) => { root.style.setProperty("--mx", x.toFixed(3)); root.style.setProperty("--my", y.toFixed(3)); };
+            move(0, 0);
+            frame.addEventListener("pointermove", (event) => {
+              const rect = frame.getBoundingClientRect();
+              move((event.clientX - rect.left) / rect.width - 0.5, (event.clientY - rect.top) / rect.height - 0.5);
+            });
+            frame.addEventListener("pointerleave", () => move(0, 0));
+          })();
+        </script>
       </section>
 
 

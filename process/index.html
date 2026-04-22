@@ -64,52 +64,115 @@
 
       <!-- SECTION 01: Start sharp. Build strong. Keep moving.
            Edit this block to update this page section.
-           Main classes: section hero-mast
+           Main classes: page-local hero
       -->
-      <section class="section hero-mast" data-layout-sequence>
-        <div class="hero-mast__shell">
-          <article class="hero-mast__frame surface" data-reveal>
-            <div class="hero-mast__layout">
-              <div class="hero-mast__copy">
-                <span class="hero-mast__eyebrow">Our process</span>
-                <h1 class="hero-mast__title">Start sharp. Build strong. Keep moving.</h1>
-                <p class="hero-mast__lede">
-                  Strong outcomes come from clarity, not guesswork. Whether you are launching from
-                  zero or upgrading what already exists, every step has a job.
-                </p>
-                <p class="hero-mast__punch">Clear process. Strong result.</p>
-                <div class="hero-mast__actions">
-                  <a class="button button--primary" href="/launch/">Launch Your Project</a>
-                  <a class="button button--secondary" href="/payments/">Book Discovery</a>
-                </div>
-              </div>
-
-              <div class="hero-mast__stage">
-                <div class="hero-mast__media">
-                  <img src="/assets/media/visual-process-signal.svg" alt="ASH-TRA process signal showing a guided route from discovery to support" />
-                </div>
-                <div class="hero-mast__lane-grid">
-                  <div class="hero-mast__lane">
-                    <strong>01 Discovery</strong>
-                    <span>Find the gap and define what is slowing trust down.</span>
-                  </div>
-                  <div class="hero-mast__lane">
-                    <strong>02 Direction</strong>
-                    <span>Lock the message, standard, and priorities before the build moves.</span>
-                  </div>
-                  <div class="hero-mast__lane">
-                    <strong>03 Build</strong>
-                    <span>Create the site, refine the finish, and optimise the engine behind it.</span>
-                  </div>
-                  <div class="hero-mast__lane">
-                    <strong>04 Support</strong>
-                    <span>Keep the presence current instead of letting it fall behind again.</span>
-                  </div>
-                </div>
-              </div>
+      <section id="process-runway" data-layout-sequence>
+        <style>
+          #process-runway { --mx: 0; --my: 0; padding-top: clamp(1rem, 2vw, 2rem); }
+          #process-runway * { box-sizing: border-box; }
+          #process-runway .process-runway__frame {
+            width: min(94rem, calc(100% - 2rem));
+            margin: 0 auto;
+            padding: clamp(1rem, 1.8vw, 1.5rem);
+            border-radius: 2.4rem;
+            border: 1px solid rgba(140, 226, 255, 0.14);
+            background:
+              radial-gradient(circle at 14% 18%, rgba(142, 229, 255, 0.14), transparent 20%),
+              radial-gradient(circle at 84% 82%, rgba(255, 150, 104, 0.12), transparent 22%),
+              linear-gradient(145deg, rgba(6, 10, 19, 0.98), rgba(10, 19, 34, 0.94));
+            display: grid;
+            grid-template-columns: minmax(0, 0.76fr) minmax(0, 1.24fr);
+            gap: 1.2rem;
+            box-shadow: 0 30px 110px rgba(0, 0, 0, 0.28);
+          }
+          #process-runway .process-runway__copy,
+          #process-runway .process-runway__track { display: grid; align-content: center; gap: 0.95rem; }
+          #process-runway .process-runway__eyebrow,
+          #process-runway .process-runway__step-id {
+            font: 500 0.72rem/1 "IBM Plex Mono", monospace;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(225, 232, 242, 0.72);
+          }
+          #process-runway h1, #process-runway h3 {
+            margin: 0;
+            color: #f5f7fb;
+            font-family: "Syne", sans-serif;
+            letter-spacing: -0.065em;
+          }
+          #process-runway h1 { max-width: 7ch; font-size: clamp(3rem, 6vw, 5.8rem); line-height: 0.92; }
+          #process-runway p { margin: 0; color: rgba(220, 228, 239, 0.82); font: 500 clamp(0.98rem, 1.3vw, 1.06rem)/1.6 "Manrope", sans-serif; }
+          #process-runway .process-runway__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+          #process-runway .process-runway__action {
+            display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; padding: 0 1.1rem;
+            border-radius: 999px; border: 1px solid rgba(140, 226, 255, 0.16); text-decoration: none; color: #edf3fb;
+            background: rgba(255, 255, 255, 0.03); font: 700 0.92rem/1 "Manrope", sans-serif;
+          }
+          #process-runway .process-runway__action--primary { background: linear-gradient(135deg, #ff9064, #ffd677 72%, #bffbff); color: #07111d; border: 0; }
+          #process-runway .process-runway__track {
+            position: relative; min-height: clamp(23rem, 38vw, 35rem); padding: 1.2rem; border-radius: 2rem;
+            border: 1px solid rgba(140, 226, 255, 0.14); background: linear-gradient(180deg, rgba(255,255,255,0.028), rgba(255,255,255,0.008)), rgba(7, 12, 24, 0.82);
+            overflow: hidden;
+          }
+          #process-runway .process-runway__line {
+            position: absolute; left: 12%; right: 12%; top: 50%; height: 1px;
+            background: linear-gradient(90deg, rgba(142, 229, 255, 0.22), rgba(255, 150, 104, 0.3));
+            transform: translateY(-50%) rotate(-12deg);
+          }
+          #process-runway .process-runway__step {
+            position: absolute; width: min(13rem, 42%); padding: 0.95rem 1rem; border-radius: 1.35rem;
+            border: 1px solid rgba(140, 226, 255, 0.14); background: rgba(10, 16, 29, 0.74); backdrop-filter: blur(16px);
+            transform: translate3d(calc(var(--mx) * 8px), calc(var(--my) * 8px), 0);
+          }
+          #process-runway .process-runway__step--1 { top: 1.4rem; left: 1rem; }
+          #process-runway .process-runway__step--2 { top: 4.5rem; right: 1rem; }
+          #process-runway .process-runway__step--3 { bottom: 5rem; left: 2rem; }
+          #process-runway .process-runway__step--4 { bottom: 1.4rem; right: 2rem; }
+          @media (max-width: 980px) {
+            #process-runway .process-runway__frame { grid-template-columns: 1fr; }
+          }
+          @media (max-width: 720px) {
+            #process-runway .process-runway__frame { width: min(100%, calc(100% - 1rem)); }
+            #process-runway .process-runway__actions { display: grid; }
+            #process-runway .process-runway__action { width: 100%; }
+            #process-runway .process-runway__track { display: grid; gap: 0.9rem; min-height: auto; }
+            #process-runway .process-runway__line, #process-runway .process-runway__step { position: static; width: auto; transform: none; }
+          }
+        </style>
+        <div class="process-runway__frame">
+          <div class="process-runway__copy">
+            <span class="process-runway__eyebrow">Process</span>
+            <h1>Start sharp. Build strong. Keep moving.</h1>
+            <p>ASH-TRA uses a clear process built to remove drift, reduce wrong turns, and keep the project commercially focused from discovery through support.</p>
+            <div class="process-runway__actions">
+              <a class="process-runway__action process-runway__action--primary" href="/launch/">Launch Your Project</a>
+              <a class="process-runway__action" href="/services/">View Services</a>
             </div>
-          </article>
+          </div>
+          <div class="process-runway__track">
+            <div class="process-runway__line" aria-hidden="true"></div>
+            <article class="process-runway__step process-runway__step--1"><span class="process-runway__step-id">01 Discovery</span><h3>Find the drag.</h3><p>Spot what is weak, missing, or slowing trust down.</p></article>
+            <article class="process-runway__step process-runway__step--2"><span class="process-runway__step-id">02 Direction</span><h3>Lock the call.</h3><p>Set message, hierarchy, and standards before the build moves.</p></article>
+            <article class="process-runway__step process-runway__step--3"><span class="process-runway__step-id">03 Build</span><h3>Make the shift visible.</h3><p>Create the site, refine the finish, and sharpen the edge.</p></article>
+            <article class="process-runway__step process-runway__step--4"><span class="process-runway__step-id">04 Support</span><h3>Keep momentum active.</h3><p>Keep the presence current instead of letting it drift behind again.</p></article>
+          </div>
         </div>
+        <script>
+          (() => {
+            const root = document.getElementById("process-runway");
+            if (!root || root.dataset.inlineHeroReady === "true") return;
+            root.dataset.inlineHeroReady = "true";
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+            const frame = root.querySelector(".process-runway__frame");
+            const move = (x, y) => { root.style.setProperty("--mx", x.toFixed(3)); root.style.setProperty("--my", y.toFixed(3)); };
+            move(0, 0);
+            frame.addEventListener("pointermove", (event) => {
+              const rect = frame.getBoundingClientRect();
+              move((event.clientX - rect.left) / rect.width - 0.5, (event.clientY - rect.top) / rect.height - 0.5);
+            });
+            frame.addEventListener("pointerleave", () => move(0, 0));
+          })();
+        </script>
       </section>
 
 

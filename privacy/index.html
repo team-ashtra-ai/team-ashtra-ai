@@ -73,46 +73,40 @@
 
       <!-- SECTION 01: Your information, handled properly.
            Edit this block to update this page section.
-           Main classes: section hero-mast
+           Main classes: page-local hero
       -->
-      <section class="section hero-mast">
-        <div class="hero-mast__shell">
-          <article class="hero-mast__frame surface" data-reveal>
-            <div class="hero-mast__layout">
-              <div class="hero-mast__copy">
-                <span class="hero-mast__eyebrow">Privacy Policy</span>
-                <h1 class="hero-mast__title">Your information, handled properly.</h1>
-                <p class="hero-mast__lede">
-                  This Privacy Policy explains what information ash-tra.com may collect, why it is
-                  collected, how it may be used, and the choices available to people who interact
-                  with the site.
-                </p>
-                <p class="hero-mast__punch">Collected carefully. Used deliberately.</p>
-              </div>
-
-              <div class="hero-mast__stage">
-                <div class="hero-mast__legal-grid">
-                  <div class="hero-mast__legal-item">
-                    <strong>Collected</strong>
-                    <span>Name, email, project details, and enquiry context where needed.</span>
-                  </div>
-                  <div class="hero-mast__legal-item">
-                    <strong>Used</strong>
-                    <span>To respond, deliver services, improve the site, and run operations properly.</span>
-                  </div>
-                  <div class="hero-mast__legal-item">
-                    <strong>Shared carefully</strong>
-                    <span>Only with service providers involved in running the site and business.</span>
-                  </div>
-                  <div class="hero-mast__legal-item">
-                    <strong>Not sold</strong>
-                    <span>ASH-TRA does not sell personal information.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
+      <section id="privacy-ledger" data-layout-sequence>
+        <style>
+          #privacy-ledger { padding-top: clamp(1rem, 2vw, 2rem); }
+          #privacy-ledger * { box-sizing: border-box; }
+          #privacy-ledger .privacy-ledger__frame {
+            width: min(90rem, calc(100% - 2rem)); margin: 0 auto; padding: clamp(1rem, 1.8vw, 1.5rem);
+            border-radius: 2.1rem; border: 1px solid rgba(140,226,255,0.14); background: linear-gradient(145deg, rgba(8,12,22,0.98), rgba(10,18,32,0.94));
+            display: grid; gap: 1rem; box-shadow: 0 28px 100px rgba(0,0,0,0.26);
+          }
+          #privacy-ledger .privacy-ledger__head, #privacy-ledger .privacy-ledger__grid { display: grid; gap: 0.9rem; }
+          #privacy-ledger .privacy-ledger__eyebrow, #privacy-ledger .privacy-ledger__item strong { font: 500 0.72rem/1 "IBM Plex Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(225,232,242,0.72); }
+          #privacy-ledger h1 { margin: 0; max-width: 8ch; color: #f5f7fb; font: 700 clamp(2.8rem, 6vw, 5.2rem)/0.94 "Syne", sans-serif; letter-spacing: -0.07em; }
+          #privacy-ledger p { margin: 0; color: rgba(220,228,239,0.82); font: 500 clamp(0.96rem, 1.2vw, 1.02rem)/1.6 "Manrope", sans-serif; }
+          #privacy-ledger .privacy-ledger__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+          #privacy-ledger .privacy-ledger__item { padding: 1rem; border-radius: 1.25rem; border: 1px solid rgba(140,226,255,0.12); background: rgba(255,255,255,0.02); display: grid; gap: 0.45rem; }
+          @media (max-width: 900px) { #privacy-ledger .privacy-ledger__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+          @media (max-width: 720px) { #privacy-ledger .privacy-ledger__frame { width: min(100%, calc(100% - 1rem)); } #privacy-ledger .privacy-ledger__grid { grid-template-columns: 1fr; } }
+        </style>
+        <div class="privacy-ledger__frame">
+          <div class="privacy-ledger__head">
+            <span class="privacy-ledger__eyebrow">Privacy Policy</span>
+            <h1>Your information, handled properly.</h1>
+            <p>This page explains what information ash-tra.com may collect, why it may be used, how it may be handled, and where privacy-related requests can be sent.</p>
+          </div>
+          <div class="privacy-ledger__grid">
+            <div class="privacy-ledger__item"><strong>Collected</strong><p>Name, email, project details, and enquiry context where needed.</p></div>
+            <div class="privacy-ledger__item"><strong>Used</strong><p>To respond, deliver services, improve the site, and run operations properly.</p></div>
+            <div class="privacy-ledger__item"><strong>Shared carefully</strong><p>Only with service providers involved in running the site and business.</p></div>
+            <div class="privacy-ledger__item"><strong>Not sold</strong><p>ASH-TRA does not sell personal information.</p></div>
+          </div>
         </div>
+        <script>document.getElementById("privacy-ledger")?.setAttribute("data-inline-hero", "ready");</script>
       </section>
 
 

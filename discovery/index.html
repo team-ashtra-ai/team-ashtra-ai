@@ -74,61 +74,117 @@
 
       <!-- SECTION 01: Start with clarity. Move with confidence.
            Edit this block to update this page section.
-           Main classes: section hero-mast layout-section
+           Main classes: page-local hero
       -->
-      <section class="section hero-mast layout-section" data-layout-sequence>
-        <div class="hero-mast__shell">
-          <article class="hero-mast__frame surface" data-reveal>
-            <div class="hero-mast__layout">
-              <div class="hero-mast__copy">
-                <span class="hero-mast__eyebrow">Discovery</span>
-                <h1 class="hero-mast__title">Start with clarity. Move with confidence.</h1>
-                <p class="hero-mast__lede">
-                  There are two ways to start with ASH-TRA. If you want a real strategy conversation,
-                  book a paid consultation and we will break down what your company needs, what is
-                  holding it back, and what direction makes the most sense. If you do not want to pay
-                  for a consultation or speak to someone yet, fill out the discovery questionnaire and
-                  receive an approximate offer within 48 hours, excluding weekends, as soon as possible.
-                </p>
-                <p class="hero-mast__punch">Pick the route. Keep the momentum.</p>
-                <div class="hero-mast__actions">
-                  <a class="button button--primary" href="/payments/" data-track="pay_consultation_view">Book Paid Consultation</a>
-                  <a class="button button--secondary" href="#discovery-questionnaire" data-track="discovery_view">Get an Approximate Offer</a>
-                </div>
-              </div>
-
-              <div class="hero-mast__stage">
-                <div class="hero-mast__card">
-                  <div class="hero-mast__logo">
-                    <img src="/assets/brand/ash-tra-logo.png" alt="ASH-TRA logo mark featured on the discovery page" />
-                  </div>
-                  <div class="hero-mast__chip-row">
-                    <span class="hero-mast__chip">Paid consultation</span>
-                    <span class="hero-mast__chip">Questionnaire only</span>
-                    <span class="hero-mast__chip">Approximate offer</span>
-                  </div>
-                </div>
-
-                <div class="hero-mast__signal-grid">
-                  <div class="hero-mast__signal">
-                    <strong>Route 1</strong>
-                    <span>Human strategy input, sharper direction, and a proper starting point.</span>
-                  </div>
-                  <div class="hero-mast__signal">
-                    <strong>Route 2</strong>
-                    <span>No call required. Fill in the brief and get a rough idea of scope and pricing first.</span>
-                  </div>
-                </div>
-
-                <div class="hero-mast__route-row">
-                  <a class="hero-mast__route" href="#paid-consultation">Paid consultation</a>
-                  <a class="hero-mast__route" href="#questionnaire-only">Questionnaire only</a>
-                  <a class="hero-mast__route" href="#discovery-questionnaire">Send the brief</a>
-                </div>
-              </div>
+      <section id="discovery-fork" data-layout-sequence>
+        <style>
+          #discovery-fork { --mx: 0; --my: 0; padding-top: clamp(1rem, 2vw, 2rem); }
+          #discovery-fork * { box-sizing: border-box; }
+          #discovery-fork .discovery-fork__frame {
+            width: min(94rem, calc(100% - 2rem));
+            margin: 0 auto;
+            padding: clamp(1rem, 1.8vw, 1.5rem);
+            border-radius: 2.4rem;
+            border: 1px solid rgba(140, 226, 255, 0.14);
+            background:
+              radial-gradient(circle at 18% 18%, rgba(142, 229, 255, 0.12), transparent 18%),
+              radial-gradient(circle at 84% 18%, rgba(255, 146, 101, 0.12), transparent 24%),
+              linear-gradient(145deg, rgba(6, 10, 20, 0.98), rgba(9, 17, 31, 0.94));
+            display: grid;
+            grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+            gap: 1.2rem;
+            box-shadow: 0 30px 110px rgba(0, 0, 0, 0.28);
+          }
+          #discovery-fork .discovery-fork__copy, #discovery-fork .discovery-fork__stage { display: grid; align-content: center; gap: 0.95rem; }
+          #discovery-fork .discovery-fork__eyebrow, #discovery-fork .discovery-fork__route-id {
+            font: 500 0.72rem/1 "IBM Plex Mono", monospace;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(225, 232, 242, 0.72);
+          }
+          #discovery-fork h1, #discovery-fork h2 {
+            margin: 0;
+            color: #f5f7fb;
+            font-family: "Syne", sans-serif;
+            letter-spacing: -0.07em;
+          }
+          #discovery-fork h1 { max-width: 7ch; font-size: clamp(3rem, 6vw, 5.8rem); line-height: 0.92; }
+          #discovery-fork p { margin: 0; color: rgba(220, 228, 239, 0.82); font: 500 clamp(0.98rem, 1.3vw, 1.06rem)/1.6 "Manrope", sans-serif; }
+          #discovery-fork .discovery-fork__actions, #discovery-fork .discovery-fork__footer { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+          #discovery-fork .discovery-fork__action, #discovery-fork .discovery-fork__footer a {
+            display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; padding: 0 1.1rem;
+            border-radius: 999px; border: 1px solid rgba(140, 226, 255, 0.16); text-decoration: none; color: #edf3fb;
+            background: rgba(255, 255, 255, 0.03); font: 700 0.92rem/1 "Manrope", sans-serif;
+          }
+          #discovery-fork .discovery-fork__action--primary { background: linear-gradient(135deg, #ff9064, #ffd677 72%, #bffbff); color: #07111d; border: 0; }
+          #discovery-fork .discovery-fork__stage { grid-template-columns: repeat(2, minmax(0, 1fr)); display: grid; }
+          #discovery-fork .discovery-fork__card {
+            position: relative; min-height: clamp(22rem, 30vw, 26rem); padding: 1.05rem; border-radius: 1.7rem;
+            border: 1px solid rgba(140, 226, 255, 0.14); background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.008)), rgba(8, 13, 24, 0.74);
+            overflow: hidden; display: grid; align-content: end; text-decoration: none; color: inherit;
+          }
+          #discovery-fork .discovery-fork__card img {
+            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+            transform: scale(1.05) translate3d(calc(var(--mx) * 10px), calc(var(--my) * 10px), 0); transition: transform 180ms ease-out; opacity: 0.72;
+          }
+          #discovery-fork .discovery-fork__card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(4, 8, 17, 0.12), rgba(4, 8, 17, 0.86)); }
+          #discovery-fork .discovery-fork__card-copy { position: relative; z-index: 1; display: grid; gap: 0.5rem; }
+          #discovery-fork .discovery-fork__card--primary { border-color: rgba(255, 146, 101, 0.32); }
+          @media (max-width: 980px) {
+            #discovery-fork .discovery-fork__frame, #discovery-fork .discovery-fork__stage { grid-template-columns: 1fr; }
+          }
+          @media (max-width: 720px) {
+            #discovery-fork .discovery-fork__frame { width: min(100%, calc(100% - 1rem)); }
+            #discovery-fork .discovery-fork__actions { display: grid; }
+            #discovery-fork .discovery-fork__action { width: 100%; }
+          }
+        </style>
+        <div class="discovery-fork__frame">
+          <div class="discovery-fork__copy">
+            <span class="discovery-fork__eyebrow">Discovery</span>
+            <h1>Start with clarity. Move with confidence.</h1>
+            <p>There are two ways to start with ASH-TRA. Book a paid consultation for a real strategy conversation, or fill out the discovery questionnaire and receive an approximate offer within 48 hours, excluding weekends.</p>
+            <div class="discovery-fork__actions">
+              <a class="discovery-fork__action discovery-fork__action--primary" href="/payments/" data-track="pay_consultation_view">Book Paid Consultation</a>
+              <a class="discovery-fork__action" href="#discovery-questionnaire" data-track="discovery_view">Get an Approximate Offer</a>
             </div>
-          </article>
+            <div class="discovery-fork__footer"><a href="/contact/">Need help choosing?</a></div>
+          </div>
+          <div class="discovery-fork__stage">
+            <a class="discovery-fork__card discovery-fork__card--primary" href="/payments/">
+              <img src="/assets/media/sections/discovery-routes-navigation-space-brief.svg" alt="Route visual representing the paid consultation path." loading="eager" />
+              <div class="discovery-fork__card-copy">
+                <span class="discovery-fork__route-id">Route 01</span>
+                <h2>Paid consultation</h2>
+                <p>Human strategy input, clearer diagnosis, and a stronger starting point before the build begins.</p>
+              </div>
+            </a>
+            <a class="discovery-fork__card" href="#discovery-questionnaire">
+              <img src="/assets/media/sections/discovery-routes-navigation-space-brief.svg" alt="Route visual representing the questionnaire-only path." loading="eager" />
+              <div class="discovery-fork__card-copy">
+                <span class="discovery-fork__route-id">Route 02</span>
+                <h2>Questionnaire only</h2>
+                <p>No call required. Send the brief and get an approximate offer before committing to the next step.</p>
+              </div>
+            </a>
+          </div>
         </div>
+        <script>
+          (() => {
+            const root = document.getElementById("discovery-fork");
+            if (!root || root.dataset.inlineHeroReady === "true") return;
+            root.dataset.inlineHeroReady = "true";
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+            const frame = root.querySelector(".discovery-fork__frame");
+            const move = (x, y) => { root.style.setProperty("--mx", x.toFixed(3)); root.style.setProperty("--my", y.toFixed(3)); };
+            move(0, 0);
+            frame.addEventListener("pointermove", (event) => {
+              const rect = frame.getBoundingClientRect();
+              move((event.clientX - rect.left) / rect.width - 0.5, (event.clientY - rect.top) / rect.height - 0.5);
+            });
+            frame.addEventListener("pointerleave", () => move(0, 0));
+          })();
+        </script>
       </section>
 
 
