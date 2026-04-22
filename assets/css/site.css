@@ -36,6 +36,107 @@
   --page-aura-b: rgba(255, 177, 132, 0.16);
 }
 
+/* 2026-04 polish pass:
+   handwritten page overlays, tighter balance rules, and lighter below-the-fold rendering. */
+body[data-page] main.layout-page > .page-ambient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: clip;
+}
+
+body[data-page] main.layout-page > .page-ambient img {
+  position: absolute;
+  display: block;
+  width: min(46vw, 40rem);
+  max-width: 78vw;
+  height: auto;
+  opacity: 0.16;
+  mix-blend-mode: screen;
+  filter: saturate(1.06) blur(0.2px);
+}
+
+body[data-page] main.layout-page > [data-layout-sequence]:not(:first-child),
+body[data-page] main.layout-page > .section:not(:first-child) {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 980px;
+}
+
+body[data-page] main.layout-page .section-title,
+body[data-page] main.layout-page .layout-section__title,
+body[data-page] main.layout-page .card__title,
+body[data-page] main.layout-page .study-card__title,
+body[data-page] main.layout-page .contact-card__title,
+body[data-page] main.layout-page h1,
+body[data-page] main.layout-page h2 {
+  text-wrap: balance;
+}
+
+body[data-page] main.layout-page .section-text,
+body[data-page] main.layout-page .layout-section__body,
+body[data-page] main.layout-page .card__text,
+body[data-page] main.layout-page .study-card__text,
+body[data-page] main.layout-page .contact-card p,
+body[data-page] main.layout-page .route-card p,
+body[data-page] main.layout-page .service-detail p {
+  max-width: 64ch;
+}
+
+body[data-page] main.layout-page .card-grid,
+body[data-page] main.layout-page .route-grid,
+body[data-page] main.layout-page .service-detail-grid,
+body[data-page] main.layout-page .study-grid,
+body[data-page] main.layout-page .layout-panel-grid,
+body[data-page] main.layout-page .layout-panel-grid--offset,
+body[data-page] main.layout-page .layout-step-grid,
+body[data-page] main.layout-page .layout-category-grid,
+body[data-page] main.layout-page .crosslink-grid,
+body[data-page] main.layout-page .policy-atlas__cards {
+  align-items: stretch;
+  grid-auto-rows: minmax(0, 1fr);
+}
+
+body[data-page] main.layout-page .card-grid > *,
+body[data-page] main.layout-page .route-grid > *,
+body[data-page] main.layout-page .service-detail-grid > *,
+body[data-page] main.layout-page .study-grid > *,
+body[data-page] main.layout-page .layout-panel-grid > *,
+body[data-page] main.layout-page .layout-panel-grid--offset > *,
+body[data-page] main.layout-page .layout-step-grid > *,
+body[data-page] main.layout-page .layout-category-grid > *,
+body[data-page] main.layout-page .crosslink-grid > *,
+body[data-page] main.layout-page .policy-atlas__cards > * {
+  min-height: 100%;
+}
+
+body[data-page] main.layout-page .story-grid,
+body[data-page] main.layout-page .contact-grid,
+body[data-page] main.layout-page .payment-flow,
+body[data-page] main.layout-page .layout-section__frame {
+  align-items: stretch;
+}
+
+body[data-page] main.layout-page .media-frame,
+body[data-page] main.layout-page .image-frame,
+body[data-page] main.layout-page .video-frame {
+  min-height: clamp(16rem, 32vw, 26rem);
+}
+
+@media (max-width: 900px) {
+  body[data-page] main.layout-page > .page-ambient img {
+    width: min(76vw, 28rem);
+    opacity: 0.1;
+  }
+
+  body[data-page] main.layout-page {
+    --site-section-space: clamp(2rem, 9vw, 4rem);
+    --site-frame-gap: clamp(0.85rem, 2.6vw, 1.05rem);
+    --site-panel-pad: clamp(1rem, 3vw, 1.3rem);
+    --site-surface-pad: clamp(1rem, 2.8vw, 1.3rem);
+  }
+}
+
 body[data-page="services"],
 body[data-page="launch"] {
   --page-aura-a: rgba(255, 177, 132, 0.18);

@@ -932,7 +932,7 @@
 
   function setupTiltCards() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (!window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 960px)").matches) {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 1180px)").matches) {
       document.querySelectorAll("[data-tilt]").forEach(function (card) {
         card.style.transform = "";
       });
@@ -1027,6 +1027,12 @@
 
   function setupSceneMotion() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 1040px)").matches) {
+      document.querySelectorAll("[data-scene] [data-depth]").forEach(function (layer) {
+        layer.style.transform = "";
+      });
+      return;
+    }
 
     document.querySelectorAll("[data-scene]").forEach(function (scene) {
       const layers = scene.querySelectorAll("[data-depth]");
@@ -1060,6 +1066,30 @@
 
       scene.addEventListener("pointerleave", reset);
       scene.addEventListener("pointercancel", reset);
+    });
+  }
+
+  function setupMediaPerformance() {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const compactViewport = window.matchMedia("(max-width: 900px)").matches;
+
+    document.querySelectorAll("img").forEach(function (image) {
+      if (!image.hasAttribute("decoding")) {
+        image.setAttribute("decoding", "async");
+      }
+    });
+
+    document.querySelectorAll("video").forEach(function (video) {
+      if (!video.hasAttribute("playsinline")) {
+        video.setAttribute("playsinline", "");
+      }
+      if (!video.hasAttribute("preload") || video.getAttribute("preload") === "auto") {
+        video.setAttribute("preload", compactViewport ? "metadata" : "metadata");
+      }
+      if (reduceMotion) {
+        video.removeAttribute("autoplay");
+        video.pause();
+      }
     });
   }
 
@@ -1159,7 +1189,7 @@
 
         const arrow = document.createElement("div");
         arrow.className = "surface-arrow";
-        arrow.innerHTML = '<img src="/assets/media/overlays/route-arrow-overlay.svg" alt="" loading="lazy" />';
+        arrow.innerHTML = '<img src="/assets/media/overlays/site-route-arrow-neon-service-overlay.svg" alt="" loading="lazy" />';
         node.appendChild(arrow);
       });
   }
@@ -1881,6 +1911,7 @@
     setupSectionIntroRails();
     setupContentSequencing();
     setupSceneMotion();
+    setupMediaPerformance();
     setupBackToTop();
     setupOrbotAssistant();
     setupLayoutScaffold();

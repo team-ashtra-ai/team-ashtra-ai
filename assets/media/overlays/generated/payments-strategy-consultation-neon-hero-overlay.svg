@@ -1,0 +1,37 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="beam-14" x1="1460" y1="162" x2="820" y2="704" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#AEF7FF" stop-opacity="0.62"/>
+      <stop offset="0.46" stop-color="#59B8FF" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#071120" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="glow-14" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1256 306) rotate(128) scale(440 360)">
+      <stop stop-color="#7DEFFF" stop-opacity="0.34"/>
+      <stop offset="0.46" stop-color="#328FFF" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#050D18" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#glow-14)"/>
+  <g opacity="0.12">
+    <path d="M0 348H1600" stroke="#7DEBFF" stroke-width="1"/>
+    <path d="M0 508H1600" stroke="#7DEBFF" stroke-width="1"/>
+    <path d="M0 668H1600" stroke="#7DEBFF" stroke-width="1"/>
+    <path d="M0 828H1600" stroke="#7DEBFF" stroke-width="1"/>
+    <path d="M180 0V1000" stroke="#7DEBFF" stroke-width="1"/>
+    <path d="M470 0V1000" stroke="#7DEBFF" stroke-width="1"/>
+    <path d="M760 0V1000" stroke="#7DEBFF" stroke-width="1"/>
+    <path d="M1050 0V1000" stroke="#7DEBFF" stroke-width="1"/>
+    <path d="M1340 0V1000" stroke="#7DEBFF" stroke-width="1"/>
+  </g>
+  <g opacity="0.46">
+    <circle cx="1256" cy="306" r="220" stroke="#85F2FF" stroke-opacity="0.34" stroke-width="1.4"/>
+    <circle cx="1256" cy="306" r="292" stroke="#5ABEFF" stroke-opacity="0.22" stroke-width="1.1"/>
+    <circle cx="1256" cy="306" r="374" stroke="#8FF7FF" stroke-opacity="0.12" stroke-width="1"/>
+    <path d="M636 702C912 608 1160 492 1392 416" stroke="url(#beam-14)" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M624 768C832 672 1100 538 1352 476" stroke="#7DEBFF" stroke-opacity="0.18" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="14 26"/>
+    <circle cx="1196" cy="398" r="7" fill="#8FF5FF" fill-opacity="0.48"/>
+    <circle cx="1288" cy="552" r="6" fill="#5CC0FF" fill-opacity="0.34"/>
+    <circle cx="992" cy="342" r="5" fill="#9AF9FF" fill-opacity="0.34"/>
+  </g>
+  <text x="88" y="900" fill="#8EDFFF" fill-opacity="0.24" font-family="IBM Plex Mono, monospace" font-size="28" letter-spacing="6">PAYMENTS</text>
+</svg>
