@@ -33,7 +33,9 @@ const overlaySpecs = [
   ["cookies-policy-preferences-neon-hero-overlay.svg", "cookies", 26],
   ["cookies-consent-choice-neon-section-overlay.svg", "cookies", 27],
   ["accessibility-web-usability-neon-hero-overlay.svg", "accessibility", 28],
-  ["accessibility-inclusive-navigation-neon-section-overlay.svg", "accessibility", 29]
+  ["accessibility-inclusive-navigation-neon-section-overlay.svg", "accessibility", 29],
+  ["invest-website-investment-neon-hero-overlay.svg", "invest", 30],
+  ["invest-growth-levels-neon-section-overlay.svg", "invest", 31]
 ];
 
 function buildOverlay(page, seed) {
