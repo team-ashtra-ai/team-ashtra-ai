@@ -1,0 +1,33 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">ASH-TRA navigator bot</title>
+  <desc id="desc">A small orbital assistant avatar with a warm lens and glowing astro-tech details.</desc>
+  <defs>
+    <linearGradient id="bot-shell" x1="30" y1="24" x2="128" y2="144" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#14243F" />
+      <stop offset="0.46" stop-color="#1E1224" />
+      <stop offset="1" stop-color="#3A0F16" />
+    </linearGradient>
+    <radialGradient id="bot-orange" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(108 62) rotate(129.2) scale(74 58)">
+      <stop stop-color="#FF8A53" stop-opacity="0.95" />
+      <stop offset="1" stop-color="#FF8A53" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="bot-cyan" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(46 118) rotate(45) scale(68 52)">
+      <stop stop-color="#69DBFF" stop-opacity="0.78" />
+      <stop offset="1" stop-color="#69DBFF" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <circle cx="80" cy="80" r="74" fill="url(#bot-shell)" />
+  <circle cx="80" cy="80" r="73" stroke="rgba(255,255,255,0.14)" stroke-width="2" />
+  <circle cx="108" cy="62" r="48" fill="url(#bot-orange)" />
+  <circle cx="48" cy="118" r="42" fill="url(#bot-cyan)" />
+  <circle cx="80" cy="80" r="40" fill="#09111F" stroke="rgba(255,255,255,0.12)" />
+  <circle cx="80" cy="80" r="22" fill="#121D34" stroke="#FF8A53" stroke-opacity="0.75" stroke-width="4" />
+  <circle cx="80" cy="80" r="8" fill="#FFF3EB" />
+  <path d="M28 88C35 111 55 128 80 132" stroke="#69DBFF" stroke-opacity="0.7" stroke-width="4" stroke-linecap="round" />
+  <path d="M130 72C124 46 104 28 79 28" stroke="#FFB055" stroke-opacity="0.8" stroke-width="4" stroke-linecap="round" />
+  <circle cx="129" cy="72" r="5" fill="#FFB055" />
+  <circle cx="28" cy="88" r="5" fill="#69DBFF" />
+  <path d="M62 108H98" stroke="#FFE0D0" stroke-opacity="0.72" stroke-width="4" stroke-linecap="round" />
+  <circle cx="66" cy="62" r="5" fill="#69DBFF" />
+  <circle cx="94" cy="62" r="5" fill="#FF8A53" />
+</svg>

@@ -21,7 +21,11 @@
     />
     <meta property="og:site_name" content="ASH-TRA" />
     <meta property="og:url" content="https://ash-tra.com/discovery/" />
-    <meta property="og:image" content="https://ash-tra.com/brand/ash-tra-social-lockup.png" />
+    <meta property="og:image" content="https://ash-tra.com/assets/brand/discovery-social.png" />
+    <meta property="og:image:secure_url" content="https://ash-tra.com/assets/brand/discovery-social.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="ASH-TRA discovery page preview" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Discovery | ASH-TRA" />
@@ -29,19 +33,30 @@
       name="twitter:description"
       content="Start the project, book a call, or send the discovery form for an approximate offer."
     />
-    <meta name="twitter:image" content="https://ash-tra.com/brand/ash-tra-social-lockup.png" />
+    <meta name="twitter:image" content="https://ash-tra.com/assets/brand/discovery-social.png" />
     <meta name="twitter:image:alt" content="ASH-TRA discovery page preview" />
+    <meta name="application-name" content="ASH-TRA" />
     <meta name="theme-color" content="#090d16" />
-    <link rel="icon" href="/brand/favicon-32.png" type="image/png" />
-    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#090d16" />
+    <meta name="msapplication-TileImage" content="../assets/brand/ash-tra-icon-192.png" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="ASH-TRA" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="icon" href="../assets/brand/ash-tra-favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="../assets/brand/favicon-16.png" sizes="16x16" type="image/png" />
+    <link rel="icon" href="../assets/brand/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="../assets/brand/favicon-64.png" sizes="64x64" type="image/png" />
+    <link rel="shortcut icon" href="../assets/brand/favicon-32.png" type="image/png" />
+    <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="../site.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="../assets/css/site.css" />
   </head>
   <body data-page="discovery">
     <div class="site-stage" aria-hidden="true">
@@ -49,10 +64,18 @@
       <div class="site-stage__grid"></div>
       <div class="site-stage__noise"></div>
     </div>
-    <div data-site-header></div>
+    <!-- SITE HEADER PARTIAL: Edit /partials/site-header/index.html -->
+    <div data-site-partial="site-header"></div>
+
+    <!-- MAIN CONTENT AREA: Edit the page sections inside this block. -->
 
     <main class="layout-page page-flow page-flow--discovery">
       <!-- Discovery: Hero section -->
+
+      <!-- SECTION 01: Start with clarity. Move with confidence.
+           Edit this block to update this page section.
+           Main classes: section hero-mast layout-section
+      -->
       <section class="section hero-mast layout-section" data-layout-sequence>
         <div class="hero-mast__shell">
           <article class="hero-mast__frame surface" data-reveal>
@@ -69,7 +92,7 @@
                 </p>
                 <p class="hero-mast__punch">Pick the route. Keep the momentum.</p>
                 <div class="hero-mast__actions">
-                  <a class="button button--primary" href="/pay-consultation/" data-track="pay_consultation_view">Book Paid Consultation</a>
+                  <a class="button button--primary" href="/payments/" data-track="pay_consultation_view">Book Paid Consultation</a>
                   <a class="button button--secondary" href="#discovery-questionnaire" data-track="discovery_view">Get an Approximate Offer</a>
                 </div>
               </div>
@@ -77,7 +100,7 @@
               <div class="hero-mast__stage">
                 <div class="hero-mast__card">
                   <div class="hero-mast__logo">
-                    <img src="/brand/ash-tra-logo.png" alt="ASH-TRA logo mark featured on the discovery page" />
+                    <img src="/assets/brand/ash-tra-logo.png" alt="ASH-TRA logo mark featured on the discovery page" />
                   </div>
                   <div class="hero-mast__chip-row">
                     <span class="hero-mast__chip">Paid consultation</span>
@@ -108,141 +131,11 @@
         </div>
       </section>
 
-      <section class="section section--contrast discovery-band discovery-band--routes" data-layout-sequence>
-        <div class="shell">
-          <div class="surface section-heading section-heading--panel" data-reveal>
-            <span class="eyebrow">Start routes</span>
-            <h2 class="section-title">Choose the level of support you want first.</h2>
-            <p class="section-text">
-              Start with the human route if you want sharper direction first. Start with the
-              questionnaire if you want to skip the call for now and receive a rough idea of scope
-              and pricing first.
-            </p>
-          </div>
-          <div class="route-grid">
-            <article class="surface route-card" data-reveal data-tilt id="paid-consultation">
-              <span class="route-card__label">Route 01</span>
-              <h3>Paid Consultation</h3>
-              <p>For companies that want human input, sharper direction, and a proper strategic start before any build begins.</p>
-              <ul class="check-list">
-                <li>A paid discovery consultation.</li>
-                <li>Human feedback on what feels weak, what is missing, and what needs to change.</li>
-                <li>Clear direction on the best next move before money gets spent in the wrong place.</li>
-              </ul>
-              <a class="button button--primary button--block" href="/pay-consultation/" data-track="pay_consultation_view">Book Discovery Consultation</a>
-              <p class="service-detail__punch">Clarity first. Build second.</p>
-            </article>
-            <article class="surface route-card" data-reveal data-tilt id="questionnaire-only">
-              <span class="route-card__label">Route 02</span>
-              <h3>Questionnaire Only</h3>
-              <p>For companies that want to skip the call for now, answer the questions, and receive a rough idea of scope and pricing first.</p>
-              <ul class="check-list">
-                <li>No consultation required.</li>
-                <li>No need to speak to someone first.</li>
-                <li>An approximate offer sent within 48 hours, excluding weekends.</li>
-              </ul>
-              <a class="button button--secondary button--block" href="#discovery-questionnaire" data-track="discovery_view">Fill Out the Discovery Brief</a>
-              <p class="service-detail__punch">No call. No pressure. Just clarity.</p>
-            </article>
-            <article class="surface route-card" data-reveal data-tilt id="project-route">
-              <span class="route-card__label">Route 03</span>
-              <h3>Start Project Directly</h3>
-              <p>For companies that already know the route and do not need diagnosis before the project review starts.</p>
-              <ul class="check-list">
-                <li>Fastest route for launch, rebuild, or focused page work.</li>
-                <li>Best when the shape of the project is already clear.</li>
-                <li>Useful when the business is ready to move now.</li>
-              </ul>
-              <a class="button button--subtle button--block" href="/start-project/" data-track="start_project_click">Start Project</a>
-              <p class="service-detail__punch">Skip the extra step if you already know the move.</p>
-            </article>
-          </div>
-        </div>
-      </section>
 
-      <section class="section discovery-band discovery-band--why" data-layout-sequence>
-        <div class="shell story-grid">
-          <article class="story-grid__copy surface" data-reveal>
-            <span class="eyebrow">Why this matters</span>
-            <h2 class="section-title">A better brief creates a better build.</h2>
-            <p class="section-text">
-              Strong websites do not come from vague ideas. They come from clarity. The more
-              clearly the direction is set, the stronger the result feels when it goes live.
-            </p>
-            <ul class="check-list">
-              <li>You avoid guesswork.</li>
-              <li>You save time.</li>
-              <li>You get a stronger result.</li>
-              <li>You understand the scope earlier.</li>
-            </ul>
-          </article>
-          <article class="story-grid__media surface" data-reveal data-tilt>
-            <div class="image-frame">
-              <img src="/assets/media/space-moon-frame.jpg" alt="ASH-TRA moon frame representing clarity before a stronger website build." />
-            </div>
-            <p class="media-caption">Get clear before you commit.</p>
-            <div class="route-cloud">
-              <a href="/pay-consultation/">Book Call</a>
-              <a href="/start-project/">Start Project</a>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="section section--contrast discovery-band discovery-band--comparison" data-layout-sequence>
-        <div class="shell service-detail-grid">
-          <article class="surface service-detail" data-reveal>
-            <span class="service-detail__index">Paid route</span>
-            <h3>A real conversation about what the company needs next.</h3>
-            <p>
-              The paid consultation is for companies that want more than a rough estimate. It is
-              for teams that want proper guidance, sharper thinking, and a real human read on the
-              project before the work starts.
-            </p>
-            <ul class="detail-list">
-              <li>What feels weak right now.</li>
-              <li>What is missing.</li>
-              <li>What the company needs to communicate more clearly.</li>
-              <li>What level the brand needs to rise to.</li>
-              <li>What kind of site or system makes the most sense.</li>
-              <li>What should come first and what is likely to create the biggest lift.</li>
-            </ul>
-            <p class="service-detail__punch">Not just a quote. Real direction.</p>
-          </article>
-          <article class="surface service-detail" data-reveal>
-            <span class="service-detail__index">Async route</span>
-            <h3>Straight answers in. Approximate offer out.</h3>
-            <p>
-              If you choose the questionnaire route, fill it out with as much clarity as you can.
-              Once it is submitted, ASH-TRA will review it and send back an approximate offer
-              within 48 hours, excluding weekends, as soon as possible.
-            </p>
-            <ul class="detail-list">
-              <li>The offer is approximate, not final.</li>
-              <li>Complex projects may need a follow-up conversation before a final quote.</li>
-              <li>The better your answers, the sharper the estimate.</li>
-              <li>You can still move into a paid consultation afterwards if needed.</li>
-            </ul>
-            <p class="service-detail__punch">Quick route. Clear next step.</p>
-          </article>
-          <article class="surface service-detail" data-reveal>
-            <span class="service-detail__index">What happens next</span>
-            <h3>Choose the route, then keep moving.</h3>
-            <p>
-              The page is not meant to trap you in research. It is meant to make the next move
-              obvious based on how much clarity you already have.
-            </p>
-            <ul class="detail-list">
-              <li>Need diagnosis first: paid consultation.</li>
-              <li>Need a lighter async start: questionnaire only.</li>
-              <li>Already know the project: start project directly.</li>
-            </ul>
-            <p class="service-detail__punch">Pick the route. Keep the momentum.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Discovery: Questionnaire form section -->
+      <!-- SECTION 02: Tell us what you need built and what level you want to reach.
+           Edit this block to update this page section.
+           Main classes: section layout-section discovery-band discovery-band--brief
+      -->
       <section
         class="section layout-section discovery-band discovery-band--brief"
         id="discovery-questionnaire"
@@ -1693,6 +1586,11 @@
       </section>
 
       <!-- Discovery: Closing CTA section -->
+
+      <!-- SECTION 03: layout-section / discovery-band / discovery-band--closing
+           Edit this block to update this page section.
+           Main classes: section layout-section section--contrast discovery-band discovery-band--closing
+      -->
       <section class="section layout-section section--contrast discovery-band discovery-band--closing" data-layout-sequence>
         <div class="shell">
           <article class="surface layout-callout" data-reveal>
@@ -1704,8 +1602,8 @@
               instead.
             </p>
             <div class="hero__actions">
-              <a class="button button--primary" href="/pay-consultation/" data-track="pay_consultation_view">Pay Consultation</a>
-              <a class="button button--secondary" href="/schedule-meeting/">Schedule Meeting</a>
+              <a class="button button--primary" href="/payments/" data-track="pay_consultation_view">Payments</a>
+              <a class="button button--secondary" href="/schedule/">Schedule</a>
             </div>
             <p>Start with clarity. Build with force.</p>
           </article>
@@ -1713,8 +1611,11 @@
       </section>
     </main>
 
-    <div data-site-footer></div>
-    <script src="/assets/js/site-config.js"></script>
-    <script src="/assets/js/site.js"></script>
+    <!-- SITE FOOTER PARTIAL: Edit /partials/site-footer/index.html -->
+
+    <div data-site-partial="site-footer"></div>
+    <!-- PAGE SCRIPTS: Shared site config and front-end behavior. -->
+    <script src="../assets/js/site-config.js"></script>
+    <script src="../assets/js/site.js"></script>
   </body>
 </html>

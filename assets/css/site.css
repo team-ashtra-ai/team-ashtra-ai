@@ -1,5 +1,6 @@
 :root {
   color-scheme: dark;
+  --browser-chrome: #090d16;
   --bg: #050914;
   --bg-deep: #08101e;
   --panel: rgba(10, 17, 31, 0.72);
@@ -36,7 +37,7 @@
 }
 
 body[data-page="services"],
-body[data-page="start-project"] {
+body[data-page="launch"] {
   --page-aura-a: rgba(255, 177, 132, 0.18);
   --page-aura-b: rgba(121, 227, 255, 0.12);
 }
@@ -54,12 +55,12 @@ body[data-page="faq"] {
   --page-aura-b: rgba(255, 177, 132, 0.14);
 }
 
-body[data-page="pay-consultation"] {
+body[data-page="payments"] {
   --page-aura-a: rgba(255, 177, 132, 0.18);
   --page-aura-b: rgba(121, 227, 255, 0.14);
 }
 
-body[data-page="schedule-meeting"],
+body[data-page="schedule"],
 body[data-page="privacy"],
 body[data-page="terms"],
 body[data-page="cookies"],
@@ -75,12 +76,14 @@ body[data-page="accessibility"] {
 }
 
 html {
+  background-color: var(--browser-chrome);
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   min-width: 320px;
+  background-color: var(--browser-chrome);
   background:
     radial-gradient(circle at top left, var(--page-aura-a), transparent 32%),
     radial-gradient(circle at bottom right, var(--page-aura-b), transparent 36%),
@@ -3802,10 +3805,10 @@ body[data-page="discovery"] .hero-mast__frame {
     linear-gradient(145deg, rgba(5, 10, 22, 0.99), rgba(11, 24, 44, 0.95));
 }
 
-body[data-page="pay-consultation"] .hero-mast__frame,
-body[data-page="schedule-meeting"] .hero-mast__frame,
+body[data-page="payments"] .hero-mast__frame,
+body[data-page="schedule"] .hero-mast__frame,
 body[data-page="contact"] .hero-mast__frame,
-body[data-page="start-project"] .hero-mast__frame,
+body[data-page="launch"] .hero-mast__frame,
 body[data-page="examples"] .hero-mast__frame {
   background:
     radial-gradient(circle at 18% 18%, rgba(255, 145, 108, 0.16), transparent 20%),
@@ -5424,7 +5427,7 @@ main.layout-page .home-decision-card::after {
   border-radius: 18px;
   background:
     linear-gradient(135deg, rgba(121, 227, 255, 0.06), rgba(255, 177, 132, 0.08)),
-    rgba(255, 255, 255, 0.02) url("/brand/ash-tra-mark.svg") center / 62% no-repeat;
+    rgba(255, 255, 255, 0.02) url("../brand/ash-tra-mark.svg") center / 62% no-repeat;
   border: 1px solid rgba(121, 227, 255, 0.1);
   opacity: 0.46;
   pointer-events: none;
@@ -6103,15 +6106,15 @@ body[data-page="process"] .process-band--closing {
   order: 3;
 }
 
-body[data-page="start-project"] .start-band--fit {
+body[data-page="launch"] .start-band--fit {
   order: 1;
 }
 
-body[data-page="start-project"] .start-band--form {
+body[data-page="launch"] .start-band--form {
   order: 2;
 }
 
-body[data-page="start-project"] .start-band--after {
+body[data-page="launch"] .start-band--after {
   order: 3;
 }
 
@@ -8409,47 +8412,47 @@ body[data-page] main.layout-page .brief-hub__nav a span {
   }
 
   body[data-page="contact"] main.layout-page .contact-band--routes .route-grid > *,
-  body[data-page="start-project"] main.layout-page .start-band--fit .card-grid > *,
-  body[data-page="start-project"] main.layout-page .start-band--after .card-grid > * {
+  body[data-page="launch"] main.layout-page .start-band--fit .card-grid > *,
+  body[data-page="launch"] main.layout-page .start-band--after .card-grid > * {
     grid-column: span 4;
   }
 
   body[data-page="contact"] main.layout-page .contact-grid,
-  body[data-page="start-project"] main.layout-page .contact-grid {
+  body[data-page="launch"] main.layout-page .contact-grid {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: clamp(1rem, 2vw, 2rem);
   }
 
   body[data-page="contact"] main.layout-page .contact-grid > .form-card,
-  body[data-page="start-project"] main.layout-page .contact-grid > .form-card {
+  body[data-page="launch"] main.layout-page .contact-grid > .form-card {
     grid-column: 1 / span 8;
   }
 
   body[data-page="contact"] main.layout-page .contact-grid > .contact-card,
-  body[data-page="start-project"] main.layout-page .contact-grid > .contact-card {
+  body[data-page="launch"] main.layout-page .contact-grid > .contact-card {
     grid-column: 9 / -1;
     position: sticky;
     top: 7rem;
     align-self: start;
   }
 
-  body[data-page="pay-consultation"] main.layout-page .payment-flow {
+  body[data-page="payments"] main.layout-page .payment-flow {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: clamp(1rem, 2vw, 2rem);
     align-items: start;
   }
 
-  body[data-page="pay-consultation"] main.layout-page .payment-flow > .route-grid {
+  body[data-page="payments"] main.layout-page .payment-flow > .route-grid {
     grid-column: 1 / span 5;
   }
 
-  body[data-page="pay-consultation"] main.layout-page .payment-flow > .form-card {
+  body[data-page="payments"] main.layout-page .payment-flow > .form-card {
     grid-column: 6 / -1;
   }
 
-  body[data-page="pay-consultation"] main.layout-page .route-grid > :first-child {
+  body[data-page="payments"] main.layout-page .route-grid > :first-child {
     grid-column: 1 / -1;
   }
 
@@ -8618,10 +8621,10 @@ body[data-page] main.layout-page .brief-hub__nav a span {
 
   body[data-page="contact"] main.layout-page .hero-mast__stage,
   body[data-page="discovery"] main.layout-page .hero-mast__stage,
-  body[data-page="start-project"] main.layout-page .hero-mast__stage,
+  body[data-page="launch"] main.layout-page .hero-mast__stage,
   body[data-page="home"] main.layout-page .hero-mast__stage,
-  body[data-page="pay-consultation"] main.layout-page .hero-mast__stage,
-  body[data-page="schedule-meeting"] main.layout-page .hero-mast__stage,
+  body[data-page="payments"] main.layout-page .hero-mast__stage,
+  body[data-page="schedule"] main.layout-page .hero-mast__stage,
   body[data-page="faq"] main.layout-page .hero-mast__stage,
   body[data-page="privacy"] main.layout-page .hero-mast__stage,
   body[data-page="terms"] main.layout-page .hero-mast__stage,
@@ -8632,10 +8635,10 @@ body[data-page] main.layout-page .brief-hub__nav a span {
 
   body[data-page="contact"] main.layout-page .hero-mast__title,
   body[data-page="discovery"] main.layout-page .hero-mast__title,
-  body[data-page="start-project"] main.layout-page .hero-mast__title,
+  body[data-page="launch"] main.layout-page .hero-mast__title,
   body[data-page="home"] main.layout-page .hero-mast__title,
-  body[data-page="pay-consultation"] main.layout-page .hero-mast__title,
-  body[data-page="schedule-meeting"] main.layout-page .hero-mast__title,
+  body[data-page="payments"] main.layout-page .hero-mast__title,
+  body[data-page="schedule"] main.layout-page .hero-mast__title,
   body[data-page="faq"] main.layout-page .hero-mast__title,
   body[data-page="privacy"] main.layout-page .hero-mast__title,
   body[data-page="terms"] main.layout-page .hero-mast__title,
@@ -8766,11 +8769,11 @@ body[data-page] main.layout-page .brief-hub__nav a span {
 
   body[data-page="discovery"] main.layout-page .discovery-band--brief .brief-hub__mast,
   body[data-page="contact"] main.layout-page .contact-grid > .contact-card,
-  body[data-page="start-project"] main.layout-page .contact-grid > .contact-card,
+  body[data-page="launch"] main.layout-page .contact-grid > .contact-card,
   body[data-page="contact"] main.layout-page .contact-grid > .form-card,
-  body[data-page="start-project"] main.layout-page .contact-grid > .form-card,
-  body[data-page="pay-consultation"] main.layout-page .payment-flow > .route-grid,
-  body[data-page="pay-consultation"] main.layout-page .payment-flow > .form-card {
+  body[data-page="launch"] main.layout-page .contact-grid > .form-card,
+  body[data-page="payments"] main.layout-page .payment-flow > .route-grid,
+  body[data-page="payments"] main.layout-page .payment-flow > .form-card {
     grid-column: 1 / -1;
   }
 

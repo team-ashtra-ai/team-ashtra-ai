@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- META TAGS: Search engines, social media, and browser information -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ASH-TRA | Modern websites for ambitious businesses</title>
@@ -13,7 +14,16 @@
       content="modern websites, website redesign, website rebuild, brand polish, SEO foundations, ASH-TRA"
     />
     <link rel="canonical" href="https://ash-tra.com/" />
+    <meta name="application-name" content="ASH-TRA" />
     <meta name="theme-color" content="#090d16" />
+    <meta name="msapplication-TileColor" content="#090d16" />
+    <meta name="msapplication-TileImage" content="./assets/brand/ash-tra-icon-192.png" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="ASH-TRA" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- OPEN GRAPH: Metadata for social media sharing -->
     <meta property="og:title" content="ASH-TRA | Modern websites for ambitious businesses" />
     <meta
       property="og:description"
@@ -22,40 +32,71 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ASH-TRA" />
     <meta property="og:url" content="https://ash-tra.com/" />
-    <meta property="og:image" content="https://ash-tra.com/brand/ash-tra-social-lockup.png" />
+    <meta property="og:image" content="https://ash-tra.com/assets/brand/home-social.png" />
+    <meta property="og:image:secure_url" content="https://ash-tra.com/assets/brand/home-social.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="ASH-TRA homepage social preview" />
+
+    <!-- TWITTER CARD: Metadata for Twitter/X sharing -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="ASH-TRA | Modern websites for ambitious businesses" />
     <meta
       name="twitter:description"
       content="ASH-TRA builds modern websites for ambitious businesses that want more trust, more pull, and more momentum."
     />
-    <meta name="twitter:image" content="https://ash-tra.com/brand/ash-tra-social-lockup.png" />
+    <meta name="twitter:image" content="https://ash-tra.com/assets/brand/home-social.png" />
     <meta name="twitter:image:alt" content="ASH-TRA homepage social preview" />
-    <link rel="icon" href="/brand/favicon-32.png" type="image/png" />
-    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- FAVICON AND APP ICONS: How the site appears in browser tabs and home screens -->
+    <link rel="icon" href="./assets/brand/ash-tra-favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./assets/brand/favicon-16.png" sizes="16x16" type="image/png" />
+    <link rel="icon" href="./assets/brand/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="./assets/brand/favicon-64.png" sizes="64x64" type="image/png" />
+    <link rel="shortcut icon" href="./assets/brand/favicon-32.png" type="image/png" />
+    <link rel="apple-touch-icon" href="./assets/brand/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="./site.webmanifest" />
+
+    <!-- FONTS: Google Fonts preconnect and import for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/assets/css/site.css" />
+
+    <!-- STYLESHEETS: Main site design and layout -->
+    <link rel="stylesheet" href="./assets/css/site.css" />
   </head>
+
   <body data-page="home">
+    <!-- BACKGROUND STAGE: Animated background with glow, grid, and decorative effects
+         This is purely decorative and hidden from screen readers (aria-hidden="true")
+         Contains: glowing effect, grid pattern, and noise texture -->
     <div class="site-stage" aria-hidden="true">
       <div class="site-stage__glow"></div>
       <div class="site-stage__grid"></div>
       <div class="site-stage__noise"></div>
     </div>
-    <div data-site-header></div>
+    <!-- SITE HEADER PARTIAL: Edit ./partials/site-header/index.html -->
+    <div data-site-partial="site-header"></div>
 
+    <!-- MAIN CONTENT AREA: All page sections are inside here -->
     <main class="layout-page page-flow page-flow--home">
+
+      <!-- ========================================================================
+           SECTION 1: HERO MASTHEAD (The Big First Impression)
+           This is the first thing people see on the homepage.
+           Contains: Headline, tagline, description, and call-to-action buttons.
+           Also has: Logo, image, and value proposition chips.
+           ======================================================================== -->
       <section class="section hero-mast">
         <div class="hero-mast__shell">
           <article class="hero-mast__frame surface" data-reveal>
             <div class="hero-mast__layout">
+
+              <!-- LEFT SIDE: Text content and CTAs -->
               <div class="hero-mast__copy">
                 <span class="hero-mast__eyebrow">Where ambition meets momentum.</span>
                 <h1 class="hero-mast__title">Look like the business you are becoming.</h1>
@@ -64,18 +105,25 @@
                   velocity.
                 </p>
                 <p class="hero-mast__punch">First impressions sell before you do.</p>
+
+                <!-- Three Call-to-Action Buttons: Primary, Secondary, and Subtle
+                     Gives visitors different entry points based on their readiness -->
                 <div class="hero-mast__actions">
-                  <a class="button button--primary" href="/start-project/" data-track="start_project_click">Launch Your Site</a>
+                  <a class="button button--primary" href="/launch/" data-track="start_project_click">Launch Your Site</a>
                   <a class="button button--secondary" href="/services/" data-track="services_view">Explore Our Services</a>
                   <a class="button button--subtle" href="/discovery/" data-track="discovery_view">Start With Discovery</a>
                 </div>
               </div>
 
+              <!-- RIGHT SIDE: Logo, media image, and value proposition chips -->
               <div class="hero-mast__stage">
+
+                <!-- Card with logo and value chips -->
                 <div class="hero-mast__card">
                   <div class="hero-mast__logo">
-                    <img src="/brand/ash-tra-logo.png" alt="ASH-TRA logo mark" />
+                    <img src="/assets/brand/ash-tra-logo.png" alt="ASH-TRA logo mark" />
                   </div>
+                  <!-- Three key value propositions displayed as chips -->
                   <div class="hero-mast__chip-row">
                     <span class="hero-mast__chip">Clear signal. Sharp strategy.</span>
                     <span class="hero-mast__chip">Design that lifts and lands.</span>
@@ -83,6 +131,7 @@
                   </div>
                 </div>
 
+                <!-- Featured media image: Space/planet background -->
                 <div class="hero-mast__media">
                   <img
                     src="/assets/media/space-exoplanet-frame.jpg"
@@ -91,14 +140,15 @@
                   />
                 </div>
 
+                <!-- Two key benefits displayed as signal cards -->
                 <div class="hero-mast__signal-grid">
                   <div class="hero-mast__signal">
                     <strong>Launch stronger</strong>
-                    <span>A stronger front door makes the company feel harder to ignore.</span>
+
                   </div>
                   <div class="hero-mast__signal">
                     <strong>Scale smarter</strong>
-                    <span>Better design, better signal, and better momentum all start at the first read.</span>
+
                   </div>
                 </div>
               </div>
@@ -107,8 +157,15 @@
         </div>
       </section>
 
+      <!-- ========================================================================
+           SECTION 2: WHY COMPANIES COME HERE
+           Explains the problem and why companies choose ASH-TRA.
+           Contains: Problem statement, benefits list, and related resources.
+           ======================================================================== -->
       <section class="section section--contrast home-band home-band--premise" data-layout-sequence>
         <div class="shell story-grid">
+
+          <!-- LEFT SIDE: Text content explaining the value proposition -->
           <article class="story-grid__copy surface" data-reveal>
             <span class="eyebrow">Why companies come to ASH-TRA</span>
             <h2 class="section-title">Sometimes the company is strong, but the presence is not.</h2>
@@ -118,6 +175,8 @@
               day one. In both cases, the goal is the same: build a presence that feels credible,
               current, and ready to grow.
             </p>
+
+            <!-- List of reasons why companies come: Checklist format -->
             <ul class="check-list">
               <li>What you have feels behind.</li>
               <li>You have no website yet.</li>
@@ -127,12 +186,14 @@
             <p class="page-hero__punch">Start stronger. Or level up properly.</p>
           </article>
 
+          <!-- RIGHT SIDE: Featured image with caption and related links -->
           <article class="story-grid__media surface" data-reveal data-tilt>
             <div class="media-frame">
               <img src="/assets/media/space-moon-frame.jpg" alt="ASH-TRA moon frame representing gravity, signal, and stronger business presence." />
             </div>
             <blockquote>Give your brand gravity.</blockquote>
             <p class="media-caption">A stronger front door makes the company feel harder to ignore before the first conversation starts.</p>
+            <!-- Quick links to related sections -->
             <div class="route-cloud">
               <a href="/about/">See Who It Fits</a>
               <a href="/examples/">See Work Directions</a>
@@ -141,8 +202,15 @@
         </div>
       </section>
 
+      <!-- ========================================================================
+           SECTION 3: WHO THIS IS FOR (Ideal Customer Profile)
+           Describes the four main customer segments that fit ASH-TRA's offering.
+           Contains: Section header and four customer fit cards.
+           ======================================================================== -->
       <section class="section home-band home-band--fit" data-layout-sequence>
         <div class="shell">
+
+          <!-- Section header: Introduces the customer fits -->
           <div class="surface section-heading section-heading--panel" data-reveal>
             <span class="eyebrow">Who this is for</span>
             <h2 class="section-title">For companies that know presentation changes outcomes.</h2>
@@ -156,6 +224,7 @@
             </div>
           </div>
 
+          <!-- Four customer fit cards: Companies starting, outgrown current, chasing higher level, need more -->
           <div class="route-grid">
             <article class="surface route-card" data-reveal data-tilt>
               <span class="route-card__label">Fit 01</span>
@@ -181,8 +250,15 @@
         </div>
       </section>
 
+      <!-- ========================================================================
+           SECTION 4: CORE OFFERS AT A GLANCE
+           Three main service offerings: Launch Build, Presence Upgrade, Optimization.
+           Contains: Section header and three offer cards with bullet points.
+           ======================================================================== -->
       <section class="section home-band home-band--offers" data-layout-sequence>
         <div class="shell">
+
+          <!-- Section header: Introduces the three core offers -->
           <div class="surface section-heading section-heading--panel" data-reveal>
             <span class="eyebrow">What we do first</span>
             <h2 class="section-title">Core offers at a glance.</h2>
@@ -196,7 +272,9 @@
             </div>
           </div>
 
+          <!-- Three main offer cards with benefits and features -->
           <div class="route-grid">
+            <!-- Offer 1: Launch Build -->
             <article class="surface route-card" data-reveal data-tilt>
               <span class="route-card__label">Offer 01</span>
               <h3>Launch Build</h3>
@@ -207,6 +285,7 @@
                 <li>Designed to feel serious from the first read.</li>
               </ul>
             </article>
+            <!-- Offer 2: Presence Upgrade / Full Reset -->
             <article class="surface route-card" data-reveal data-tilt>
               <span class="route-card__label">Offer 02</span>
               <h3>Presence Upgrade / Full Reset</h3>
@@ -217,6 +296,7 @@
                 <li>A full reset when the gap is deeper than surface design.</li>
               </ul>
             </article>
+            <!-- Offer 3: Optimization Layer -->
             <article class="surface route-card" data-reveal data-tilt>
               <span class="route-card__label">Offer 03</span>
               <h3>Optimisation Layer</h3>
@@ -231,8 +311,15 @@
         </div>
       </section>
 
+      <!-- ========================================================================
+           SECTION 5: SERVICE LANES / DEPARTMENTS
+           Shows the four main service areas: Strategy, Build, Systems, Performance.
+           Contains: Section header and four service detail cards.
+           ======================================================================== -->
       <section class="section section--contrast home-band home-band--services" data-layout-sequence>
         <div class="shell">
+
+          <!-- Section header: Introduces the service lanes -->
           <div class="surface section-heading section-heading--panel" data-reveal>
             <span class="eyebrow">Service lanes</span>
             <h2 class="section-title">Different jobs. Same standard.</h2>
@@ -246,7 +333,9 @@
             </div>
           </div>
 
+          <!-- Four service detail cards: Strategy, Build, Systems, Performance -->
           <div class="service-detail-grid">
+            <!-- Service 1: Strategy -->
             <article class="surface service-detail" data-reveal>
               <span class="service-detail__index">Strategy</span>
               <h3>Direction Session and Message and Position.</h3>
@@ -258,6 +347,7 @@
               </ul>
               <p class="service-detail__punch">Say less. Land harder.</p>
             </article>
+            <!-- Service 2: Build -->
             <article class="surface service-detail" data-reveal>
               <span class="service-detail__index">Build</span>
               <h3>Launch Build, Presence Upgrade, Full Reset, and Pages That Sell.</h3>
@@ -270,6 +360,7 @@
               </ul>
               <p class="service-detail__punch">Reset properly. Move properly.</p>
             </article>
+            <!-- Service 3: Systems -->
             <article class="surface service-detail" data-reveal>
               <span class="service-detail__index">Systems</span>
               <h3>Search Lift, Insight Setup, and Systems Connection.</h3>
@@ -282,6 +373,7 @@
               </ul>
               <p class="service-detail__punch">Be found. See what matters.</p>
             </article>
+            <!-- Service 4: Performance -->
             <article class="surface service-detail" data-reveal>
               <span class="service-detail__index">Performance</span>
               <h3>Performance Polish, Global Reach, and Momentum Support.</h3>
@@ -298,8 +390,15 @@
         </div>
       </section>
 
+      <!-- ========================================================================
+           SECTION 6: WHAT IMPROVES
+           Shows four key outcomes and benefits of working with ASH-TRA.
+           Contains: Section header and four outcome cards.
+           ======================================================================== -->
       <section class="section section--contrast home-band home-band--outcomes" data-layout-sequence>
         <div class="shell">
+
+          <!-- Section header: Introduces the four key improvements -->
           <div class="surface section-heading section-heading--panel" data-reveal>
             <span class="eyebrow">What improves</span>
             <h2 class="section-title">We strengthen how your company shows up.</h2>
@@ -310,6 +409,7 @@
             <p class="page-hero__punch">More trust. More pull. More growth.</p>
           </div>
 
+          <!-- Four outcome cards: Credibility, Value, Momentum, Opportunities -->
           <div class="card-grid">
             <article class="surface card" data-reveal data-tilt>
               <div class="card__icon">01</div>
@@ -335,8 +435,15 @@
         </div>
       </section>
 
+      <!-- ========================================================================
+           SECTION 7: PORTFOLIO / EXAMPLES
+           Explains the portfolio and shows different business types.
+           Contains: Text content explaining portfolio approach and link to full portfolio.
+           ======================================================================== -->
       <section class="section home-band home-band--examples" data-layout-sequence>
         <div class="shell story-grid">
+
+          <!-- LEFT SIDE: Text explaining the portfolio philosophy -->
           <article class="story-grid__copy surface" data-reveal>
             <span class="eyebrow">Proof of thinking</span>
             <h2 class="section-title">Different businesses need different story structures.</h2>
@@ -345,16 +452,21 @@
               need different hierarchy, different pacing, and different routes from first read to
               action.
             </p>
+
+            <!-- Types of pages in the portfolio -->
             <ul class="check-list">
               <li>Consultancy pages need authority and cleaner proof placement.</li>
               <li>Launch pages need movement, stronger beats, and sharper CTA flow.</li>
               <li>Service pages need contrast, compression, and clearer direction.</li>
             </ul>
+
+            <!-- Link to full portfolio -->
             <div class="hero__actions">
               <a class="button button--secondary" href="/examples/">View Portfolio</a>
             </div>
           </article>
 
+          <!-- RIGHT SIDE: Featured image from portfolio -->
           <article class="story-grid__media surface" data-reveal data-tilt>
             <div class="image-frame">
               <img src="/assets/media/space-titan-frame.jpg" alt="Dark orbital frame representing cinematic premium work directions." />
@@ -364,8 +476,15 @@
         </div>
       </section>
 
+      <!-- ========================================================================
+           SECTION 8: OUR PROCESS
+           Describes the three-phase approach to projects.
+           Contains: Section header, process overview, and three phase cards.
+           ======================================================================== -->
       <section class="section section--contrast home-band home-band--process" data-layout-sequence>
         <div class="shell">
+
+          <!-- Section header: Introduces the process -->
           <div class="surface section-heading section-heading--panel" data-reveal>
             <span class="eyebrow">Our process</span>
             <h2 class="section-title">Start sharp. Build strong. Keep moving.</h2>
@@ -380,6 +499,7 @@
             </div>
           </div>
 
+          <!-- Three process phase cards -->
           <div class="card-grid">
             <article class="surface card" data-reveal data-tilt>
               <div class="card__icon">01</div>
@@ -400,8 +520,15 @@
         </div>
       </section>
 
+      <!-- ========================================================================
+           SECTION 9: FAQ / QUESTION ATLAS
+           Describes the FAQ organization and links to FAQ sections.
+           Contains: Section header and six FAQ topic cards.
+           ======================================================================== -->
       <section class="section section--contrast home-band home-band--decision" data-layout-sequence>
         <div class="shell">
+
+          <!-- Section header: Introduces the FAQ -->
           <div class="surface section-heading section-heading--panel" data-reveal>
             <span class="eyebrow">Question atlas</span>
             <h2 class="section-title">Move by topic, not by endless scroll.</h2>
@@ -415,6 +542,7 @@
             </div>
           </div>
 
+          <!-- Six FAQ topic cards linking to specific FAQ sections -->
           <div class="route-grid">
             <a class="surface route-card" href="/faq/#faq-offer" data-reveal>
               <span class="route-card__label">Offer and fit</span>
@@ -450,8 +578,15 @@
         </div>
       </section>
 
+      <!-- ========================================================================
+           SECTION 10: SITE ATLAS / NAVIGATION GUIDE
+           Helps users understand how to navigate the entire site.
+           Contains: Section header and four atlas sections (Studio, Start, Consultation, Question).
+           ======================================================================== -->
       <section class="section home-band home-band--atlas" data-layout-sequence>
         <div class="shell">
+
+          <!-- Section header: Introduces the site atlas -->
           <div class="surface section-heading section-heading--panel" data-reveal>
             <span class="eyebrow">Site atlas</span>
             <h2 class="section-title">Use the homepage like a gateway to the rest of the site.</h2>
@@ -462,7 +597,9 @@
             <p class="page-hero__punch">Use the page that fits the job.</p>
           </div>
 
+          <!-- Four atlas sections explaining the different parts of the site -->
           <div class="service-detail-grid">
+            <!-- Studio Atlas: Learn about ASH-TRA -->
             <article class="surface service-detail" data-reveal>
               <span class="service-detail__index">Studio atlas</span>
               <h3>See what ASH-TRA does and how it works.</h3>
@@ -474,25 +611,28 @@
                 <a href="/examples/">Portfolio</a>
               </div>
             </article>
+            <!-- Start Atlas: Begin your project -->
             <article class="surface service-detail" data-reveal>
               <span class="service-detail__index">Start atlas</span>
               <h3>Use the route that matches how clear the project already is.</h3>
-              <p>Discovery, Contact, and Start Project exist for different levels of readiness.</p>
+              <p>Discovery, Contact, and Launch each fit a different level of readiness.</p>
               <div class="route-cloud">
                 <a href="/discovery/">Discovery</a>
                 <a href="/contact/">Contact</a>
-                <a href="/start-project/">Start Project</a>
+                <a href="/launch/">Launch</a>
               </div>
             </article>
+            <!-- Consultation Atlas: Book a strategy session -->
             <article class="surface service-detail" data-reveal>
               <span class="service-detail__index">Consultation atlas</span>
               <h3>Book direction first, then lock the slot.</h3>
-              <p>Pay Consultation and Schedule Meeting cover the sharper strategy-first route from payment to calendar.</p>
+              <p>Payments and Schedule cover the sharper strategy-first route from payment to calendar.</p>
               <div class="route-cloud">
-                <a href="/pay-consultation/">Pay Consultation</a>
-                <a href="/schedule-meeting/">Schedule Meeting</a>
+                <a href="/payments/">Payments</a>
+                <a href="/schedule/">Schedule</a>
               </div>
             </article>
+            <!-- Question Atlas: Get answers -->
             <article class="surface service-detail" data-reveal>
               <span class="service-detail__index">Question atlas</span>
               <h3>Short answers. Clear signal.</h3>
@@ -508,8 +648,15 @@
         </div>
       </section>
 
+      <!-- ========================================================================
+           SECTION 11: REFERENCE PAGES
+           Links to privacy, terms, cookies, and accessibility pages.
+           Contains: Section header and four reference page cards.
+           ======================================================================== -->
       <section class="section section--contrast home-band home-band--values" data-layout-sequence>
         <div class="shell">
+
+          <!-- Section header: Introduces reference pages -->
           <div class="surface section-heading section-heading--panel" data-reveal>
             <span class="eyebrow">Reference pages</span>
             <h2 class="section-title">Clear terms. Clear use. Built to be usable.</h2>
@@ -520,6 +667,7 @@
             <p class="page-hero__punch">Readable. Navigable. Responsive. Improving.</p>
           </div>
 
+          <!-- Four reference page cards: Privacy, Terms, Cookies, Accessibility -->
           <div class="route-grid">
             <a class="surface route-card" href="/privacy/" data-reveal>
               <span class="route-card__label">Privacy</span>
@@ -545,8 +693,15 @@
         </div>
       </section>
 
+      <!-- ========================================================================
+           SECTION 12: START HERE / ROUTES
+           Shows the three main entry points: Direct project, consultation, questionnaire.
+           Contains: Section header explaining the routes and three route cards with CTAs.
+           ======================================================================== -->
       <section class="section home-band home-band--routes" data-layout-sequence>
         <div class="shell">
+
+          <!-- Section header: Explains the three routes -->
           <div class="surface section-heading section-heading--panel" data-reveal>
             <span class="eyebrow">Start here</span>
             <h2 class="section-title">Choose the route that matches how clear the project already is.</h2>
@@ -557,7 +712,9 @@
             </p>
           </div>
 
+          <!-- Three main routes to start a project -->
           <div class="route-grid">
+            <!-- Route 1: Direct Project Start -->
             <article class="surface route-card" data-reveal data-tilt>
               <span class="route-card__label">Primary route</span>
               <h3>Start a project</h3>
@@ -567,8 +724,9 @@
                 <li>Best for launches, rebuilds, and focused page work.</li>
                 <li>Send the essentials and keep momentum moving.</li>
               </ul>
-              <a class="button button--primary button--block" href="/start-project/">Start Project</a>
+              <a class="button button--primary button--block" href="/launch/">Launch</a>
             </article>
+            <!-- Route 2: Paid Consultation -->
             <article class="surface route-card" data-reveal data-tilt>
               <span class="route-card__label">Strategy route</span>
               <h3>Paid consultation</h3>
@@ -578,8 +736,9 @@
                 <li>Best for higher-stakes or unclear decisions.</li>
                 <li>Sharper direction before money gets spent in the wrong place.</li>
               </ul>
-              <a class="button button--secondary button--block" href="/pay-consultation/">Pay Consultation</a>
+              <a class="button button--secondary button--block" href="/payments/">Payments</a>
             </article>
+            <!-- Route 3: Questionnaire Only -->
             <article class="surface route-card" data-reveal data-tilt>
               <span class="route-card__label">Async route</span>
               <h3>Questionnaire only</h3>
@@ -595,8 +754,15 @@
         </div>
       </section>
 
+      <!-- ========================================================================
+           SECTION 13: CLOSING / FINAL CTA SECTION
+           Final call-to-action with three button options and closing message.
+           Contains: Featured quote and three action buttons with tagline.
+           ======================================================================== -->
       <section class="section section--contrast home-band home-band--closing" data-layout-sequence>
         <div class="shell">
+
+          <!-- Final closing section with quote and CTAs -->
           <article class="surface quote-banner" data-reveal>
             <span class="eyebrow">Next move</span>
             <blockquote>Your work is strong. Your site should be too.</blockquote>
@@ -605,19 +771,27 @@
               direction first, book the consultation. If you want a lighter start, fill out the
               discovery brief first.
             </p>
+
+            <!-- Three final call-to-action buttons -->
             <div class="hero__actions">
-              <a class="button button--primary" href="/start-project/">Start a Project</a>
-              <a class="button button--secondary" href="/pay-consultation/">Book Call</a>
+              <a class="button button--primary" href="/launch/">Launch Your Project</a>
+              <a class="button button--secondary" href="/payments/">Book Call</a>
               <a class="button button--subtle" href="/discovery/#discovery-questionnaire">Discovery Brief</a>
             </div>
+
+            <!-- Final tagline -->
             <p class="page-hero__punch">Start with clarity. Build with force.</p>
           </article>
         </div>
       </section>
     </main>
+    <!-- SITE FOOTER PARTIAL: Edit ./partials/site-footer/index.html -->
+    <div data-site-partial="site-footer"></div>
 
-    <div data-site-footer></div>
-    <script src="/assets/js/site-config.js"></script>
-    <script src="/assets/js/site.js"></script>
+    <!-- SCRIPTS: JavaScript files that power interactivity, tracking, and utilities
+         site-config.js: Contains configuration for API endpoints and tool settings
+         site.js: Main application logic, form handling, navigation, and utils -->
+    <script src="./assets/js/site-config.js"></script>
+    <script src="./assets/js/site.js"></script>
   </body>
 </html>

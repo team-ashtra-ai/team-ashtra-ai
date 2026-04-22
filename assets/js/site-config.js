@@ -6,7 +6,7 @@ window.AshtraConfig = {
   orbot: {
     enabled: true,
     excludePages: ["404"],
-    primaryCtaPriority: "start-project",
+    primaryCtaPriority: "launch",
     maxQueryLength: 280,
     shortcutKey: "/"
   }

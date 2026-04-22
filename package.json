@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "description": "Static marketing site for ash-tra.com",
   "scripts": {
-    "dev": "python3 -m http.server 3000",
-    "start": "python3 -m http.server 3000",
+    "dev": "python3 -m http.server 5501",
+    "start": "python3 -m http.server 5501",
     "publish:repo": "bash scripts/git-publish.sh"
   }
 }

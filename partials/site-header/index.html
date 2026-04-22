@@ -1,0 +1,164 @@
+<!-- ============================================================================
+     PARTIAL: SITE HEADER
+     Edit this file when you want to change the shared site navigation, logo area,
+     mobile toggle behavior, or tiny header-only CSS adjustments.
+     ============================================================================ -->
+
+<!-- HEADER MARKUP: Brand lockup, mobile toggle, primary links, and main CTA -->
+<header class="site-header">
+  <div class="site-header__inner">
+    <!-- BRAND LOCKUP: Logo plus the short brand line shown on every page -->
+    <a class="brand-lockup" href="/" aria-label="ASH-TRA home">
+      <img class="brand-lockup__mark" src="/assets/brand/ash-tra-logo.png" alt="ASH-TRA logo mark" />
+      <span class="brand-lockup__meta">
+        <span class="brand-lockup__title">ASH-TRA</span>
+        <span class="brand-lockup__tag">Where ambition meets momentum.</span>
+      </span>
+    </a>
+
+    <!-- MOBILE TOGGLE: Opens and closes the navigation on smaller screens -->
+    <button
+      class="site-header__toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="site-nav"
+      aria-label="Open navigation"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M5 7h14M5 12h14M5 17h14"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-width="1.9"
+        />
+      </svg>
+    </button>
+
+    <!-- PRIMARY NAVIGATION: Edit these links directly if you add/remove pages -->
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <div class="site-nav__links">
+        <a href="/" data-nav-match="/">Home</a>
+        <a href="/about/" data-nav-match="/about/">About</a>
+        <a href="/services/" data-nav-match="/services/">Services</a>
+        <a href="/process/" data-nav-match="/process/">Process</a>
+        <a href="/examples/" data-nav-match="/examples/">Portfolio</a>
+        <a href="/discovery/" data-nav-match="/discovery/">Discovery</a>
+        <a href="/contact/" data-nav-match="/contact/">Contact</a>
+      </div>
+
+      <!-- MAIN CTA: The strongest route from the header -->
+      <div class="site-nav__cta">
+        <a class="button button--primary" href="/launch/" data-track="start_project_click">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M5 12h12M13 6l6 6-6 6"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.8"
+            />
+          </svg>
+          <span>Launch Your Project</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  /* PARTIAL CSS: Small header-only rules that are easiest to keep beside the markup. */
+  [data-partial-root="site-header"] .site-nav__links a[aria-current="page"] {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+  [data-partial-root="site-header"] .site-header[data-nav-state="open"] .site-header__toggle {
+    border-color: rgba(130, 229, 255, 0.24);
+    background: rgba(255, 255, 255, 0.08);
+  }
+</style>
+
+<script>
+  (function () {
+    const partialRoot = document.currentScript.closest('[data-partial-root="site-header"]');
+    if (!partialRoot) return;
+
+    const header = partialRoot.querySelector(".site-header");
+    const toggle = partialRoot.querySelector(".site-header__toggle");
+    const nav = partialRoot.querySelector(".site-nav");
+    const navLinks = Array.from(partialRoot.querySelectorAll(".site-nav__links a"));
+    if (!header || !toggle || !nav || !navLinks.length) return;
+
+    const openIcon =
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.9"/></svg>';
+    const closeIcon =
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.9"/></svg>';
+
+    function normalizePath(path) {
+      const normalized = String(path || "/").replace(/\/index\.html$/, "/");
+      if (!normalized || normalized === "/") return "/";
+      return normalized.endsWith("/") ? normalized : `${normalized}/`;
+    }
+
+    function setActiveLink() {
+      const currentPath = normalizePath(window.location.pathname);
+      navLinks.forEach(function (link) {
+        const matchSource =
+          window.location.protocol === "file:"
+            ? new URL(link.getAttribute("href") || "/", window.location.href).pathname
+            : link.getAttribute("data-nav-match") || link.getAttribute("href");
+        const match = normalizePath(matchSource);
+        const isHome = match === "/";
+        const isActive = isHome ? currentPath === "/" : currentPath.startsWith(match);
+        link.classList.toggle("is-active", isActive);
+        if (isActive) {
+          link.setAttribute("aria-current", "page");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    }
+
+    function setOpen(isOpen) {
+      header.dataset.navState = isOpen ? "open" : "closed";
+      toggle.setAttribute("aria-expanded", String(isOpen));
+      toggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+      toggle.innerHTML = isOpen ? closeIcon : openIcon;
+      nav.classList.toggle("is-open", isOpen);
+      document.body.classList.toggle("has-nav-open", isOpen);
+    }
+
+    function updateScrollState() {
+      header.classList.toggle("is-scrolled", window.scrollY > 18);
+    }
+
+    toggle.addEventListener("click", function () {
+      setOpen(toggle.getAttribute("aria-expanded") !== "true");
+    });
+
+    nav.querySelectorAll("a, button").forEach(function (item) {
+      item.addEventListener("click", function () {
+        if (window.matchMedia("(min-width: 960px)").matches) return;
+        setOpen(false);
+      });
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") setOpen(false);
+    });
+
+    window.addEventListener("resize", function () {
+      if (window.matchMedia("(min-width: 960px)").matches) {
+        setOpen(false);
+      }
+    });
+
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+
+    setActiveLink();
+    setOpen(false);
+    updateScrollState();
+  })();
+</script>

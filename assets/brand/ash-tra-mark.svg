@@ -1,0 +1,38 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">ASH-TRA warm orbital mark</title>
+  <desc id="desc">A warm red-orange ASH-TRA emblem with an angular A and an orbital star path.</desc>
+  <defs>
+    <linearGradient id="mark-bg" x1="28" y1="20" x2="222" y2="236" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22060B" />
+      <stop offset="0.48" stop-color="#521118" />
+      <stop offset="1" stop-color="#121B30" />
+    </linearGradient>
+    <radialGradient id="mark-glow-orange" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(60 56) rotate(52.6) scale(104 86)">
+      <stop stop-color="#FF8A53" stop-opacity="0.96" />
+      <stop offset="1" stop-color="#FF8A53" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="mark-glow-red" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(188 210) rotate(134.2) scale(112 88)">
+      <stop stop-color="#F14E45" stop-opacity="0.86" />
+      <stop offset="1" stop-color="#F14E45" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="mark-stroke" x1="88" y1="78" x2="164" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF1E8" />
+      <stop offset="1" stop-color="#FFD6C2" />
+    </linearGradient>
+    <linearGradient id="mark-orbit" x1="130" y1="52" x2="203" y2="198" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD25A" />
+      <stop offset="0.52" stop-color="#FF7E47" />
+      <stop offset="1" stop-color="#68DBFF" />
+    </linearGradient>
+  </defs>
+  <rect x="16" y="16" width="224" height="224" rx="72" fill="url(#mark-bg)" />
+  <rect x="16.75" y="16.75" width="222.5" height="222.5" rx="71.25" stroke="rgba(255,255,255,0.14)" stroke-width="1.5" />
+  <circle cx="60" cy="56" r="68" fill="url(#mark-glow-orange)" />
+  <circle cx="188" cy="208" r="72" fill="url(#mark-glow-red)" />
+  <path d="M82 178L128 72L175 178" stroke="url(#mark-stroke)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M100 138H156" stroke="url(#mark-stroke)" stroke-width="16" stroke-linecap="round" />
+  <path d="M149 63C177 64 198 83 200 110C203 150 171 187 127 197" stroke="url(#mark-orbit)" stroke-width="12" stroke-linecap="round" />
+  <circle cx="148" cy="63" r="10" fill="#FFD25A" />
+  <circle cx="127" cy="197" r="8.5" fill="#68DBFF" />
+  <path d="M181 89L203 89" stroke="#FFE2D3" stroke-width="8" stroke-linecap="round" />
+</svg>

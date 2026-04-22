@@ -1,4 +1,10 @@
-/login /start-project 301
-/register /start-project 301
-/client-login /start-project 301
+/login /launch 301
+/register /launch 301
+/client-login /launch 301
+/start-project /launch 301
+/start-project/ /launch/ 301
+/pay-consultation /payments 301
+/pay-consultation/ /payments/ 301
+/schedule-meeting /schedule 301
+/schedule-meeting/ /schedule/ 301
 /dashboard / 301

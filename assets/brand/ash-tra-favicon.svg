@@ -1,0 +1,27 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">ASH-TRA favicon</title>
+  <desc id="desc">A warm red-orange orbital favicon mark for ASH-TRA.</desc>
+  <defs>
+    <linearGradient id="fav-bg" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#24070D" />
+      <stop offset="0.5" stop-color="#5B141B" />
+      <stop offset="1" stop-color="#12203A" />
+    </linearGradient>
+    <linearGradient id="fav-stroke" x1="20" y1="16" x2="42" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF1E8" />
+      <stop offset="1" stop-color="#FFD9C9" />
+    </linearGradient>
+    <linearGradient id="fav-orbit" x1="34" y1="14" x2="50" y2="49" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD45E" />
+      <stop offset="0.52" stop-color="#FF7E47" />
+      <stop offset="1" stop-color="#69DBFF" />
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="18" fill="url(#fav-bg)" />
+  <rect x="4.5" y="4.5" width="55" height="55" rx="17.5" stroke="rgba(255,255,255,0.14)" />
+  <path d="M18 45L31.5 15L45 45" stroke="url(#fav-stroke)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M23.5 34H39.5" stroke="url(#fav-stroke)" stroke-width="4.5" stroke-linecap="round" />
+  <path d="M36.5 16.5C45 17 50.5 23 50 31.5C49.5 39.5 43.5 45.5 34 48" stroke="url(#fav-orbit)" stroke-width="3.8" stroke-linecap="round" />
+  <circle cx="36.5" cy="16.5" r="2.8" fill="#FFD45E" />
+  <circle cx="34.25" cy="47.75" r="2.5" fill="#69DBFF" />
+</svg>

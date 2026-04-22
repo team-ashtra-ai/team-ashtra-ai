@@ -13,7 +13,7 @@ This document reflects the current intended site structure and voice so the sour
 - Portfolio
 - Discovery
 - Contact
-- Launch Site
+- Launch Your Project
 
 ---
 
@@ -174,7 +174,7 @@ ASH-TRA helps companies build digital presence that matches where they are going
 
 Buttons
 
-- Start a Project
+- Launch Your Project
 - Explore Services
 
 Punch line  
@@ -247,7 +247,7 @@ Ready to build something that looks ready?
 
 Buttons
 
-- Start a Project
+- Launch Your Project
 - View Services
 
 Punch line  
@@ -307,7 +307,7 @@ Ready to build something that actually carries weight?
 
 Buttons
 
-- Start a Project
+- Launch Your Project
 - Get in Touch
 
 Punch line  
@@ -353,7 +353,7 @@ Ready to start with clarity and build with force?
 
 Buttons
 
-- Start a Project
+- Launch Your Project
 - Book Discovery
 
 Punch line  
@@ -429,8 +429,8 @@ Want the human route?
 
 Buttons
 
-- Pay Consultation
-- Schedule Meeting
+- Payments
+- Schedule
 
 Punch line  
 Start with clarity. Build with force.
@@ -509,7 +509,7 @@ No pressure. Still progress.
 ## Hero
 
 Eyebrow  
-Schedule Meeting
+Schedule
 
 Headline  
 Pick the time. Lock the direction.
@@ -581,7 +581,7 @@ Topics covered
 
 FAQ CTA
 
-- Start a Project
+- Launch Your Project
 - Book Call
 - Discovery Form
 
@@ -610,4 +610,4 @@ These are the next gaps to keep improving after the current rewrite:
 3. Review internal linking between Services, Process, Discovery, FAQ, and Contact for stronger SEO flow.
 4. Create more portfolio content so the Portfolio page supports the stronger positioning language.
 5. Add page-specific image filenames and supporting media assets where current visuals are still shared.
-6. Review Contact and Start Project copy so their button labels and route language mirror the newer navigation wording even more closely.
+6. Review Contact and Launch copy so their button labels and route language mirror the newer navigation wording even more closely.

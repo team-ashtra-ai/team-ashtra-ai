@@ -1,11 +1,57 @@
 (function () {
   const config = window.AshtraConfig || {};
   const page = document.body.dataset.page || "home";
+  const pageRuntimePrefix = page === "home" || page === "404" ? "./" : "../";
   const contactFormEndpoint = config.contactFormEndpoint || "https://formspree.io/f/mbdqovoj";
   const consultationFormEndpoint = config.consultationFormEndpoint || "https://formspree.io/f/xaqaogoo";
   const discoveryFormEndpoint =
     config.discoveryFormEndpoint || consultationFormEndpoint || "https://formspree.io/f/xaqaogoo";
   const orbotConfig = resolveOrbotConfig(config.orbot);
+  const brandAppName = "ASH-TRA";
+  const brandChromeColor = "#090d16";
+  const brandAssetBase = runtimeUrl("/assets/brand");
+  const brandAssetOrigin = "https://ash-tra.com/assets/brand";
+  // Shared shell pieces now live as handwritten HTML partials so the header and
+  // footer can be edited without digging through JavaScript template strings.
+  const partialPaths = {
+    "site-header": runtimeUrl("/partials/site-header/index.html"),
+    "site-footer": runtimeUrl("/partials/site-footer/index.html")
+  };
+  const partialMarkupCache = new Map();
+
+  function runtimeUrl(input) {
+    const value = String(input || "");
+    if (!value) return value;
+    if (value.startsWith("//") || value.startsWith("#")) return value;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(value)) return value;
+    if (!value.startsWith("/")) return value;
+    return value === "/" ? pageRuntimePrefix : `${pageRuntimePrefix}${value.slice(1)}`;
+  }
+
+  function rewriteRootRelativeUrls(root) {
+    if (!root || typeof root.querySelectorAll !== "function") return;
+
+    [
+      ["a[href]", "href"],
+      ["img[src]", "src"],
+      ["source[src]", "src"],
+      ["audio[src]", "src"],
+      ["video[poster]", "poster"],
+      ["form[action]", "action"],
+      ["use[href]", "href"],
+      ["image[href]", "href"]
+    ].forEach(function (entry) {
+      const selector = entry[0];
+      const attribute = entry[1];
+      root.querySelectorAll(selector).forEach(function (node) {
+        const current = node.getAttribute(attribute);
+        const next = runtimeUrl(current);
+        if (next !== current) {
+          node.setAttribute(attribute, next);
+        }
+      });
+    });
+  }
 
   function clampNumber(value, fallback, min, max) {
     const parsed = Number(value);
@@ -21,7 +67,7 @@
       primaryCtaPriority:
         typeof source.primaryCtaPriority === "string" && source.primaryCtaPriority.trim()
           ? source.primaryCtaPriority.trim()
-          : "start-project",
+          : "launch",
       maxQueryLength: clampNumber(source.maxQueryLength, 280, 80, 420),
       shortcutKey:
         typeof source.shortcutKey === "string" && source.shortcutKey.trim()
@@ -34,33 +80,11 @@
     return orbotConfig.enabled && !orbotConfig.excludePages.includes(page);
   }
 
-  const navItems = [
-    { href: "/", label: "Home", match: "/" },
-    { href: "/about/", label: "About", match: "/about/" },
-    { href: "/services/", label: "Services", match: "/services/" },
-    { href: "/process/", label: "Process", match: "/process/" },
-    { href: "/examples/", label: "Portfolio", match: "/examples/" },
-    { href: "/discovery/", label: "Discovery", match: "/discovery/" },
-    { href: "/contact/", label: "Contact", match: "/contact/" }
-  ];
-
-  const footerAtlasLinks = [
-    { title: "Home", url: "/" },
-    { title: "About", url: "/about/" },
-    { title: "Services", url: "/services/" },
-    { title: "Process", url: "/process/" },
-    { title: "Portfolio", url: "/examples/" },
-    { title: "Discovery", url: "/discovery/" },
-    { title: "Contact", url: "/contact/" },
-    { title: "Launch Site", url: "/start-project/" },
-    { title: "Pay Consultation", url: "/pay-consultation/" },
-    { title: "Schedule Meeting", url: "/schedule-meeting/" },
-    { title: "FAQ", url: "/faq/" },
-    { title: "Privacy", url: "/privacy/" },
-    { title: "Terms", url: "/terms/" },
-    { title: "Cookies", url: "/cookies/" },
-    { title: "Accessibility", url: "/accessibility/" }
-  ];
+  function getSocialImageUrl(pageName) {
+    const slug =
+      typeof pageName === "string" && pageName.trim() ? pageName.trim().toLowerCase() : "home";
+    return `${brandAssetOrigin}/${slug}-social.png`;
+  }
 
   const infoStripItems = [
     "Where ambition meets momentum.",
@@ -113,8 +137,8 @@
       keywords: ["contact", "enquiry", "form", "message", "reach", "talk"]
     },
     {
-      title: "Launch Site",
-      url: "/start-project/",
+      title: "Launch",
+      url: "/launch/",
       description: "The direct project intake form for businesses ready to launch, rebuild, or upgrade key pages.",
       keywords: ["start", "project", "consultation", "brief", "quote", "kickoff"]
     },
@@ -125,14 +149,14 @@
       keywords: ["discovery", "consultation", "brief", "strategy", "planning", "questionnaire"]
     },
     {
-      title: "Pay Consultation",
-      url: "/pay-consultation/",
+      title: "Payments",
+      url: "/payments/",
       description: "The paid consultation page with coverage, payment routes, and the sharper strategy-first path.",
       keywords: ["book", "call", "payment", "consultation", "stripe", "paypal", "pix", "strategy"]
     },
     {
-      title: "Schedule Meeting",
-      url: "/schedule-meeting/",
+      title: "Schedule",
+      url: "/schedule/",
       description: "The scheduling page with the Calendly booking route and what to prepare before the session.",
       keywords: ["schedule", "meeting", "book", "calendly", "slot", "consultation"]
     },
@@ -179,10 +203,10 @@
         {
           "@context": "https://schema.org",
           "@type": "Organization",
-          name: "ASH-TRA",
+          name: brandAppName,
           url: "https://ash-tra.com/",
-          logo: "https://ash-tra.com/brand/ash-tra-logo.png",
-          image: "https://ash-tra.com/brand/ash-tra-social-lockup.png",
+          logo: `${brandAssetOrigin}/ash-tra-logo.png`,
+          image: getSocialImageUrl("home"),
           description:
             "ASH-TRA builds modern digital presence for ambitious companies that want more trust, more pull, and more momentum.",
           sameAs: ["https://ash-tra.com/"],
@@ -283,37 +307,37 @@
         }
       ]
     },
-    "pay-consultation": {
-      title: "Pay Consultation | ASH-TRA",
+    "payments": {
+      title: "Payments | ASH-TRA",
       description:
         "Choose the paid consultation route, request Stripe, PayPal, or Pix, and start your project with real strategic direction.",
-      path: "/pay-consultation/",
-      ogAlt: "ASH-TRA paid consultation page social preview",
+      path: "/payments/",
+      ogAlt: "ASH-TRA payments page social preview",
       schemas: [
         {
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "ASH-TRA Paid Consultation",
+          name: "ASH-TRA Payments",
           serviceType: "Discovery consultation",
           provider: { "@type": "Organization", name: "ASH-TRA", url: "https://ash-tra.com/" },
-          url: "https://ash-tra.com/pay-consultation/",
+          url: "https://ash-tra.com/payments/",
           description:
             "A paid consultation for founders and teams who want sharper direction before the build begins."
         }
       ]
     },
-    "schedule-meeting": {
-      title: "Schedule Meeting | ASH-TRA",
+    "schedule": {
+      title: "Schedule | ASH-TRA",
       description:
         "Book your paid ASH-TRA consultation slot, prepare properly, and move into the strongest next direction for the project.",
-      path: "/schedule-meeting/",
-      ogAlt: "ASH-TRA schedule meeting page social preview",
+      path: "/schedule/",
+      ogAlt: "ASH-TRA schedule page social preview",
       schemas: [
         {
           "@context": "https://schema.org",
           "@type": "WebPage",
-          name: "Schedule Meeting",
-          url: "https://ash-tra.com/schedule-meeting/",
+          name: "Schedule",
+          url: "https://ash-tra.com/schedule/",
           description:
             "Choose your consultation slot and come ready with the context that matters."
         }
@@ -408,18 +432,6 @@
     return icons[name] || "";
   }
 
-  function pathName() {
-    const path = window.location.pathname;
-    if (path === "/" || path === "/index.html") return "/";
-    return path.endsWith("/") ? path : `${path}/`;
-  }
-
-  function isActive(match) {
-    const current = pathName();
-    if (match === "/") return current === "/";
-    return current.startsWith(match);
-  }
-
   function escapeHtml(value) {
     return String(value)
       .replace(/&/g, "&amp;")
@@ -440,112 +452,93 @@
     `;
   }
 
-  function headerMarkup() {
-    return `
-      <header class="site-header">
-        <div class="site-header__inner">
-          <a class="brand-lockup" href="/" aria-label="ASH-TRA home">
-            <img class="brand-lockup__mark" src="/brand/ash-tra-logo.png" alt="ASH-TRA logo mark" />
-            <span class="brand-lockup__meta">
-              <span class="brand-lockup__title">ASH-TRA</span>
-              <span class="brand-lockup__tag">Where ambition meets momentum.</span>
-            </span>
-          </a>
-          <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
-            ${icon("menu")}
-          </button>
-          <nav class="site-nav" id="site-nav" aria-label="Primary">
-            <div class="site-nav__links">
-              ${navItems
-                .map(
-                  (item) =>
-                    `<a href="${item.href}" class="${isActive(item.match) ? "is-active" : ""}">${item.label}</a>`
-                )
-                .join("")}
-            </div>
-            <div class="site-nav__cta">
-              <a class="button button--primary" href="/start-project/" data-track="start_project_click">
-                ${icon("arrow")}
-                <span>Launch Site</span>
-              </a>
-            </div>
-          </nav>
-        </div>
-      </header>
-    `;
+  function resolveSitePartialName(target) {
+    if (!(target instanceof HTMLElement)) return "";
+    if (target.dataset.sitePartial) return target.dataset.sitePartial;
+    if (target.hasAttribute("data-site-header")) return "site-header";
+    if (target.hasAttribute("data-site-footer")) return "site-footer";
+    return "";
   }
 
-  function footerMarkup() {
-    return `
-      <footer class="site-footer">
-        <div class="site-footer__inner">
-          <div class="site-footer__main surface footer-mega">
-            <section class="footer-brand" data-reveal>
-              <div class="footer-brand__lockup">
-                <img src="/brand/ash-tra-logo.png" alt="ASH-TRA logo mark" />
-                <div>
-                  <p class="footer-brand__title">ASH-TRA</p>
-                  <p class="footer-brand__tag">LOOK LIKE THE BUSINESS YOU ARE BECOMING.</p>
-                </div>
-              </div>
-              <p class="footer-brand__text">
-                ASH-TRA builds modern digital presence for ambitious companies that want more
-                trust, more pull, and more momentum.
-              </p>
-              <div class="footer-brand__actions">
-                <a class="button button--primary" href="/start-project/" data-track="start_project_click">Launch Site</a>
-                <a class="button button--secondary" href="/discovery/" data-track="discovery_view">Discover your voice</a>
-              </div>
-            </section>
+  function resolveSitePartialPath(name) {
+    return partialPaths[name] || "";
+  }
 
-            <section class="footer-sitemap" data-reveal aria-label="Site Atlas">
-              <div class="footer-sitemap__head">
-                <strong>Site Atlas</strong>
-                <p>Clear signal. Strong routes. No dead ends.</p>
-              </div>
-              <div class="footer-sitemap__grid">
-                ${footerAtlasLinks
-                  .map(
-                    (item) => `
-                      <a class="footer-sitemap__link" href="${item.url}">
-                        <span>${item.title}</span>
-                        ${icon("arrow")}
-                      </a>
-                    `
-                  )
-                  .join("")}
-              </div>
-            </section>
+  async function fetchSitePartialMarkup(name) {
+    if (!name) throw new Error("Missing partial name.");
+    if (window.location.protocol === "file:") {
+      throw new Error(
+        'Shared partials cannot be loaded from a file:// preview. Serve the project root with "npm start" or another local web server.'
+      );
+    }
+    if (partialMarkupCache.has(name)) return partialMarkupCache.get(name);
 
-            <div class="site-footer__columns">
-              <section class="footer-column" data-reveal>
-                <strong>Explore</strong>
-                <a href="/about/">About</a>
-                <a href="/services/">Services</a>
-                <a href="/process/">Process</a>
-              </section>
-              <section class="footer-column" data-reveal>
-                <strong>Start</strong>
-                <a href="/start-project/">Launch Site</a>
-                <a href="/pay-consultation/">Pay Consultation</a>
-                <a href="/schedule-meeting/">Schedule Meeting</a>
-                <a href="/discovery/">Discovery</a>
-                <a href="/contact/">Contact</a>
-              </section>
-              <section class="footer-column" data-reveal>
-                <strong>Reference</strong>
-                <a href="/examples/">Portfolio</a>
-                <a href="/faq/">FAQ</a>
-                <a href="/accessibility/">Accessibility</a>
-              </section>
-            </div>
-          </div>
-          <div class="site-footer__bottom">
-            <p>&copy; ${new Date().getFullYear()} ash-tra.com</p>
-          </div>
-        </div>
-      </footer>
-    `;
+    const partialPromise = fetch(resolveSitePartialPath(name), {
+      // Always fetch the latest handwritten partial so sitewide edits show up immediately.
+      cache: "no-store",
+      headers: { Accept: "text/html" }
+    })
+      .then(async function (response) {
+        if (!response.ok) {
+          throw new Error(`Could not load partial "${name}" (${response.status}).`);
+        }
+        return response.text();
+      })
+      .catch(function (error) {
+        partialMarkupCache.delete(name);
+        throw error;
+      });
+
+    partialMarkupCache.set(name, partialPromise);
+    return partialPromise;
+  }
+
+  function hoistPartialStyles(target, name) {
+    target.querySelectorAll("style").forEach(function (styleTag, index) {
+      const styleKey = `${name}-${index}`;
+      let mountedStyle = document.head.querySelector(`style[data-site-partial-style="${styleKey}"]`);
+      if (!mountedStyle) {
+        mountedStyle = document.createElement("style");
+        mountedStyle.dataset.sitePartialStyle = styleKey;
+        mountedStyle.textContent = styleTag.textContent;
+        document.head.appendChild(mountedStyle);
+      }
+      styleTag.remove();
+    });
+  }
+
+  function runPartialScripts(target, name) {
+    target.querySelectorAll("script").forEach(function (scriptTag, index) {
+      const executable = document.createElement("script");
+      Array.from(scriptTag.attributes).forEach(function (attribute) {
+        executable.setAttribute(attribute.name, attribute.value);
+      });
+      executable.dataset.sitePartialScript = `${name}-${index}`;
+      if (scriptTag.src) {
+        executable.src = scriptTag.src;
+      } else {
+        executable.textContent = scriptTag.textContent;
+      }
+      scriptTag.replaceWith(executable);
+    });
+  }
+
+  async function injectSitePartial(target) {
+    const name = resolveSitePartialName(target);
+    if (!name) return;
+
+    const markup = await fetchSitePartialMarkup(name);
+    target.dataset.sitePartial = name;
+    target.dataset.partialRoot = name;
+    // Keep the DOM editable via placeholder nodes in the page source, but make
+    // the host wrapper disappear from layout so the injected partial renders as
+    // if it had been written directly into the page.
+    target.style.display = "contents";
+    target.innerHTML = markup;
+    rewriteRootRelativeUrls(target);
+    hoistPartialStyles(target, name);
+    runPartialScripts(target, name);
+    target.dataset.sitePartialStatus = "loaded";
   }
 
   function utilityMarkup() {
@@ -580,7 +573,7 @@
         >
           <header class="orbot__header">
             <div class="orbot__avatar-shell" aria-hidden="true">
-              <img src="/brand/orbot-avatar.svg" alt="" />
+              <img src="/assets/brand/orbot-avatar.svg" alt="" />
             </div>
             <div class="orbot__intro">
               <span class="orbot__eyebrow">Orbot</span>
@@ -649,7 +642,7 @@
           aria-expanded="false"
         >
           <span class="orbot-launcher__halo" aria-hidden="true"></span>
-          <img class="floating-action__avatar orbot-launcher__avatar" src="/brand/orbot-avatar.svg" alt="" aria-hidden="true" />
+          <img class="floating-action__avatar orbot-launcher__avatar" src="/assets/brand/orbot-avatar.svg" alt="" aria-hidden="true" />
           <span class="floating-action__label">Orbot</span>
         </button>
         `
@@ -676,41 +669,77 @@
     tag.setAttribute("content", content);
   }
 
-  function setLink(rel, href) {
+  function setLink(rel, href, attributes) {
     if (!href) return;
-    let tag = document.head.querySelector(`link[rel="${rel}"]`);
+    const entries = Object.entries(attributes || {}).filter(function (entry) {
+      return entry[1] !== undefined && entry[1] !== null && entry[1] !== "";
+    });
+    const selector =
+      `link[rel="${rel}"]` +
+      entries
+        .map(function (entry) {
+          return `[${entry[0]}="${String(entry[1]).replace(/"/g, '\\"')}"]`;
+        })
+        .join("");
+
+    let tag = document.head.querySelector(selector);
     if (!tag) {
       tag = document.createElement("link");
       tag.setAttribute("rel", rel);
       document.head.appendChild(tag);
     }
+    entries.forEach(function (entry) {
+      tag.setAttribute(entry[0], entry[1]);
+    });
     tag.setAttribute("href", href);
+  }
+
+  function syncBrandHeadAssets(pageName) {
+    setMeta("application-name", brandAppName);
+    setMeta("theme-color", brandChromeColor);
+    setMeta("msapplication-TileColor", brandChromeColor);
+    setMeta("msapplication-TileImage", `${brandAssetBase}/ash-tra-icon-192.png`);
+    setMeta("color-scheme", "dark");
+    setMeta("apple-mobile-web-app-capable", "yes");
+    setMeta("apple-mobile-web-app-title", brandAppName);
+    setMeta("apple-mobile-web-app-status-bar-style", "black-translucent");
+
+    setLink("icon", `${brandAssetBase}/ash-tra-favicon.svg`, { type: "image/svg+xml" });
+    setLink("icon", `${brandAssetBase}/favicon-16.png`, { sizes: "16x16", type: "image/png" });
+    setLink("icon", `${brandAssetBase}/favicon-32.png`, { sizes: "32x32", type: "image/png" });
+    setLink("icon", `${brandAssetBase}/favicon-64.png`, { sizes: "64x64", type: "image/png" });
+    setLink("shortcut icon", `${brandAssetBase}/favicon-32.png`, { type: "image/png" });
+    setLink("apple-touch-icon", `${brandAssetBase}/apple-touch-icon.png`, { sizes: "180x180" });
+    setLink("manifest", runtimeUrl("/site.webmanifest"));
+
+    return getSocialImageUrl(pageName);
   }
 
   function setupSeo() {
     const seo = pageSeo[page];
     if (!seo) return;
+    const socialImageUrl = syncBrandHeadAssets(page);
 
     document.title = seo.title;
     setMeta("description", seo.description);
     setMeta("robots", "index,follow,max-image-preview:large");
-    setMeta("theme-color", "#090d16");
     setMeta("og:title", seo.title, "property");
     setMeta("og:description", seo.description, "property");
     setMeta("og:type", "website", "property");
     setMeta("og:site_name", "ASH-TRA", "property");
     setMeta("og:url", `https://ash-tra.com${seo.path}`, "property");
-    setMeta("og:image", "https://ash-tra.com/brand/ash-tra-social-lockup.png", "property");
+    setMeta("og:image", socialImageUrl, "property");
+    setMeta("og:image:secure_url", socialImageUrl, "property");
+    setMeta("og:image:type", "image/png", "property");
+    setMeta("og:image:width", "1200", "property");
+    setMeta("og:image:height", "630", "property");
     setMeta("og:image:alt", seo.ogAlt, "property");
     setMeta("twitter:card", "summary_large_image");
     setMeta("twitter:title", seo.title);
     setMeta("twitter:description", seo.description);
-    setMeta("twitter:image", "https://ash-tra.com/brand/ash-tra-social-lockup.png");
+    setMeta("twitter:image", socialImageUrl);
     setMeta("twitter:image:alt", seo.ogAlt);
     setLink("canonical", `https://ash-tra.com${seo.path}`);
-    setLink("icon", "/brand/favicon-32.png");
-    setLink("apple-touch-icon", "/brand/apple-touch-icon.png");
-    setLink("manifest", "/site.webmanifest");
 
     document.querySelectorAll('script[data-seo-schema="dynamic"]').forEach(function (tag) {
       tag.remove();
@@ -750,11 +779,24 @@
     });
   }
 
-  function injectShell() {
-    const headerTarget = document.querySelector("[data-site-header]");
-    const footerTarget = document.querySelector("[data-site-footer]");
-    if (headerTarget) headerTarget.innerHTML = headerMarkup();
-    if (footerTarget) footerTarget.innerHTML = footerMarkup();
+  async function injectShell() {
+    // Load the handwritten shell partials before the rest of the page behavior
+    // runs so nav state, tracking hooks, and footer enhancements see real DOM.
+    const shellTargets = Array.from(
+      document.querySelectorAll("[data-site-partial], [data-site-header], [data-site-footer]")
+    );
+
+    await Promise.all(
+      shellTargets.map(async function (target) {
+        try {
+          await injectSitePartial(target);
+        } catch (error) {
+          target.dataset.sitePartialStatus = "error";
+          console.error(error);
+        }
+      })
+    );
+
     if (!document.querySelector("[data-site-utilities]")) {
       document.body.insertAdjacentHTML("beforeend", utilityMarkup());
     }
@@ -833,51 +875,6 @@
         label: element.getAttribute("data-track-label") || element.textContent.trim()
       });
     });
-  }
-
-  function setupNav() {
-    const toggle = document.querySelector(".site-header__toggle");
-    const nav = document.querySelector(".site-nav");
-    if (!toggle || !nav) return;
-
-    function setOpen(isOpen) {
-      toggle.setAttribute("aria-expanded", String(isOpen));
-      nav.classList.toggle("is-open", isOpen);
-      document.body.classList.toggle("has-nav-open", isOpen);
-      toggle.innerHTML = isOpen ? icon("close") : icon("menu");
-      toggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
-    }
-
-    toggle.addEventListener("click", function () {
-      setOpen(toggle.getAttribute("aria-expanded") !== "true");
-    });
-
-    nav.querySelectorAll("a, button").forEach(function (item) {
-      item.addEventListener("click", function () {
-        if (window.matchMedia("(min-width: 960px)").matches) return;
-        setOpen(false);
-      });
-    });
-
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") setOpen(false);
-    });
-
-    window.addEventListener("resize", function () {
-      if (window.matchMedia("(min-width: 960px)").matches) {
-        setOpen(false);
-      }
-    });
-  }
-
-  function setupHeaderState() {
-    const header = document.querySelector(".site-header");
-    if (!header) return;
-    const update = function () {
-      header.classList.toggle("is-scrolled", window.scrollY > 18);
-    };
-    window.addEventListener("scroll", update, { passive: true });
-    update();
   }
 
   function setupReveal() {
@@ -1150,7 +1147,7 @@
           ["Speed", "Less friction"]
         ]
       },
-      "start-project": {
+      "launch": {
         src: "/assets/media/heroes/start-project-hero-launch-control-website-projects.svg",
         alt: "Launch-control scene representing direct website project intake for businesses ready to start.",
         label: "Direct intake",
@@ -1163,7 +1160,7 @@
           ["State", "Project scope clear"]
         ]
       },
-      "schedule-meeting": {
+      "schedule": {
         src: "/assets/media/heroes/schedule-meeting-hero-docking-window-consultation-booking.svg",
         alt: "Docking-window style scene representing consultation booking, scheduling precision, and a clear next step.",
         label: "Window open",
@@ -1176,7 +1173,7 @@
           ["Rhythm", "Booked. Focused."]
         ]
       },
-      "pay-consultation": {
+      "payments": {
         src: "/assets/media/heroes/pay-consultation-hero-strategic-briefing-website-consultation.svg",
         alt: "Strategic briefing scene representing paid website consultation, clarity, and direction before the build begins.",
         label: "Briefing route",
@@ -1290,7 +1287,7 @@
           <div class="hero-mast__overlay hero-mast__overlay--grid" data-depth="0.5"></div>
           <div class="hero-mast__overlay hero-mast__overlay--glow" data-depth="1.2"></div>
           <div class="hero-mast__brand-panel" data-depth="0.4">
-            <span class="hero-mast__brand-mark"><img src="/brand/ash-tra-mark.svg" alt="" loading="eager" /></span>
+            <span class="hero-mast__brand-mark"><img src="/assets/brand/ash-tra-mark.svg" alt="" loading="eager" /></span>
             <p>${media.blurb}</p>
           </div>
           <div class="hero-mast__route-line" data-depth="0.85"><span>${media.route}</span></div>
@@ -1357,9 +1354,9 @@
       examples: "/assets/media/sections/examples-editorial-direction-premium-websites.svg",
       discovery: "/assets/media/sections/discovery-routes-navigation-space-brief.svg",
       contact: "/assets/media/sections/contact-route-network-project-enquiry.svg",
-      "start-project": "/assets/media/heroes/start-project-hero-launch-control-website-projects.svg",
-      "schedule-meeting": "/assets/media/heroes/schedule-meeting-hero-docking-window-consultation-booking.svg",
-      "pay-consultation": "/assets/media/heroes/pay-consultation-hero-strategic-briefing-website-consultation.svg",
+      "launch": "/assets/media/heroes/start-project-hero-launch-control-website-projects.svg",
+      "schedule": "/assets/media/heroes/schedule-meeting-hero-docking-window-consultation-booking.svg",
+      "payments": "/assets/media/heroes/pay-consultation-hero-strategic-briefing-website-consultation.svg",
       faq: "/assets/media/heroes/faq-hero-knowledge-atlas-business-questions.svg",
       privacy: "/assets/media/sections/legal-atlas-systems-business-clarity.svg",
       terms: "/assets/media/sections/legal-atlas-systems-business-clarity.svg",
@@ -1381,7 +1378,7 @@
         visual.className = "section-visual";
         visual.innerHTML = `
           <img src="${src}" alt="" loading="lazy" />
-          <span class="section-visual__mark"><img src="/brand/ash-tra-mark.svg" alt="" loading="lazy" /></span>
+          <span class="section-visual__mark"><img src="/assets/brand/ash-tra-mark.svg" alt="" loading="lazy" /></span>
           <span class="section-visual__label">${label ? label.textContent.trim() : "Route " + String(index + 1).padStart(2, "0")}</span>
         `;
         node.insertBefore(visual, node.firstChild);
@@ -1427,7 +1424,7 @@
         rail.innerHTML = `
           <div class="section-heading__rail-media">
             <img src="${item.src}" alt="${item.alt}" loading="lazy" />
-            <span class="section-heading__rail-mark"><img src="/brand/ash-tra-logo.png" alt="ASH-TRA logo mark" loading="lazy" /></span>
+            <span class="section-heading__rail-mark"><img src="/assets/brand/ash-tra-logo.png" alt="ASH-TRA logo mark" loading="lazy" /></span>
           </div>
           <div class="section-heading__rail-copy">
             <span class="section-heading__rail-kicker">${item.kicker}</span>
@@ -1661,20 +1658,20 @@
       id: "discovery",
       phrases: ["start discovery", "discovery route", "rota de descoberta", "descoberta", "discovery questionnaire"],
       tokens: ["discovery", "questionnaire", "brief", "descoberta", "questionario", "estrategia"],
-      routes: ["/discovery/", "/pay-consultation/"],
+      routes: ["/discovery/", "/payments/"],
       reply: {
         en: "Best page: Discovery. Use this when you need strategy before build.",
         pt: "Melhor pagina: Discovery. Use quando quiser estrategia antes da execucao."
       }
     },
     {
-      id: "start_project",
+      id: "launch",
       phrases: ["start project", "launch site", "iniciar projeto", "site novo", "quote request"],
       tokens: ["start", "launch", "project", "quote", "budget", "projeto", "orcamento", "iniciar"],
-      routes: ["/start-project/", "/contact/", "/discovery/"],
+      routes: ["/launch/", "/contact/", "/discovery/"],
       reply: {
-        en: "Best page: Launch Site. This is the direct intake when you are ready to start now.",
-        pt: "Melhor pagina: Launch Site. Entrada direta para iniciar agora."
+        en: "Best page: Launch. This is the direct intake when you are ready to start now.",
+        pt: "Melhor pagina: Launch. Entrada direta para iniciar agora."
       }
     },
     {
@@ -1691,20 +1688,20 @@
       id: "payments",
       phrases: ["how to pay", "payment options", "forma de pagamento", "stripe paypal pix"],
       tokens: ["payment", "pay", "stripe", "paypal", "pix", "pagamento", "pagar", "consultoria"],
-      routes: ["/pay-consultation/", "/schedule-meeting/", "/discovery/"],
+      routes: ["/payments/", "/schedule/", "/discovery/"],
       reply: {
-        en: "Best page: Pay Consultation. After payment, continue to Schedule Meeting.",
-        pt: "Melhor pagina: Pay Consultation. Depois do pagamento, siga para Schedule Meeting."
+        en: "Best page: Payments. After payment, continue to Schedule.",
+        pt: "Melhor pagina: Payments. Depois do pagamento, siga para Schedule."
       }
     },
     {
       id: "schedule",
       phrases: ["book meeting", "schedule call", "agendar reuniao", "marcar horario"],
       tokens: ["schedule", "meeting", "book", "slot", "calendly", "agendar", "reuniao", "horario"],
-      routes: ["/schedule-meeting/", "/pay-consultation/"],
+      routes: ["/schedule/", "/payments/"],
       reply: {
-        en: "Best page: Schedule Meeting. Use it to lock your consultation slot.",
-        pt: "Melhor pagina: Schedule Meeting. Use para travar seu horario."
+        en: "Best page: Schedule. Use it to lock your consultation slot.",
+        pt: "Melhor pagina: Schedule. Use para travar seu horario."
       }
     }
   ];
@@ -1715,10 +1712,10 @@
   }, {});
 
   function resolvePriorityRoutePath() {
-    const trimmed = String(orbotConfig.primaryCtaPriority || "start-project")
+    const trimmed = String(orbotConfig.primaryCtaPriority || "launch")
       .trim()
       .replace(/^\/+|\/+$/g, "");
-    return trimmed ? `/${trimmed}/` : "/start-project/";
+    return trimmed ? `/${trimmed}/` : "/launch/";
   }
 
   const orbotPrimaryRoute = resolvePriorityRoutePath();
@@ -1795,7 +1792,7 @@
             if (keyword.includes(token) || token.includes(keyword)) score += 2;
           });
         });
-        if (tokenSet.has("launch") && entry.url === "/start-project/") score += 3;
+        if (tokenSet.has("launch") && entry.url === "/launch/") score += 3;
         return { entry, score };
       })
       .filter(function (item) {
@@ -1891,7 +1888,7 @@
             return `
               <a
                 class="orbot-results__item"
-                href="${result.url}"
+                href="${runtimeUrl(result.url)}"
                 data-track="orbot_cta_click"
                 data-track-label="${escapeHtml(`${intent}:${result.title}`)}"
               >
@@ -2097,14 +2094,13 @@
     });
   }
 
-  function init() {
-    injectShell();
+  async function init() {
+    rewriteRootRelativeUrls(document.body);
+    await injectShell();
     setupSeo();
     setupPageStructure();
     decorateStage();
     setupTrackedClicks();
-    setupNav();
-    setupHeaderState();
     setupReveal();
     setupTiltCards();
     setupHeroMediaLayers();
@@ -2119,6 +2115,7 @@
     setupPaymentPrefill();
     setupForms();
     setupFaq();
+    rewriteRootRelativeUrls(document.body);
     trackEvent("page_view", {
       title: document.title,
       path: window.location.pathname
@@ -2126,8 +2123,14 @@
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("DOMContentLoaded", function () {
+      init().catch(function (error) {
+        console.error(error);
+      });
+    });
   } else {
-    init();
+    init().catch(function (error) {
+      console.error(error);
+    });
   }
 })();
