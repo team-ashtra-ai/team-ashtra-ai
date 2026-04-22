@@ -2,15 +2,43 @@
   const config = window.AshtraConfig || {};
   const page = document.body.dataset.page || "home";
   const pageRuntimePrefix = page === "home" || page === "404" ? "./" : "../";
+  const isLocalPreview = ["localhost", "127.0.0.1"].includes(window.location.hostname);
   const contactFormEndpoint = config.contactFormEndpoint || "https://formspree.io/f/mbdqovoj";
   const consultationFormEndpoint = config.consultationFormEndpoint || "https://formspree.io/f/xaqaogoo";
-  const discoveryFormEndpoint =
-    config.discoveryFormEndpoint || consultationFormEndpoint || "https://formspree.io/f/xaqaogoo";
+  const discoveryFormEndpoint = config.discoveryFormEndpoint || "https://formspree.io/f/mqewqvqb";
+  const discoveryFormFallbackEndpoint =
+    config.discoveryFormFallbackEndpoint || consultationFormEndpoint || "";
+  const googleAnalyticsMeasurementId =
+    typeof config.googleAnalyticsMeasurementId === "string"
+      ? config.googleAnalyticsMeasurementId.trim()
+      : "";
   const orbotConfig = resolveOrbotConfig(config.orbot);
   const brandAppName = "ASH-TRA";
   const brandChromeColor = "#090d16";
   const brandAssetBase = runtimeUrl("/assets/brand");
   const brandAssetOrigin = "https://ash-tra.com/assets/brand";
+  const socialImageByPage = {
+    "404": "ash-tra-404-page-not-found-social-preview.png",
+    "about": "ash-tra-about-story-standards-signal-social-preview.png",
+    "accessibility": "ash-tra-accessibility-statement-usable-website-social-preview.png",
+    "contact": "ash-tra-contact-project-enquiry-social-preview.png",
+    "cookies": "ash-tra-cookie-policy-consent-analytics-social-preview.png",
+    "discovery": "ash-tra-discovery-consultation-price-range-social-preview.png",
+    "examples": "ash-tra-portfolio-website-work-examples-social-preview.png",
+    "faq": "ash-tra-faq-services-seo-support-social-preview.png",
+    "home": "ash-tra-home-modern-websites-social-preview.png",
+    "invest": "ash-tra-investment-foundation-growth-partnership-social-preview.png",
+    "launch": "ash-tra-launch-project-intake-social-preview.png",
+    "pay-consultation": "ash-tra-redirect-payments-social-preview.png",
+    "payments": "ash-tra-payments-consultation-stripe-paypal-pix-social-preview.png",
+    "privacy": "ash-tra-privacy-policy-data-usage-social-preview.png",
+    "process": "ash-tra-process-discovery-build-support-social-preview.png",
+    "schedule": "ash-tra-schedule-consultation-booking-social-preview.png",
+    "schedule-meeting": "ash-tra-redirect-schedule-social-preview.png",
+    "services": "ash-tra-services-strategy-rebuild-seo-social-preview.png",
+    "start-project": "ash-tra-redirect-launch-social-preview.png",
+    "terms": "ash-tra-terms-service-commercial-scope-social-preview.png"
+  };
   // Shared shell pieces now live as handwritten HTML partials so the header and
   // footer can be edited without digging through JavaScript template strings.
   const partialPaths = {
@@ -83,7 +111,7 @@
   function getSocialImageUrl(pageName) {
     const slug =
       typeof pageName === "string" && pageName.trim() ? pageName.trim().toLowerCase() : "home";
-    return `${brandAssetOrigin}/${slug}-social.png`;
+    return `${brandAssetOrigin}/${socialImageByPage[slug] || "ash-tra-brand-website-social-preview.png"}`;
   }
 
   const infoStripItems = [
@@ -200,9 +228,9 @@
 
   const pageSeo = {
     home: {
-      title: "ASH-TRA | Modern websites for ambitious businesses",
+      title: "ASH-TRA | Modern Websites for Ambitious Businesses",
       description:
-        "ASH-TRA builds modern websites and sharper digital presence for ambitious businesses that want more trust, more pull, and more momentum.",
+        "ASH-TRA builds modern websites, sharper messaging, and stronger digital presence for ambitious businesses that want more trust, more pull, and more momentum.",
       path: "/",
       ogAlt: "ASH-TRA homepage social preview",
       schemas: [
@@ -231,9 +259,9 @@
       ]
     },
     about: {
-      title: "About ASH-TRA | Story, standards, and the signal behind the site",
+      title: "About ASH-TRA | Story, Standards, and the Signal Behind the Site",
       description:
-        "Read the story behind ASH-TRA, what it stands for, who it fits, and why ash-tra.com is built to feel clear, credible, and ready for momentum.",
+        "Read the story behind ASH-TRA, what it stands for, who it fits, and why the studio builds websites to feel clear, credible, and ready for momentum.",
       path: "/about/",
       ogAlt: "ASH-TRA about page social preview",
       schemas: [
@@ -248,10 +276,18 @@
         }
       ]
     },
-    services: {
-      title: "Services | ASH-TRA",
+    contact: {
+      title: "Contact ASH-TRA | Project Enquiry, Launch, or Discovery Route",
       description:
-        "Explore ASH-TRA services for strategy, message, website launches, redesigns, full rebuilds, SEO foundations, systems, performance, and support.",
+        "Contact ASH-TRA through the route that fits best: direct project launch, paid call, or discovery form for a lighter first step.",
+      path: "/contact/",
+      ogAlt: "ASH-TRA contact page social preview",
+      schemas: []
+    },
+    services: {
+      title: "Services | Strategy, Rebuilds, SEO, and Support | ASH-TRA",
+      description:
+        "Explore ASH-TRA services for strategy, messaging, website launches, redesigns, full rebuilds, SEO foundations, analytics, systems, and ongoing support.",
       path: "/services/",
       ogAlt: "ASH-TRA services page social preview",
       schemas: [
@@ -279,10 +315,18 @@
         }
       ]
     },
-    process: {
-      title: "Process | ASH-TRA",
+    examples: {
+      title: "Website Work Examples | Premium Portfolio Directions | ASH-TRA",
       description:
-        "See the ASH-TRA process from discovery and direction through build, refinement, optimisation, and support.",
+        "Explore ASH-TRA website work examples and portfolio directions that show how structure, pacing, and message change by business type.",
+      path: "/examples/",
+      ogAlt: "ASH-TRA portfolio page social preview",
+      schemas: []
+    },
+    process: {
+      title: "Website Process | Discovery, Build, Refinement, and Support | ASH-TRA",
+      description:
+        "See the ASH-TRA process from discovery and direction through build, refinement, optimisation, and support for a stronger website launch.",
       path: "/process/",
       ogAlt: "ASH-TRA process page social preview",
       schemas: [
@@ -297,9 +341,9 @@
       ]
     },
     discovery: {
-      title: "Discovery | Paid Consultation Or Free Price Range | ASH-TRA",
+      title: "Discovery | Paid Consultation or Free Website Brief | ASH-TRA",
       description:
-        "Choose the ASH-TRA discovery route that fits: paid consultation for live strategic input or the free brief for an approximate price range within 48 hours excluding weekends.",
+        "Choose the ASH-TRA discovery route that fits: paid consultation for live strategic input or a free website brief for an approximate price range.",
       path: "/discovery/",
       ogAlt: "ASH-TRA discovery page social preview",
       schemas: [
@@ -313,10 +357,18 @@
         }
       ]
     },
-    invest: {
-      title: "Invest | ASH-TRA",
+    launch: {
+      title: "Launch Your Project | Website Intake Form | ASH-TRA",
       description:
-        "Compare the ASH-TRA investment levels and choose between Foundation, Growth System, and Orbital Partnership.",
+        "Use the ASH-TRA launch intake to start a new website, rebuild, redesign, or focused page project with a cleaner first step.",
+      path: "/launch/",
+      ogAlt: "ASH-TRA launch page social preview",
+      schemas: []
+    },
+    invest: {
+      title: "Website Investment Levels | Foundation, Growth, or Partnership | ASH-TRA",
+      description:
+        "Compare the ASH-TRA investment levels and choose between Foundation, Growth System, and Orbital Partnership based on the level of performance and support you need.",
       path: "/invest/",
       ogAlt: "ASH-TRA investment page social preview",
       schemas: [
@@ -331,9 +383,9 @@
       ]
     },
     "payments": {
-      title: "Payments | ASH-TRA",
+      title: "Consultation Payments | Stripe, PayPal, or Pix | ASH-TRA",
       description:
-        "Choose the paid consultation route, request Stripe, PayPal, or Pix, and start your project with real strategic direction.",
+        "Choose the paid consultation route, request Stripe, PayPal, or Pix, and start your website project with a stronger strategic direction.",
       path: "/payments/",
       ogAlt: "ASH-TRA payments page social preview",
       schemas: [
@@ -350,9 +402,9 @@
       ]
     },
     "schedule": {
-      title: "Schedule | ASH-TRA",
+      title: "Schedule Your Consultation | Book the ASH-TRA Call",
       description:
-        "Book your paid ASH-TRA consultation slot, prepare properly, and move into the strongest next direction for the project.",
+        "Book your paid ASH-TRA consultation slot, prepare properly, and move into the next clear direction for the website project.",
       path: "/schedule/",
       ogAlt: "ASH-TRA schedule page social preview",
       schemas: [
@@ -367,7 +419,7 @@
       ]
     },
     faq: {
-      title: "FAQ | ASH-TRA",
+      title: "ASH-TRA FAQ | Services, Discovery, SEO, Analytics, and Support",
       description:
         "Read clear answers about ASH-TRA services, paid consultations, discovery, SEO, analytics, performance, support, and fit.",
       path: "/faq/",
@@ -377,7 +429,7 @@
     terms: {
       title: "Terms of Service | ASH-TRA",
       description:
-        "Read the ASH-TRA terms covering consultations, project scope, payments, revisions, ownership, and general site use.",
+        "Read the ASH-TRA terms covering consultations, project scope, payments, ownership, revisions, liability, and general site use.",
       path: "/terms/",
       ogAlt: "ASH-TRA terms of service page social preview",
       schemas: [
@@ -407,7 +459,7 @@
     cookies: {
       title: "Cookie Policy | ASH-TRA",
       description:
-        "Read how cookies and similar technologies may be used on ash-tra.com for functionality, measurement, and performance improvement.",
+        "Read how cookies and similar technologies may be used on ash-tra.com for site functionality, analytics, preferences, and performance improvement.",
       path: "/cookies/",
       ogAlt: "ASH-TRA cookie policy page social preview",
       schemas: [
@@ -433,6 +485,39 @@
           url: "https://ash-tra.com/accessibility/"
         }
       ]
+    },
+    "404": {
+      title: "Page Not Found | ASH-TRA",
+      description:
+        "The page you tried to open is not available. Use the homepage, launch route, discovery route, or contact page instead.",
+      path: "/404.html",
+      ogAlt: "ASH-TRA not found page social preview",
+      robots: "noindex,follow",
+      schemas: []
+    },
+    "pay-consultation": {
+      title: "Redirecting to Consultation Payments | ASH-TRA",
+      description: "This route now redirects to the consultation payments page.",
+      path: "/payments/",
+      ogAlt: "ASH-TRA payments redirect page social preview",
+      robots: "noindex,follow",
+      schemas: []
+    },
+    "schedule-meeting": {
+      title: "Redirecting to Consultation Schedule | ASH-TRA",
+      description: "This route now redirects to the consultation schedule page.",
+      path: "/schedule/",
+      ogAlt: "ASH-TRA schedule redirect page social preview",
+      robots: "noindex,follow",
+      schemas: []
+    },
+    "start-project": {
+      title: "Redirecting to Project Launch | ASH-TRA",
+      description: "This route now redirects to the project launch page.",
+      path: "/launch/",
+      ogAlt: "ASH-TRA launch redirect page social preview",
+      robots: "noindex,follow",
+      schemas: []
     }
   };
 
@@ -497,8 +582,9 @@
     if (partialMarkupCache.has(name)) return partialMarkupCache.get(name);
 
     const partialPromise = fetch(resolveSitePartialPath(name), {
-      // Always fetch the latest handwritten partial so sitewide edits show up immediately.
-      cache: "no-store",
+      // Keep local preview responsive to edits, but let production use normal
+      // browser caching so header/footer fetches do not add unnecessary drag.
+      cache: isLocalPreview ? "no-store" : "default",
       headers: { Accept: "text/html" }
     })
       .then(async function (response) {
@@ -745,7 +831,10 @@
 
     document.title = seo.title;
     setMeta("description", seo.description);
-    setMeta("robots", "index,follow,max-image-preview:large");
+    setMeta(
+      "robots",
+      seo.robots || "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+    );
     setMeta("og:title", seo.title, "property");
     setMeta("og:description", seo.description, "property");
     setMeta("og:type", "website", "property");
@@ -764,42 +853,74 @@
     setMeta("twitter:image:alt", seo.ogAlt);
     setLink("canonical", `https://ash-tra.com${seo.path}`);
 
-    document.querySelectorAll('script[data-seo-schema="dynamic"]').forEach(function (tag) {
-      tag.remove();
-    });
+    if (!document.head.querySelector('script[data-seo-schema="page"]')) {
+      document.querySelectorAll('script[data-seo-schema="dynamic"]').forEach(function (tag) {
+        tag.remove();
+      });
 
-    const schemas = Array.isArray(seo.schemas) ? seo.schemas.slice() : [];
+      const schemas = Array.isArray(seo.schemas) ? seo.schemas.slice() : [];
 
-    if (page === "faq") {
-      const entities = Array.from(document.querySelectorAll(".faq-list details[data-faq]"))
-        .map(function (item) {
-          const question = item.querySelector("summary")?.textContent.trim();
-          const answer = item.querySelector("p")?.textContent.trim();
-          if (!question || !answer) return null;
-          return {
-            "@type": "Question",
-            name: question.replace(/^\d+\.\s*/, ""),
-            acceptedAnswer: { "@type": "Answer", text: answer }
-          };
-        })
-        .filter(Boolean);
+      if (page === "faq") {
+        const entities = Array.from(document.querySelectorAll(".faq-list details[data-faq]"))
+          .map(function (item) {
+            const question = item.querySelector("summary")?.textContent.trim();
+            const answer = item.querySelector("p")?.textContent.trim();
+            if (!question || !answer) return null;
+            return {
+              "@type": "Question",
+              name: question.replace(/^\d+\.\s*/, ""),
+              acceptedAnswer: { "@type": "Answer", text: answer }
+            };
+          })
+          .filter(Boolean);
 
-      if (entities.length) {
-        schemas.push({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: entities
-        });
+        if (entities.length) {
+          schemas.push({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: entities
+          });
+        }
       }
+
+      schemas.forEach(function (schema) {
+        const tag = document.createElement("script");
+        tag.type = "application/ld+json";
+        tag.dataset.seoSchema = "dynamic";
+        tag.textContent = JSON.stringify(schema);
+        document.head.appendChild(tag);
+      });
+    }
+  }
+
+  function setupAnalytics() {
+    if (!googleAnalyticsMeasurementId) return;
+
+    window.dataLayer = window.dataLayer || [];
+
+    if (typeof window.gtag !== "function") {
+      window.gtag = function () {
+        window.dataLayer.push(arguments);
+      };
     }
 
-    schemas.forEach(function (schema) {
+    if (!window.__ashtraGaConfigured) {
+      window.gtag("js", new Date());
+      window.gtag("config", googleAnalyticsMeasurementId, {
+        send_page_view: false,
+        anonymize_ip: true,
+        transport_type: "beacon"
+      });
+      window.__ashtraGaConfigured = true;
+    }
+
+    if (!document.head.querySelector(`script[data-ga-loader="${googleAnalyticsMeasurementId}"]`)) {
       const tag = document.createElement("script");
-      tag.type = "application/ld+json";
-      tag.dataset.seoSchema = "dynamic";
-      tag.textContent = JSON.stringify(schema);
+      tag.async = true;
+      tag.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(googleAnalyticsMeasurementId)}`;
+      tag.dataset.gaLoader = googleAnalyticsMeasurementId;
       document.head.appendChild(tag);
-    });
+    }
   }
 
   async function injectShell() {
@@ -988,6 +1109,194 @@
     });
   }
 
+  function setupDiscoveryBrief() {
+    if (page !== "discovery") return;
+
+    const sections = Array.from(document.querySelectorAll(".brief-section"));
+    if (!sections.length) return;
+
+    document.body.classList.add("discovery-brief--enhanced");
+
+    const openFirstButton = document.querySelector("[data-discovery-open-first]");
+    const openAllButton = document.querySelector("[data-discovery-open-all]");
+    const closeAllButton = document.querySelector("[data-discovery-close-all]");
+    const phaseThresholds = [
+      { end: 4, label: "Essentials" },
+      { end: 10, label: "Direction" },
+      { end: 16, label: "Scope" },
+      { end: 21, label: "Finish" }
+    ];
+
+    function phaseLabel(index) {
+      const number = index + 1;
+      const match = phaseThresholds.find(function (item) {
+        return number <= item.end;
+      });
+      return match ? match.label : "Section";
+    }
+
+    function setCurrent(section) {
+      sections.forEach(function (item) {
+        item.classList.toggle("is-current", item === section);
+      });
+    }
+
+    function updateButtons() {
+      sections.forEach(function (section) {
+        const button = section.querySelector(".brief-section__toggle");
+        if (!button) return;
+        const isOpen = section.classList.contains("is-open");
+        button.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        const text = button.querySelector(".brief-section__toggle-text");
+        if (text) text.textContent = isOpen ? "Close" : "Open";
+      });
+    }
+
+    function openSection(section, options) {
+      const config = options && typeof options === "object" ? options : {};
+      if (!section) return;
+
+      if (config.exclusive !== false) {
+        sections.forEach(function (item) {
+          item.classList.toggle("is-open", item === section);
+        });
+      } else {
+        section.classList.add("is-open");
+      }
+
+      setCurrent(section);
+      updateButtons();
+
+      if (config.scroll) {
+        section.scrollIntoView({
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+          block: "start"
+        });
+      }
+    }
+
+    function closeAll() {
+      sections.forEach(function (section) {
+        section.classList.remove("is-open", "is-current");
+      });
+      updateButtons();
+    }
+
+    function openAll() {
+      sections.forEach(function (section) {
+        section.classList.add("is-open");
+      });
+      setCurrent(sections[0] || null);
+      updateButtons();
+    }
+
+    sections.forEach(function (section, index) {
+      const id = section.id || `brief-${String(index + 1).padStart(2, "0")}`;
+      const head = section.querySelector(".brief-section__head");
+      const copy = head?.querySelector("div");
+      const grid = section.querySelector(".brief-section__grid");
+      section.id = id;
+
+      if (!head || !copy || !grid) return;
+
+      copy.classList.add("brief-section__head-copy");
+
+      if (!copy.querySelector(".brief-section__meta")) {
+        const meta = document.createElement("div");
+        meta.className = "brief-section__meta";
+
+        const phase = document.createElement("span");
+        phase.className = "brief-section__phase";
+        phase.textContent = phaseLabel(index);
+        meta.appendChild(phase);
+
+        if (index === 0 || section.querySelector("[required]")) {
+          const tag = document.createElement("span");
+          tag.className = "brief-section__tag";
+          tag.textContent = "Required";
+          meta.appendChild(tag);
+        }
+
+        copy.insertBefore(meta, copy.firstChild);
+      }
+
+      const panelId = `${id}-panel`;
+      grid.id = panelId;
+
+      if (!head.querySelector(".brief-section__toggle")) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "brief-section__toggle";
+        button.setAttribute("aria-controls", panelId);
+        button.innerHTML =
+          '<span class="brief-section__toggle-text">Open</span><span class="brief-section__toggle-icon" aria-hidden="true"></span>';
+        button.addEventListener("click", function () {
+          if (section.classList.contains("is-open")) {
+            section.classList.remove("is-open", "is-current");
+            if (!sections.some(function (item) {
+              return item.classList.contains("is-open");
+            })) {
+              setCurrent(null);
+            } else {
+              setCurrent(
+                sections.find(function (item) {
+                  return item.classList.contains("is-open");
+                }) || null
+              );
+            }
+            updateButtons();
+            return;
+          }
+
+          openSection(section, {
+            exclusive: true,
+            scroll: window.matchMedia("(max-width: 959px)").matches
+          });
+        });
+        head.appendChild(button);
+      }
+
+      section.addEventListener("focusin", function () {
+        if (!section.classList.contains("is-open")) {
+          openSection(section, { exclusive: true });
+        }
+      });
+    });
+
+    if (openFirstButton) {
+      openFirstButton.addEventListener("click", function () {
+        openSection(sections[0], { exclusive: true, scroll: true });
+      });
+    }
+
+    if (openAllButton) {
+      openAllButton.addEventListener("click", openAll);
+    }
+
+    if (closeAllButton) {
+      closeAllButton.addEventListener("click", closeAll);
+    }
+
+    function sectionFromHash() {
+      const hash = window.location.hash ? window.location.hash.slice(1) : "";
+      const target = hash ? document.getElementById(hash) : null;
+      return target && sections.includes(target) ? target : null;
+    }
+
+    const initialSection = sectionFromHash() || sections[0];
+    openSection(initialSection, { exclusive: true });
+
+    window.__ashtraDiscoveryOpenSection = function (section, options) {
+      if (!section || !sections.includes(section)) return;
+      openSection(section, options);
+    };
+
+    window.addEventListener("hashchange", function () {
+      const target = sectionFromHash();
+      if (target) openSection(target, { exclusive: true });
+    });
+  }
+
   function setupBriefNav() {
     const nav = document.querySelector("[data-brief-nav]");
     const sections = Array.from(document.querySelectorAll(".brief-section"));
@@ -1041,7 +1350,13 @@
     links.forEach(function (link) {
       link.addEventListener("click", function () {
         const targetId = link.getAttribute("href")?.slice(1);
-        if (targetId) setActive(targetId);
+        if (targetId) {
+          const targetSection = document.getElementById(targetId);
+          if (page === "discovery" && typeof window.__ashtraDiscoveryOpenSection === "function") {
+            window.__ashtraDiscoveryOpenSection(targetSection, { exclusive: true });
+          }
+          setActive(targetId);
+        }
       });
     });
 
@@ -1375,10 +1690,14 @@
         event.preventDefault();
         clearFeedback();
 
+        const endpointKey = form.getAttribute("data-form-endpoint");
         const endpoint = runtimeUrl(
-          form.getAttribute("action") || resolveFormEndpoint(form.getAttribute("data-form-endpoint"))
+          form.getAttribute("action") || resolveFormEndpoint(endpointKey)
         );
-        const fallbackEndpoint = runtimeUrl(form.getAttribute("data-form-fallback-endpoint") || "");
+        const fallbackEndpoint = runtimeUrl(
+          form.getAttribute("data-form-fallback-endpoint") ||
+            (endpointKey === "discovery" ? discoveryFormFallbackEndpoint : "")
+        );
         if (!endpoint) {
           if (error) error.hidden = false;
           return;
@@ -1960,6 +2279,7 @@
     rewriteRootRelativeUrls(document.body);
     await injectShell();
     setupSeo();
+    setupAnalytics();
     setupPageStructure();
     decorateStage();
     setupTrackedClicks();
@@ -1973,6 +2293,7 @@
     setupBackToTop();
     setupOrbotAssistant();
     setupLayoutScaffold();
+    setupDiscoveryBrief();
     setupBriefNav();
     setupPaymentPrefill();
     setupForms();
