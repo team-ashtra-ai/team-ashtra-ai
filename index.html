@@ -218,6 +218,27 @@
             filter: saturate(0.98) contrast(1.05) brightness(0.84);
           }
 
+          #home-cover .home-cover__overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            z-index: 2;
+          }
+
+          #home-cover .home-cover__overlay--grid {
+            opacity: 0.28;
+            mix-blend-mode: screen;
+          }
+
+          #home-cover .home-cover__overlay--scan {
+            opacity: 0.2;
+            transform: scale(1.02) translate3d(calc(var(--mx) * 8px), calc(var(--my) * 8px), 0);
+            transition: transform 180ms ease-out;
+          }
+
           #home-cover .home-cover__shade {
             position: absolute;
             inset: 0;
@@ -359,10 +380,22 @@
             </div>
           </div>
           <div class="home-cover__visual">
-            <img class="home-cover__image" src="/Inspiration/Hero/c659539f-6dc9-4298-857e-5e9656d9b171-cover.jpeg" alt="Framed space-age cover scene representing a more premium digital first impression." loading="eager" />
+            <video
+              class="home-cover__image"
+              src="/assets/media/stock/space/nasa-whirlpool-flyby.webm"
+              poster="/assets/media/stock/space/nasa-whirlpool-flyby-frame.png"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+              aria-hidden="true"
+            ></video>
+            <img class="home-cover__overlay home-cover__overlay--grid" src="/assets/media/overlays/neon-orbit-grid.svg" alt="" loading="eager" />
+            <img class="home-cover__overlay home-cover__overlay--scan" src="/assets/media/overlays/neon-scan-arcs.svg" alt="" loading="eager" />
             <div class="home-cover__shade" aria-hidden="true"></div>
             <div class="home-cover__menu">
-              <span class="home-cover__tag">Arrival sequence</span>
+              <span class="home-cover__tag">Neon approach</span>
               <span class="home-cover__tag">Front-door authority</span>
             </div>
             <div class="home-cover__review">
@@ -432,7 +465,7 @@
           <!-- RIGHT SIDE: Featured image with caption and related links -->
           <article class="story-grid__media surface" data-reveal data-tilt>
             <div class="media-frame">
-              <img src="/assets/media/space-moon-frame.jpg" alt="ASH-TRA moon frame representing gravity, signal, and stronger business presence." />
+              <img src="/assets/media/stock/space/hubble-spiral-and-star.jpg" alt="Spiral galaxy visual representing gravity, signal, and stronger business presence." />
             </div>
             <blockquote>Give your brand gravity.</blockquote>
             <p class="media-caption">A stronger front door makes the company feel harder to ignore before the first conversation starts.</p>
@@ -712,7 +745,7 @@
           <!-- RIGHT SIDE: Featured image from portfolio -->
           <article class="story-grid__media surface" data-reveal data-tilt>
             <div class="image-frame">
-              <img src="/assets/media/space-titan-frame.jpg" alt="Dark orbital frame representing cinematic premium work directions." />
+              <img src="/assets/media/stock/space/hubble-gigantic-galaxy.jpg" alt="Dark galaxy frame representing cinematic premium work directions." />
             </div>
             <p class="media-caption">The page should feel like a case direction, not a loose gallery.</p>
           </article>

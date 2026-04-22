@@ -185,6 +185,18 @@
             filter: saturate(0.96) brightness(0.86);
           }
 
+          #services-array .services-array__overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.22;
+            mix-blend-mode: screen;
+            pointer-events: none;
+            z-index: 1;
+          }
+
           #services-array .services-array__hero::after {
             content: "";
             position: absolute;
@@ -270,7 +282,8 @@
           </div>
           <div class="services-array__stage">
             <div class="services-array__hero">
-              <img src="/assets/media/heroes/services-hero-satellite-network-website-services.svg" alt="Service architecture visual representing connected strategy, build, and systems work." loading="eager" />
+              <img src="/assets/media/stock/space/hubble-sea-of-galaxies.jpg" alt="Wide galaxy field representing connected strategy, build, and systems work." loading="eager" />
+              <img class="services-array__overlay" src="/assets/media/overlays/neon-orbit-grid.svg" alt="" loading="eager" />
               <div class="services-array__signal">
                 <span class="services-array__mini">Service architecture</span>
                 <span class="services-array__mini">One stronger public read</span>
@@ -394,7 +407,7 @@
 
           <article class="story-grid__media surface" data-reveal data-tilt>
             <div class="image-frame">
-              <img src="/assets/media/space-titan-frame.jpg" alt="ASH-TRA space horizon visual representing stronger service architecture and premium site systems." />
+              <img src="/assets/media/stock/space/nasa-galaxies-flythrough-still.jpg" alt="Galaxy horizon visual representing stronger service architecture and premium site systems." />
             </div>
             <p class="media-caption">The result should feel more coherent, not more crowded.</p>
             <div class="route-cloud">

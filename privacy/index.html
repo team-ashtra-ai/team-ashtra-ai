@@ -81,10 +81,24 @@
           #privacy-ledger * { box-sizing: border-box; }
           #privacy-ledger .privacy-ledger__frame {
             width: min(90rem, calc(100% - 2rem)); margin: 0 auto; padding: clamp(1rem, 1.8vw, 1.5rem);
-            border-radius: 2.1rem; border: 1px solid rgba(140,226,255,0.14); background: linear-gradient(145deg, rgba(8,12,22,0.98), rgba(10,18,32,0.94));
+            position: relative; overflow: hidden;
+            border-radius: 2.1rem; border: 1px solid rgba(140,226,255,0.14);
+            background:
+              linear-gradient(145deg, rgba(8,12,22,0.88), rgba(10,18,32,0.94)),
+              url("/assets/media/stock/space/nasa-galaxies-flythrough-still.jpg") center/cover no-repeat;
             display: grid; gap: 1rem; box-shadow: 0 28px 100px rgba(0,0,0,0.26);
           }
+          #privacy-ledger .privacy-ledger__frame::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url("/assets/media/overlays/neon-scan-arcs.svg") center/cover no-repeat;
+            opacity: 0.14;
+            mix-blend-mode: screen;
+            pointer-events: none;
+          }
           #privacy-ledger .privacy-ledger__head, #privacy-ledger .privacy-ledger__grid { display: grid; gap: 0.9rem; }
+          #privacy-ledger .privacy-ledger__head, #privacy-ledger .privacy-ledger__grid, #privacy-ledger .privacy-ledger__item { position: relative; z-index: 1; }
           #privacy-ledger .privacy-ledger__eyebrow, #privacy-ledger .privacy-ledger__item strong { font: 500 0.72rem/1 "IBM Plex Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(225,232,242,0.72); }
           #privacy-ledger h1 { margin: 0; max-width: 8ch; color: #f5f7fb; font: 700 clamp(2.8rem, 6vw, 5.2rem)/0.94 "Syne", sans-serif; letter-spacing: -0.07em; }
           #privacy-ledger p { margin: 0; color: rgba(220,228,239,0.82); font: 500 clamp(0.96rem, 1.2vw, 1.02rem)/1.6 "Manrope", sans-serif; }

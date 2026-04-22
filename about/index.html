@@ -187,6 +187,18 @@
             filter: saturate(0.95) contrast(1.08) brightness(0.88);
           }
 
+          #about-manifesto .about-manifesto__overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.24;
+            mix-blend-mode: screen;
+            z-index: 1;
+            pointer-events: none;
+          }
+
           #about-manifesto .about-manifesto__shade {
             position: absolute;
             inset: 0;
@@ -278,7 +290,8 @@
             </aside>
           </div>
           <div class="about-manifesto__atlas">
-            <img src="/assets/media/heroes/about-hero-deep-space-brand-positioning.svg" alt="Celestial atlas visual representing positioning, trust, and stronger public read." loading="eager" />
+            <img src="/assets/media/stock/space/hubble-gigantic-galaxy.jpg" alt="Gigantic spiral galaxy visual representing positioning, trust, and stronger public read." loading="eager" />
+            <img class="about-manifesto__overlay" src="/assets/media/overlays/neon-orbit-grid.svg" alt="" loading="eager" />
             <div class="about-manifesto__shade" aria-hidden="true"></div>
             <div class="about-manifesto__note about-manifesto__note--top">
               <span class="about-manifesto__label">Bias</span>
@@ -342,7 +355,7 @@
           <!-- RIGHT SIDE: Featured image with caption and links -->
           <article class="story-grid__media surface" data-reveal data-tilt>
             <div class="image-frame">
-              <img src="/assets/media/visual-studio-atlas.svg" alt="ASH-TRA studio atlas visual representing strategy, structure, and stronger business perception" />
+              <img src="/assets/media/stock/space/nasa-galaxies-flythrough-still.jpg" alt="Galaxy field visual representing strategy, structure, and stronger business perception" />
             </div>
             <p class="media-caption">The public face is part of the pitch.</p>
             <div class="route-cloud">
@@ -496,7 +509,7 @@
           <!-- RIGHT SIDE: Featured image -->
           <article class="story-grid__media surface" data-reveal data-tilt>
             <div class="image-frame">
-              <img src="/assets/media/space-titan-frame.jpg" alt="ASH-TRA space horizon representing controlled execution and long-term momentum." />
+              <img src="/assets/media/stock/space/hubble-gigantic-galaxy.jpg" alt="Galaxy horizon representing controlled execution and long-term momentum." />
             </div>
             <p class="media-caption">Built to carry weight.</p>
             <div class="route-cloud">

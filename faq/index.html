@@ -82,10 +82,24 @@
           #faq-atlas .faq-atlas__frame {
             width: min(92rem, calc(100% - 2rem)); margin: 0 auto; padding: clamp(1rem, 1.8vw, 1.5rem);
             border-radius: 2.3rem; border: 1px solid rgba(140,226,255,0.14);
-            background: radial-gradient(circle at 14% 18%, rgba(140,226,255,0.12), transparent 18%), linear-gradient(145deg, rgba(8,12,22,0.98), rgba(10,18,32,0.94));
+            position: relative; overflow: hidden;
+            background:
+              radial-gradient(circle at 14% 18%, rgba(140,226,255,0.12), transparent 18%),
+              linear-gradient(145deg, rgba(8,12,22,0.84), rgba(10,18,32,0.94)),
+              url("/assets/media/stock/space/hubble-sea-of-galaxies.jpg") center/cover no-repeat;
             display: grid; grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr); gap: 1rem; box-shadow: 0 28px 100px rgba(0,0,0,0.26);
           }
+          #faq-atlas .faq-atlas__frame::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url("/assets/media/overlays/neon-orbit-grid.svg") center/cover no-repeat;
+            opacity: 0.14;
+            mix-blend-mode: screen;
+            pointer-events: none;
+          }
           #faq-atlas .faq-atlas__copy, #faq-atlas .faq-atlas__board { display: grid; align-content: center; gap: 0.95rem; }
+          #faq-atlas .faq-atlas__copy, #faq-atlas .faq-atlas__board, #faq-atlas .faq-atlas__topic, #faq-atlas .faq-atlas__search { position: relative; z-index: 1; }
           #faq-atlas .faq-atlas__eyebrow, #faq-atlas .faq-atlas__topic strong { font: 500 0.72rem/1 "IBM Plex Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(225,232,242,0.72); }
           #faq-atlas h1 { margin: 0; max-width: 6ch; color: #f5f7fb; font: 700 clamp(3rem, 6vw, 5.6rem)/0.92 "Syne", sans-serif; letter-spacing: -0.07em; }
           #faq-atlas p { margin: 0; color: rgba(220,228,239,0.82); font: 500 clamp(0.98rem, 1.3vw, 1.06rem)/1.6 "Manrope", sans-serif; }

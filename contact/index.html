@@ -126,6 +126,10 @@
             position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
             transform: scale(1.05) translate3d(calc(var(--mx) * 12px), calc(var(--my) * 12px), 0); transition: transform 180ms ease-out; opacity: 0.82;
           }
+          #contact-routes .contact-routes__lead-overlay {
+            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+            opacity: 0.2; mix-blend-mode: screen; pointer-events: none; z-index: 1;
+          }
           #contact-routes .contact-routes__lead::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5, 9, 17, 0.12), rgba(5, 9, 17, 0.84)); }
           #contact-routes .contact-routes__lead-copy { position: relative; z-index: 1; display: grid; gap: 0.45rem; }
           #contact-routes .contact-routes__card { display: grid; gap: 0.6rem; text-decoration: none; color: inherit; }
@@ -152,7 +156,8 @@
           </div>
           <div class="contact-routes__stage">
             <div class="contact-routes__lead">
-              <img src="/assets/media/visual-contact-beacon.svg" alt="Beacon visual representing route selection and cleaner project intake." loading="eager" />
+              <img src="/assets/media/stock/space/nasa-galaxies-flythrough-still.jpg" alt="Galaxy field visual representing route selection and cleaner project intake." loading="eager" />
+              <img class="contact-routes__lead-overlay" src="/assets/media/overlays/neon-orbit-grid.svg" alt="" loading="eager" />
               <div class="contact-routes__lead-copy">
                 <span class="contact-routes__route-id">Move by readiness</span>
                 <h2>Pick the route that fits readiness.</h2>

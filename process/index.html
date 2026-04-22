@@ -111,8 +111,21 @@
           #process-runway .process-runway__action--primary { background: linear-gradient(135deg, #ff9064, #ffd677 72%, #bffbff); color: #07111d; border: 0; }
           #process-runway .process-runway__track {
             position: relative; min-height: clamp(23rem, 38vw, 35rem); padding: 1.2rem; border-radius: 2rem;
-            border: 1px solid rgba(140, 226, 255, 0.14); background: linear-gradient(180deg, rgba(255,255,255,0.028), rgba(255,255,255,0.008)), rgba(7, 12, 24, 0.82);
+            border: 1px solid rgba(140, 226, 255, 0.14);
+            background:
+              linear-gradient(180deg, rgba(255,255,255,0.028), rgba(255,255,255,0.008)),
+              linear-gradient(135deg, rgba(7, 12, 24, 0.68), rgba(7, 12, 24, 0.88)),
+              url("/assets/media/stock/space/nasa-galaxies-flythrough-still.jpg") center/cover no-repeat;
             overflow: hidden;
+          }
+          #process-runway .process-runway__track::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url("/assets/media/overlays/neon-scan-arcs.svg") center/cover no-repeat;
+            opacity: 0.32;
+            mix-blend-mode: screen;
+            pointer-events: none;
           }
           #process-runway .process-runway__line {
             position: absolute; left: 12%; right: 12%; top: 50%; height: 1px;
@@ -120,7 +133,7 @@
             transform: translateY(-50%) rotate(-12deg);
           }
           #process-runway .process-runway__step {
-            position: absolute; width: min(13rem, 42%); padding: 0.95rem 1rem; border-radius: 1.35rem;
+            position: absolute; z-index: 1; width: min(13rem, 42%); padding: 0.95rem 1rem; border-radius: 1.35rem;
             border: 1px solid rgba(140, 226, 255, 0.14); background: rgba(10, 16, 29, 0.74); backdrop-filter: blur(16px);
             transform: translate3d(calc(var(--mx) * 8px), calc(var(--my) * 8px), 0);
           }

@@ -1,0 +1,36 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grid" x1="1600" y1="0" x2="0" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#79E5FF" stop-opacity="0.55"/>
+      <stop offset="0.5" stop-color="#4BA8FF" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#05101F" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1080 260) rotate(133.781) scale(520 420)">
+      <stop stop-color="#65E4FF" stop-opacity="0.42"/>
+      <stop offset="0.45" stop-color="#2B8DFF" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#06111F" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#glow)"/>
+  <g opacity="0.4">
+    <circle cx="1120" cy="360" r="250" stroke="#7DEBFF" stroke-opacity="0.4" stroke-width="1.5"/>
+    <circle cx="1120" cy="360" r="332" stroke="#55BFFF" stroke-opacity="0.24" stroke-width="1.2"/>
+    <circle cx="1120" cy="360" r="420" stroke="#81F0FF" stroke-opacity="0.14" stroke-width="1"/>
+    <path d="M711 646C866 567 944 498 1126 342C1200 278 1280 232 1406 198" stroke="url(#grid)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M747 734C852 675 944 610 1024 540C1134 446 1234 346 1398 273" stroke="#7BE7FF" stroke-opacity="0.18" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="8 14"/>
+  </g>
+  <g opacity="0.24">
+    <path d="M0 150H1600" stroke="#75E8FF" stroke-width="1"/>
+    <path d="M0 290H1600" stroke="#75E8FF" stroke-width="1"/>
+    <path d="M0 430H1600" stroke="#75E8FF" stroke-width="1"/>
+    <path d="M0 570H1600" stroke="#75E8FF" stroke-width="1"/>
+    <path d="M0 710H1600" stroke="#75E8FF" stroke-width="1"/>
+    <path d="M0 850H1600" stroke="#75E8FF" stroke-width="1"/>
+    <path d="M170 0V1000" stroke="#75E8FF" stroke-width="1"/>
+    <path d="M420 0V1000" stroke="#75E8FF" stroke-width="1"/>
+    <path d="M670 0V1000" stroke="#75E8FF" stroke-width="1"/>
+    <path d="M920 0V1000" stroke="#75E8FF" stroke-width="1"/>
+    <path d="M1170 0V1000" stroke="#75E8FF" stroke-width="1"/>
+    <path d="M1420 0V1000" stroke="#75E8FF" stroke-width="1"/>
+  </g>
+</svg>

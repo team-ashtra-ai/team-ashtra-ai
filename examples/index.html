@@ -101,6 +101,7 @@
           }
           #examples-mosaic .examples-mosaic__hero img, #examples-mosaic .examples-mosaic__tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
           #examples-mosaic .examples-mosaic__hero img { transform: scale(1.04) translate3d(calc(var(--mx) * 8px), calc(var(--my) * 8px), 0); transition: transform 180ms ease-out; }
+          #examples-mosaic .examples-mosaic__overlay { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.22; mix-blend-mode: screen; pointer-events: none; z-index: 1; }
           #examples-mosaic .examples-mosaic__hero::after, #examples-mosaic .examples-mosaic__tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,9,17,0.08), rgba(5,9,17,0.72)); }
           #examples-mosaic .examples-mosaic__hero-copy, #examples-mosaic .examples-mosaic__tile-copy { position: relative; z-index: 1; padding: 1rem; display: grid; gap: 0.45rem; align-content: end; height: 100%; }
           #examples-mosaic .examples-mosaic__tile {
@@ -126,12 +127,13 @@
           </div>
           <div class="examples-mosaic__grid">
             <article class="examples-mosaic__hero">
-              <img src="/assets/media/heroes/examples-hero-editorial-space-direction-premium-websites.svg" alt="Editorial space horizon representing premium website directions and stronger visual hierarchy." loading="eager" />
+              <img src="/assets/media/stock/space/hubble-gigantic-galaxy.jpg" alt="Premium galaxy visual representing stronger visual hierarchy and cleaner direction." loading="eager" />
+              <img class="examples-mosaic__overlay" src="/assets/media/overlays/neon-orbit-grid.svg" alt="" loading="eager" />
               <div class="examples-mosaic__hero-copy"><span class="examples-mosaic__label">Editorial contrast</span><h2>Structure makes the shift visible.</h2></div>
             </article>
-            <article class="examples-mosaic__tile"><img src="/assets/media/space-moon-frame.jpg" alt="Case direction tile representing launch-story contrast." loading="lazy" /><div class="examples-mosaic__tile-copy"><span class="examples-mosaic__label">Launch story</span><p>Sharper pacing and cleaner contrast.</p></div></article>
-            <article class="examples-mosaic__tile"><img src="/assets/media/space-moon-frame.jpg" alt="Case direction tile representing service-system structure." loading="lazy" /><div class="examples-mosaic__tile-copy"><span class="examples-mosaic__label">Service system</span><p>Clear categories. Better read.</p></div></article>
-            <article class="examples-mosaic__tile"><img src="/assets/media/visual-command-center.svg" alt="Case direction tile representing founder-consultancy positioning." loading="lazy" /><div class="examples-mosaic__tile-copy"><span class="examples-mosaic__label">Founder consultancy</span><p>Context first. Surface second.</p></div></article>
+            <article class="examples-mosaic__tile"><img src="/assets/media/stock/space/nasa-whirlpool-flyby-frame.png" alt="Case direction tile representing launch-story contrast." loading="lazy" /><div class="examples-mosaic__tile-copy"><span class="examples-mosaic__label">Launch story</span><p>Sharper pacing and cleaner contrast.</p></div></article>
+            <article class="examples-mosaic__tile"><img src="/assets/media/stock/space/hubble-sea-of-galaxies.jpg" alt="Case direction tile representing service-system structure." loading="lazy" /><div class="examples-mosaic__tile-copy"><span class="examples-mosaic__label">Service system</span><p>Clear categories. Better read.</p></div></article>
+            <article class="examples-mosaic__tile"><img src="/assets/media/stock/space/hubble-spiral-and-star.jpg" alt="Case direction tile representing founder-consultancy positioning." loading="lazy" /><div class="examples-mosaic__tile-copy"><span class="examples-mosaic__label">Founder consultancy</span><p>Context first. Surface second.</p></div></article>
           </div>
         </div>
         <script>
@@ -174,7 +176,7 @@
           </article>
           <article class="story-grid__media surface" data-reveal data-tilt>
             <div class="media-frame">
-              <img src="/assets/media/space-moon-frame.jpg" alt="ASH-TRA moon frame representing cleaner story contrast and visual pacing." />
+              <img src="/assets/media/stock/space/hubble-sea-of-galaxies.jpg" alt="Galaxy field visual representing cleaner story contrast and visual pacing." />
             </div>
             <p class="media-caption">The page should feel like a case direction, not a loose gallery.</p>
           </article>
