@@ -28,7 +28,7 @@ def main():
         env={**os.environ, "TZ": tz},
     ).stdout.strip()
 
-    run_git("add", "-A")
+    run_git("add", "-A", "--", ".", ":(exclude)screenshots")
     run_git("commit", "--allow-empty", "-m", timestamp)
 
     has_upstream = subprocess.run(

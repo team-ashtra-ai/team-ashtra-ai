@@ -57,6 +57,61 @@ body[data-page] main.layout-page > .page-ambient img {
   filter: saturate(1.06) blur(0.2px);
 }
 
+body[data-page] main.layout-page .section--with-overlay .shell {
+  position: relative;
+  isolation: isolate;
+}
+
+body[data-page] main.layout-page .section-overlay {
+  position: absolute;
+  inset: clamp(0.5rem, 1.4vw, 1rem);
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+body[data-page] main.layout-page .section-overlay--left,
+body[data-page] main.layout-page .section-overlay--right {
+  display: flex;
+  align-items: center;
+}
+
+body[data-page] main.layout-page .section-overlay--left {
+  justify-content: flex-start;
+}
+
+body[data-page] main.layout-page .section-overlay--right {
+  justify-content: flex-end;
+}
+
+body[data-page] main.layout-page .section-overlay--center {
+  display: grid;
+  place-items: center;
+}
+
+body[data-page] main.layout-page .section-overlay img {
+  display: block;
+  width: min(40vw, 34rem);
+  max-width: 46%;
+  height: auto;
+  opacity: 0.11;
+  mix-blend-mode: screen;
+  filter: saturate(1.04) blur(0.15px);
+}
+
+body[data-page] main.layout-page .section-overlay--left img {
+  margin-left: clamp(-6rem, -3vw, -2rem);
+}
+
+body[data-page] main.layout-page .section-overlay--right img {
+  margin-right: clamp(-6rem, -3vw, -2rem);
+}
+
+body[data-page] main.layout-page .section--with-overlay .shell > :not(.section-overlay) {
+  position: relative;
+  z-index: 1;
+}
+
 body[data-page] main.layout-page > [data-layout-sequence]:not(:first-child),
 body[data-page] main.layout-page > .section:not(:first-child) {
   content-visibility: auto;
@@ -127,6 +182,12 @@ body[data-page] main.layout-page .video-frame {
   body[data-page] main.layout-page > .page-ambient img {
     width: min(76vw, 28rem);
     opacity: 0.1;
+  }
+
+  body[data-page] main.layout-page .section-overlay img {
+    width: min(72vw, 24rem);
+    max-width: 72%;
+    opacity: 0.07;
   }
 
   body[data-page] main.layout-page {
