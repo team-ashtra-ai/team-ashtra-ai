@@ -130,10 +130,11 @@ body[data-page] main.layout-page .video-frame {
   }
 
   body[data-page] main.layout-page {
-    --site-section-space: clamp(2rem, 9vw, 4rem);
-    --site-frame-gap: clamp(0.85rem, 2.6vw, 1.05rem);
-    --site-panel-pad: clamp(1rem, 3vw, 1.3rem);
-    --site-surface-pad: clamp(1rem, 2.8vw, 1.3rem);
+    --site-section-space: clamp(2.35rem, 9vw, 4.4rem);
+    --site-frame-gap: clamp(0.95rem, 2.8vw, 1.15rem);
+    --site-panel-pad: clamp(1.05rem, 3.1vw, 1.4rem);
+    --site-surface-pad: clamp(1.05rem, 3vw, 1.4rem);
+    --site-text-surface-pad: clamp(1.1rem, 3.2vw, 1.55rem);
   }
 }
 
@@ -7436,14 +7437,14 @@ body[data-page] main.layout-page .layout-callout blockquote {
   color: var(--editorial-text);
   font-family: var(--font-display);
   font-weight: 700;
-  line-height: 0.9;
+  line-height: 0.94;
   letter-spacing: -0.065em;
   text-wrap: balance;
 }
 
 body[data-page] main.layout-page .layout-section__title,
 body[data-page] main.layout-page .section-title {
-  max-width: 11ch;
+  max-width: 12ch;
   font-size: clamp(2.4rem, 6vw, 5.2rem);
 }
 
@@ -7455,7 +7456,7 @@ body[data-page] main.layout-page .hero-mast__title {
 body[data-page] main.layout-page .quote-banner blockquote,
 body[data-page] main.layout-page .layout-highlight blockquote,
 body[data-page] main.layout-page .layout-callout blockquote {
-  max-width: 11ch;
+  max-width: 12ch;
   font-size: clamp(2.8rem, 8vw, 6.5rem);
 }
 
@@ -7468,14 +7469,14 @@ body[data-page] main.layout-page .brief-hub__mast p,
 body[data-page] main.layout-page .media-caption,
 body[data-page] main.layout-page .layout-caption {
   margin: 0;
-  max-width: 38rem;
+  max-width: 40rem;
   color: var(--editorial-soft);
-  font-size: clamp(1rem, 1.6vw, 1.12rem);
-  line-height: 1.72;
+  font-size: clamp(1.02rem, 1.6vw, 1.14rem);
+  line-height: 1.76;
 }
 
 body[data-page] main.layout-page .hero-mast__lede {
-  max-width: 34rem;
+  max-width: 35rem;
   padding-left: 1rem;
   border-left: 1px solid rgba(149, 228, 255, 0.16);
 }
@@ -9089,14 +9090,14 @@ body[data-page="home"] main.layout-page .home-band--values a.route-card:focus-vi
    surface padding so every page reads on the same spacing system. */
 body[data-page] main.layout-page {
   --site-flow-gap: clamp(0.55rem, 1.2vw, 1rem);
-  --site-section-space: clamp(2.6rem, 6.6vw, 5.9rem);
-  --site-frame-gap: clamp(1rem, 1.9vw, 1.35rem);
+  --site-section-space: clamp(3rem, 6.9vw, 6.4rem);
+  --site-frame-gap: clamp(1.05rem, 2vw, 1.5rem);
   --site-panel-pad: clamp(1.2rem, 2.15vw, 1.7rem);
   --site-panel-gap: clamp(0.8rem, 1.5vw, 1rem);
-  --site-surface-pad: clamp(1.2rem, 2.1vw, 1.8rem);
-  --site-surface-gap: clamp(0.8rem, 1.4vw, 1rem);
-  --site-text-surface-pad: clamp(1.3rem, 2.4vw, 2rem);
-  --site-text-surface-gap: clamp(0.9rem, 1.6vw, 1.15rem);
+  --site-surface-pad: clamp(1.25rem, 2.2vw, 1.9rem);
+  --site-surface-gap: clamp(0.85rem, 1.5vw, 1.08rem);
+  --site-text-surface-pad: clamp(1.4rem, 2.55vw, 2.15rem);
+  --site-text-surface-gap: clamp(0.95rem, 1.7vw, 1.22rem);
   --site-surface-radius: clamp(1.75rem, 2.1vw, 2.125rem);
   gap: var(--site-flow-gap);
   padding-bottom: clamp(1.2rem, 2.5vw, 1.9rem);
@@ -9744,15 +9745,15 @@ body[data-page] main.layout-page .hero-mast__frame::after {
 }
 
 body[data-page] main.layout-page .hero-mast__layout {
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-  gap: clamp(1.4rem, 2vw, 2.4rem);
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+  gap: clamp(1.5rem, 2.2vw, 2.6rem);
   align-items: center;
 }
 
 body[data-page] main.layout-page .hero-mast__copy {
   align-content: center;
-  gap: 1.05rem;
-  padding: clamp(0.6rem, 1.4vw, 1.15rem);
+  gap: 1.15rem;
+  padding: clamp(0.75rem, 1.5vw, 1.25rem);
 }
 
 body[data-page] main.layout-page .hero-mast__title {
@@ -9763,9 +9764,9 @@ body[data-page] main.layout-page .hero-mast__title {
 }
 
 body[data-page] main.layout-page .hero-mast__lede {
-  max-width: 30rem;
-  font-size: clamp(1rem, 1.35vw, 1.08rem);
-  line-height: 1.58;
+  max-width: 32rem;
+  font-size: clamp(1.02rem, 1.4vw, 1.1rem);
+  line-height: 1.64;
 }
 
 body[data-page] main.layout-page .hero-mast__punch {
@@ -9773,8 +9774,8 @@ body[data-page] main.layout-page .hero-mast__punch {
 }
 
 body[data-page] main.layout-page .hero-mast__proof-strip {
-  max-width: 34rem;
-  gap: 0.65rem;
+  max-width: 36rem;
+  gap: 0.75rem;
 }
 
 body[data-page] main.layout-page .hero-mast__proof {

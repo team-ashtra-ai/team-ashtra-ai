@@ -278,10 +278,15 @@
             border-top: 1px solid rgba(140, 226, 255, 0.12);
           }
 
-          body[data-page="discovery"] .discovery-band--brief .shell {
+          body[data-page="discovery"] main.layout-page .discovery-band--brief .shell {
             display: grid;
             gap: 1rem;
             align-items: start;
+          }
+
+          .discovery-brief__aside {
+            display: grid;
+            gap: 1rem;
           }
 
           .discovery-brief__guide {
@@ -299,33 +304,51 @@
           }
 
           .discovery-brief__guide-note {
+            display: grid;
+            gap: 0.8rem;
             padding-top: 0.95rem;
             border-top: 1px solid rgba(140, 226, 255, 0.12);
           }
 
           @media (min-width: 960px) {
             body[data-page="discovery"] .discovery-band--guide .shell,
-            body[data-page="discovery"] .discovery-band--brief .shell {
-              grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+            body[data-page="discovery"] main.layout-page .discovery-band--brief .shell {
+              grid-template-columns: minmax(18rem, 0.76fr) minmax(0, 1.24fr);
             }
 
             body[data-page="discovery"] .discovery-band--guide .section-heading,
-            body[data-page="discovery"] .discovery-band--brief .layout-section__intro,
-            body[data-page="discovery"] .discovery-band--brief .discovery-brief__guide {
+            body[data-page="discovery"] main.layout-page .discovery-band--brief .discovery-brief__aside {
               position: sticky;
               top: 6.45rem;
               align-self: start;
             }
 
-            body[data-page="discovery"] .discovery-band--brief .layout-section__intro,
-            body[data-page="discovery"] .discovery-band--brief .discovery-brief__guide {
-              grid-column: 1;
+            body[data-page="discovery"] main.layout-page .discovery-band--brief .shell > * {
+              grid-column: auto !important;
             }
 
-            body[data-page="discovery"] .discovery-band--brief .stacked-form,
-            body[data-page="discovery"] .discovery-band--brief [data-form-success],
-            body[data-page="discovery"] .discovery-band--brief [data-form-error] {
-              grid-column: 2;
+            body[data-page="discovery"] main.layout-page .discovery-band--brief .discovery-brief__aside {
+              grid-column: 1 !important;
+            }
+
+            body[data-page="discovery"] main.layout-page .discovery-band--brief .stacked-form,
+            body[data-page="discovery"] main.layout-page .discovery-band--brief [data-form-success],
+            body[data-page="discovery"] main.layout-page .discovery-band--brief [data-form-error] {
+              grid-column: 2 !important;
+            }
+
+            .discovery-brief__guide .brief-hub__nav {
+              display: grid;
+              grid-template-columns: 1fr;
+              max-height: min(68vh, 44rem);
+              overflow-x: visible;
+              overflow-y: auto;
+              padding-right: 0.35rem;
+              scrollbar-width: thin;
+            }
+
+            .discovery-brief__guide .brief-hub__nav a {
+              min-width: 0;
             }
           }
 
@@ -503,47 +526,49 @@
         data-layout-sequence
       >
         <div class="shell">
-          <div class="surface layout-section__intro" data-reveal>
-            <span class="layout-section__kicker">Free Price Range Brief</span>
-            <h2 class="layout-section__title">Tell ASH-TRA what you want, what matters, and what level you want to reach.</h2>
-            <p class="layout-section__body">
-              This route is for a free price range, not a paid strategy consultation. Fill it as
-              clearly as you can. Leave anything blank if you genuinely do not know yet.
-            </p>
-          </div>
-          <article class="surface discovery-brief__guide" data-reveal>
-            <div class="discovery-brief__guide-head">
-              <span class="brief-hub__eyebrow">21 chapters</span>
-              <h3>Use the brief like a guided map, not a test.</h3>
-              <p>
-                Start at the top if you want the full route. Jump around if needed. The first
-                section covers the required contact basics. Everything after that is there to make
-                the range sharper and the reply more useful.
+          <aside class="discovery-brief__aside">
+            <div class="surface layout-section__intro" data-reveal>
+              <span class="layout-section__kicker">Free Price Range Brief</span>
+              <h2 class="layout-section__title">Tell ASH-TRA what you want, what matters, and what level you want to reach.</h2>
+              <p class="layout-section__body">
+                This route is for a free price range, not a paid strategy consultation. Fill it as
+                clearly as you can. Leave anything blank if you genuinely do not know yet.
               </p>
             </div>
-            <div class="discovery-brief__guide-grid">
-              <div class="discovery-brief__guide-item">
-                <span>Time</span>
-                <p>Usually around 10 to 15 minutes.</p>
+            <article class="surface discovery-brief__guide" data-reveal>
+              <div class="discovery-brief__guide-head">
+                <span class="brief-hub__eyebrow">21 chapters</span>
+                <h3>Use the brief like a guided map, not a test.</h3>
+                <p>
+                  Start at the top if you want the full route. Jump around if needed. The first
+                  section covers the required contact basics. Everything after that is there to make
+                  the range sharper and the reply more useful.
+                </p>
               </div>
-              <div class="discovery-brief__guide-item">
-                <span>Need</span>
-                <p>Business context, goals, and a rough sense of scope.</p>
+              <div class="discovery-brief__guide-grid">
+                <div class="discovery-brief__guide-item">
+                  <span>Time</span>
+                  <p>Usually around 10 to 15 minutes.</p>
+                </div>
+                <div class="discovery-brief__guide-item">
+                  <span>Need</span>
+                  <p>Business context, goals, and a rough sense of scope.</p>
+                </div>
+                <div class="discovery-brief__guide-item">
+                  <span>Skip</span>
+                  <p>Anything you do not know yet. Unknown is better than guessed.</p>
+                </div>
+                <div class="discovery-brief__guide-item">
+                  <span>Reply</span>
+                  <p>Approximate range within 48 hours, excluding weekends.</p>
+                </div>
               </div>
-              <div class="discovery-brief__guide-item">
-                <span>Skip</span>
-                <p>Anything you do not know yet. Unknown is better than guessed.</p>
+              <div class="discovery-brief__guide-note">
+                <p>The chapter navigator stays beside the form on desktop so you can move without losing your place.</p>
+                <nav class="brief-hub__nav" data-brief-nav aria-label="Discovery brief sections"></nav>
               </div>
-              <div class="discovery-brief__guide-item">
-                <span>Reply</span>
-                <p>Approximate range within 48 hours, excluding weekends.</p>
-              </div>
-            </div>
-            <div class="discovery-brief__guide-note">
-              <p>Jump to any chapter below if you want to move faster.</p>
-              <nav class="brief-hub__nav" data-brief-nav aria-label="Discovery brief sections"></nav>
-            </div>
-          </article>
+            </article>
+          </aside>
           <form
             class="stacked-form"
             method="POST"

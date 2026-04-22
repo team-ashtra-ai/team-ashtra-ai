@@ -1193,7 +1193,7 @@
     };
 
     const src = pageVisuals[page];
-    if (!src) return;
+    if (!src || page === "about") return;
 
     document
       .querySelectorAll(".route-card, .service-detail, .faq-shell, .policy-card, .study-card, .card")
