@@ -184,6 +184,34 @@
     return orbotConfig.enabled && !orbotConfig.excludePages.includes(page);
   }
 
+  function runSafeTask(label, task) {
+    try {
+      task();
+    } catch (error) {
+      console.error(`ASH-TRA task failed: ${label}`, error);
+    }
+  }
+
+  function scheduleNonCriticalTask(label, task, timeout) {
+    const idleTimeout = Number.isFinite(timeout) ? timeout : 1200;
+    const queue = function () {
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(function () {
+          runSafeTask(label, task);
+        }, { timeout: idleTimeout });
+        return;
+      }
+
+      window.setTimeout(function () {
+        runSafeTask(label, task);
+      }, 80);
+    };
+
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(queue);
+    });
+  }
+
   function getSocialImageUrl(pageName) {
     const slug =
       typeof pageName === "string" && pageName.trim() ? pageName.trim().toLowerCase() : "home";
@@ -207,7 +235,7 @@
   // JS Section: Site Index
   // Searchable page registry used by Orbot and route suggestions.
   // ==========================================================================
-  const siteIndex = [
+  const siteIndexPages = [
     {
       title: "Home",
       url: "/",
@@ -227,10 +255,10 @@
       keywords: ["process", "steps", "timeline", "workflow", "launch", "delivery"]
     },
     {
-      title: "Work",
+      title: "Portfolio",
       url: "/examples/",
       description: "Selected work directions showing the structure, pacing, and premium standard ASH-TRA builds.",
-      keywords: ["work", "studies", "examples", "gallery", "direction", "private"]
+      keywords: ["portfolio", "work", "studies", "examples", "gallery", "direction"]
     },
     {
       title: "About",
@@ -253,14 +281,14 @@
     {
       title: "Discovery",
       url: "/discovery/",
-      description: "Choose between the paid consultation route and the free price-range brief, then send the full discovery questionnaire.",
+      description: "Choose the consultation route or send the discovery brief when you want to share context first.",
       keywords: ["discovery", "consultation", "brief", "strategy", "planning", "questionnaire"]
     },
     {
-      title: "Invest",
+      title: "Investment",
       url: "/invest/",
       description: "Compare the Foundation, Growth System, and Orbital Partnership investment levels.",
-      keywords: ["invest", "pricing", "investment", "foundation", "growth", "partnership"]
+      keywords: ["invest", "pricing", "investment", "foundation", "growth", "partnership", "cost"]
     },
     {
       title: "Payments",
@@ -305,6 +333,194 @@
       keywords: ["accessibility", "usable", "responsive", "readable", "navigation", "a11y"]
     }
   ];
+
+  const siteIndexSections = [
+    {
+      kind: "section",
+      title: "Homepage Cover",
+      url: "/#home-cover",
+      description: "Hero entry point for launches, discovery, and the main positioning.",
+      keywords: ["homepage", "cover", "hero", "start", "launch", "discovery"]
+    },
+    {
+      kind: "section",
+      title: "About Signal",
+      url: "/about/#about-signal",
+      description: "The about-page introduction covering fit, standards, and the ASH-TRA point of view.",
+      keywords: ["about", "fit", "standards", "signal", "positioning"]
+    },
+    {
+      kind: "section",
+      title: "Services Overview",
+      url: "/services/#services-array",
+      description: "Service overview for launch builds, resets, messaging, SEO, systems, and support.",
+      keywords: ["services", "overview", "messaging", "seo", "systems", "support"]
+    },
+    {
+      kind: "section",
+      title: "Process Overview",
+      url: "/process/#process-runway",
+      description: "The high-level process route from diagnosis through build and support.",
+      keywords: ["process", "overview", "timeline", "workflow", "steps"]
+    },
+    {
+      kind: "section",
+      title: "Portfolio Overview",
+      url: "/examples/#examples-mosaic",
+      description: "The portfolio landing section showing different example directions and creative proof.",
+      keywords: ["portfolio", "examples", "work", "mosaic", "proof"]
+    },
+    {
+      kind: "section",
+      title: "Discovery Routes",
+      url: "/discovery/#discovery-switch",
+      description: "Route chooser for consultation first or the async discovery brief.",
+      keywords: ["discovery", "routes", "consultation", "brief", "strategy"]
+    },
+    {
+      kind: "section",
+      title: "Discovery Brief",
+      url: "/discovery/#discovery-questionnaire",
+      description: "The full discovery questionnaire for sending business context, goals, and rough scope.",
+      keywords: ["discovery", "brief", "questionnaire", "scope", "goals", "form"]
+    },
+    {
+      kind: "section",
+      title: "Contact Routes",
+      url: "/contact/#contact-routes",
+      description: "The route switcher for launch, booking a call, or discovery first.",
+      keywords: ["contact", "routes", "launch", "book call", "discovery"]
+    },
+    {
+      kind: "section",
+      title: "Contact Form",
+      url: "/contact/#contact-form",
+      description: "Direct enquiry form for project goals, timelines, and brand context.",
+      keywords: ["contact", "form", "enquiry", "project", "message"]
+    },
+    {
+      kind: "section",
+      title: "Launch Intake",
+      url: "/launch/#launch-control",
+      description: "The direct-start launch route for projects that are already clear enough to begin.",
+      keywords: ["launch", "intake", "start", "project", "fast lane"]
+    },
+    {
+      kind: "section",
+      title: "Project Form",
+      url: "/launch/#project-form",
+      description: "The launch project form for current issues, desired outcomes, and timeline.",
+      keywords: ["launch", "project form", "intake", "quote", "start"]
+    },
+    {
+      kind: "section",
+      title: "Investment Levels",
+      url: "/invest/#invest-orbit",
+      description: "Foundation, Growth System, and Orbital Partnership pricing overview.",
+      keywords: ["pricing", "investment", "levels", "foundation", "growth", "partnership"]
+    },
+    {
+      kind: "section",
+      title: "Payment Routes",
+      url: "/payments/#payment-routes",
+      description: "Payment-route chooser for consultation payment methods and next steps.",
+      keywords: ["payments", "payment routes", "stripe", "paypal", "pix", "consultation"]
+    },
+    {
+      kind: "section",
+      title: "Payment Request Form",
+      url: "/payments/#payment-request",
+      description: "Form for requesting the preferred consultation payment route.",
+      keywords: ["payments", "request form", "payment form", "consultation"]
+    },
+    {
+      kind: "section",
+      title: "Schedule Consultation",
+      url: "/schedule/#choose-your-slot",
+      description: "Calendly booking section for choosing a consultation slot.",
+      keywords: ["schedule", "calendly", "book", "consultation", "slot"]
+    },
+    {
+      kind: "section",
+      title: "FAQ: Offer",
+      url: "/faq/#faq-offer",
+      description: "FAQ section about services, fit, launches, redesigns, and what ASH-TRA does.",
+      keywords: ["faq", "offer", "services", "fit", "launch", "redesign"]
+    },
+    {
+      kind: "section",
+      title: "FAQ: Discovery",
+      url: "/faq/#faq-discovery",
+      description: "FAQ section covering discovery, consultation, timing, and the async brief route.",
+      keywords: ["faq", "discovery", "consultation", "brief", "timing"]
+    },
+    {
+      kind: "section",
+      title: "FAQ: Messaging",
+      url: "/faq/#faq-messaging",
+      description: "FAQ section covering messaging, pages, and content-direction work.",
+      keywords: ["faq", "messaging", "content", "copy", "pages"]
+    },
+    {
+      kind: "section",
+      title: "FAQ: Systems",
+      url: "/faq/#faq-systems",
+      description: "FAQ section covering SEO, analytics, tracking, and business-system setup.",
+      keywords: ["faq", "seo", "analytics", "tracking", "crm", "systems"]
+    },
+    {
+      kind: "section",
+      title: "FAQ: Quality",
+      url: "/faq/#faq-quality",
+      description: "FAQ section covering performance, mobile, accessibility, multilingual work, and polish.",
+      keywords: ["faq", "performance", "mobile", "accessibility", "multilingual", "quality"]
+    },
+    {
+      kind: "section",
+      title: "FAQ: Next Steps",
+      url: "/faq/#faq-next",
+      description: "FAQ section covering support, payments, booking, and what happens after enquiry.",
+      keywords: ["faq", "support", "payments", "booking", "next steps"]
+    },
+    {
+      kind: "section",
+      title: "Accessibility Statement",
+      url: "/accessibility/#access-grid",
+      description: "Accessibility overview for readability, navigation, responsiveness, and feedback.",
+      keywords: ["accessibility", "a11y", "readability", "navigation", "responsive"]
+    },
+    {
+      kind: "section",
+      title: "Privacy Overview",
+      url: "/privacy/#privacy-ledger",
+      description: "Privacy overview covering collection, use, retention, rights, and security.",
+      keywords: ["privacy", "data", "rights", "security", "policy"]
+    },
+    {
+      kind: "section",
+      title: "Cookie Overview",
+      url: "/cookies/#cookie-switchboard",
+      description: "Cookie-policy overview covering consent, analytics, preferences, and choice.",
+      keywords: ["cookies", "consent", "analytics", "preferences", "policy"]
+    },
+    {
+      kind: "section",
+      title: "Terms Overview",
+      url: "/terms/#terms-board",
+      description: "Terms overview for scope, consultations, payments, ownership, and liability.",
+      keywords: ["terms", "scope", "payments", "ownership", "liability", "legal"]
+    }
+  ];
+
+  const siteIndex = siteIndexPages.concat(siteIndexSections).map(function (entry) {
+    const kind = entry.kind || "page";
+    return {
+      ...entry,
+      kind: kind,
+      meta: entry.meta || (kind === "section" ? "Jump to section" : "Open page"),
+      keywords: Array.isArray(entry.keywords) ? entry.keywords : []
+    };
+  });
 
   // ==========================================================================
   // JS Section: SEO Registry
@@ -732,7 +948,7 @@
             <div class="orbot__intro">
               <span class="orbot__eyebrow">Orbot</span>
               <h2 id="orbot-title">Pick a goal. Get the right page.</h2>
-              <p id="orbot-subtitle">I send you to the exact page: Launch, Discovery, Services, Process, Contact, Payment, or Schedule.</p>
+              <p id="orbot-subtitle">I can route you to launch, discovery, pricing, services, portfolio, FAQ topics, booking, or policy pages.</p>
             </div>
             <button class="orbot__close" type="button" aria-label="Close Orbot help" data-orbot-close>
               ${icon("close")}
@@ -740,9 +956,10 @@
           </header>
           <div class="orbot__body">
             <div class="orbot__suggestions">
-              <button type="button" class="orbot__suggestion" data-orbot-suggestion="Show me the best launch page">Launch</button>
-              <button type="button" class="orbot__suggestion" data-orbot-suggestion="How does your process work?">Process</button>
-              <button type="button" class="orbot__suggestion" data-orbot-suggestion="What services are available?">Services</button>
+              <button type="button" class="orbot__suggestion" data-orbot-suggestion="Take me to the launch project form">Launch</button>
+              <button type="button" class="orbot__suggestion" data-orbot-suggestion="Open the discovery brief">Discovery Brief</button>
+              <button type="button" class="orbot__suggestion" data-orbot-suggestion="Show me pricing and investment levels">Pricing</button>
+              <button type="button" class="orbot__suggestion" data-orbot-suggestion="Show the main FAQ topics">FAQ</button>
             </div>
             <form class="orbot__form" data-orbot-form>
               <label class="sr-only" for="orbot-input">Ask Orbot for the best page</label>
@@ -754,7 +971,7 @@
                   type="text"
                   autocomplete="off"
                   maxlength="${Math.trunc(orbotConfig.maxQueryLength)}"
-                  placeholder="Ask Orbot where to start and it will map the best page..."
+                  placeholder="Ask about launch, discovery, pricing, services, FAQ, policy, or booking..."
                   data-orbot-input
                 />
               </div>
@@ -1406,11 +1623,14 @@
 
     const starLayer = document.createElement("div");
     starLayer.className = "site-stage__stars";
-    for (let index = 0; index < 56; index += 1) {
+    const starCount = window.matchMedia("(max-width: 720px)").matches ? 36 : 56;
+    const starsFragment = document.createDocumentFragment();
+    for (let index = 0; index < starCount; index += 1) {
       const star = document.createElement("span");
       star.className = "site-stage__star";
-      starLayer.appendChild(star);
+      starsFragment.appendChild(star);
     }
+    starLayer.appendChild(starsFragment);
 
     const cometLayer = document.createElement("div");
     cometLayer.className = "site-stage__comets";
@@ -2042,40 +2262,43 @@
   }
 
   function setupSectionVisuals() {
-    const replacements = [
-      {
-        selector: 'body[data-page="home"] .home-band--premise .media-frame img',
-        src: "/assets/media/sections/home-premise-signal-shift-brand-gravity.svg",
-        alt: "Signal-shift scene representing stronger brand gravity and a more credible first impression."
-      },
-      {
-        selector: 'body[data-page="process"] .process-band--summary .image-frame img',
-        src: "/assets/media/sections/process-summary-route-diagram-web-build.svg",
-        alt: "Route diagram representing the journey from discovery to build and support on a modern business website."
-      },
-      {
-        selector: 'body[data-page="examples"] .examples-band--premise .media-frame img',
-        src: "/assets/media/sections/examples-editorial-direction-premium-websites.svg",
-        alt: "Editorial space composition representing premium website direction and stronger visual hierarchy."
-      },
-      {
-        selector: 'body[data-page="discovery"] .discovery-band--why .story-grid__media img',
-        src: "/assets/media/sections/discovery-routes-navigation-space-brief.svg",
-        alt: "Navigation route visual representing discovery choices, project briefing, and a clearer starting point."
-      },
-      {
-        selector: 'body[data-page="about"] .about-band--method .image-frame img',
-        src: "/assets/media/sections/about-method-execution-orbit-momentum.svg",
-        alt: "Orbital execution scene representing controlled process, cleaner build decisions, and long-term momentum."
-      },
-      {
-        selector: 'body[data-page="home"] .home-band--examples .story-grid__media img',
-        src: "/assets/media/sections/home-examples-premium-direction-orbit.svg",
-        alt: "Premium orbit scene representing stronger website direction, contrast, and editorial pacing."
-      }
-    ];
+    const replacementsByPage = {
+      home: [
+        {
+          selector: ".home-band--premise .media-frame img",
+          src: "/assets/media/sections/home-premise-signal-shift-brand-gravity.svg",
+          alt: "Signal-shift scene representing stronger brand gravity and a more credible first impression."
+        },
+        {
+          selector: ".home-band--examples .story-grid__media img",
+          src: "/assets/media/sections/home-examples-premium-direction-orbit.svg",
+          alt: "Premium orbit scene representing stronger website direction, contrast, and editorial pacing."
+        }
+      ],
+      process: [
+        {
+          selector: ".process-band--summary .image-frame img",
+          src: "/assets/media/sections/process-summary-route-diagram-web-build.svg",
+          alt: "Route diagram representing the journey from discovery to build and support on a modern business website."
+        }
+      ],
+      examples: [
+        {
+          selector: ".examples-band--premise .media-frame img",
+          src: "/assets/media/sections/examples-editorial-direction-premium-websites.svg",
+          alt: "Editorial space composition representing premium website direction and stronger visual hierarchy."
+        }
+      ],
+      about: [
+        {
+          selector: ".about-band--method .image-frame img",
+          src: "/assets/media/sections/about-method-execution-orbit-momentum.svg",
+          alt: "Orbital execution scene representing controlled process, cleaner build decisions, and long-term momentum."
+        }
+      ]
+    };
 
-    replacements.forEach(function (item) {
+    (replacementsByPage[page] || []).forEach(function (item) {
       document.querySelectorAll(item.selector).forEach(function (image) {
         image.setAttribute("src", item.src);
         image.setAttribute("alt", item.alt);
@@ -2126,31 +2349,35 @@
   }
 
   function setupSectionIntroRails() {
-    const rails = [
-      {
-        selector: 'body[data-page="home"] .home-band--fit .section-heading--panel',
-        src: "/assets/media/sections/home-fit-brand-trajectory-signal.svg",
-        alt: "Signal trajectory scene representing ambitious businesses building stronger digital presence.",
-        kicker: "Built for trajectory",
-        line: " "
-      },
-      {
-        selector: 'body[data-page="about"] .about-band--fit .section-heading--panel',
-        src: "/assets/media/sections/about-fit-brand-trajectory-authority.svg",
-        alt: "Trajectory and authority scene representing businesses ready for a stronger public read.",
-        kicker: "Read at the right level",
-        line: " "
-      },
-      {
-        selector: 'body[data-page="home"] .home-band--offers .section-heading--panel',
-        src: "/assets/media/sections/home-offers-launch-optimise-growth.svg",
-        alt: "Launch and optimisation scene representing core website offers for growth-focused businesses.",
-        kicker: "Launch. Reset. Optimise.",
-        line: " "
-      }
-    ];
+    const railsByPage = {
+      home: [
+        {
+          selector: ".home-band--fit .section-heading--panel",
+          src: "/assets/media/sections/home-fit-brand-trajectory-signal.svg",
+          alt: "Signal trajectory scene representing ambitious businesses building stronger digital presence.",
+          kicker: "Built for trajectory",
+          line: " "
+        },
+        {
+          selector: ".home-band--offers .section-heading--panel",
+          src: "/assets/media/sections/home-offers-launch-optimise-growth.svg",
+          alt: "Launch and optimisation scene representing core website offers for growth-focused businesses.",
+          kicker: "Launch. Reset. Optimise.",
+          line: " "
+        }
+      ],
+      about: [
+        {
+          selector: ".about-band--fit .section-heading--panel",
+          src: "/assets/media/sections/about-fit-brand-trajectory-authority.svg",
+          alt: "Trajectory and authority scene representing businesses ready for a stronger public read.",
+          kicker: "Read at the right level",
+          line: " "
+        }
+      ]
+    };
 
-    rails.forEach(function (item) {
+    (railsByPage[page] || []).forEach(function (item) {
       document.querySelectorAll(item.selector).forEach(function (panel) {
         if (panel.querySelector(".section-heading__rail")) return;
         panel.classList.add("section-heading--with-rail");
@@ -2406,11 +2633,20 @@
     servces: "services",
     proccess: "process",
     procress: "process",
+    priceing: "pricing",
+    prcing: "pricing",
     discovert: "discovery",
+    discvoery: "discovery",
+    questionaire: "questionnaire",
     paymant: "payment",
     schedul: "schedule",
     calender: "calendly",
     whatsap: "whatsapp",
+    acessibility: "accessibility",
+    accessiblity: "accessibility",
+    privcy: "privacy",
+    cookes: "cookies",
+    portifolio: "portfolio",
     projeto: "projeto",
     orcamento: "orcamento",
     consultoriaa: "consultoria",
@@ -2420,8 +2656,32 @@
   const orbotIntents = [
     {
       id: "services",
-      phrases: ["what services", "show services", "servicos", "servicos voce oferece", "service options"],
-      tokens: ["services", "service", "design", "redesign", "rebuild", "servicos", "servico", "site"],
+      phrases: [
+        "what services",
+        "show services",
+        "servicos",
+        "servicos voce oferece",
+        "service options",
+        "what do you do"
+      ],
+      tokens: [
+        "services",
+        "service",
+        "design",
+        "redesign",
+        "rebuild",
+        "messaging",
+        "seo",
+        "analytics",
+        "tracking",
+        "crm",
+        "performance",
+        "brand",
+        "multilingual",
+        "servicos",
+        "servico",
+        "site"
+      ],
       routes: ["/services/", "/examples/"],
       reply: {
         en: "Best page: Services. Open Portfolio after that if you want proof of style and quality.",
@@ -2450,29 +2710,76 @@
     },
     {
       id: "discovery",
-      phrases: ["start discovery", "discovery route", "rota de descoberta", "descoberta", "discovery questionnaire"],
-      tokens: ["discovery", "questionnaire", "brief", "descoberta", "questionario", "estrategia"],
-      routes: ["/discovery/", "/payments/"],
+      phrases: [
+        "start discovery",
+        "discovery route",
+        "rota de descoberta",
+        "descoberta",
+        "discovery questionnaire",
+        "discovery brief",
+        "send the brief"
+      ],
+      tokens: [
+        "discovery",
+        "questionnaire",
+        "brief",
+        "briefing",
+        "descoberta",
+        "questionario",
+        "estrategia",
+        "scope",
+        "range"
+      ],
+      routes: ["/discovery/#discovery-questionnaire", "/discovery/#discovery-switch", "/payments/"],
       reply: {
-        en: "Best page: Discovery. Use this when you need strategy before build.",
-        pt: "Melhor pagina: Discovery. Use quando quiser estrategia antes da execucao."
+        en: "Best route: Discovery. Start with the brief if you want to send context first, or use the consultation route for live strategy input.",
+        pt: "Melhor rota: Discovery. Use o brief para enviar contexto ou a consulta para estrategia ao vivo."
       }
     },
     {
       id: "launch",
       phrases: ["start project", "launch site", "iniciar projeto", "site novo", "quote request"],
       tokens: ["start", "launch", "project", "quote", "budget", "projeto", "orcamento", "iniciar"],
-      routes: ["/launch/", "/contact/", "/discovery/"],
+      routes: ["/launch/#project-form", "/launch/", "/contact/#contact-form"],
       reply: {
         en: "Best page: Launch. This is the direct intake when you are ready to start now.",
         pt: "Melhor pagina: Launch. Entrada direta para iniciar agora."
       }
     },
     {
+      id: "pricing",
+      phrases: [
+        "how much does it cost",
+        "pricing",
+        "investment levels",
+        "quanto custa",
+        "price range",
+        "budget range"
+      ],
+      tokens: [
+        "pricing",
+        "price",
+        "cost",
+        "budget",
+        "quote",
+        "investment",
+        "range",
+        "quanto",
+        "custa",
+        "investimento",
+        "orcamento"
+      ],
+      routes: ["/invest/#invest-orbit", "/discovery/#discovery-questionnaire", "/launch/#project-form"],
+      reply: {
+        en: "Best page: Investment. Use Discovery Brief or Launch after that depending on how clear the project already is.",
+        pt: "Melhor pagina: Investment. Depois use Discovery Brief ou Launch conforme a clareza do projeto."
+      }
+    },
+    {
       id: "contact",
       phrases: ["contact route", "talk to someone", "falar com voces", "mandar mensagem"],
       tokens: ["contact", "email", "whatsapp", "message", "contato", "mensagem", "falar"],
-      routes: ["/contact/", "/discovery/"],
+      routes: ["/contact/#contact-form", "/contact/#contact-routes", "/discovery/#discovery-questionnaire"],
       reply: {
         en: "Best page: Contact. Fast human page for quick alignment.",
         pt: "Melhor pagina: Contact. Pagina humana rapida para alinhar contexto."
@@ -2482,7 +2789,7 @@
       id: "payments",
       phrases: ["how to pay", "payment options", "forma de pagamento", "stripe paypal pix"],
       tokens: ["payment", "pay", "stripe", "paypal", "pix", "pagamento", "pagar", "consultoria"],
-      routes: ["/payments/", "/schedule/", "/discovery/"],
+      routes: ["/payments/#payment-routes", "/payments/#payment-request", "/schedule/#choose-your-slot"],
       reply: {
         en: "Best page: Payments. After payment, continue to Schedule.",
         pt: "Melhor pagina: Payments. Depois do pagamento, siga para Schedule."
@@ -2492,10 +2799,51 @@
       id: "schedule",
       phrases: ["book meeting", "schedule call", "agendar reuniao", "marcar horario"],
       tokens: ["schedule", "meeting", "book", "slot", "calendly", "agendar", "reuniao", "horario"],
-      routes: ["/schedule/", "/payments/"],
+      routes: ["/schedule/#choose-your-slot", "/payments/#payment-routes"],
       reply: {
         en: "Best page: Schedule. Use it to lock your consultation slot.",
         pt: "Melhor pagina: Schedule. Use para travar seu horario."
+      }
+    },
+    {
+      id: "faq",
+      phrases: ["show faq", "common questions", "perguntas frequentes", "faq topics", "faq"],
+      tokens: ["faq", "questions", "answers", "seo", "mobile", "support", "duvidas", "perguntas"],
+      routes: ["/faq/", "/faq/#faq-discovery", "/faq/#faq-quality"],
+      reply: {
+        en: "Best page: FAQ. It groups the main answers by offer, discovery, systems, quality, and next steps.",
+        pt: "Melhor pagina: FAQ. Ela agrupa respostas por oferta, discovery, sistemas, qualidade e proximos passos."
+      }
+    },
+    {
+      id: "policy",
+      phrases: ["privacy policy", "legal pages", "cookie policy", "accessibility statement"],
+      tokens: [
+        "privacy",
+        "policy",
+        "terms",
+        "cookies",
+        "cookie",
+        "accessibility",
+        "legal",
+        "rights",
+        "consent",
+        "dados"
+      ],
+      routes: ["/privacy/", "/terms/", "/cookies/"],
+      reply: {
+        en: "Best pages: Privacy, Terms, or Cookies depending on the policy detail you need.",
+        pt: "Melhores paginas: Privacy, Terms ou Cookies conforme o detalhe de politica que voce precisa."
+      }
+    },
+    {
+      id: "about",
+      phrases: ["who is this for", "about ash tra", "who do you work with", "sobre ash tra"],
+      tokens: ["about", "fit", "standards", "story", "beliefs", "sobre", "encaixe"],
+      routes: ["/about/#about-signal", "/about/", "/contact/#contact-form"],
+      reply: {
+        en: "Best page: About. Use it to understand fit, standards, and the ASH-TRA point of view.",
+        pt: "Melhor pagina: About. Use para entender encaixe, padroes e o ponto de vista da ASH-TRA."
       }
     }
   ];
@@ -2544,6 +2892,15 @@
     return "en";
   }
 
+  const orbotSearchIndex = siteIndex.map(function (entry) {
+    return {
+      entry: entry,
+      title: normalizeOrbotText(entry.title),
+      description: normalizeOrbotText(entry.description),
+      keywords: entry.keywords.map(normalizeOrbotText)
+    };
+  });
+
   function scoreOrbotIntent(intent, normalizedText, tokens, tokenSet) {
     let score = 0;
     intent.phrases.forEach(function (phrase) {
@@ -2569,25 +2926,23 @@
     const tokenSet = new Set(tokens);
     if (!tokens.length) return [];
 
-    return siteIndex
-      .map(function (entry) {
-        const title = normalizeOrbotText(entry.title);
-        const description = normalizeOrbotText(entry.description);
-        const keywords = entry.keywords.map(normalizeOrbotText);
+    return orbotSearchIndex
+      .map(function (item) {
         let score = 0;
 
-        if (title.includes(normalizedText)) score += 8;
-        if (description.includes(normalizedText)) score += 4;
+        if (item.title.includes(normalizedText)) score += 8;
+        if (item.description.includes(normalizedText)) score += 4;
         tokens.forEach(function (token) {
-          if (title.includes(token)) score += 4;
-          if (description.includes(token)) score += 2;
-          keywords.forEach(function (keyword) {
+          if (item.title.includes(token)) score += 4;
+          if (item.description.includes(token)) score += 2;
+          item.keywords.forEach(function (keyword) {
             if (keyword === token) score += 4;
             if (keyword.includes(token) || token.includes(keyword)) score += 2;
           });
         });
-        if (tokenSet.has("launch") && entry.url === "/launch/") score += 3;
-        return { entry, score };
+        if (tokenSet.has("launch") && item.entry.url === "/launch/") score += 3;
+        if (tokenSet.has("pricing") && item.entry.url === "/invest/") score += 3;
+        return { entry: item.entry, score };
       })
       .filter(function (item) {
         return item.score > 0;
@@ -2602,11 +2957,12 @@
   }
 
   function buildOrbotResults(urls, fallbackQuery) {
-    const mergedUrls = [orbotPrimaryRoute].concat(urls || []);
+    const explicitUrls = Array.isArray(urls) ? urls.slice() : [];
     const searchMatches = searchSiteIndex(fallbackQuery || "").map(function (entry) {
       return entry.url;
     });
-    mergedUrls.push.apply(mergedUrls, searchMatches);
+    const fallbackUrls = [orbotPrimaryRoute, "/contact/#contact-form", "/discovery/#discovery-questionnaire"];
+    const mergedUrls = explicitUrls.concat(searchMatches, fallbackUrls);
 
     const seen = new Set();
     const entries = [];
@@ -2633,9 +2989,12 @@
         language: language,
         message:
           language === "pt"
-            ? "Diga seu objetivo em uma frase e eu envio a pagina certa."
-            : "Tell me your goal in one sentence and I will send the right page.",
-        results: buildOrbotResults(["/discovery/", "/contact/"], normalizedText)
+            ? "Diga seu objetivo em uma frase e eu envio a melhor pagina ou secao."
+            : "Tell me your goal in one sentence and I will send the best page or section.",
+        results: buildOrbotResults(
+          ["/launch/#project-form", "/discovery/#discovery-questionnaire", "/invest/#invest-orbit"],
+          normalizedText
+        )
       };
     }
 
@@ -2657,9 +3016,12 @@
         language: language,
         message:
           language === "pt"
-            ? "Nao ficou claro ainda. Use uma destas paginas seguras."
-            : "Not clear yet. Use one of these safe pages.",
-        results: buildOrbotResults(["/discovery/", "/contact/"], normalizedText)
+            ? "Nao ficou claro ainda. Use uma destas rotas seguras enquanto eu afino o caminho."
+            : "Not clear yet. Use one of these safe routes while I narrow it down.",
+        results: buildOrbotResults(
+          ["/discovery/#discovery-questionnaire", "/contact/#contact-form", "/faq/"],
+          normalizedText
+        )
       };
     }
 
@@ -2688,7 +3050,7 @@
               >
                 <span>
                   <strong>${escapeHtml(result.title)}</strong>
-                  <small>Open page</small>
+                  <small>${escapeHtml(result.meta || "Open page")}</small>
                 </span>
                 ${icon("arrow")}
               </a>
@@ -2763,9 +3125,12 @@
     function addWelcome() {
       addEntry(
         "assistant",
-        "Tell me your goal. I will send you to the right page.",
+        "Tell me the outcome or page you need. I will send you to the best route or section.",
         "welcome",
-        buildOrbotResults(["/discovery/", "/services/"], "welcome")
+        buildOrbotResults(
+          ["/launch/#project-form", "/discovery/#discovery-questionnaire", "/invest/#invest-orbit"],
+          "welcome"
+        )
       );
     }
 
@@ -2905,27 +3270,27 @@
     setupTrackingConsent();
     setupAnalytics();
     setupPageStructure();
-    decorateStage();
-    setupTrackedClicks();
-    setupScrollDepthTracking();
-    setupReveal();
-    setupTiltCards();
+    setupLayoutScaffold();
+    setupContentSequencing();
     setupSectionVisuals();
     setupSectionIntroRails();
-    setupContentSequencing();
-    setupSceneMotion();
     setupMediaPerformance();
-    setupVideoEngagementTracking();
-    setupBackToTop();
     setupOrbotAssistant();
-    setupLayoutScaffold();
-    setupDiscoveryBrief();
-    setupBriefNav();
+    setupBackToTop();
     setupPaymentPrefill();
     setupForms();
     setupFaq();
+    setupDiscoveryBrief();
+    setupBriefNav();
+    setupTrackedClicks();
+    setupReveal();
     rewriteRootRelativeUrls(document.body);
     trackPageView();
+    scheduleNonCriticalTask("decorateStage", decorateStage, 900);
+    scheduleNonCriticalTask("scrollDepthTracking", setupScrollDepthTracking, 1200);
+    scheduleNonCriticalTask("tiltCards", setupTiltCards, 1400);
+    scheduleNonCriticalTask("sceneMotion", setupSceneMotion, 1400);
+    scheduleNonCriticalTask("videoEngagementTracking", setupVideoEngagementTracking, 1800);
   }
 
   if (document.readyState === "loading") {
