@@ -66,20 +66,6 @@
     </nav>
   </div>
 </header>
-
-<style>
-  /* PARTIAL CSS: Small header-only rules that are easiest to keep beside the markup. */
-  [data-partial-root="site-header"] .site-nav__links a[aria-current="page"] {
-    color: var(--text);
-    background: rgba(255, 255, 255, 0.07);
-  }
-
-  [data-partial-root="site-header"] .site-header[data-nav-state="open"] .site-header__toggle {
-    border-color: rgba(130, 229, 255, 0.24);
-    background: rgba(255, 255, 255, 0.08);
-  }
-</style>
-
 <script>
   (function () {
     const partialRoot = document.currentScript.closest('[data-partial-root="site-header"]');

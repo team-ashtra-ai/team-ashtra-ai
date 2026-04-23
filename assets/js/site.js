@@ -1,4 +1,9 @@
 (function () {
+  // ==========================================================================
+  // JS Section: Runtime Configuration And Brand Constants
+  // Reads optional values from site-config.js, defines the active page, and
+  // centralizes brand assets, form endpoints, and assistant defaults.
+  // ==========================================================================
   const config = window.AshtraConfig || {};
   const page = document.body.dataset.page || "home";
   const pageRuntimePrefix = page === "home" || page === "404" ? "./" : "../";
@@ -8,11 +13,43 @@
   const discoveryFormEndpoint = config.discoveryFormEndpoint || "https://formspree.io/f/mqewqvqb";
   const discoveryFormFallbackEndpoint =
     config.discoveryFormFallbackEndpoint || consultationFormEndpoint || "";
-  const googleAnalyticsMeasurementId =
-    typeof config.googleAnalyticsMeasurementId === "string"
-      ? config.googleAnalyticsMeasurementId.trim()
-      : "";
+  const trackingConfig = resolveTrackingConfig(config.tracking);
+  const trackingIds = {
+    googleAnalyticsMeasurementId: readConfigString(config.googleAnalyticsMeasurementId),
+    googleTagManagerId: readConfigString(config.googleTagManagerId),
+    googleTagId: readConfigString(config.googleTagId),
+    googleAdsId: readConfigString(config.googleAdsId),
+    metaPixelId: readConfigString(config.metaPixelId),
+    linkedinPartnerId: readConfigString(config.linkedinPartnerId),
+    clarityProjectId: readConfigString(config.clarityProjectId),
+    hotjarSiteId: readConfigString(config.hotjarSiteId),
+    hubspotPortalId: readConfigString(config.hubspotPortalId),
+    hubspotEventWebhook: readConfigString(config.hubspotEventWebhook)
+  };
+  const googleTagGatewayConfig = resolveGoogleTagGatewayConfig(config.googleTagGateway);
   const orbotConfig = resolveOrbotConfig(config.orbot);
+  const trackingConsentKey = "ashtra_tracking_consent_v1";
+  const trackingConsentCategories = ["analytics", "marketing", "behavior"];
+  const hubspotKeyEvents = new Set([
+    "page_view",
+    "contact_form_started",
+    "contact_form_submitted",
+    "contact_form_error",
+    "discovery_brief_step",
+    "orbot_cta_click",
+    "orbot_query",
+    "payment_option_click",
+    "schedule_click",
+    "whatsapp_click"
+  ]);
+  const metaStandardEvents = {
+    contact_form_submitted: "Lead",
+    page_view: "PageView",
+    payment_option_click: "InitiateCheckout",
+    schedule_click: "Schedule",
+    whatsapp_click: "Contact"
+  };
+  let trackingConsent = null;
   const brandAppName = "ASH-TRA";
   const brandChromeColor = "#090d16";
   const brandAssetBase = runtimeUrl("/assets/brand");
@@ -29,14 +66,11 @@
     "home": "ash-tra-home-modern-websites-social-preview.png",
     "invest": "ash-tra-investment-foundation-growth-partnership-social-preview.png",
     "launch": "ash-tra-launch-project-intake-social-preview.png",
-    "pay-consultation": "ash-tra-redirect-payments-social-preview.png",
     "payments": "ash-tra-payments-consultation-stripe-paypal-pix-social-preview.png",
     "privacy": "ash-tra-privacy-policy-data-usage-social-preview.png",
     "process": "ash-tra-process-discovery-build-support-social-preview.png",
     "schedule": "ash-tra-schedule-consultation-booking-social-preview.png",
-    "schedule-meeting": "ash-tra-redirect-schedule-social-preview.png",
     "services": "ash-tra-services-strategy-rebuild-seo-social-preview.png",
-    "start-project": "ash-tra-redirect-launch-social-preview.png",
     "terms": "ash-tra-terms-service-commercial-scope-social-preview.png"
   };
   // Shared shell pieces now live as handwritten HTML partials so the header and
@@ -47,6 +81,11 @@
   };
   const partialMarkupCache = new Map();
 
+  // ==========================================================================
+  // JS Section: URL, Config, And Small Utility Helpers
+  // Keeps root-relative links working from nested static pages, sanitizes copy
+  // before injecting strings, and normalizes configurable assistant values.
+  // ==========================================================================
   function runtimeUrl(input) {
     const value = String(input || "");
     if (!value) return value;
@@ -54,6 +93,40 @@
     if (/^[a-z][a-z0-9+.-]*:/i.test(value)) return value;
     if (!value.startsWith("/")) return value;
     return value === "/" ? pageRuntimePrefix : `${pageRuntimePrefix}${value.slice(1)}`;
+  }
+
+  function readConfigString(value) {
+    return typeof value === "string" ? value.trim() : "";
+  }
+
+  function readConfigBoolean(value, fallback) {
+    return typeof value === "boolean" ? value : fallback;
+  }
+
+  function resolveTrackingConfig(value) {
+    const source = value && typeof value === "object" ? value : {};
+
+    return {
+      enabled: readConfigBoolean(source.enabled, true),
+      requireConsent: readConfigBoolean(source.requireConsent, true),
+      trackScrollDepth: readConfigBoolean(source.trackScrollDepth, true),
+      trackOutboundLinks: readConfigBoolean(source.trackOutboundLinks, true),
+      trackFormFocus: readConfigBoolean(source.trackFormFocus, true),
+      trackVideoEngagement: readConfigBoolean(source.trackVideoEngagement, true)
+    };
+  }
+
+  function resolveGoogleTagGatewayConfig(value) {
+    const source = value && typeof value === "object" ? value : {};
+    const measurementPath = readConfigString(source.measurementPath || source.endpoint);
+    const isSafePath = /^\/[a-z0-9]+$/i.test(measurementPath);
+    const isProductionHost = /(^|\.)ash-tra\.com$/i.test(window.location.hostname);
+
+    return {
+      enabled: readConfigBoolean(source.enabled, false) && isSafePath && isProductionHost,
+      measurementPath: isSafePath ? measurementPath.replace(/\/+$/, "") : "",
+      tagId: readConfigString(source.tagId || source.measurementId)
+    };
   }
 
   function rewriteRootRelativeUrls(root) {
@@ -127,6 +200,10 @@
     "Launch stronger. Scale smarter."
   ];
 
+  // ==========================================================================
+  // JS Section: Site Index
+  // Searchable page registry used by Orbot and route suggestions.
+  // ==========================================================================
   const siteIndex = [
     {
       title: "Home",
@@ -226,6 +303,11 @@
     }
   ];
 
+  // ==========================================================================
+  // JS Section: SEO Registry
+  // Per-page titles, descriptions, canonical paths, social previews, and JSON-LD
+  // payloads that are synced into the document head on load.
+  // ==========================================================================
   const pageSeo = {
     home: {
       title: "ASH-TRA | Modern Websites for Ambitious Businesses",
@@ -494,39 +576,18 @@
       ogAlt: "ASH-TRA not found page social preview",
       robots: "noindex,follow",
       schemas: []
-    },
-    "pay-consultation": {
-      title: "Redirecting to Consultation Payments | ASH-TRA",
-      description: "This route now redirects to the consultation payments page.",
-      path: "/payments/",
-      ogAlt: "ASH-TRA payments redirect page social preview",
-      robots: "noindex,follow",
-      schemas: []
-    },
-    "schedule-meeting": {
-      title: "Redirecting to Consultation Schedule | ASH-TRA",
-      description: "This route now redirects to the consultation schedule page.",
-      path: "/schedule/",
-      ogAlt: "ASH-TRA schedule redirect page social preview",
-      robots: "noindex,follow",
-      schemas: []
-    },
-    "start-project": {
-      title: "Redirecting to Project Launch | ASH-TRA",
-      description: "This route now redirects to the project launch page.",
-      path: "/launch/",
-      ogAlt: "ASH-TRA launch redirect page social preview",
-      robots: "noindex,follow",
-      schemas: []
     }
   };
 
+  // ==========================================================================
+  // JS Section: Markup And Partial Helpers
+  // Builds inline SVG snippets, reusable UI strings, and injected header/footer
+  // partials while keeping partial scripts executable after fetch insertion.
+  // ==========================================================================
   function icon(name) {
     const icons = {
       arrow:
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/></svg>',
-      menu:
-        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.9"/></svg>',
       close:
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.9"/></svg>',
       search:
@@ -602,20 +663,6 @@
     return partialPromise;
   }
 
-  function hoistPartialStyles(target, name) {
-    target.querySelectorAll("style").forEach(function (styleTag, index) {
-      const styleKey = `${name}-${index}`;
-      let mountedStyle = document.head.querySelector(`style[data-site-partial-style="${styleKey}"]`);
-      if (!mountedStyle) {
-        mountedStyle = document.createElement("style");
-        mountedStyle.dataset.sitePartialStyle = styleKey;
-        mountedStyle.textContent = styleTag.textContent;
-        document.head.appendChild(mountedStyle);
-      }
-      styleTag.remove();
-    });
-  }
-
   function runPartialScripts(target, name) {
     target.querySelectorAll("script").forEach(function (scriptTag, index) {
       const executable = document.createElement("script");
@@ -639,13 +686,8 @@
     const markup = await fetchSitePartialMarkup(name);
     target.dataset.sitePartial = name;
     target.dataset.partialRoot = name;
-    // Keep the DOM editable via placeholder nodes in the page source, but make
-    // the host wrapper disappear from layout so the injected partial renders as
-    // if it had been written directly into the page.
-    target.style.display = "contents";
     target.innerHTML = markup;
     rewriteRootRelativeUrls(target);
-    hoistPartialStyles(target, name);
     runPartialScripts(target, name);
     target.dataset.sitePartialStatus = "loaded";
   }
@@ -766,6 +808,11 @@
     `;
   }
 
+  // ==========================================================================
+  // JS Section: Head Metadata, Consent, And Analytics
+  // Updates SEO/social tags, canonical links, favicon/app metadata, structured
+  // data, cookie consent, and optional third-party measurement tools.
+  // ==========================================================================
   function setMeta(name, content, attribute) {
     if (!content) return;
     const attr = attribute || "name";
@@ -893,9 +940,7 @@
     }
   }
 
-  function setupAnalytics() {
-    if (!googleAnalyticsMeasurementId) return;
-
+  function ensureGoogleDataLayer() {
     window.dataLayer = window.dataLayer || [];
 
     if (typeof window.gtag !== "function") {
@@ -903,26 +948,391 @@
         window.dataLayer.push(arguments);
       };
     }
+  }
 
-    if (!window.__ashtraGaConfigured) {
-      window.gtag("js", new Date());
-      window.gtag("config", googleAnalyticsMeasurementId, {
-        send_page_view: false,
-        anonymize_ip: true,
-        transport_type: "beacon"
-      });
-      window.__ashtraGaConfigured = true;
-    }
+  function createTrackingConsent(categories) {
+    return {
+      version: 1,
+      updatedAt: new Date().toISOString(),
+      categories: trackingConsentCategories.reduce(function (result, category) {
+        result[category] = Boolean(categories && categories[category]);
+        return result;
+      }, {})
+    };
+  }
 
-    if (!document.head.querySelector(`script[data-ga-loader="${googleAnalyticsMeasurementId}"]`)) {
-      const tag = document.createElement("script");
-      tag.async = true;
-      tag.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(googleAnalyticsMeasurementId)}`;
-      tag.dataset.gaLoader = googleAnalyticsMeasurementId;
-      document.head.appendChild(tag);
+  function sanitizeTrackingConsent(value) {
+    if (!value || typeof value !== "object" || !value.categories) return null;
+    return createTrackingConsent(value.categories);
+  }
+
+  function loadStoredTrackingConsent() {
+    try {
+      return sanitizeTrackingConsent(JSON.parse(window.localStorage.getItem(trackingConsentKey)));
+    } catch (error) {
+      return null;
     }
   }
 
+  function saveTrackingConsent(value) {
+    try {
+      window.localStorage.setItem(trackingConsentKey, JSON.stringify(value));
+    } catch (error) {
+      // Consent still applies for this page view when storage is unavailable.
+    }
+  }
+
+  function summarizeTrackingConsent(value) {
+    if (!value || !value.categories) return "pending";
+    const accepted = trackingConsentCategories.filter(function (category) {
+      return value.categories[category];
+    });
+    return accepted.length ? accepted.join("-") : "essential";
+  }
+
+  function updateTrackingConsentState() {
+    document.documentElement.dataset.trackingConsent = summarizeTrackingConsent(trackingConsent);
+  }
+
+  function hasTrackingConsent(category) {
+    if (!trackingConfig.enabled) return false;
+    if (!trackingConfig.requireConsent) return true;
+    return Boolean(trackingConsent?.categories?.[category]);
+  }
+
+  function hasAnyTrackingConsent() {
+    return trackingConsentCategories.some(function (category) {
+      return hasTrackingConsent(category);
+    });
+  }
+
+  function buildGoogleConsentState() {
+    const analyticsAllowed = hasTrackingConsent("analytics");
+    const marketingAllowed = hasTrackingConsent("marketing");
+    const behaviorAllowed = hasTrackingConsent("behavior");
+
+    return {
+      ad_personalization: marketingAllowed ? "granted" : "denied",
+      ad_storage: marketingAllowed ? "granted" : "denied",
+      ad_user_data: marketingAllowed ? "granted" : "denied",
+      analytics_storage: analyticsAllowed ? "granted" : "denied",
+      functionality_storage: "granted",
+      personalization_storage: behaviorAllowed ? "granted" : "denied",
+      security_storage: "granted"
+    };
+  }
+
+  function applyGoogleConsent(command) {
+    ensureGoogleDataLayer();
+    window.gtag("consent", command, {
+      ...buildGoogleConsentState(),
+      wait_for_update: command === "default" ? 500 : undefined
+    });
+  }
+
+  function removeTrackingConsentBanner() {
+    document.querySelector("[data-consent-banner]")?.remove();
+  }
+
+  function setTrackingConsent(categories, source) {
+    trackingConsent = createTrackingConsent(categories);
+    saveTrackingConsent(trackingConsent);
+    updateTrackingConsentState();
+    applyGoogleConsent("update");
+    removeTrackingConsentBanner();
+    setupAnalytics();
+    trackEvent("tracking_consent_update", {
+      source: source || "manual",
+      consent: summarizeTrackingConsent(trackingConsent)
+    });
+    trackPageView();
+  }
+
+  function renderTrackingConsentBanner() {
+    if (document.querySelector("[data-consent-banner]")) return;
+
+    document.body.insertAdjacentHTML(
+      "beforeend",
+      `
+        <section class="consent-banner" data-consent-banner role="dialog" aria-label="Cookie and tracking consent">
+          <div class="consent-banner__glow" aria-hidden="true"></div>
+          <div class="consent-banner__content">
+            <p class="consent-banner__eyebrow">Privacy controls</p>
+            <h2 class="consent-banner__title">Choose how ASH-TRA measures the site.</h2>
+            <p class="consent-banner__copy">
+              Essential cookies keep the site working. Analytics, behaviour tools, and marketing pixels only run if you allow them.
+            </p>
+            <div class="consent-banner__options" data-consent-options hidden>
+              <label class="consent-banner__option">
+                <input type="checkbox" data-consent-option="analytics" checked />
+                <span><strong>Analytics</strong> Google Analytics, Tag Manager, and performance events.</span>
+              </label>
+              <label class="consent-banner__option">
+                <input type="checkbox" data-consent-option="behavior" />
+                <span><strong>Behaviour tools</strong> Clarity or Hotjar when their IDs are added.</span>
+              </label>
+              <label class="consent-banner__option">
+                <input type="checkbox" data-consent-option="marketing" />
+                <span><strong>Marketing pixels</strong> Meta, LinkedIn, Google Ads, and HubSpot when configured.</span>
+              </label>
+            </div>
+            <div class="consent-banner__actions">
+              <button class="button button--primary" type="button" data-consent-accept>Accept all</button>
+              <button class="button button--subtle" type="button" data-consent-essential>Essential only</button>
+              <button class="consent-banner__manage" type="button" data-consent-manage aria-expanded="false">Manage choices</button>
+              <button class="button button--subtle consent-banner__save" type="button" data-consent-save hidden>Save choices</button>
+            </div>
+            <a class="consent-banner__link" href="/cookies/">Read the Cookie Policy</a>
+          </div>
+        </section>
+      `
+    );
+
+    const banner = document.querySelector("[data-consent-banner]");
+    const options = banner?.querySelector("[data-consent-options]");
+    const manage = banner?.querySelector("[data-consent-manage]");
+    const save = banner?.querySelector("[data-consent-save]");
+
+    banner?.querySelector("[data-consent-accept]")?.addEventListener("click", function () {
+      setTrackingConsent({ analytics: true, behavior: true, marketing: true }, "accept_all");
+    });
+
+    banner?.querySelector("[data-consent-essential]")?.addEventListener("click", function () {
+      setTrackingConsent({ analytics: false, behavior: false, marketing: false }, "essential_only");
+    });
+
+    manage?.addEventListener("click", function () {
+      const isOpen = options?.hidden === false;
+      if (options) options.hidden = isOpen;
+      if (save) save.hidden = isOpen;
+      manage.setAttribute("aria-expanded", String(!isOpen));
+    });
+
+    save?.addEventListener("click", function () {
+      const choices = {};
+      banner?.querySelectorAll("[data-consent-option]").forEach(function (input) {
+        choices[input.getAttribute("data-consent-option")] = input.checked;
+      });
+      setTrackingConsent(choices, "custom");
+    });
+  }
+
+  function setupTrackingConsent() {
+    ensureGoogleDataLayer();
+    applyGoogleConsent("default");
+
+    if (!trackingConfig.enabled) {
+      document.documentElement.dataset.trackingConsent = "disabled";
+      return;
+    }
+
+    if (!trackingConfig.requireConsent) {
+      trackingConsent = createTrackingConsent({ analytics: true, behavior: true, marketing: true });
+      updateTrackingConsentState();
+      applyGoogleConsent("update");
+      return;
+    }
+
+    trackingConsent = loadStoredTrackingConsent();
+    updateTrackingConsentState();
+
+    if (trackingConsent) {
+      applyGoogleConsent("update");
+      return;
+    }
+
+    renderTrackingConsentBanner();
+  }
+
+  function googleTagScriptSources(path, params) {
+    const query = new URLSearchParams(params || {}).toString();
+    const suffix = query ? `?${query}` : "";
+    const direct = `https://www.googletagmanager.com/${path}${suffix}`;
+
+    if (!googleTagGatewayConfig.enabled) return [direct];
+    return [`${googleTagGatewayConfig.measurementPath}/${path}${suffix}`, direct];
+  }
+
+  function loadScriptOnce(key, sources, attributes) {
+    const sourceList = Array.isArray(sources) ? sources.filter(Boolean) : [sources].filter(Boolean);
+    if (!sourceList.length || document.head.querySelector(`script[data-tracking-loader="${key}"]`)) {
+      return;
+    }
+
+    const loadSource = function (index) {
+      const tag = document.createElement("script");
+      tag.async = true;
+      tag.dataset.trackingLoader = key;
+
+      Object.entries(attributes || {}).forEach(function (entry) {
+        tag.setAttribute(entry[0], entry[1]);
+      });
+
+      tag.onerror = function () {
+        tag.remove();
+        if (sourceList[index + 1]) loadSource(index + 1);
+      };
+
+      tag.src = sourceList[index];
+      document.head.appendChild(tag);
+    };
+
+    loadSource(0);
+  }
+
+  function setupGoogleTag() {
+    if (!hasTrackingConsent("analytics") && !hasTrackingConsent("marketing")) return;
+
+    const loaderId =
+      trackingIds.googleTagId ||
+      googleTagGatewayConfig.tagId ||
+      trackingIds.googleAnalyticsMeasurementId ||
+      trackingIds.googleAdsId;
+    if (!loaderId) return;
+
+    ensureGoogleDataLayer();
+
+    if (!window.__ashtraGoogleTagStarted) {
+      window.gtag("js", new Date());
+      window.__ashtraGoogleTagStarted = true;
+    }
+
+    window.__ashtraConfiguredGoogleTags = window.__ashtraConfiguredGoogleTags || {};
+
+    if (
+      hasTrackingConsent("analytics") &&
+      trackingIds.googleAnalyticsMeasurementId &&
+      !window.__ashtraConfiguredGoogleTags[trackingIds.googleAnalyticsMeasurementId]
+    ) {
+      window.gtag("config", trackingIds.googleAnalyticsMeasurementId, {
+        anonymize_ip: true,
+        send_page_view: false,
+        transport_type: "beacon"
+      });
+      window.__ashtraConfiguredGoogleTags[trackingIds.googleAnalyticsMeasurementId] = true;
+    }
+
+    if (
+      hasTrackingConsent("marketing") &&
+      trackingIds.googleAdsId &&
+      !window.__ashtraConfiguredGoogleTags[trackingIds.googleAdsId]
+    ) {
+      window.gtag("config", trackingIds.googleAdsId, { send_page_view: false });
+      window.__ashtraConfiguredGoogleTags[trackingIds.googleAdsId] = true;
+    }
+
+    loadScriptOnce("google-tag", googleTagScriptSources("gtag/js", { id: loaderId }));
+  }
+
+  function setupGoogleTagManager() {
+    if (
+      !trackingIds.googleTagManagerId ||
+      (!hasTrackingConsent("analytics") && !hasTrackingConsent("marketing"))
+    ) {
+      return;
+    }
+    ensureGoogleDataLayer();
+
+    if (!window.__ashtraGtmStarted) {
+      window.dataLayer.push({
+        event: "gtm.js",
+        "gtm.start": new Date().getTime()
+      });
+      window.__ashtraGtmStarted = true;
+    }
+
+    loadScriptOnce("google-tag-manager", googleTagScriptSources("gtm.js", {
+      id: trackingIds.googleTagManagerId
+    }));
+  }
+
+  function setupMetaPixel() {
+    if (!trackingIds.metaPixelId || !hasTrackingConsent("marketing")) return;
+
+    if (typeof window.fbq !== "function") {
+      const queue = function () {
+        queue.callMethod ? queue.callMethod.apply(queue, arguments) : queue.queue.push(arguments);
+      };
+      queue.queue = [];
+      queue.loaded = true;
+      queue.version = "2.0";
+      window.fbq = queue;
+      window._fbq = queue;
+    }
+
+    window.__ashtraMetaPixels = window.__ashtraMetaPixels || {};
+    if (!window.__ashtraMetaPixels[trackingIds.metaPixelId]) {
+      window.fbq("init", trackingIds.metaPixelId);
+      window.__ashtraMetaPixels[trackingIds.metaPixelId] = true;
+    }
+
+    loadScriptOnce("meta-pixel", "https://connect.facebook.net/en_US/fbevents.js");
+  }
+
+  function setupLinkedInInsight() {
+    if (!trackingIds.linkedinPartnerId || !hasTrackingConsent("marketing")) return;
+
+    window._linkedin_partner_id = trackingIds.linkedinPartnerId;
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    if (!window._linkedin_data_partner_ids.includes(trackingIds.linkedinPartnerId)) {
+      window._linkedin_data_partner_ids.push(trackingIds.linkedinPartnerId);
+    }
+
+    loadScriptOnce("linkedin-insight", "https://snap.licdn.com/li.lms-analytics/insight.min.js");
+  }
+
+  function setupClarity() {
+    if (!trackingIds.clarityProjectId || !hasTrackingConsent("behavior")) return;
+
+    if (typeof window.clarity !== "function") {
+      window.clarity = function () {
+        (window.clarity.q = window.clarity.q || []).push(arguments);
+      };
+    }
+
+    loadScriptOnce("microsoft-clarity", `https://www.clarity.ms/tag/${encodeURIComponent(trackingIds.clarityProjectId)}`);
+  }
+
+  function setupHotjar() {
+    if (!trackingIds.hotjarSiteId || !hasTrackingConsent("behavior")) return;
+    const hotjarId = Number(trackingIds.hotjarSiteId);
+    if (!Number.isFinite(hotjarId) || hotjarId <= 0) return;
+
+    window.hj =
+      window.hj ||
+      function () {
+        (window.hj.q = window.hj.q || []).push(arguments);
+      };
+    window._hjSettings = { hjid: hotjarId, hjsv: 6 };
+
+    loadScriptOnce("hotjar", `https://static.hotjar.com/c/hotjar-${hotjarId}.js?sv=6`);
+  }
+
+  function setupHubSpotTracking() {
+    if (!trackingIds.hubspotPortalId || !hasTrackingConsent("marketing")) return;
+    loadScriptOnce(
+      "hubspot",
+      `https://js.hs-scripts.com/${encodeURIComponent(trackingIds.hubspotPortalId)}.js`,
+      { defer: "defer", id: "hs-script-loader" }
+    );
+  }
+
+  function setupAnalytics() {
+    if (!trackingConfig.enabled || !hasAnyTrackingConsent()) return;
+    setupGoogleTag();
+    setupGoogleTagManager();
+    setupMetaPixel();
+    setupLinkedInInsight();
+    setupClarity();
+    setupHotjar();
+    setupHubSpotTracking();
+  }
+
+  // ==========================================================================
+  // JS Section: Shell Injection And Global Utilities
+  // Loads shared partials, adds floating actions, prepares page scaffolding, and
+  // decorates the global stage with CSS-driven stars/comets.
+  // ==========================================================================
   async function injectShell() {
     // Load the handwritten shell partials before the rest of the page behavior
     // runs so nav state, tracking hooks, and footer enhancements see real DOM.
@@ -979,48 +1389,197 @@
     for (let index = 0; index < 56; index += 1) {
       const star = document.createElement("span");
       star.className = "site-stage__star";
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.top = `${Math.random() * 100}%`;
-      star.style.animationDelay = `${Math.random() * 6}s`;
-      star.style.animationDuration = `${4 + Math.random() * 6}s`;
-      star.style.opacity = (0.28 + Math.random() * 0.72).toFixed(2);
-      star.style.transform = `scale(${0.55 + Math.random() * 1.4})`;
       starLayer.appendChild(star);
     }
 
     const cometLayer = document.createElement("div");
     cometLayer.className = "site-stage__comets";
-    cometLayer.innerHTML = '<span class="site-stage__comet"></span><span class="site-stage__comet site-stage__comet--alt"></span>';
+    cometLayer.innerHTML =
+      '<span class="site-stage__comet"></span><span class="site-stage__comet site-stage__comet--alt"></span>';
 
     stage.appendChild(starLayer);
     stage.appendChild(cometLayer);
   }
 
-  function trackEvent(name, detail) {
-    const payload = { event: name, page, ...(detail || {}) };
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push(payload);
+  function sendMarketingPixelEvent(name, detail) {
+    if (!hasTrackingConsent("marketing")) return;
 
-    if (typeof window.gtag === "function" && name !== "page_view") {
+    if (typeof window.fbq === "function") {
+      const standardEvent = metaStandardEvents[name];
+      if (standardEvent) {
+        window.fbq("track", standardEvent, detail || {});
+      } else {
+        window.fbq("trackCustom", name, detail || {});
+      }
+    }
+  }
+
+  function sendBehaviorToolEvent(name) {
+    if (!hasTrackingConsent("behavior")) return;
+    if (typeof window.clarity === "function") window.clarity("event", name);
+    if (typeof window.hj === "function") window.hj("event", name);
+  }
+
+  function sendHubSpotWebhookEvent(name, detail) {
+    if (!trackingIds.hubspotEventWebhook || !hasTrackingConsent("marketing")) return;
+    if (!hubspotKeyEvents.has(name)) return;
+
+    const payload = JSON.stringify({
+      event: name,
+      page,
+      title: document.title,
+      url: window.location.href,
+      path: window.location.pathname,
+      detail: detail || {},
+      occurredAt: new Date().toISOString()
+    });
+
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(trackingIds.hubspotEventWebhook, new Blob([payload], {
+        type: "application/json"
+      }));
+      return;
+    }
+
+    fetch(trackingIds.hubspotEventWebhook, {
+      body: payload,
+      headers: { "Content-Type": "application/json" },
+      keepalive: true,
+      method: "POST"
+    }).catch(function () {
+      // Tracking webhooks must never block the user journey.
+    });
+  }
+
+  function trackEvent(name, detail) {
+    if (!trackingConfig.enabled) return false;
+
+    const analyticsAllowed = hasTrackingConsent("analytics");
+    const marketingAllowed = hasTrackingConsent("marketing");
+    const behaviorAllowed = hasTrackingConsent("behavior");
+    if (!analyticsAllowed && !marketingAllowed && !behaviorAllowed) return false;
+
+    const eventDetail = detail || {};
+    const payload = { event: name, page, ...eventDetail };
+
+    if (analyticsAllowed || marketingAllowed) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(payload);
+    }
+
+    if (analyticsAllowed && typeof window.gtag === "function") {
       window.gtag("event", name, {
         page_title: document.title,
         page_location: window.location.href,
         page_path: window.location.pathname,
-        ...(detail || {})
+        ...eventDetail
       });
     }
+
+    sendMarketingPixelEvent(name, eventDetail);
+    sendBehaviorToolEvent(name);
+    sendHubSpotWebhookEvent(name, eventDetail);
+    return true;
+  }
+
+  function trackPageView() {
+    if (window.__ashtraPageViewTracked) return;
+    const tracked = trackEvent("page_view", {
+      path: window.location.pathname,
+      title: document.title
+    });
+    if (tracked) window.__ashtraPageViewTracked = true;
   }
 
   function setupTrackedClicks() {
     document.addEventListener("click", function (event) {
       const element = event.target.closest("[data-track]");
-      if (!element) return;
-      trackEvent(element.getAttribute("data-track"), {
-        label: element.getAttribute("data-track-label") || element.textContent.trim()
+      if (element) {
+        trackEvent(element.getAttribute("data-track"), {
+          label: element.getAttribute("data-track-label") || element.textContent.trim()
+        });
+      }
+
+      if (!trackingConfig.trackOutboundLinks) return;
+      const link = event.target.closest("a[href]");
+      if (!link) return;
+
+      const url = new URL(link.href, window.location.href);
+      if (url.origin === window.location.origin) return;
+
+      if (url.hostname.includes("calendly.com")) {
+        trackEvent("schedule_click", { url: url.href });
+      }
+
+      trackEvent("outbound_link_click", {
+        label: link.textContent.trim() || url.hostname,
+        url: url.href
       });
     });
   }
 
+  function setupScrollDepthTracking() {
+    if (!trackingConfig.trackScrollDepth) return;
+
+    const marks = [25, 50, 75, 90];
+    const sent = new Set();
+
+    const update = function () {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+
+      const percent = Math.round((window.scrollY / scrollable) * 100);
+      marks.forEach(function (mark) {
+        if (percent < mark || sent.has(mark)) return;
+        if (trackEvent("scroll_depth", { percent: mark })) sent.add(mark);
+      });
+
+      if (sent.size === marks.length) {
+        window.removeEventListener("scroll", update);
+      }
+    };
+
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+  }
+
+  function setupVideoEngagementTracking() {
+    if (!trackingConfig.trackVideoEngagement) return;
+
+    document.querySelectorAll("video").forEach(function (video, index) {
+      if (video.dataset.videoTrackingReady) return;
+      video.dataset.videoTrackingReady = "true";
+      const label = video.getAttribute("aria-label") || video.currentSrc || `video-${index + 1}`;
+      const progressMarks = [25, 50, 75, 100];
+      const sentProgress = new Set();
+
+      video.addEventListener("play", function () {
+        trackEvent("video_play", { label });
+      });
+
+      video.addEventListener("ended", function () {
+        trackEvent("video_complete", { label });
+      });
+
+      video.addEventListener("timeupdate", function () {
+        if (!video.duration || !Number.isFinite(video.duration)) return;
+        const percent = Math.round((video.currentTime / video.duration) * 100);
+
+        progressMarks.forEach(function (mark) {
+          if (percent < mark || sentProgress.has(mark)) return;
+          if (trackEvent("video_progress", { label, percent: mark })) {
+            sentProgress.add(mark);
+          }
+        });
+      });
+    });
+  }
+
+  // ==========================================================================
+  // JS Section: Motion And Reveal Effects
+  // Progressive enhancements for reveal-on-scroll, hover tilt, and depth-based
+  // scene motion. These all respect reduced-motion and pointer capability.
+  // ==========================================================================
   function setupReveal() {
     const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
     if (!revealItems.length) return;
@@ -1043,7 +1602,7 @@
         return candidate instanceof HTMLElement && candidate.hasAttribute("data-reveal");
       });
       const index = Math.max(0, siblings.indexOf(item));
-      item.style.transitionDelay = `${Math.min(index * 70, 280)}ms`;
+      item.dataset.revealDelay = String(Math.min(index, 4));
     });
 
     const observer = new IntersectionObserver(
@@ -1109,6 +1668,11 @@
     });
   }
 
+  // ==========================================================================
+  // JS Section: Discovery Brief Experience
+  // Turns the long questionnaire into guided accordion sections with required
+  // tags, active section state, hash support, and mobile-friendly scrolling.
+  // ==========================================================================
   function setupDiscoveryBrief() {
     if (page !== "discovery") return;
 
@@ -1297,6 +1861,11 @@
     });
   }
 
+  // ==========================================================================
+  // JS Section: Discovery Brief Navigation
+  // Builds the sticky section navigator and keeps it synced with visible
+  // questionnaire sections.
+  // ==========================================================================
   function setupBriefNav() {
     const nav = document.querySelector("[data-brief-nav]");
     const sections = Array.from(document.querySelectorAll(".brief-section"));
@@ -1363,6 +1932,11 @@
     setActive(sections[0].id);
   }
 
+  // ==========================================================================
+  // JS Section: Media, Motion, And Visual Decoration
+  // Handles scene parallax, media performance defaults, back-to-top behavior,
+  // and decorative visual cards/rails inserted around body content.
+  // ==========================================================================
   function setupSceneMotion() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (!window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 1040px)").matches) {
@@ -1409,7 +1983,6 @@
 
   function setupMediaPerformance() {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const compactViewport = window.matchMedia("(max-width: 900px)").matches;
 
     document.querySelectorAll("img").forEach(function (image) {
       if (!image.hasAttribute("decoding")) {
@@ -1422,7 +1995,7 @@
         video.setAttribute("playsinline", "");
       }
       if (!video.hasAttribute("preload") || video.getAttribute("preload") === "auto") {
-        video.setAttribute("preload", compactViewport ? "metadata" : "metadata");
+        video.setAttribute("preload", "metadata");
       }
       if (reduceMotion) {
         video.removeAttribute("autoplay");
@@ -1611,8 +2184,11 @@
     });
   }
 
-  // Add simple sequence classes to the handwritten body sections so the CSS can
-  // alternate depth and keep long pages from feeling visually repetitive.
+  // ==========================================================================
+  // JS Section: Layout Sequencing
+  // Adds simple sequence data/classes so CSS can alternate depth and keep long
+  // pages from feeling visually repetitive.
+  // ==========================================================================
   function setupLayoutScaffold() {
     document.querySelectorAll("[data-layout-sequence]").forEach(function (section, index) {
       section.dataset.layoutIndex = String(index + 1);
@@ -1621,6 +2197,11 @@
     });
   }
 
+  // ==========================================================================
+  // JS Section: Payments And Forms
+  // Handles payment-method prefill, endpoint resolution, Formspree submission,
+  // success/error states, analytics events, and optional redirects.
+  // ==========================================================================
   function setupPaymentPrefill() {
     const field = document.querySelector("[data-payment-method-field]");
     if (!field) return;
@@ -1628,6 +2209,7 @@
     document.querySelectorAll("[data-payment-prefill]").forEach(function (trigger) {
       trigger.addEventListener("click", function () {
         field.value = trigger.getAttribute("data-payment-prefill") || "";
+        trackEvent("payment_option_click", { method: field.value || "unknown" });
       });
     });
   }
@@ -1761,23 +2343,29 @@
         }
       });
 
-      form.querySelectorAll("input, textarea, select").forEach(function (field) {
-        if (field.type === "hidden") return;
-        field.addEventListener(
-          "focus",
-          function () {
-            if (started) return;
-            started = true;
-            trackEvent("contact_form_started", {
-              form: form.getAttribute("name") || form.dataset.formKind || "enquiry"
-            });
-          },
-          { once: true }
-        );
-      });
+      if (trackingConfig.trackFormFocus) {
+        form.querySelectorAll("input, textarea, select").forEach(function (field) {
+          if (field.type === "hidden") return;
+          field.addEventListener(
+            "focus",
+            function () {
+              if (started) return;
+              started = true;
+              trackEvent("contact_form_started", {
+                form: form.getAttribute("name") || form.dataset.formKind || "enquiry"
+              });
+            },
+            { once: true }
+          );
+        });
+      }
     });
   }
 
+  // ==========================================================================
+  // JS Section: FAQ Behavior
+  // Tracks opened FAQ items so analytics can show which answers are useful.
+  // ==========================================================================
   function setupFaq() {
     document.querySelectorAll("details[data-faq]").forEach(function (item) {
       item.addEventListener("toggle", function () {
@@ -1789,6 +2377,11 @@
     });
   }
 
+  // ==========================================================================
+  // JS Section: Orbot Routing Data
+  // Typo fixes, intent definitions, and helper functions that map plain-language
+  // visitor goals to the best site routes.
+  // ==========================================================================
   const orbotTypos = {
     servces: "services",
     proccess: "process",
@@ -2086,6 +2679,11 @@
     `;
   }
 
+  // ==========================================================================
+  // JS Section: Orbot Assistant UI Controller
+  // Opens/closes the assistant, validates input, renders replies/results, and
+  // preserves keyboard focus without changing the rest of the page.
+  // ==========================================================================
   function setupOrbotAssistant() {
     const launcher = document.querySelector("[data-orbot-launcher]");
     const root = document.querySelector("[data-orbot-root]");
@@ -2157,7 +2755,7 @@
       previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       root.hidden = false;
       launcher.setAttribute("aria-expanded", "true");
-      document.body.style.overflow = "hidden";
+      document.body.classList.add("has-orbot-open");
       setState("open");
       if (!log.childElementCount) addWelcome();
       window.setTimeout(function () {
@@ -2171,7 +2769,7 @@
       isOpen = false;
       root.hidden = true;
       launcher.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = "";
+      document.body.classList.remove("has-orbot-open");
       resetSession();
       trackEvent("orbot_close", { label: reason || "dismiss" });
       if (previousFocus && typeof previousFocus.focus === "function") {
@@ -2275,14 +2873,21 @@
     });
   }
 
+  // ==========================================================================
+  // JS Section: Initialization Order
+  // Runs head setup first, loads partials, then enables progressive interaction
+  // enhancements once the shared shell exists in the DOM.
+  // ==========================================================================
   async function init() {
     rewriteRootRelativeUrls(document.body);
     await injectShell();
     setupSeo();
+    setupTrackingConsent();
     setupAnalytics();
     setupPageStructure();
     decorateStage();
     setupTrackedClicks();
+    setupScrollDepthTracking();
     setupReveal();
     setupTiltCards();
     setupSectionVisuals();
@@ -2290,6 +2895,7 @@
     setupContentSequencing();
     setupSceneMotion();
     setupMediaPerformance();
+    setupVideoEngagementTracking();
     setupBackToTop();
     setupOrbotAssistant();
     setupLayoutScaffold();
@@ -2299,10 +2905,7 @@
     setupForms();
     setupFaq();
     rewriteRootRelativeUrls(document.body);
-    trackEvent("page_view", {
-      title: document.title,
-      path: window.location.pathname
-    });
+    trackPageView();
   }
 
   if (document.readyState === "loading") {

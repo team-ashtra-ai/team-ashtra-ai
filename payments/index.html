@@ -61,8 +61,8 @@
 
     <main class="layout-page page-flow page-flow--payments">
       <div class="page-ambient" aria-hidden="true">
-        <img src="/assets/media/overlays/generated/payments-strategy-consultation-neon-hero-overlay.svg" alt="" loading="lazy" decoding="async" style="top: clamp(5rem, 8vw, 8rem); right: clamp(-10rem, -4vw, -2rem); width: min(46vw, 40rem); opacity: 0.18; transform: rotate(-10deg);" />
-        <img src="/assets/media/overlays/generated/payments-project-clarity-neon-section-overlay.svg" alt="" loading="lazy" decoding="async" style="top: clamp(52rem, 68vw, 86rem); left: clamp(-14rem, -6vw, -2rem); width: min(42vw, 36rem); opacity: 0.11; transform: rotate(8deg);" />
+        <img class="page-ambient__image page-ambient__image--payments-strategy-consultation-neon-hero-overlay" src="/assets/media/overlays/generated/payments-strategy-consultation-neon-hero-overlay.svg" alt="" loading="lazy" decoding="async" />
+        <img class="page-ambient__image page-ambient__image--payments-project-clarity-neon-section-overlay" src="/assets/media/overlays/generated/payments-project-clarity-neon-section-overlay.svg" alt="" loading="lazy" decoding="async" />
       </div>
 
       <!-- SECTION 01: Start with clarity.
@@ -70,33 +70,6 @@
            Main classes: page-local hero
       -->
       <section id="payments-briefing" data-layout-sequence>
-        <style>
-          #payments-briefing { --mx: 0; --my: 0; padding-top: clamp(1rem, 2vw, 2rem); }
-          #payments-briefing * { box-sizing: border-box; }
-          #payments-briefing .payments-briefing__frame {
-            width: min(92rem, calc(100% - 2rem)); margin: 0 auto; padding: clamp(1rem, 1.8vw, 1.5rem);
-            border-radius: 2.3rem; border: 1px solid rgba(140,226,255,0.14);
-            background: radial-gradient(circle at 16% 18%, rgba(255,148,104,0.12), transparent 20%), linear-gradient(145deg, rgba(8,12,22,0.98), rgba(10,18,32,0.94));
-            display: grid; grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr); gap: 1rem; box-shadow: 0 28px 100px rgba(0,0,0,0.26);
-          }
-          #payments-briefing .payments-briefing__copy, #payments-briefing .payments-briefing__board { display: grid; align-content: center; gap: 0.95rem; }
-          #payments-briefing .payments-briefing__eyebrow, #payments-briefing .payments-briefing__mini { font: 500 0.72rem/1 "IBM Plex Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(225,232,242,0.72); }
-          #payments-briefing h1, #payments-briefing h2 { margin: 0; color: #f5f7fb; font-family: "Syne", sans-serif; letter-spacing: -0.07em; }
-          #payments-briefing h1 { max-width: 7ch; font-size: clamp(3rem, 6vw, 5.6rem); line-height: 0.92; }
-          #payments-briefing p { margin: 0; color: rgba(220,228,239,0.82); font: 500 clamp(0.98rem, 1.3vw, 1.06rem)/1.6 "Manrope", sans-serif; }
-          #payments-briefing .payments-briefing__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-          #payments-briefing .payments-briefing__action { display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; padding: 0 1.1rem; border-radius: 999px; text-decoration: none; font: 700 0.92rem/1 "Manrope", sans-serif; }
-          #payments-briefing .payments-briefing__action--primary { border: 0; color: #07111d; background: linear-gradient(135deg, #ff9064, #ffd677 72%, #bffbff); }
-          #payments-briefing .payments-briefing__action--secondary { border: 1px solid rgba(140,226,255,0.16); color: #edf3fb; background: rgba(255,255,255,0.03); }
-          #payments-briefing .payments-briefing__board { padding: 1rem; border-radius: 1.7rem; border: 1px solid rgba(140,226,255,0.14); background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.008)), rgba(8,13,24,0.74); }
-          #payments-briefing .payments-briefing__hero { position: relative; min-height: clamp(13rem, 20vw, 17rem); border-radius: 1.35rem; overflow: hidden; border: 1px solid rgba(140,226,255,0.12); }
-          #payments-briefing .payments-briefing__hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.04) translate3d(calc(var(--mx) * 8px), calc(var(--my) * 8px), 0); transition: transform 180ms ease-out; opacity: 0.88; }
-          #payments-briefing .payments-briefing__hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,9,17,0.08), rgba(5,9,17,0.72)); }
-          #payments-briefing .payments-briefing__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
-          #payments-briefing .payments-briefing__item { padding: 0.95rem; border-radius: 1.2rem; border: 1px solid rgba(140,226,255,0.12); background: rgba(255,255,255,0.02); display: grid; gap: 0.4rem; }
-          @media (max-width: 980px) { #payments-briefing .payments-briefing__frame { grid-template-columns: 1fr; } }
-          @media (max-width: 720px) { #payments-briefing .payments-briefing__frame { width: min(100%, calc(100% - 1rem)); } #payments-briefing .payments-briefing__actions, #payments-briefing .payments-briefing__grid { display: grid; } #payments-briefing .payments-briefing__action { width: 100%; } }
-        </style>
         <div class="payments-briefing__frame">
           <div class="payments-briefing__copy">
             <span class="payments-briefing__eyebrow">Payments</span>

@@ -61,8 +61,8 @@
 
     <main class="layout-page page-flow page-flow--examples">
       <div class="page-ambient" aria-hidden="true">
-        <img src="/assets/media/overlays/generated/examples-website-portfolio-neon-hero-overlay.svg" alt="" loading="lazy" decoding="async" style="top: clamp(5rem, 8vw, 8rem); right: clamp(-11rem, -4vw, -2rem); width: min(50vw, 44rem); opacity: 0.2; transform: rotate(-7deg);" />
-        <img src="/assets/media/overlays/generated/examples-case-study-gallery-neon-section-overlay.svg" alt="" loading="lazy" decoding="async" style="top: clamp(60rem, 80vw, 102rem); left: clamp(-15rem, -7vw, -3rem); width: min(48vw, 40rem); opacity: 0.12; transform: rotate(9deg);" />
+        <img class="page-ambient__image page-ambient__image--examples-website-portfolio-neon-hero-overlay" src="/assets/media/overlays/generated/examples-website-portfolio-neon-hero-overlay.svg" alt="" loading="lazy" decoding="async" />
+        <img class="page-ambient__image page-ambient__image--examples-case-study-gallery-neon-section-overlay" src="/assets/media/overlays/generated/examples-case-study-gallery-neon-section-overlay.svg" alt="" loading="lazy" decoding="async" />
       </div>
 
       <!-- SECTION 01: Selected directions that show the standard.
@@ -70,40 +70,6 @@
            Main classes: page-local hero
       -->
       <section id="examples-mosaic" data-layout-sequence>
-        <style>
-          #examples-mosaic { --mx: 0; --my: 0; padding-top: clamp(1rem, 2vw, 2rem); }
-          #examples-mosaic * { box-sizing: border-box; }
-          #examples-mosaic .examples-mosaic__frame {
-            width: min(94rem, calc(100% - 2rem)); margin: 0 auto; padding: clamp(1rem, 1.8vw, 1.5rem);
-            border-radius: 2.3rem; border: 1px solid rgba(140,226,255,0.14);
-            background: radial-gradient(circle at 14% 20%, rgba(140,226,255,0.12), transparent 20%), linear-gradient(145deg, rgba(7,11,21,0.98), rgba(10,18,33,0.94));
-            display: grid; grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr); gap: 1rem; box-shadow: 0 28px 100px rgba(0,0,0,0.26);
-          }
-          #examples-mosaic .examples-mosaic__copy, #examples-mosaic .examples-mosaic__grid { display: grid; align-content: center; gap: 0.95rem; }
-          #examples-mosaic .examples-mosaic__eyebrow, #examples-mosaic .examples-mosaic__label { font: 500 0.72rem/1 "IBM Plex Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(225,232,242,0.72); }
-          #examples-mosaic h1, #examples-mosaic h2 { margin: 0; color: #f5f7fb; font-family: "Syne", sans-serif; letter-spacing: -0.07em; }
-          #examples-mosaic h1 { max-width: 7ch; font-size: clamp(3rem, 6vw, 5.6rem); line-height: 0.92; }
-          #examples-mosaic p { margin: 0; color: rgba(220,228,239,0.82); font: 500 clamp(0.98rem, 1.3vw, 1.06rem)/1.6 "Manrope", sans-serif; }
-          #examples-mosaic .examples-mosaic__actions, #examples-mosaic .examples-mosaic__tags { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-          #examples-mosaic .examples-mosaic__action, #examples-mosaic .examples-mosaic__tag { display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; padding: 0 1.1rem; border-radius: 999px; text-decoration: none; font: 700 0.92rem/1 "Manrope", sans-serif; }
-          #examples-mosaic .examples-mosaic__action--primary { border: 0; color: #07111d; background: linear-gradient(135deg, #ff9064, #ffd677 72%, #bffbff); }
-          #examples-mosaic .examples-mosaic__action--secondary, #examples-mosaic .examples-mosaic__tag { border: 1px solid rgba(140,226,255,0.16); color: #edf3fb; background: rgba(255,255,255,0.03); }
-          #examples-mosaic .examples-mosaic__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); display: grid; }
-          #examples-mosaic .examples-mosaic__hero {
-            grid-column: span 2; grid-row: span 2; position: relative; min-height: clamp(20rem, 28vw, 24rem);
-            border-radius: 1.55rem; overflow: hidden; border: 1px solid rgba(140,226,255,0.12);
-          }
-          #examples-mosaic .examples-mosaic__hero img, #examples-mosaic .examples-mosaic__tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-          #examples-mosaic .examples-mosaic__hero img { transform: scale(1.04) translate3d(calc(var(--mx) * 8px), calc(var(--my) * 8px), 0); transition: transform 180ms ease-out; }
-          #examples-mosaic .examples-mosaic__overlay { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.22; mix-blend-mode: screen; pointer-events: none; z-index: 1; }
-          #examples-mosaic .examples-mosaic__hero::after, #examples-mosaic .examples-mosaic__tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,9,17,0.08), rgba(5,9,17,0.72)); }
-          #examples-mosaic .examples-mosaic__hero-copy, #examples-mosaic .examples-mosaic__tile-copy { position: relative; z-index: 1; padding: 1rem; display: grid; gap: 0.45rem; align-content: end; height: 100%; }
-          #examples-mosaic .examples-mosaic__tile {
-            position: relative; min-height: 11.5rem; border-radius: 1.35rem; overflow: hidden; border: 1px solid rgba(140,226,255,0.12);
-          }
-          @media (max-width: 980px) { #examples-mosaic .examples-mosaic__frame { grid-template-columns: 1fr; } }
-          @media (max-width: 720px) { #examples-mosaic .examples-mosaic__frame { width: min(100%, calc(100% - 1rem)); } #examples-mosaic .examples-mosaic__actions { display: grid; } #examples-mosaic .examples-mosaic__action { width: 100%; } #examples-mosaic .examples-mosaic__grid { grid-template-columns: 1fr; } #examples-mosaic .examples-mosaic__hero { grid-column: auto; grid-row: auto; } }
-        </style>
         <div class="examples-mosaic__frame">
           <div class="examples-mosaic__copy">
             <span class="examples-mosaic__eyebrow">Selected directions</span>
