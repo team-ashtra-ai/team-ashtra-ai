@@ -75,7 +75,7 @@
                 >Book Consultation</a
               >
               <a class="button button--secondary" href="#discovery-questionnaire" data-track="discovery_view"
-                >Start Free Brief</a
+                >Start Discovery Brief</a
               >
               <a class="button button--secondary" href="/invest/">See Levels</a>
             </div>
@@ -160,47 +160,18 @@
       >
         <div class="shell">
           <aside class="discovery-brief__aside">
-            <div class="surface layout-section__intro" data-reveal>
-              <span class="layout-section__kicker">Free Price Range</span>
-              <h2 class="layout-section__title">Share the essentials.</h2>
-              <p class="layout-section__body">
-                Free range only. Skip anything you do not know.
-              </p>
-            </div>
-            <article class="surface discovery-brief__guide" data-reveal>
+            <article class="surface discovery-brief__guide discovery-brief__guide--rail" data-reveal>
               <div class="discovery-brief__guide-head">
-                <span class="brief-hub__eyebrow">21 sections</span>
-                <h3>Open one section at a time.</h3>
-                <p>Start with 01 or jump anywhere.</p>
+                <span class="brief-hub__eyebrow">Quick navigation</span>
+                <h3>Move through the brief faster.</h3>
+                <p>Start with the first section, open everything, or jump straight to the part you need.</p>
               </div>
-              <div class="discovery-brief__guide-grid">
-                <div class="discovery-brief__guide-item">
-                  <span>Time</span>
-                  <p>10 to 15 minutes.</p>
-                </div>
-                <div class="discovery-brief__guide-item">
-                  <span>Need</span>
-                  <p>Business, goals, and rough scope.</p>
-                </div>
-                <div class="discovery-brief__guide-item">
-                  <span>Skip</span>
-                  <p>Leave unknowns blank.</p>
-                </div>
-                <div class="discovery-brief__guide-item">
-                  <span>Reply</span>
-                  <p>Approximate range within 48 hours.</p>
-                </div>
-              </div>
-              <div class="discovery-brief__guide-note">
-                <p>Use the map or the quick controls.</p>
-                <div class="discovery-brief__actions">
+              <div class="discovery-brief__actions" role="group" aria-label="Discovery brief controls">
                   <button class="discovery-brief__action" type="button" data-discovery-open-first>Start With 01</button>
                   <button class="discovery-brief__action" type="button" data-discovery-open-all>Open All</button>
                   <button class="discovery-brief__action" type="button" data-discovery-close-all>Close All</button>
-                  <a class="discovery-brief__action" href="/payments/">Talk Instead</a>
-                </div>
-                <nav class="brief-hub__nav" data-brief-nav aria-label="Discovery brief sections"></nav>
               </div>
+              <nav class="brief-hub__nav" data-brief-nav aria-label="Discovery brief sections"></nav>
             </article>
           </aside>
           <form
@@ -216,7 +187,7 @@
             name="discovery-brief"
           >
             <input type="hidden" name="_subject" value="ASH-TRA discovery brief" />
-            <input type="hidden" name="Route" value="Free Price Range Request" />
+            <input type="hidden" name="Route" value="Discovery Brief Request" />
 
             <article class="surface discovery-form__banner" data-reveal>
               <span class="eyebrow">Before you start</span>
@@ -1623,7 +1594,7 @@
               <blockquote>Send the brief.</blockquote>
               <p>Range back in 48 hours. Then you move into the investment guide.</p>
               <div class="hero__actions">
-                <button class="button button--primary" type="submit">Send Free Price Range Brief</button>
+                <button class="button button--primary" type="submit">Send Discovery Brief</button>
               </div>
               <p>More signal. Sharper range.</p>
             </article>
@@ -1646,7 +1617,7 @@
             <blockquote>Talk first.</blockquote>
             <p>If you want live input before filling anything else, book the consultation instead.</p>
             <div class="hero__actions">
-              <a class="button button--primary" href="/payments/" data-track="pay_consultation_view"
+              <a class="button button--primary discovery-button--accent" href="/payments/" data-track="pay_consultation_view"
                 >Book Consultation</a
               >
               <a class="button button--secondary" href="/contact/">Contact</a>

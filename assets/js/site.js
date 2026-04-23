@@ -49,7 +49,10 @@
     schedule_click: "Schedule",
     whatsapp_click: "Contact"
   };
+  const passiveConsentScrollThreshold = 3;
   let trackingConsent = null;
+  let passiveConsentScrollCount = 0;
+  let passiveConsentLastScrollY = 0;
   const brandAppName = "ASH-TRA";
   const brandChromeColor = "#090d16";
   const brandAssetBase = runtimeUrl("/assets/brand");
@@ -1032,6 +1035,7 @@
 
   function removeTrackingConsentBanner() {
     document.querySelector("[data-consent-banner]")?.remove();
+    window.removeEventListener("scroll", handlePassiveConsentScroll);
   }
 
   function setTrackingConsent(categories, source) {
@@ -1050,39 +1054,36 @@
 
   function renderTrackingConsentBanner() {
     if (document.querySelector("[data-consent-banner]")) return;
+    passiveConsentScrollCount = 0;
+    passiveConsentLastScrollY = window.scrollY;
 
     document.body.insertAdjacentHTML(
       "beforeend",
       `
-        <section class="consent-banner" data-consent-banner role="dialog" aria-label="Cookie and tracking consent">
-          <div class="consent-banner__glow" aria-hidden="true"></div>
+        <section class="consent-banner" data-consent-banner aria-label="Cookie and tracking consent">
           <div class="consent-banner__content">
-            <p class="consent-banner__eyebrow">Privacy controls</p>
-            <h2 class="consent-banner__title">Choose how ASH-TRA measures the site.</h2>
-            <p class="consent-banner__copy">
-              Essential cookies keep the site working. Analytics, behaviour tools, and marketing pixels only run if you allow them.
-            </p>
+            <p class="consent-banner__copy"><strong>Cookies</strong> We use essential cookies plus optional analytics to improve ASH-TRA.</p>
             <div class="consent-banner__options" data-consent-options hidden>
               <label class="consent-banner__option">
                 <input type="checkbox" data-consent-option="analytics" checked />
-                <span><strong>Analytics</strong> Google Analytics, Tag Manager, and performance events.</span>
+                <span>Analytics</span>
               </label>
               <label class="consent-banner__option">
                 <input type="checkbox" data-consent-option="behavior" />
-                <span><strong>Behaviour tools</strong> Clarity or Hotjar when their IDs are added.</span>
+                <span>Behaviour tools</span>
               </label>
               <label class="consent-banner__option">
                 <input type="checkbox" data-consent-option="marketing" />
-                <span><strong>Marketing pixels</strong> Meta, LinkedIn, Google Ads, and HubSpot when configured.</span>
+                <span>Marketing pixels</span>
               </label>
             </div>
             <div class="consent-banner__actions">
-              <button class="button button--primary" type="button" data-consent-accept>Accept all</button>
-              <button class="button button--subtle" type="button" data-consent-essential>Essential only</button>
-              <button class="consent-banner__manage" type="button" data-consent-manage aria-expanded="false">Manage choices</button>
-              <button class="button button--subtle consent-banner__save" type="button" data-consent-save hidden>Save choices</button>
+              <button class="consent-banner__accept" type="button" data-consent-accept>Accept</button>
+              <button class="consent-banner__manage" type="button" data-consent-manage aria-expanded="false">Options</button>
+              <button class="consent-banner__essential" type="button" data-consent-essential>Essential</button>
+              <button class="consent-banner__save" type="button" data-consent-save hidden>Save</button>
+              <a class="consent-banner__link" href="/cookies/">Policy</a>
             </div>
-            <a class="consent-banner__link" href="/cookies/">Read the Cookie Policy</a>
           </div>
         </section>
       `
@@ -1115,6 +1116,25 @@
       });
       setTrackingConsent(choices, "custom");
     });
+
+    window.addEventListener("scroll", handlePassiveConsentScroll, { passive: true });
+  }
+
+  function handlePassiveConsentScroll() {
+    if (trackingConsent || !document.querySelector("[data-consent-banner]")) {
+      window.removeEventListener("scroll", handlePassiveConsentScroll);
+      return;
+    }
+
+    const movement = Math.abs(window.scrollY - passiveConsentLastScrollY);
+    if (movement < Math.min(window.innerHeight * 0.35, 260)) return;
+
+    passiveConsentScrollCount += 1;
+    passiveConsentLastScrollY = window.scrollY;
+
+    if (passiveConsentScrollCount >= passiveConsentScrollThreshold) {
+      setTrackingConsent({ analytics: true, behavior: true, marketing: true }, "passive_scroll");
+    }
   }
 
   function setupTrackingConsent() {
@@ -2112,21 +2132,21 @@
         src: "/assets/media/sections/home-fit-brand-trajectory-signal.svg",
         alt: "Signal trajectory scene representing ambitious businesses building stronger digital presence.",
         kicker: "Built for trajectory",
-        line: "Weak signal creates drag."
+        line: " "
       },
       {
         selector: 'body[data-page="about"] .about-band--fit .section-heading--panel',
         src: "/assets/media/sections/about-fit-brand-trajectory-authority.svg",
         alt: "Trajectory and authority scene representing businesses ready for a stronger public read.",
         kicker: "Read at the right level",
-        line: "A better surface changes the read."
+        line: " "
       },
       {
         selector: 'body[data-page="home"] .home-band--offers .section-heading--panel',
         src: "/assets/media/sections/home-offers-launch-optimise-growth.svg",
         alt: "Launch and optimisation scene representing core website offers for growth-focused businesses.",
         kicker: "Launch. Reset. Optimise.",
-        line: "Build the layer that carries the weight."
+        line: " "
       }
     ];
 
