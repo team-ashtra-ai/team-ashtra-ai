@@ -343,58 +343,179 @@
             }
           }
         </style>
-        <div class="home-cover__frame">
-          <div class="home-cover__copy">
-            <span class="home-cover__eyebrow">Where ambition meets momentum.</span>
-            <h1>Look like the business you are becoming.</h1>
-            <p>
-              ASH-TRA builds modern websites for ambitious businesses that need a stronger first
-              read, sharper positioning, and a front door that can carry real growth.
-            </p>
-            <div class="home-cover__actions">
-              <a class="home-cover__action home-cover__action--primary" href="/launch/" data-track="start_project_click">Launch Your Site</a>
-              <a class="home-cover__action" href="/services/" data-track="services_view">Explore Services</a>
-              <a class="home-cover__action" href="/discovery/" data-track="discovery_view">Start With Discovery</a>
-            </div>
-            <div class="home-cover__proofs">
-              <span class="home-cover__proof">Clearer signal</span>
-              <span class="home-cover__proof">Premium presence</span>
-              <span class="home-cover__proof">Built to rank and resonate</span>
-            </div>
-          </div>
-          <div class="home-cover__visual">
-            <video
-              class="home-cover__image"
-              src="/assets/media/stock/space/premium-website-whirlpool-galaxy-motion.webm"
-              poster="/assets/media/stock/space/premium-website-launch-whirlpool-galaxy-poster.webp"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="metadata"
-              aria-hidden="true"
-            ></video>
-            <img class="home-cover__overlay home-cover__overlay--grid" src="/assets/media/overlays/premium-website-neon-orbit-grid-overlay.svg" alt="" loading="eager" />
-            <img class="home-cover__overlay home-cover__overlay--scan" src="/assets/media/overlays/premium-website-neon-scan-arc-overlay.svg" alt="" loading="eager" />
-            <div class="home-cover__shade" aria-hidden="true"></div>
-            <div class="home-cover__menu">
-              <span class="home-cover__tag">Neon approach</span>
-              <span class="home-cover__tag">Front-door authority</span>
-            </div>
-            <div class="home-cover__review">
-              <span class="home-cover__tag">First read</span>
-              <strong>Harder to ignore.</strong>
-              <span>Framed for higher-value first impressions and stronger commercial pull.</span>
-            </div>
-            <div class="home-cover__mark">
-              <img src="/assets/brand/ash-tra-mark.svg" alt="" loading="eager" />
-            </div>
-            <div class="home-cover__clients">
-              <span class="home-cover__tag">Why it lands</span>
-              <span>Sharper story. Better visual gravity. A stronger sense that the business is already operating at the next level.</span>
-            </div>
-          </div>
-        </div>
+<div style="position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; background:#050816; color:#ffffff; text-align:center; padding:40px 20px;">
+
+  <!-- Background Video -->
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    poster="/assets/media/stock/space/premium-website-launch-whirlpool-galaxy-poster.webp"
+    style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; opacity:0.9;"
+  >
+    <source src="/assets/media/stock/space/premium-website-whirlpool-galaxy-motion.webm" type="video/webm" />
+  </video>
+
+  <!-- Dark Overlay -->
+  <div style="position:absolute; inset:0; z-index:1; background:
+    radial-gradient(circle at center, rgba(13,18,36,0.18) 0%, rgba(5,8,22,0.68) 55%, rgba(3,5,14,0.9) 100%),
+    linear-gradient(to bottom, rgba(4,7,18,0.68) 0%, rgba(4,7,18,0.42) 35%, rgba(4,7,18,0.82) 100%);
+  "></div>
+
+  <!-- Glow -->
+  <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:min(72vw,900px); height:min(72vw,900px); border-radius:50%; background:radial-gradient(circle, rgba(58,110,255,0.18) 0%, rgba(58,110,255,0.06) 35%, rgba(58,110,255,0) 70%); filter:blur(18px); z-index:1;"></div>
+
+  <!-- Content -->
+  <div style="position:relative; z-index:2; width:100%; max-width:900px; display:flex; flex-direction:column; align-items:center; gap:22px;">
+
+    <span style="
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 16px;
+      border:1px solid rgba(255,255,255,0.14);
+      border-radius:999px;
+      background:rgba(255,255,255,0.06);
+      backdrop-filter:blur(10px);
+      font-size:12px;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,0.82);
+      box-shadow:0 0 30px rgba(53,102,255,0.08);
+    ">
+      ASH-TRA
+    </span>
+
+    <h1 style="
+      margin:0;
+      max-width:900px;
+      font-size:clamp(42px, 7vw, 88px);
+      line-height:0.95;
+      letter-spacing:-0.04em;
+      font-weight:800;
+      text-wrap:balance;
+      color:#ffffff;
+      text-shadow:0 10px 40px rgba(0,0,0,0.35);
+    ">
+      Look like the business<br style='display:none;' /> you are becoming.
+    </h1>
+
+    <p style="
+      margin:0;
+      max-width:700px;
+      font-size:clamp(17px, 2vw, 22px);
+      line-height:1.55;
+      color:rgba(255,255,255,0.82);
+      text-wrap:pretty;
+    ">
+      Modern websites for ambitious businesses that need a stronger first impression, sharper positioning, and a digital presence built to carry growth.
+    </p>
+
+    <div style="
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:14px;
+      margin-top:8px;
+    ">
+      <a
+        href="/launch/"
+        data-track="start_project_click"
+        style="
+          display:inline-flex;
+          align-items:center;
+          justify-content:center;
+          min-height:56px;
+          padding:0 24px;
+          border-radius:999px;
+          background:linear-gradient(135deg, #6ca8ff 0%, #2e6bff 55%, #1742c8 100%);
+          color:#ffffff;
+          text-decoration:none;
+          font-weight:700;
+          font-size:15px;
+          letter-spacing:0.01em;
+          box-shadow:0 18px 50px rgba(43,103,255,0.38), inset 0 1px 0 rgba(255,255,255,0.18);
+        "
+      >
+        Launch your site
+      </a>
+
+      <a
+        href="/discovery/"
+        data-track="discovery_view"
+        style="
+          display:inline-flex;
+          align-items:center;
+          justify-content:center;
+          min-height:56px;
+          padding:0 24px;
+          border-radius:999px;
+          border:1px solid rgba(255,255,255,0.16);
+          background:rgba(255,255,255,0.06);
+          backdrop-filter:blur(10px);
+          color:#ffffff;
+          text-decoration:none;
+          font-weight:600;
+          font-size:15px;
+          letter-spacing:0.01em;
+          box-shadow:0 10px 30px rgba(0,0,0,0.18);
+        "
+      >
+        Start with discovery
+      </a>
+    </div>
+
+    <div style="
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px;
+      margin-top:10px;
+    ">
+      <span style="
+        display:inline-flex;
+        align-items:center;
+        min-height:38px;
+        padding:0 14px;
+        border-radius:999px;
+        border:1px solid rgba(255,255,255,0.1);
+        background:rgba(255,255,255,0.05);
+        color:rgba(255,255,255,0.78);
+        font-size:13px;
+        backdrop-filter:blur(8px);
+      ">Clear first read</span>
+
+      <span style="
+        display:inline-flex;
+        align-items:center;
+        min-height:38px;
+        padding:0 14px;
+        border-radius:999px;
+        border:1px solid rgba(255,255,255,0.1);
+        background:rgba(255,255,255,0.05);
+        color:rgba(255,255,255,0.78);
+        font-size:13px;
+        backdrop-filter:blur(8px);
+      ">Sharper positioning</span>
+
+      <span style="
+        display:inline-flex;
+        align-items:center;
+        min-height:38px;
+        padding:0 14px;
+        border-radius:999px;
+        border:1px solid rgba(255,255,255,0.1);
+        background:rgba(255,255,255,0.05);
+        color:rgba(255,255,255,0.78);
+        font-size:13px;
+        backdrop-filter:blur(8px);
+      ">Built for growth</span>
+    </div>
+
+  </div>
+</div>
         <script>
           (() => {
             const root = document.getElementById("home-cover");

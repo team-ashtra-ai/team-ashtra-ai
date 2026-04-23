@@ -35,7 +35,7 @@ First impressions sell before you do.
 
 Buttons
 
-- Launch Your Site
+- Launch your site
 - Explore Our Services
 - Discover Your Voice
 
