@@ -14146,6 +14146,10 @@ body[data-page="discovery"] main.layout-page .discovery-band--brief .stacked-for
   gap: var(--site-frame-gap);
 }
 
+body[data-page="discovery"] .discovery-brief__aside {
+  display: none;
+}
+
 body[data-page="discovery"] .discovery-brief__guide--rail {
   padding: clamp(0.9rem, 2.4vw, 1.05rem);
   gap: 0.85rem;
@@ -14247,9 +14251,31 @@ body[data-page="discovery"].discovery-brief--enhanced .brief-section:not(.is-ope
   body[data-page="discovery"] #discovery-switch .discovery-switch__micro--reset {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  body[data-page="discovery"] .discovery-brief__aside {
+    display: block;
+  }
+
+  body[data-page="discovery"] main.layout-page .discovery-band--brief .discovery-brief__aside {
+    grid-column: 1 / -1;
+  }
+
+  body[data-page="discovery"] .discovery-brief__guide--rail {
+    padding: 0.95rem 1rem;
+  }
+
+  body[data-page="discovery"] .discovery-brief__guide .brief-hub__nav {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
-@media (min-width: 980px) {
+@media (min-width: 980px) and (max-width: 1199px) {
+  body[data-page="discovery"] .discovery-brief__guide .brief-hub__nav {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
   body[data-page="discovery"] #discovery-switch .discovery-switch__frame--reset {
     grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
     grid-template-areas:
@@ -14259,8 +14285,13 @@ body[data-page="discovery"].discovery-brief--enhanced .brief-section:not(.is-ope
   }
 
   body[data-page="discovery"] main.layout-page .discovery-band--brief .stacked-form {
-    grid-template-columns: minmax(0, 1fr) minmax(12.5rem, 18rem);
+    grid-template-columns: minmax(0, 1fr) minmax(13.5rem, 15.5rem);
     align-items: start;
+  }
+
+  body[data-page="discovery"] main.layout-page .discovery-band--brief .discovery-form__banner,
+  body[data-page="discovery"] main.layout-page .discovery-band--brief .brief-section:first-of-type {
+    grid-column: 1 / -1;
   }
 
   body[data-page="discovery"] main.layout-page .discovery-band--brief .stacked-form > :not(.discovery-brief__aside) {
@@ -14288,7 +14319,7 @@ body[data-page="discovery"].discovery-brief--enhanced .brief-section:not(.is-ope
 
 @media (min-width: 1180px) {
   body[data-page="discovery"].discovery-brief--enhanced .brief-section {
-    grid-template-columns: minmax(18rem, 22rem) minmax(0, 1fr);
+    grid-template-columns: minmax(16rem, 18rem) minmax(0, 1fr);
     align-items: start;
   }
 
