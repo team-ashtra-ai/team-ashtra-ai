@@ -7548,17 +7548,21 @@ body[data-page] main.layout-page .schedule-embed iframe {
 }
 
 body[data-page] {
+  --page-aura-a: rgba(46, 108, 255, 0.16);
+  --page-aura-b: rgba(121, 227, 255, 0.14);
   background:
-    radial-gradient(circle at 18% 8%, rgba(95, 126, 255, 0.16), transparent 28%),
-    radial-gradient(circle at 85% 12%, rgba(120, 228, 255, 0.12), transparent 24%),
-    radial-gradient(circle at 50% 110%, rgba(255, 142, 93, 0.1), transparent 28%),
-    linear-gradient(180deg, #03050b 0%, #050915 36%, #02040a 100%);
+    radial-gradient(circle at 16% 10%, rgba(58, 116, 255, 0.16), transparent 24%),
+    radial-gradient(circle at 84% 12%, rgba(121, 227, 255, 0.12), transparent 22%),
+    radial-gradient(circle at 50% 48%, rgba(104, 196, 255, 0.11), transparent 18%),
+    radial-gradient(circle at 50% 112%, rgba(40, 87, 182, 0.16), transparent 28%),
+    linear-gradient(180deg, #02050d 0%, #06101d 16%, #0b1f42 32%, #1a558a 50%, #0b1f42 68%, #06101d 84%, #02050d 100%);
 }
 
 body[data-page] .site-stage {
   background:
-    radial-gradient(circle at 14% 18%, rgba(92, 123, 255, 0.12), transparent 22%),
-    radial-gradient(circle at 84% 14%, rgba(120, 228, 255, 0.08), transparent 24%);
+    radial-gradient(circle at 16% 16%, rgba(58, 116, 255, 0.12), transparent 22%),
+    radial-gradient(circle at 84% 14%, rgba(121, 227, 255, 0.1), transparent 24%),
+    radial-gradient(circle at 50% 54%, rgba(90, 165, 255, 0.08), transparent 26%);
 }
 
 body[data-page] .site-stage::before,
@@ -7584,7 +7588,7 @@ body[data-page] .site-stage::before {
 body[data-page] .site-stage::after {
   background:
     linear-gradient(116deg, transparent 0%, rgba(114, 204, 255, 0.12) 34%, transparent 52%),
-    radial-gradient(circle at 52% 72%, rgba(255, 146, 96, 0.1), transparent 28%);
+    radial-gradient(circle at 52% 72%, rgba(58, 116, 255, 0.1), transparent 28%);
   filter: blur(34px);
   animation: editorialSweep 22s ease-in-out infinite alternate;
   opacity: 0.9;
@@ -7633,7 +7637,7 @@ body[data-page] main.layout-page::after {
 body[data-page] main.layout-page::before {
   background:
     radial-gradient(circle at 50% 0%, rgba(92, 123, 255, 0.08), transparent 22%),
-    radial-gradient(circle at 50% 100%, rgba(255, 147, 95, 0.08), transparent 24%);
+    radial-gradient(circle at 50% 100%, rgba(58, 116, 255, 0.08), transparent 24%);
   opacity: 0.92;
 }
 
@@ -7675,7 +7679,7 @@ body[data-page] main.layout-page > .section::before {
   top: 0;
   height: 1px;
   background:
-    linear-gradient(90deg, transparent, rgba(149, 228, 255, 0.28), rgba(255, 147, 95, 0.18), transparent);
+    linear-gradient(90deg, transparent, rgba(149, 228, 255, 0.24), rgba(58, 116, 255, 0.22), rgba(149, 228, 255, 0.12), transparent);
   opacity: 0.9;
 }
 
@@ -7710,7 +7714,7 @@ body[data-page] main.layout-page .surface::before {
   inset: 0;
   background:
     radial-gradient(circle at 18% 14%, rgba(111, 132, 255, 0.12), transparent 32%),
-    radial-gradient(circle at 88% 18%, rgba(255, 147, 95, 0.11), transparent 30%),
+    radial-gradient(circle at 88% 18%, rgba(121, 227, 255, 0.1), transparent 30%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 26%);
   pointer-events: none;
 }
@@ -13441,3 +13445,855 @@ body[data-page="invest"] .invest-decision-grid {
 #terms-board .terms-board__eyebrow, #terms-board h1, #terms-board p, #terms-board .terms-board__grid, #terms-board .terms-board__item { position: relative; z-index: 1; }
 @media (max-width: 900px) { #terms-board .terms-board__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 720px) { #terms-board .terms-board__frame { width: min(100%, calc(100% - 1rem)); } #terms-board .terms-board__grid { grid-template-columns: 1fr; } }
+
+/* Sitewide rhythm and closing CTA pass:
+   Re-assert consistent section spacing after the layered redesign work, and
+   compress the final CTA pattern into a smaller closing bar instead of another
+   oversized hero block. */
+body[data-page] main.layout-page {
+  --site-flow-gap: clamp(0.7rem, 1.35vw, 1rem);
+  --site-section-space: clamp(2.35rem, 4.8vw, 4.35rem);
+  --site-frame-gap: clamp(0.95rem, 1.8vw, 1.35rem);
+  --site-panel-pad: clamp(1.15rem, 2vw, 1.55rem);
+  --site-panel-gap: clamp(0.78rem, 1.3vw, 0.98rem);
+  --site-surface-pad: clamp(1.1rem, 1.9vw, 1.5rem);
+  --site-surface-gap: clamp(0.75rem, 1.25vw, 0.92rem);
+  --site-text-surface-pad: clamp(1.2rem, 2.05vw, 1.68rem);
+  --site-text-surface-gap: clamp(0.82rem, 1.35vw, 1.02rem);
+  gap: var(--site-flow-gap);
+  padding-bottom: clamp(1rem, 2vw, 1.45rem);
+}
+
+body[data-page] main.layout-page > .section {
+  padding-block: var(--site-section-space);
+}
+
+body[data-page] main.layout-page .shell,
+body[data-page] main.layout-page .hero-mast__shell {
+  width: min(100% - clamp(1.25rem, 4vw, 2.75rem), var(--container));
+}
+
+body[data-page] main.layout-page .layout-section__frame,
+body[data-page] main.layout-page .faq-overview,
+body[data-page] main.layout-page .policy-atlas__frame,
+body[data-page] main.layout-page .contact-grid,
+body[data-page] main.layout-page .payment-flow,
+body[data-page] main.layout-page .route-grid,
+body[data-page] main.layout-page .card-grid,
+body[data-page] main.layout-page .service-detail-grid,
+body[data-page] main.layout-page .study-grid,
+body[data-page] main.layout-page .layout-panel-grid,
+body[data-page] main.layout-page .layout-metric-grid,
+body[data-page] main.layout-page .layout-step-grid,
+body[data-page] main.layout-page .layout-category-grid,
+body[data-page] main.layout-page .home-decision-grid,
+body[data-page] main.layout-page .policy-atlas__cards,
+body[data-page] main.layout-page .story-grid {
+  gap: var(--site-frame-gap);
+}
+
+body[data-page] main.layout-page .section-heading.section-heading--panel,
+body[data-page] main.layout-page .layout-section__intro,
+body[data-page] main.layout-page .faq-summary,
+body[data-page] main.layout-page .policy-summary {
+  gap: var(--site-panel-gap);
+  padding: var(--site-panel-pad);
+}
+
+body[data-page] main.layout-page .route-card,
+body[data-page] main.layout-page .service-detail,
+body[data-page] main.layout-page .card,
+body[data-page] main.layout-page .study-card,
+body[data-page] main.layout-page .contact-card,
+body[data-page] main.layout-page .form-card,
+body[data-page] main.layout-page .faq-shell,
+body[data-page] main.layout-page .policy-card,
+body[data-page] main.layout-page .layout-panel,
+body[data-page] main.layout-page .layout-metric,
+body[data-page] main.layout-page .layout-category,
+body[data-page] main.layout-page .layout-timeline,
+body[data-page] main.layout-page .brief-section,
+body[data-page] main.layout-page .embed-card,
+body[data-page] main.layout-page .home-decision-card {
+  gap: var(--site-surface-gap);
+  padding: var(--site-surface-pad);
+}
+
+body[data-page] main.layout-page .quote-banner,
+body[data-page] main.layout-page .callout,
+body[data-page] main.layout-page .layout-callout,
+body[data-page] main.layout-page .story-grid__copy,
+body[data-page] main.layout-page .story-grid__media,
+body[data-page] main.layout-page .brief-hub__mast {
+  gap: var(--site-text-surface-gap);
+  padding: var(--site-text-surface-pad);
+}
+
+body[data-page] main.layout-page > :is(
+  .home-band--closing,
+  .about-band--closing,
+  .services-band--closing,
+  .process-band--closing,
+  .discovery-band--closing,
+  .faq-band--closing,
+  .pay-band--closing,
+  .schedule-band--closing,
+  .examples-band--closing
+) :is(.quote-banner, .callout, .layout-callout),
+body[data-page="invest"] main.layout-page > .section:last-of-type .layout-callout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(0.8rem, 1.45vw, 1.1rem) clamp(1rem, 2vw, 1.5rem);
+  padding: clamp(1rem, 1.8vw, 1.3rem);
+  border-radius: 26px;
+  border: 1px solid rgba(149, 228, 255, 0.16);
+  background:
+    radial-gradient(circle at top left, rgba(121, 227, 255, 0.12), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(82, 128, 255, 0.12), transparent 34%),
+    rgba(7, 13, 24, 0.9);
+  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.18);
+}
+
+body[data-page] main.layout-page > :is(
+  .home-band--closing,
+  .about-band--closing,
+  .services-band--closing,
+  .process-band--closing,
+  .discovery-band--closing,
+  .faq-band--closing,
+  .pay-band--closing,
+  .schedule-band--closing,
+  .examples-band--closing
+) :is(.quote-banner, .callout, .layout-callout) > .section-mark,
+body[data-page="invest"] main.layout-page > .section:last-of-type .layout-callout > .section-mark {
+  width: 2.65rem;
+  height: 2.65rem;
+  margin: 0;
+}
+
+body[data-page] main.layout-page > :is(
+  .home-band--closing,
+  .about-band--closing,
+  .services-band--closing,
+  .process-band--closing,
+  .discovery-band--closing,
+  .faq-band--closing,
+  .pay-band--closing,
+  .schedule-band--closing,
+  .examples-band--closing
+) :is(.quote-banner, .callout, .layout-callout) > :is(.eyebrow, .layout-section__kicker),
+body[data-page="invest"] main.layout-page > .section:last-of-type .layout-callout > :is(.eyebrow, .layout-section__kicker) {
+  margin: 0;
+}
+
+body[data-page] main.layout-page > :is(
+  .home-band--closing,
+  .about-band--closing,
+  .services-band--closing,
+  .process-band--closing,
+  .discovery-band--closing,
+  .faq-band--closing,
+  .pay-band--closing,
+  .schedule-band--closing,
+  .examples-band--closing
+) :is(.quote-banner, .callout, .layout-callout) > :is(blockquote, .callout__title),
+body[data-page="invest"] main.layout-page > .section:last-of-type .layout-callout > :is(blockquote, .callout__title) {
+  flex: 0 1 12ch;
+  max-width: 12ch;
+  font-size: clamp(1.55rem, 2.7vw, 2.35rem);
+  line-height: 0.96;
+}
+
+body[data-page] main.layout-page > :is(
+  .home-band--closing,
+  .about-band--closing,
+  .services-band--closing,
+  .process-band--closing,
+  .discovery-band--closing,
+  .faq-band--closing,
+  .pay-band--closing,
+  .schedule-band--closing,
+  .examples-band--closing
+) :is(.quote-banner, .callout, .layout-callout) > p:not(.page-hero__punch),
+body[data-page] main.layout-page > :is(
+  .home-band--closing,
+  .about-band--closing,
+  .services-band--closing,
+  .process-band--closing,
+  .discovery-band--closing,
+  .faq-band--closing,
+  .pay-band--closing,
+  .schedule-band--closing,
+  .examples-band--closing
+) :is(.quote-banner, .callout, .layout-callout) > .section-text,
+body[data-page="invest"] main.layout-page > .section:last-of-type .layout-callout > p:not(.page-hero__punch),
+body[data-page="invest"] main.layout-page > .section:last-of-type .layout-callout > .section-text {
+  flex: 1 1 20rem;
+  max-width: 38rem;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.58;
+}
+
+body[data-page] main.layout-page > :is(
+  .home-band--closing,
+  .about-band--closing,
+  .services-band--closing,
+  .process-band--closing,
+  .discovery-band--closing,
+  .faq-band--closing,
+  .pay-band--closing,
+  .schedule-band--closing,
+  .examples-band--closing
+) :is(.quote-banner, .callout, .layout-callout) > .hero__actions,
+body[data-page="invest"] main.layout-page > .section:last-of-type .layout-callout > .hero__actions {
+  margin-top: 0;
+  margin-left: auto;
+  align-items: center;
+}
+
+body[data-page] main.layout-page > :is(
+  .home-band--closing,
+  .about-band--closing,
+  .services-band--closing,
+  .process-band--closing,
+  .discovery-band--closing,
+  .faq-band--closing,
+  .pay-band--closing,
+  .schedule-band--closing,
+  .examples-band--closing
+) :is(.quote-banner, .callout, .layout-callout) > .hero__actions .button,
+body[data-page="invest"] main.layout-page > .section:last-of-type .layout-callout > .hero__actions .button {
+  min-height: 46px;
+  padding-inline: 1rem;
+}
+
+body[data-page] main.layout-page > :is(
+  .home-band--closing,
+  .about-band--closing,
+  .services-band--closing,
+  .process-band--closing,
+  .discovery-band--closing,
+  .faq-band--closing,
+  .pay-band--closing,
+  .schedule-band--closing,
+  .examples-band--closing
+) :is(.quote-banner, .callout, .layout-callout) > .page-hero__punch,
+body[data-page="invest"] main.layout-page > .section:last-of-type .layout-callout > .page-hero__punch {
+  width: 100%;
+  margin: 0;
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-align: left;
+  opacity: 0.76;
+}
+
+body[data-page="about"] #about-signal {
+  padding-top: clamp(0.45rem, 1.5vw, 1rem);
+}
+
+body[data-page="about"] #about-signal .about-cover {
+  position: relative;
+  width: min(100% - clamp(1.25rem, 4vw, 2.75rem), 1700px);
+  min-height: clamp(35rem, 90vh, 56rem);
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 42px;
+  border: 1px solid rgba(149, 228, 255, 0.16);
+  box-shadow: 0 32px 110px rgba(0, 0, 0, 0.34);
+  background: #050814;
+}
+
+body[data-page="about"] #about-signal .about-cover__media,
+body[data-page="about"] #about-signal .about-cover__shade,
+body[data-page="about"] #about-signal .about-cover__glow {
+  position: absolute;
+  inset: 0;
+}
+
+body[data-page="about"] #about-signal .about-cover__media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.96;
+  transform: scale(1.02);
+}
+
+body[data-page="about"] #about-signal .about-cover__shade {
+  background:
+    radial-gradient(circle at center, rgba(8, 15, 29, 0.16) 0%, rgba(5, 10, 22, 0.68) 54%, rgba(3, 6, 16, 0.92) 100%),
+    linear-gradient(180deg, rgba(4, 8, 18, 0.46) 0%, rgba(4, 8, 18, 0.2) 28%, rgba(4, 8, 18, 0.8) 100%);
+}
+
+body[data-page="about"] #about-signal .about-cover__glow {
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  width: min(72vw, 58rem);
+  height: min(72vw, 58rem);
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(74, 127, 255, 0.18) 0%, rgba(74, 127, 255, 0.05) 34%, rgba(74, 127, 255, 0) 72%);
+  filter: blur(22px);
+}
+
+body[data-page="about"] #about-signal .about-cover__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  width: min(100% - 2rem, 54rem);
+  min-height: inherit;
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 4.5rem) clamp(1rem, 3vw, 2rem);
+  text-align: center;
+}
+
+body[data-page="about"] #about-signal .about-cover__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 40px;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  color: rgba(255, 255, 255, 0.82);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+body[data-page="about"] #about-signal .about-cover__eyebrow::before {
+  content: "";
+  width: 0.52rem;
+  height: 0.52rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #79e3ff, #4f8bff);
+  box-shadow: 0 0 18px rgba(121, 227, 255, 0.54);
+}
+
+body[data-page="about"] #about-signal .about-cover__title {
+  margin: 0;
+  max-width: 10ch;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 8vw, 6.9rem);
+  line-height: 0.92;
+  letter-spacing: -0.07em;
+  text-wrap: balance;
+  text-shadow: 0 18px 44px rgba(0, 0, 0, 0.34);
+}
+
+body[data-page="about"] #about-signal .about-cover__lede {
+  margin: 0;
+  max-width: 36rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(1rem, 1.7vw, 1.18rem);
+  line-height: 1.58;
+}
+
+body[data-page="about"] #about-signal .about-cover__actions,
+body[data-page="about"] #about-signal .about-cover__chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+body[data-page="about"] #about-signal .about-cover__actions {
+  gap: 0.85rem;
+}
+
+body[data-page="about"] #about-signal .about-cover__chips {
+  gap: 0.65rem;
+}
+
+body[data-page="about"] #about-signal .about-cover__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 0 1.35rem;
+  border-radius: 999px;
+  font-size: 0.96rem;
+  color: #fff;
+}
+
+body[data-page="about"] #about-signal .about-cover__button--primary {
+  background: linear-gradient(135deg, #6ca8ff 0%, #2e6bff 56%, #1742c8 100%);
+  box-shadow: 0 18px 50px rgba(43, 103, 255, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+body[data-page="about"] #about-signal .about-cover__button--secondary {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+}
+
+body[data-page="about"] #about-signal .about-cover__chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.8rem;
+  backdrop-filter: blur(8px);
+}
+
+body[data-page="about"] main.layout-page .about-sequence__grid {
+  display: grid;
+  gap: var(--site-frame-gap);
+}
+
+body[data-page="about"] main.layout-page .about-band--signals .card-grid {
+  display: grid;
+  gap: var(--site-frame-gap);
+  grid-template-columns: 1fr;
+}
+
+body[data-page="about"] main.layout-page .about-band--signals .card-grid > * {
+  grid-column: auto;
+}
+
+body[data-page="about"] main.layout-page .about-sequence__step {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+  padding: var(--site-surface-pad);
+  border-radius: calc(var(--radius-xl) - 2px);
+  border: 1px solid rgba(149, 228, 255, 0.14);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.042), rgba(255, 255, 255, 0.012)),
+    rgba(6, 12, 23, 0.78);
+}
+
+body[data-page="about"] main.layout-page .about-sequence__index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.1rem;
+  height: 3.1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(149, 228, 255, 0.18);
+  background:
+    linear-gradient(145deg, rgba(111, 132, 255, 0.12), rgba(255, 147, 95, 0.08)),
+    rgba(8, 14, 26, 0.9);
+  color: var(--editorial-text);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+body[data-page="about"] main.layout-page .about-sequence__step h3 {
+  margin: 0;
+  color: var(--editorial-text);
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.6vw, 2.1rem);
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+}
+
+body[data-page="about"] main.layout-page .about-sequence__step p {
+  margin: 0;
+  color: var(--editorial-soft);
+  line-height: 1.62;
+}
+
+@media (min-width: 980px) {
+  body[data-page="about"] main.layout-page .about-band--signals .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  body[data-page="about"] main.layout-page .about-sequence__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  body[data-page] main.layout-page > :is(
+    .home-band--closing,
+    .about-band--closing,
+    .services-band--closing,
+    .process-band--closing,
+    .discovery-band--closing,
+    .faq-band--closing,
+    .pay-band--closing,
+    .schedule-band--closing,
+    .examples-band--closing
+  ) :is(.quote-banner, .callout, .layout-callout) > .hero__actions,
+  body[data-page="invest"] main.layout-page > .section:last-of-type .layout-callout > .hero__actions {
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-start;
+  }
+
+  body[data-page="about"] #about-signal .about-cover {
+    min-height: clamp(30rem, 82vh, 44rem);
+    border-radius: 32px;
+  }
+
+  body[data-page="about"] #about-signal .about-cover__content {
+    width: min(100% - 1.5rem, 44rem);
+    padding-inline: 0.25rem;
+  }
+
+  body[data-page="about"] #about-signal .about-cover__title {
+    font-size: clamp(2.9rem, 12vw, 4.9rem);
+  }
+}
+
+/* ==========================================================================
+   CSS Section: Discovery Page Responsive Reset
+   Simplifies the discovery hero, narrows the quick-nav rail, and keeps the
+   questionnaire fully open with mobile-first spacing.
+   ========================================================================== */
+body[data-page="discovery"] #discovery-switch .discovery-switch__frame--reset,
+body[data-page="discovery"] .discovery-band--guide .shell.discovery-guide-strip,
+body[data-page="discovery"] main.layout-page .discovery-band--brief .shell,
+body[data-page="discovery"] main.layout-page .discovery-band--closing .shell {
+  width: min(94rem, calc(100% - 1rem));
+}
+
+body[data-page="discovery"] #discovery-switch .discovery-switch__frame--reset {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "copy"
+    "hero"
+    "micro";
+  gap: var(--site-frame-gap);
+  padding: clamp(1rem, 2.8vw, 1.5rem);
+}
+
+body[data-page="discovery"] #discovery-switch .discovery-switch__copy {
+  grid-area: copy;
+  gap: 1rem;
+  align-content: start;
+}
+
+body[data-page="discovery"] #discovery-switch .discovery-switch__copy h1 {
+  max-width: 7ch;
+  text-wrap: balance;
+}
+
+body[data-page="discovery"] #discovery-switch .discovery-switch__copy > p {
+  max-width: 34ch;
+}
+
+body[data-page="discovery"] #discovery-switch .discovery-switch__actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+body[data-page="discovery"] #discovery-switch .discovery-switch__actions .button {
+  width: 100%;
+}
+
+body[data-page="discovery"] #discovery-switch .discovery-switch__signals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr));
+  gap: 0.75rem;
+}
+
+body[data-page="discovery"] #discovery-switch .discovery-switch__signal {
+  display: grid;
+  gap: 0.4rem;
+  padding: 0.9rem 1rem;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(140, 226, 255, 0.14);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.012)),
+    rgba(8, 13, 24, 0.76);
+}
+
+body[data-page="discovery"] #discovery-switch .discovery-switch__signal span {
+  font: 500 0.68rem/1 "IBM Plex Mono", monospace;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(225, 232, 242, 0.66);
+}
+
+body[data-page="discovery"] #discovery-switch .discovery-switch__signal strong {
+  color: #f5f7fb;
+  font: 700 0.96rem/1.32 "Manrope", sans-serif;
+}
+
+body[data-page="discovery"] #discovery-switch .discovery-switch__hero {
+  grid-area: hero;
+  margin: 0;
+  min-height: clamp(18rem, 64vw, 28rem);
+  border-radius: 1.7rem;
+}
+
+body[data-page="discovery"] #discovery-switch .discovery-switch__hero-image {
+  transform: scale(1.02);
+  filter: saturate(0.92) contrast(1.08) brightness(0.84);
+}
+
+body[data-page="discovery"] #discovery-switch .discovery-switch__hero-copy {
+  inset: auto 1rem 1rem 1rem;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(140, 226, 255, 0.14);
+  background: rgba(7, 12, 21, 0.6);
+  backdrop-filter: blur(12px);
+}
+
+body[data-page="discovery"] #discovery-switch .discovery-switch__hero-copy strong {
+  color: #f5f7fb;
+  font: 700 clamp(1.2rem, 2.4vw, 1.6rem)/1.02 "Syne", sans-serif;
+  letter-spacing: -0.05em;
+}
+
+body[data-page="discovery"] #discovery-switch .discovery-switch__hero-copy p {
+  max-width: 22ch;
+}
+
+body[data-page="discovery"] #discovery-switch .discovery-switch__board {
+  grid-area: board;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+body[data-page="discovery"] #discovery-switch .discovery-switch__micro--reset {
+  grid-area: micro;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.8rem;
+}
+
+body[data-page="discovery"] .discovery-band--guide .shell.discovery-guide-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.75rem;
+}
+
+body[data-page="discovery"] #discovery-switch .discovery-route-card,
+body[data-page="discovery"] #discovery-switch .discovery-step-card,
+body[data-page="discovery"] .discovery-guide-strip__card,
+body[data-page="discovery"] .discovery-form__banner,
+body[data-page="discovery"] .discovery-submit,
+body[data-page="discovery"] .discovery-exit {
+  padding: var(--site-surface-pad);
+}
+
+body[data-page="discovery"] #discovery-switch .discovery-route-card__note {
+  margin: auto 0 0;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(140, 226, 255, 0.1);
+  color: rgba(225, 232, 242, 0.72);
+  font: 500 0.88rem/1.5 "Manrope", sans-serif;
+}
+
+body[data-page="discovery"] .discovery-guide-strip__card {
+  gap: 0.3rem;
+  align-content: start;
+  min-height: auto;
+  padding: 0.9rem 1rem;
+}
+
+body[data-page="discovery"] .discovery-guide-strip__card h3 {
+  font-size: clamp(1rem, 1.5vw, 1.18rem);
+  line-height: 1.02;
+}
+
+body[data-page="discovery"] .discovery-guide-strip__card p {
+  max-width: 28ch;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+body[data-page="discovery"] .discovery-brief__guide-copy {
+  display: grid;
+  gap: 0.4rem;
+}
+
+body[data-page="discovery"] .discovery-brief__guide-copy h3 {
+  margin: 0;
+  color: #f5f7fb;
+  font-family: "Syne", sans-serif;
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+body[data-page="discovery"] .discovery-brief__guide-copy p {
+  margin: 0;
+  max-width: 26ch;
+  color: rgba(220, 228, 239, 0.78);
+  font-size: 0.92rem;
+}
+
+body[data-page="discovery"] main.layout-page .discovery-band--brief .shell {
+  gap: var(--site-frame-gap);
+}
+
+body[data-page="discovery"] main.layout-page .discovery-band--brief .stacked-form {
+  display: grid;
+  gap: var(--site-frame-gap);
+}
+
+body[data-page="discovery"] .discovery-brief__guide--rail {
+  padding: clamp(0.9rem, 2.4vw, 1.05rem);
+  gap: 0.85rem;
+}
+
+body[data-page="discovery"] .discovery-brief__guide .brief-hub__nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10.75rem, 1fr));
+  gap: 0.55rem;
+  overflow: visible;
+  padding-bottom: 0;
+}
+
+body[data-page="discovery"] .discovery-brief__guide .brief-hub__nav a {
+  min-width: 0;
+  width: 100%;
+  gap: 0.6rem;
+  padding: 0.72rem 0.76rem;
+}
+
+body[data-page="discovery"] .discovery-brief__guide .brief-hub__nav a span {
+  min-width: 1.7rem;
+  min-height: 1.7rem;
+  font-size: 0.62rem;
+}
+
+body[data-page="discovery"] .discovery-brief__guide .brief-hub__nav a strong {
+  white-space: normal;
+  font-size: 0.8rem;
+  line-height: 1.28;
+}
+
+body[data-page="discovery"].discovery-brief--enhanced .brief-section {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1rem, 2.2vw, 1.25rem);
+  scroll-margin-top: 7rem;
+}
+
+body[data-page="discovery"].discovery-brief--enhanced .brief-section__head {
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  position: static;
+}
+
+body[data-page="discovery"].discovery-brief--enhanced .brief-section__head-copy {
+  display: grid;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+body[data-page="discovery"].discovery-brief--enhanced .brief-section__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+body[data-page="discovery"].discovery-brief--enhanced .brief-section__head p {
+  margin: 0;
+  max-width: 34ch;
+}
+
+body[data-page="discovery"].discovery-brief--enhanced .brief-section h3 {
+  font-size: clamp(1.55rem, 2vw, 1.95rem);
+  line-height: 0.94;
+  letter-spacing: -0.05em;
+}
+
+body[data-page="discovery"].discovery-brief--enhanced .brief-section__grid {
+  display: grid;
+  gap: 0.9rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(140, 226, 255, 0.1);
+}
+
+body[data-page="discovery"].discovery-brief--enhanced .brief-section:not(.is-open) .brief-section__grid {
+  display: grid;
+}
+
+@media (min-width: 560px) {
+  body[data-page="discovery"] #discovery-switch .discovery-switch__actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 720px) {
+  body[data-page="discovery"] #discovery-switch .discovery-switch__frame--reset,
+  body[data-page="discovery"] .discovery-band--guide .shell.discovery-guide-strip,
+  body[data-page="discovery"] main.layout-page .discovery-band--brief .shell,
+  body[data-page="discovery"] main.layout-page .discovery-band--closing .shell {
+    width: min(94rem, calc(100% - 2rem));
+  }
+
+  body[data-page="discovery"] #discovery-switch .discovery-switch__board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  body[data-page="discovery"] #discovery-switch .discovery-switch__micro--reset {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 980px) {
+  body[data-page="discovery"] #discovery-switch .discovery-switch__frame--reset {
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+    grid-template-areas:
+      "copy hero"
+      "micro micro";
+    align-items: start;
+  }
+
+  body[data-page="discovery"] main.layout-page .discovery-band--brief .stacked-form {
+    grid-template-columns: minmax(0, 1fr) minmax(12.5rem, 18rem);
+    align-items: start;
+  }
+
+  body[data-page="discovery"] main.layout-page .discovery-band--brief .stacked-form > :not(.discovery-brief__aside) {
+    grid-column: 1;
+  }
+
+  body[data-page="discovery"] main.layout-page .discovery-band--brief .discovery-brief__aside {
+    position: sticky;
+    top: 6.45rem;
+    align-self: start;
+    grid-column: 2;
+    grid-row: 3;
+    width: 100%;
+    max-width: 18rem;
+    justify-self: end;
+  }
+
+  body[data-page="discovery"] .discovery-brief__guide .brief-hub__nav {
+    grid-template-columns: 1fr;
+    max-height: min(68vh, 38rem);
+    overflow-y: auto;
+    padding-right: 0.15rem;
+  }
+}
+
+@media (min-width: 1180px) {
+  body[data-page="discovery"].discovery-brief--enhanced .brief-section {
+    grid-template-columns: minmax(18rem, 22rem) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  body[data-page="discovery"].discovery-brief--enhanced .brief-section__head {
+    position: sticky;
+    top: 6.8rem;
+  }
+}

@@ -1910,8 +1910,8 @@
 
   // ==========================================================================
   // JS Section: Discovery Brief Experience
-  // Turns the long questionnaire into guided accordion sections with required
-  // tags, active section state, hash support, and mobile-friendly scrolling.
+  // Keeps the questionnaire fully open while adding phase / required labels and
+  // current-section state for the quick navigator.
   // ==========================================================================
   function setupDiscoveryBrief() {
     if (page !== "discovery") return;
@@ -1920,10 +1920,6 @@
     if (!sections.length) return;
 
     document.body.classList.add("discovery-brief--enhanced");
-
-    const openFirstButton = document.querySelector("[data-discovery-open-first]");
-    const openAllButton = document.querySelector("[data-discovery-open-all]");
-    const closeAllButton = document.querySelector("[data-discovery-close-all]");
     const phaseThresholds = [
       { end: 4, label: "Essentials" },
       { end: 10, label: "Direction" },
@@ -1945,61 +1941,13 @@
       });
     }
 
-    function updateButtons() {
-      sections.forEach(function (section) {
-        const button = section.querySelector(".brief-section__toggle");
-        if (!button) return;
-        const isOpen = section.classList.contains("is-open");
-        button.setAttribute("aria-expanded", isOpen ? "true" : "false");
-        const text = button.querySelector(".brief-section__toggle-text");
-        if (text) text.textContent = isOpen ? "Close" : "Open";
-      });
-    }
-
-    function openSection(section, options) {
-      const config = options && typeof options === "object" ? options : {};
-      if (!section) return;
-
-      if (config.exclusive !== false) {
-        sections.forEach(function (item) {
-          item.classList.toggle("is-open", item === section);
-        });
-      } else {
-        section.classList.add("is-open");
-      }
-
-      setCurrent(section);
-      updateButtons();
-
-      if (config.scroll) {
-        section.scrollIntoView({
-          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-          block: "start"
-        });
-      }
-    }
-
-    function closeAll() {
-      sections.forEach(function (section) {
-        section.classList.remove("is-open", "is-current");
-      });
-      updateButtons();
-    }
-
-    function openAll() {
-      sections.forEach(function (section) {
-        section.classList.add("is-open");
-      });
-      setCurrent(sections[0] || null);
-      updateButtons();
-    }
-
     sections.forEach(function (section, index) {
       const id = section.id || `brief-${String(index + 1).padStart(2, "0")}`;
       const head = section.querySelector(".brief-section__head");
       const copy = head?.querySelector("div");
       const grid = section.querySelector(".brief-section__grid");
       section.id = id;
+      section.classList.add("is-open");
 
       if (!head || !copy || !grid) return;
 
@@ -2027,59 +1975,10 @@
       const panelId = `${id}-panel`;
       grid.id = panelId;
 
-      if (!head.querySelector(".brief-section__toggle")) {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "brief-section__toggle";
-        button.setAttribute("aria-controls", panelId);
-        button.innerHTML =
-          '<span class="brief-section__toggle-text">Open</span><span class="brief-section__toggle-icon" aria-hidden="true"></span>';
-        button.addEventListener("click", function () {
-          if (section.classList.contains("is-open")) {
-            section.classList.remove("is-open", "is-current");
-            if (!sections.some(function (item) {
-              return item.classList.contains("is-open");
-            })) {
-              setCurrent(null);
-            } else {
-              setCurrent(
-                sections.find(function (item) {
-                  return item.classList.contains("is-open");
-                }) || null
-              );
-            }
-            updateButtons();
-            return;
-          }
-
-          openSection(section, {
-            exclusive: true,
-            scroll: window.matchMedia("(max-width: 959px)").matches
-          });
-        });
-        head.appendChild(button);
-      }
-
       section.addEventListener("focusin", function () {
-        if (!section.classList.contains("is-open")) {
-          openSection(section, { exclusive: true });
-        }
+        setCurrent(section);
       });
     });
-
-    if (openFirstButton) {
-      openFirstButton.addEventListener("click", function () {
-        openSection(sections[0], { exclusive: true, scroll: true });
-      });
-    }
-
-    if (openAllButton) {
-      openAllButton.addEventListener("click", openAll);
-    }
-
-    if (closeAllButton) {
-      closeAllButton.addEventListener("click", closeAll);
-    }
 
     function sectionFromHash() {
       const hash = window.location.hash ? window.location.hash.slice(1) : "";
@@ -2088,16 +1987,37 @@
     }
 
     const initialSection = sectionFromHash() || sections[0];
-    openSection(initialSection, { exclusive: true });
+    setCurrent(initialSection);
 
-    window.__ashtraDiscoveryOpenSection = function (section, options) {
-      if (!section || !sections.includes(section)) return;
-      openSection(section, options);
-    };
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        function (entries) {
+          const visible = entries
+            .filter(function (entry) {
+              return entry.isIntersecting;
+            })
+            .sort(function (left, right) {
+              return right.intersectionRatio - left.intersectionRatio;
+            })[0];
+
+          if (visible) {
+            setCurrent(visible.target);
+          }
+        },
+        {
+          threshold: [0.2, 0.45, 0.7],
+          rootMargin: "-14% 0px -56% 0px"
+        }
+      );
+
+      sections.forEach(function (section) {
+        observer.observe(section);
+      });
+    }
 
     window.addEventListener("hashchange", function () {
       const target = sectionFromHash();
-      if (target) openSection(target, { exclusive: true });
+      if (target) setCurrent(target);
     });
   }
 
@@ -2161,15 +2081,17 @@
         const targetId = link.getAttribute("href")?.slice(1);
         if (targetId) {
           const targetSection = document.getElementById(targetId);
-          if (page === "discovery" && typeof window.__ashtraDiscoveryOpenSection === "function") {
-            window.__ashtraDiscoveryOpenSection(targetSection, { exclusive: true });
+          if (page === "discovery" && targetSection) {
+            sections.forEach(function (section) {
+              section.classList.toggle("is-current", section === targetSection);
+            });
           }
           setActive(targetId);
         }
       });
     });
 
-    setActive(sections[0].id);
+    setActive((window.location.hash && window.location.hash.slice(1)) || sections[0].id);
   }
 
   // ==========================================================================

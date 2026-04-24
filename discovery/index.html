@@ -68,66 +68,58 @@
         <div class="discovery-switch__frame discovery-switch__frame--reset">
           <div class="discovery-switch__copy">
             <span class="discovery-switch__eyebrow">Discovery</span>
-            <h1>Pick your start.</h1>
-            <p>Talk first if the decision feels heavy. Use the brief if you mostly want a range.</p>
+            <h1>Choose the clearer entry point.</h1>
+            <p>Talk it through live if scope is still moving. Use the brief if you want a clean async range first.</p>
             <div class="discovery-switch__actions">
-              <a class="button button--primary" href="/payments/" data-track="pay_consultation_view"
-                >Book Consultation</a
-              >
-              <a class="button button--secondary" href="#discovery-questionnaire" data-track="discovery_view"
+              <a class="button button--primary" href="#discovery-questionnaire" data-track="discovery_view"
                 >Start Discovery Brief</a
               >
-              <a class="button button--secondary" href="/invest/">See Levels</a>
+              <a class="button button--secondary" href="/payments/" data-track="pay_consultation_view"
+                >Book Consultation</a
+              >
+            </div>
+            <div class="discovery-switch__signals" aria-label="Discovery route summaries">
+              <article class="discovery-switch__signal">
+                <span>Live route</span>
+                <strong>Human strategy first</strong>
+              </article>
+              <article class="discovery-switch__signal">
+                <span>Async route</span>
+                <strong>Range first, then investment</strong>
+              </article>
             </div>
           </div>
 
-          <div class="discovery-switch__board">
-            <article class="discovery-route-card discovery-route-card--human">
-              <span class="discovery-route-card__eyebrow">Route 01</span>
-              <h2>Talk it through.</h2>
-              <p>Best for unclear scope, bigger stakes, or a stronger strategy read.</p>
-              <ul class="discovery-route-card__list">
-                <li>Human feedback first</li>
-                <li>Better for messy decisions</li>
-                <li>Less guesswork up front</li>
-              </ul>
-              <div class="discovery-route-card__actions">
-                <a class="button button--primary" href="/payments/" data-track="pay_consultation_view"
-                  >Book Consultation</a
-                >
-              </div>
-            </article>
-
-            <article class="discovery-route-card">
-              <span class="discovery-route-card__eyebrow">Route 02</span>
-              <h2>Send the brief.</h2>
-              <p>Best if you want an async starting point and an approximate range first.</p>
-              <ul class="discovery-route-card__list">
-                <li>Three fields required</li>
-                <li>Everything else is optional</li>
-                <li>Built to scan faster</li>
-              </ul>
-              <div class="discovery-route-card__actions">
-                <a class="button button--secondary" href="#discovery-questionnaire">Open Brief</a>
-              </div>
-            </article>
-          </div>
+          <figure class="discovery-switch__hero">
+            <img
+              class="discovery-switch__hero-image"
+              src="/assets/media/stock/space/premium-website-galaxy-network-space-atlas.webp"
+              alt="Galaxy atlas visual representing cleaner routes into discovery."
+              loading="eager"
+              decoding="async"
+            />
+            <div class="discovery-switch__hero-copy">
+              <span class="discovery-switch__mini">Discovery Atlas</span>
+              <strong>Clear route. Lower friction.</strong>
+              <p>Two ways in. One cleaner next move.</p>
+            </div>
+          </figure>
 
           <div class="discovery-switch__micro discovery-switch__micro--reset">
             <article class="discovery-step-card">
               <span class="discovery-step-card__id">01</span>
               <strong>Choose the route.</strong>
-              <p>Human for strategy. Free for range.</p>
+              <p>Live call for clarity. Brief for range.</p>
             </article>
             <article class="discovery-step-card">
               <span class="discovery-step-card__id">02</span>
-              <strong>Answer what you know.</strong>
-              <p>Skip anything uncertain.</p>
+              <strong>Answer the essentials.</strong>
+              <p>Only the contact basics are required.</p>
             </article>
             <article class="discovery-step-card">
               <span class="discovery-step-card__id">03</span>
-              <strong>Check the investment.</strong>
-              <p>You go there right after submit.</p>
+              <strong>Get the next move.</strong>
+              <p>Range first, then the investment guide.</p>
             </article>
           </div>
         </div>
@@ -159,15 +151,6 @@
         data-layout-sequence
       >
         <div class="shell">
-          <aside class="discovery-brief__aside">
-            <article class="surface discovery-brief__guide discovery-brief__guide--rail" data-reveal>
-              <nav class="brief-hub__nav" data-brief-nav aria-label="Discovery brief sections"></nav>
-              <div class="discovery-brief__actions discovery-brief__actions--compact" role="group" aria-label="Discovery brief controls">
-                <button class="discovery-brief__action" type="button" data-discovery-open-all>Open All</button>
-                <button class="discovery-brief__action" type="button" data-discovery-close-all>Close All</button>
-              </div>
-            </article>
-          </aside>
           <form
             class="stacked-form"
             method="POST"
@@ -253,6 +236,17 @@
                 </fieldset>
               </div>
             </article>
+
+            <aside class="discovery-brief__aside">
+              <article class="surface discovery-brief__guide discovery-brief__guide--rail" data-reveal>
+                <div class="discovery-brief__guide-copy">
+                  <span class="eyebrow">Quick navigation</span>
+                  <h3>Jump to any section.</h3>
+                  <p>Everything stays open. Use the rail as a map.</p>
+                </div>
+                <nav class="brief-hub__nav" data-brief-nav aria-label="Discovery brief sections"></nav>
+              </article>
+            </aside>
 
             <article class="surface brief-section" data-reveal>
               <div class="brief-section__head">
