@@ -6,6 +6,6 @@
   "scripts": {
     "dev": "python3 -m http.server 5501",
     "start": "python3 -m http.server 5501",
-    "publish:repo": "bash scripts/git-publish.sh"
+    "publish:repo": "python3 scripts/git_publish.py"
   }
 }
