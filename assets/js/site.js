@@ -1,3 +1,17 @@
+/* ==================================================
+   ASH-TRA site JavaScript
+   assets/js/site.js
+
+   Purpose: lightweight, dependency-free UI helpers
+   Sections:
+   [Config]        - runtime config and site globals
+   [DOM Inject]    - header/footer partial injection
+   [Navigation]    - menu toggle and active link highlighting
+   [UI Controls]   - FAQs, tabs, forms, WhatsApp helpers
+   [EdBot]         - small assistant UI + canned responses
+   [AJAX Forms]    - Formspree helper for ajax-form
+   [Floating Tools] - WhatsApp / EdBot / back-to-top
+  ==================================================*/
 
 (function(){
 const cfg=window.ASHTRA_CONFIG||{};
