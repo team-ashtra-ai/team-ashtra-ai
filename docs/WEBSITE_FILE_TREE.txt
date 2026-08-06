@@ -2,273 +2,306 @@
 README.md
 _headers
 _redirects
-[DIR] about
-  index.html
-[DIR] accessibility
-  index.html
-[DIR] apply
-  index.html
-[DIR] assets
-  [DIR] brand
-    apple-touch-icon.png
-    ash-tra-logo.png
-    ashtra-mark.svg
-    favicon-16.png
-    favicon-32.png
-    favicon-64.png
-    icon-192.png
-    icon-512.png
-    logo.svg
-    mark.svg
-    social-preview.png
-  [DIR] css
-    site.css
-  [DIR] js
-    pricing.js
-    site-config.js
-    site.js
-  [DIR] media
-    [DIR] blog
-      15-hour-language-study-week-brazil.svg
-      ask-for-help-solve-problems-portuguese.svg
-      atlantic-forest-parks-environmental-learning.svg
-      balanced-student-routine-brazil.svg
-      beginner-to-independent-portuguese-journey.svg
-      big-cities-interior-life-brazil.svg
-      brazil-chapter-enquiry-confident-participation.svg
-      brazil-five-regions-geography.svg
-      brazilian-conversation-social-connection.svg
-      brazilian-film-literature-art-language-study.svg
-      brazilian-food-language-belonging.svg
-      brazilian-hospitality-language-student.svg
-      brazilian-portuguese-listening-beyond-textbook.svg
-      carnival-history-music-community-brazil.svg
-      choose-brazilian-city-language-immersion.svg
-      community-belonging-through-language.svg
-      cultural-events-classroom-brazil.svg
-      daily-life-living-portuguese-language.svg
-      discover-parana-beyond-usual-itinerary.svg
-      documents-services-daily-systems-brazil.svg
-      eating-local-brazil-menus-markets.svg
-      festa-junina-language-food-tradition.svg
-      historic-cities-cultural-landscapes-brazil.svg
-      homework-exploration-brazil-language-programme.svg
-      independence-first-months-brazil.svg
-      indigenous-african-european-influences-brazil.svg
-      language-brazil-landscapes-climate.svg
-      language-emergencies-brazil.svg
-      language-study-investment-future.svg
-      learning-portuguese-brazilian-music.svg
-      learning-portuguese-culture-community-conversation.svg
-      living-brazil-adaptability.svg
-      making-friends-community-student-brazil.svg
-      migration-shaped-modern-brazil.svg
-      nature-activities-language-homework-brazil.svg
-      parana-coffee-culture-language.svg
-      portuguese-museums-memory-heritage.svg
-      portuguese-pharmacies-clinics-health-appointments.svg
-      portuguese-supermarket-bakery-street-market.svg
-      practical-portuguese-housing-transport-errands.svg
-      prepare-study-abroad-brazil.svg
-      regional-identity-brazil.svg
-      respectful-cultural-adaptation-brazil.svg
-      rivers-coastlines-geography-brazil.svg
-      student-introduction-history-brazil.svg
-      studying-portuguese-southern-brazil.svg
-      understanding-brazil-cultural-diversity.svg
-      why-study-live-londrina-brazil.svg
-      why-study-portuguese-in-brazil.svg
-      year-in-brazil-worldview.svg
-    brazil-inspiration.jpg
-    coffee-culture.svg
-    contact-lines.svg
-    culture-city.svg
-    hero-brazil.svg
-    programme-path.svg
-    support-life.svg
-[DIR] blog
-  [DIR] 15-hour-language-study-week-brazil
-    index.html
-  [DIR] ask-for-help-solve-problems-portuguese
-    index.html
-  [DIR] atlantic-forest-parks-environmental-learning
-    index.html
-  [DIR] balanced-student-routine-brazil
-    index.html
-  [DIR] beginner-to-independent-portuguese-journey
-    index.html
-  [DIR] big-cities-interior-life-brazil
-    index.html
-  [DIR] brazil-chapter-enquiry-confident-participation
-    index.html
-  [DIR] brazil-five-regions-geography
-    index.html
-  [DIR] brazilian-conversation-social-connection
-    index.html
-  [DIR] brazilian-film-literature-art-language-study
-    index.html
-  [DIR] brazilian-food-language-belonging
-    index.html
-  [DIR] brazilian-hospitality-language-student
-    index.html
-  [DIR] brazilian-portuguese-listening-beyond-textbook
-    index.html
-  [DIR] carnival-history-music-community-brazil
-    index.html
-  [DIR] category
-    [DIR] cities-regions
-      index.html
-    [DIR] culture-identity
-      index.html
-    [DIR] festivals-arts
-      index.html
-    [DIR] food-everyday-life
-      index.html
-    [DIR] future-growth
-      index.html
-    [DIR] history-heritage
-      index.html
-    [DIR] language-immersion
-      index.html
-    [DIR] nature-geography
-      index.html
-    [DIR] practical-integration
-      index.html
-    [DIR] student-life
-      index.html
-  [DIR] choose-brazilian-city-language-immersion
-    index.html
-  [DIR] community-belonging-through-language
-    index.html
-  [DIR] cultural-events-classroom-brazil
-    index.html
-  [DIR] daily-life-living-portuguese-language
-    index.html
-  [DIR] discover-parana-beyond-usual-itinerary
-    index.html
-  [DIR] documents-services-daily-systems-brazil
-    index.html
-  [DIR] eating-local-brazil-menus-markets
-    index.html
-  feed.xml
-  [DIR] festa-junina-language-food-tradition
-    index.html
-  [DIR] historic-cities-cultural-landscapes-brazil
-    index.html
-  [DIR] homework-exploration-brazil-language-programme
-    index.html
-  [DIR] independence-first-months-brazil
-    index.html
-  index.html
-  [DIR] indigenous-african-european-influences-brazil
-    index.html
-  [DIR] language-brazil-landscapes-climate
-    index.html
-  [DIR] language-emergencies-brazil
-    index.html
-  [DIR] language-study-investment-future
-    index.html
-  [DIR] learning-portuguese-brazilian-music
-    index.html
-  [DIR] learning-portuguese-culture-community-conversation
-    index.html
-  [DIR] living-brazil-adaptability
-    index.html
-  [DIR] making-friends-community-student-brazil
-    index.html
-  [DIR] migration-shaped-modern-brazil
-    index.html
-  [DIR] nature-activities-language-homework-brazil
-    index.html
-  [DIR] parana-coffee-culture-language
-    index.html
-  [DIR] portuguese-museums-memory-heritage
-    index.html
-  [DIR] portuguese-pharmacies-clinics-health-appointments
-    index.html
-  [DIR] portuguese-supermarket-bakery-street-market
-    index.html
-  [DIR] practical-portuguese-housing-transport-errands
-    index.html
-  [DIR] prepare-study-abroad-brazil
-    index.html
-  [DIR] regional-identity-brazil
-    index.html
-  [DIR] respectful-cultural-adaptation-brazil
-    index.html
-  [DIR] rivers-coastlines-geography-brazil
-    index.html
-  [DIR] student-introduction-history-brazil
-    index.html
-  [DIR] studying-portuguese-southern-brazil
-    index.html
-  [DIR] understanding-brazil-cultural-diversity
-    index.html
-  [DIR] why-study-live-londrina-brazil
-    index.html
-  [DIR] why-study-portuguese-in-brazil
-    index.html
-  [DIR] year-in-brazil-worldview
-    index.html
-[DIR] brazil
-  index.html
-[DIR] consultation
-  index.html
-[DIR] contact
-  index.html
-[DIR] cookies
-  index.html
-[DIR] docs
-  ASH-TRA_Complete_Academic_Programme_Website_Page.docx
-  BLOG_ARTICLE_INDEX.csv
-  BLOG_ARTICLE_MANIFEST.json
-  EDITORIAL_RESEARCH_SOURCES.md
-  SHA256SUMS.txt
-  START_HERE.md
-  WEBSITE_FILE_TREE.txt
-  [DIR] archive
-    ASH-TRA_All_Previous_Content_Documents.zip
-  [DIR] design-reference
-    DESIGN_SYSTEM_PRESERVED.md
-    original-about-reference.png
-    original-homepage-reference.png
-    original-site-footer.txt
-    original-site-header.txt
-  [DIR] programme
-    00_READ_ME_FIRST.docx
-    01_PROGRAMME_OVERVIEW_CURRICULUM_SYLLABUS.docx
-    02_40_WEEK_SCOPE_AND_SEQUENCE.docx
-    03_120_SESSION_SCHEDULE.csv
-  [DIR] setup
-    PUBLIC_COMPANY_FACTS.md
-    check_site.py
-[DIR] faq
-  index.html
+about/index.html
+accessibility/index.html
+apply/index.html
+assets/brand/apple-touch-icon.png
+assets/brand/ash-tra-logo.png
+assets/brand/ashtra-mark.svg
+assets/brand/favicon-16.png
+assets/brand/favicon-32.png
+assets/brand/favicon-64.png
+assets/brand/icon-192.png
+assets/brand/icon-512.png
+assets/brand/logo.svg
+assets/brand/mark.svg
+assets/brand/social-preview.png
+assets/css/site.css
+assets/icons/accessibility.svg
+assets/icons/book-open.svg
+assets/icons/calculator.svg
+assets/icons/calendar.svg
+assets/icons/circle-help.svg
+assets/icons/clipboard-check.svg
+assets/icons/clock.svg
+assets/icons/compass.svg
+assets/icons/cookie.svg
+assets/icons/credit-card.svg
+assets/icons/dollar.svg
+assets/icons/edbot.svg
+assets/icons/file-text.svg
+assets/icons/heart-handshake.svg
+assets/icons/home.svg
+assets/icons/languages.svg
+assets/icons/laptop.svg
+assets/icons/life-buoy.svg
+assets/icons/map-pin-off.svg
+assets/icons/map-pin.svg
+assets/icons/map.svg
+assets/icons/message-circle.svg
+assets/icons/message-square.svg
+assets/icons/messages-square.svg
+assets/icons/newspaper.svg
+assets/icons/receipt.svg
+assets/icons/route.svg
+assets/icons/shield.svg
+assets/icons/target.svg
+assets/icons/users.svg
+assets/icons/whatsapp.svg
+assets/js/pricing.js
+assets/js/site-config.js
+assets/js/site.js
+assets/media/blog/15-hour-language-study-week-brazil.svg
+assets/media/blog/ask-for-help-solve-problems-portuguese.svg
+assets/media/blog/atlantic-forest-parks-environmental-learning.svg
+assets/media/blog/balanced-student-routine-brazil.svg
+assets/media/blog/beginner-to-independent-portuguese-journey.svg
+assets/media/blog/big-cities-interior-life-brazil.svg
+assets/media/blog/brazil-chapter-enquiry-confident-participation.svg
+assets/media/blog/brazil-five-regions-geography.svg
+assets/media/blog/brazilian-conversation-social-connection.svg
+assets/media/blog/brazilian-film-literature-art-language-study.svg
+assets/media/blog/brazilian-food-language-belonging.svg
+assets/media/blog/brazilian-hospitality-language-student.svg
+assets/media/blog/brazilian-portuguese-listening-beyond-textbook.svg
+assets/media/blog/carnival-history-music-community-brazil.svg
+assets/media/blog/choose-brazilian-city-language-immersion.svg
+assets/media/blog/community-belonging-through-language.svg
+assets/media/blog/cultural-events-classroom-brazil.svg
+assets/media/blog/daily-life-living-portuguese-language.svg
+assets/media/blog/discover-parana-beyond-usual-itinerary.svg
+assets/media/blog/documents-services-daily-systems-brazil.svg
+assets/media/blog/eating-local-brazil-menus-markets.svg
+assets/media/blog/festa-junina-language-food-tradition.svg
+assets/media/blog/historic-cities-cultural-landscapes-brazil.svg
+assets/media/blog/homework-exploration-brazil-language-programme.svg
+assets/media/blog/independence-first-months-brazil.svg
+assets/media/blog/indigenous-african-european-influences-brazil.svg
+assets/media/blog/language-brazil-landscapes-climate.svg
+assets/media/blog/language-emergencies-brazil.svg
+assets/media/blog/language-study-investment-future.svg
+assets/media/blog/learning-portuguese-brazilian-music.svg
+assets/media/blog/learning-portuguese-culture-community-conversation.svg
+assets/media/blog/living-brazil-adaptability.svg
+assets/media/blog/making-friends-community-student-brazil.svg
+assets/media/blog/migration-shaped-modern-brazil.svg
+assets/media/blog/nature-activities-language-homework-brazil.svg
+assets/media/blog/parana-coffee-culture-language.svg
+assets/media/blog/portuguese-museums-memory-heritage.svg
+assets/media/blog/portuguese-pharmacies-clinics-health-appointments.svg
+assets/media/blog/portuguese-supermarket-bakery-street-market.svg
+assets/media/blog/practical-portuguese-housing-transport-errands.svg
+assets/media/blog/prepare-study-abroad-brazil.svg
+assets/media/blog/regional-identity-brazil.svg
+assets/media/blog/respectful-cultural-adaptation-brazil.svg
+assets/media/blog/rivers-coastlines-geography-brazil.svg
+assets/media/blog/student-introduction-history-brazil.svg
+assets/media/blog/studying-portuguese-southern-brazil.svg
+assets/media/blog/understanding-brazil-cultural-diversity.svg
+assets/media/blog/why-study-live-londrina-brazil.svg
+assets/media/blog/why-study-portuguese-in-brazil.svg
+assets/media/blog/year-in-brazil-worldview.svg
+assets/media/brazil-inspiration.jpg
+assets/media/coffee-culture.svg
+assets/media/contact-lines.svg
+assets/media/culture-city.svg
+assets/media/hero-brazil.svg
+assets/media/heroes/brazil-atlantic-forest.svg
+assets/media/heroes/brazil-beach-dunes.svg
+assets/media/heroes/brazil-botanical-garden.svg
+assets/media/heroes/brazil-city-park.svg
+assets/media/heroes/brazil-coastal-city.svg
+assets/media/heroes/brazil-coffee-landscape.svg
+assets/media/heroes/brazil-colonial-square.svg
+assets/media/heroes/brazil-colourful-houses.svg
+assets/media/heroes/brazil-historic-street.svg
+assets/media/heroes/brazil-library.svg
+assets/media/heroes/brazil-market.svg
+assets/media/heroes/brazil-modern-architecture.svg
+assets/media/heroes/brazil-mountain-road.svg
+assets/media/heroes/brazil-music-evening.svg
+assets/media/heroes/brazil-ocean-cliffs.svg
+assets/media/heroes/brazil-parana-lake.svg
+assets/media/heroes/brazil-rainforest-river.svg
+assets/media/heroes/brazil-river-sunset.svg
+assets/media/heroes/brazil-street-food.svg
+assets/media/heroes/brazil-student-cafe.svg
+assets/media/heroes/brazil-urban-cycle.svg
+assets/media/heroes/brazil-waterfall.svg
+assets/media/programme-path.svg
+assets/media/strips/brazil-detail-01-coastal-city.svg
+assets/media/strips/brazil-detail-02-historic-street.svg
+assets/media/strips/brazil-detail-03-waterfall.svg
+assets/media/strips/brazil-detail-04-coffee-landscape.svg
+assets/media/strips/brazil-detail-05-market.svg
+assets/media/strips/brazil-detail-06-student-cafe.svg
+assets/media/strips/brazil-detail-07-modern-architecture.svg
+assets/media/strips/brazil-detail-08-atlantic-forest.svg
+assets/media/strips/brazil-detail-09-beach-dunes.svg
+assets/media/strips/brazil-detail-10-music-evening.svg
+assets/media/strips/brazil-detail-11-parana-lake.svg
+assets/media/strips/brazil-detail-12-mountain-road.svg
+assets/media/strips/brazil-detail-13-colourful-houses.svg
+assets/media/strips/brazil-detail-14-city-park.svg
+assets/media/strips/brazil-detail-15-river-sunset.svg
+assets/media/strips/brazil-detail-16-library.svg
+assets/media/strips/brazil-detail-17-street-food.svg
+assets/media/strips/brazil-detail-18-botanical-garden.svg
+assets/media/strips/brazil-detail-19-rainforest-river.svg
+assets/media/strips/brazil-detail-20-colonial-square.svg
+assets/media/strips/brazil-detail-21-urban-cycle.svg
+assets/media/strips/brazil-detail-22-ocean-cliffs.svg
+assets/media/strips/brazil-detail-23-coastal-city.svg
+assets/media/strips/brazil-detail-24-historic-street.svg
+assets/media/strips/brazil-detail-25-waterfall.svg
+assets/media/strips/brazil-detail-26-coffee-landscape.svg
+assets/media/strips/brazil-detail-27-market.svg
+assets/media/strips/brazil-detail-28-student-cafe.svg
+assets/media/strips/brazil-detail-29-modern-architecture.svg
+assets/media/strips/brazil-detail-30-atlantic-forest.svg
+assets/media/strips/brazil-detail-31-beach-dunes.svg
+assets/media/strips/brazil-detail-32-music-evening.svg
+assets/media/strips/brazil-detail-33-parana-lake.svg
+assets/media/strips/brazil-detail-34-mountain-road.svg
+assets/media/strips/brazil-detail-35-colourful-houses.svg
+assets/media/strips/brazil-detail-36-city-park.svg
+assets/media/strips/brazil-detail-37-river-sunset.svg
+assets/media/strips/brazil-detail-38-library.svg
+assets/media/strips/brazil-detail-39-street-food.svg
+assets/media/strips/brazil-detail-40-botanical-garden.svg
+assets/media/strips/brazil-detail-41-rainforest-river.svg
+assets/media/strips/brazil-detail-42-colonial-square.svg
+assets/media/strips/brazil-detail-43-urban-cycle.svg
+assets/media/strips/brazil-detail-44-ocean-cliffs.svg
+assets/media/strips/brazil-detail-45-coastal-city.svg
+assets/media/strips/brazil-detail-46-historic-street.svg
+assets/media/strips/brazil-detail-47-waterfall.svg
+assets/media/strips/brazil-detail-48-coffee-landscape.svg
+assets/media/strips/brazil-detail-49-market.svg
+assets/media/strips/brazil-detail-50-student-cafe.svg
+assets/media/strips/brazil-detail-51-modern-architecture.svg
+assets/media/strips/brazil-detail-52-atlantic-forest.svg
+assets/media/strips/brazil-detail-53-beach-dunes.svg
+assets/media/strips/brazil-detail-54-music-evening.svg
+assets/media/strips/brazil-detail-55-parana-lake.svg
+assets/media/strips/brazil-detail-56-mountain-road.svg
+assets/media/strips/brazil-detail-57-colourful-houses.svg
+assets/media/strips/brazil-detail-58-city-park.svg
+assets/media/strips/brazil-detail-59-river-sunset.svg
+assets/media/strips/brazil-detail-60-library.svg
+assets/media/strips/brazil-detail-61-street-food.svg
+assets/media/strips/brazil-detail-62-botanical-garden.svg
+assets/media/strips/brazil-detail-63-rainforest-river.svg
+assets/media/strips/brazil-detail-64-colonial-square.svg
+assets/media/strips/brazil-detail-65-urban-cycle.svg
+assets/media/strips/brazil-detail-66-ocean-cliffs.svg
+assets/media/strips/brazil-detail-67-coastal-city.svg
+assets/media/strips/brazil-detail-68-historic-street.svg
+assets/media/strips/brazil-detail-69-waterfall.svg
+assets/media/strips/brazil-detail-70-coffee-landscape.svg
+assets/media/strips/brazil-detail-71-market.svg
+assets/media/strips/brazil-detail-72-student-cafe.svg
+assets/media/support-life.svg
+blog/15-hour-language-study-week-brazil/index.html
+blog/ask-for-help-solve-problems-portuguese/index.html
+blog/atlantic-forest-parks-environmental-learning/index.html
+blog/balanced-student-routine-brazil/index.html
+blog/beginner-to-independent-portuguese-journey/index.html
+blog/big-cities-interior-life-brazil/index.html
+blog/brazil-chapter-enquiry-confident-participation/index.html
+blog/brazil-five-regions-geography/index.html
+blog/brazilian-conversation-social-connection/index.html
+blog/brazilian-film-literature-art-language-study/index.html
+blog/brazilian-food-language-belonging/index.html
+blog/brazilian-hospitality-language-student/index.html
+blog/brazilian-portuguese-listening-beyond-textbook/index.html
+blog/carnival-history-music-community-brazil/index.html
+blog/category/cities-regions/index.html
+blog/category/culture-identity/index.html
+blog/category/festivals-arts/index.html
+blog/category/food-everyday-life/index.html
+blog/category/future-growth/index.html
+blog/category/history-heritage/index.html
+blog/category/language-immersion/index.html
+blog/category/nature-geography/index.html
+blog/category/practical-integration/index.html
+blog/category/student-life/index.html
+blog/choose-brazilian-city-language-immersion/index.html
+blog/community-belonging-through-language/index.html
+blog/cultural-events-classroom-brazil/index.html
+blog/daily-life-living-portuguese-language/index.html
+blog/discover-parana-beyond-usual-itinerary/index.html
+blog/documents-services-daily-systems-brazil/index.html
+blog/eating-local-brazil-menus-markets/index.html
+blog/feed.xml
+blog/festa-junina-language-food-tradition/index.html
+blog/historic-cities-cultural-landscapes-brazil/index.html
+blog/homework-exploration-brazil-language-programme/index.html
+blog/independence-first-months-brazil/index.html
+blog/index.html
+blog/indigenous-african-european-influences-brazil/index.html
+blog/language-brazil-landscapes-climate/index.html
+blog/language-emergencies-brazil/index.html
+blog/language-study-investment-future/index.html
+blog/learning-portuguese-brazilian-music/index.html
+blog/learning-portuguese-culture-community-conversation/index.html
+blog/living-brazil-adaptability/index.html
+blog/making-friends-community-student-brazil/index.html
+blog/migration-shaped-modern-brazil/index.html
+blog/nature-activities-language-homework-brazil/index.html
+blog/parana-coffee-culture-language/index.html
+blog/portuguese-museums-memory-heritage/index.html
+blog/portuguese-pharmacies-clinics-health-appointments/index.html
+blog/portuguese-supermarket-bakery-street-market/index.html
+blog/practical-portuguese-housing-transport-errands/index.html
+blog/prepare-study-abroad-brazil/index.html
+blog/regional-identity-brazil/index.html
+blog/respectful-cultural-adaptation-brazil/index.html
+blog/rivers-coastlines-geography-brazil/index.html
+blog/student-introduction-history-brazil/index.html
+blog/studying-portuguese-southern-brazil/index.html
+blog/understanding-brazil-cultural-diversity/index.html
+blog/why-study-live-londrina-brazil/index.html
+blog/why-study-portuguese-in-brazil/index.html
+blog/year-in-brazil-worldview/index.html
+brazil/index.html
+consultation/index.html
+contact/index.html
+cookies/index.html
+docs/ASH-TRA_Complete_Academic_Programme_Website_Page.docx
+docs/BLOG_ARTICLE_INDEX.csv
+docs/BLOG_ARTICLE_MANIFEST.json
+docs/EDITORIAL_RESEARCH_SOURCES.md
+docs/IMAGE_INVENTORY.csv
+docs/SHA256SUMS.txt
+docs/START_HERE.md
+docs/WEBSITE_FILE_TREE.txt
+docs/archive/ASH-TRA_All_Previous_Content_Documents.zip
+docs/design-reference/DESIGN_SYSTEM_PRESERVED.md
+docs/design-reference/original-about-reference.png
+docs/design-reference/original-homepage-reference.png
+docs/design-reference/original-site-footer.txt
+docs/design-reference/original-site-header.txt
+docs/programme/00_READ_ME_FIRST.docx
+docs/programme/01_PROGRAMME_OVERVIEW_CURRICULUM_SYLLABUS.docx
+docs/programme/02_40_WEEK_SCOPE_AND_SEQUENCE.docx
+docs/programme/03_120_SESSION_SCHEDULE.csv
+docs/setup/PUBLIC_COMPANY_FACTS.md
+docs/setup/check_site.py
+faq/index.html
 index.html
-[DIR] mission
-  index.html
+mission/index.html
 package.json
-[DIR] partials
-  [DIR] site-footer
-    index.html
-  [DIR] site-header
-    index.html
-[DIR] payments
-  index.html
-[DIR] prices
-  index.html
-[DIR] privacy
-  index.html
-[DIR] process
-  index.html
+partials/site-footer/index.html
+partials/site-header/index.html
+payments/index.html
+prices/index.html
+privacy/index.html
+process/index.html
 robots.txt
 site.webmanifest
 sitemap.xml
-[DIR] study
-  index.html
-[DIR] support
-  index.html
-[DIR] terms
-  index.html
-[DIR] values
-  index.html
+study/index.html
+support/index.html
+terms/index.html
+values/index.html

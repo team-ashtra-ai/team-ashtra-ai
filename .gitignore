@@ -18,6 +18,8 @@ apps/web/node_modules
 apps/web/.next
 apps/web/.open-next
 .wrangler/
+node_modules/
+screenshots/
 
 # Local SaaS storage
 storage/optimise-ai

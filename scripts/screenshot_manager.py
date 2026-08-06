@@ -14,13 +14,12 @@ import socket
 import subprocess
 import sys
 import tempfile
-import time
+import zipfile
 from datetime import datetime
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from threading import Thread
 from typing import Any
-from urllib.parse import urlparse
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -74,47 +73,59 @@ def prompt_indices(items: list[str], label: str, multiple: bool) -> list[str]:
             print("Use valid listed numbers, optionally with ranges such as 2-4.")
 
 
-def public_pages() -> tuple[list[str], list[str]]:
-    # The published Portuguese site lives at the repository root and the
-    # English site under en/.  The former pt/ layout no longer exists; looking
-    # there produced an empty capture list and a manifest with no PNG files.
-    english_root = ROOT / "en"
-    english = sorted(
-        path.relative_to(ROOT).as_posix()
-        for path in english_root.rglob("*.html")
-    ) if english_root.is_dir() else []
-    portuguese = sorted(path.name for path in ROOT.glob("*.html"))
-    return english, portuguese
+EXCLUDED_PAGE_DIRECTORIES = {".git", "docs", "node_modules", "partials", "screenshots", "scripts"}
 
 
-def page_family() -> list[str]:
-    pairs_file = ROOT / "data" / "page-pairs.json"
-    pairs = json.loads(pairs_file.read_text(encoding="utf-8")).get("pages", []) if pairs_file.exists() else []
-    labels = [str(pair.get("id", "unnamed")) for pair in pairs]
-    selected = prompt_indices(labels, "a page family", False)[0]
-    pair = next(pair for pair in pairs if str(pair.get("id")) == selected)
-    return [value for value in (pair.get("en"), pair.get("pt-BR")) if isinstance(value, str)]
+def public_pages() -> list[str]:
+    """Return every published route in the current educational-site layout."""
+    pages = []
+    for path in ROOT.rglob("*.html"):
+        relative = path.relative_to(ROOT)
+        if EXCLUDED_PAGE_DIRECTORIES.intersection(relative.parts):
+            continue
+        if path.name == "index.html":
+            route = "/" if relative.parent == Path(".") else f"/{relative.parent.as_posix()}/"
+        else:
+            route = f"/{relative.as_posix()}"
+        pages.append(route)
+    return sorted(pages)
+
+
+def page_groups(pages: list[str]) -> dict[str, list[str]]:
+    """Offer useful groups for programme pages and the editorial library."""
+    blog_articles = [page for page in pages if page.startswith("/blog/") and "/category/" not in page and page != "/blog/"]
+    return {
+        "Core programme pages": [page for page in pages if not page.startswith("/blog/")],
+        "Blog hub and categories": [page for page in pages if page == "/blog/" or page.startswith("/blog/category/")],
+        "Blog articles": blog_articles,
+        "All public pages": pages,
+    }
+
+
+def local_path_for_route(route: str) -> Path:
+    """Map a local URL route to its corresponding source HTML file."""
+    clean_route = route.strip("/")
+    if not clean_route:
+        return ROOT / "index.html"
+    if clean_route.endswith(".html"):
+        return ROOT / clean_route
+    return ROOT / clean_route / "index.html"
 
 
 def choose_pages() -> list[str]:
-    english, portuguese = public_pages()
+    pages = public_pages()
+    groups = page_groups(pages)
+    labels = list(groups)
     mode = prompt_choice("Pages to capture", [
-        "All English pages", "All Portuguese pages", "All English and Portuguese pages",
-        "One specific page", "Several selected pages", "A page family (English and Portuguese equivalents)",
-        "A custom URL or local route",
+        *[f"{label} ({len(group_pages)} pages)" for label, group_pages in groups.items()],
+        "One specific page", "Several selected pages", "A custom URL or local route",
     ])
-    if mode == 0:
-        return english
-    if mode == 1:
-        return portuguese
-    if mode == 2:
-        return english + portuguese
-    if mode == 3:
-        return prompt_indices(english + portuguese, "a page", False)
-    if mode == 4:
-        return prompt_indices(english + portuguese, "pages", True)
-    if mode == 5:
-        return page_family()
+    if mode < len(labels):
+        return groups[labels[mode]]
+    if mode == len(labels):
+        return prompt_indices(pages, "a page", False)
+    if mode == len(labels) + 1:
+        return prompt_indices(pages, "pages", True)
     while True:
         route = input("Enter a full URL or a local route (for example /about.html): ").strip()
         if route:
@@ -145,13 +156,19 @@ def choose_viewports() -> dict[str, dict[str, Any]]:
 
 
 def print_sections(pages: list[str]) -> None:
-    local = next((ROOT / page.lstrip("/") for page in pages if not urlparse(page).scheme), None)
+    local = next((local_path_for_route(page) for page in pages if not page.startswith(("http://", "https://"))), None)
     if not local or not local.is_file():
         return
     html = local.read_text(encoding="utf-8", errors="ignore")
-    found = re.findall(r'<section\b[^>]*\bid="([^"]+)"[^>]*\bdata-section="([^"]+)"', html)
+    found = re.findall(r'<section\b([^>]*)>', html, re.I)
     if found:
-        print("\nSections found on " + local.relative_to(ROOT).as_posix() + ": " + ", ".join(f"{number} ({section_id})" for section_id, number in found))
+        descriptions = []
+        for number, attributes in enumerate(found, 1):
+            identifier = re.search(r'\bid=["\']([^"\']+)', attributes)
+            class_name = re.search(r'\bclass=["\']([^"\']+)', attributes)
+            label = identifier.group(1) if identifier else class_name.group(1).split()[0] if class_name else "section"
+            descriptions.append(f"{number} ({label})")
+        print("\nSections found on " + local.relative_to(ROOT).as_posix() + ": " + ", ".join(descriptions))
 
 
 def choose_target(pages: list[str]) -> dict[str, Any]:
@@ -170,7 +187,7 @@ def choose_target(pages: list[str]) -> dict[str, Any]:
                 for part in raw.split(","):
                     values = [int(value.strip()) for value in part.split("-")]
                     numbers.extend(range(values[0], values[-1] + 1))
-                return {"kind": "selectors", "selectors": [{"name": f"section-{number}", "selector": f'main > section[data-section="{number}"]'} for number in dict.fromkeys(numbers)]}
+                return {"kind": "selectors", "selectors": [{"name": f"section-{number}", "selector": f"main > section:nth-of-type({number})"} for number in dict.fromkeys(numbers)]}
             print("Use section numbers, such as 1 or 1,3-5.")
     if mode == 4:
         return {"kind": "numbered_sections"}
@@ -184,9 +201,9 @@ def choose_target(pages: list[str]) -> dict[str, Any]:
         return {"kind": "scroll_slices", "overlap": 160}
     simple = {
         0: {"kind": "page", "fullPage": True}, 1: {"kind": "page", "fullPage": False},
-        7: {"kind": "selectors", "selectors": [{"name": "hero", "selector": 'main > section[data-pattern="hero"], main > section[data-section="1"]'}]},
+        7: {"kind": "selectors", "selectors": [{"name": "hero", "selector": ".hero, main > section:first-of-type"}]},
         8: {"kind": "selectors", "selectors": [{"name": "main", "selector": "main"}]},
-        9: {"kind": "selectors", "selectors": [{"name": "final-cta", "selector": 'main > section[data-pattern="final-cta"], .sf-composition-final-cta'}]},
+        9: {"kind": "selectors", "selectors": [{"name": "final-cta", "selector": ".final-cta, main > section:last-of-type"}]},
         10: {"kind": "selectors", "selectors": [{"name": "footer", "selector": "footer"}]},
     }
     return simple[mode]
@@ -207,6 +224,16 @@ def start_server(port: int) -> ThreadingHTTPServer:
     return server
 
 
+def create_archive(output_dir: Path) -> Path:
+    """Create or refresh the ZIP beside the flat image files."""
+    archive = output_dir / "screenshots.zip"
+    with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED) as bundle:
+        for file in sorted(output_dir.iterdir()):
+            if file.is_file() and file != archive:
+                bundle.write(file, arcname=file.name)
+    return archive
+
+
 RUNNER = r'''
 const { chromium } = require("playwright-core");
 const fs = require("fs");
@@ -216,6 +243,7 @@ const pages = JSON.parse(pagesJson), viewports = JSON.parse(viewportsJson), targ
 const safe = value => String(value).replace(/[^a-z0-9_-]+/gi, "-").replace(/^-|-$/g, "") || "capture";
 const pageName = value => safe(value.replace(/^https?:\/\//, "").replace(/\.html([?#].*)?$/, "").replace(/[/?#]/g, "-"));
 const urlFor = value => /^https?:\/\//i.test(value) ? value : `${baseUrl}/${value.replace(/^\//, "")}`;
+const viewportLabel = viewport => `${viewport.isMobile ? "mobile" : "desktop"}-${String(viewport.height).padStart(5, "0")}h-${String(viewport.width).padStart(5, "0")}w`;
 async function captureFullPageWithFixedBackground(page, file) {
   // A full-page browser capture expands the viewport, which is not how a
   // visitor sees fixed artwork and tools. Capture every real viewport instead
@@ -300,11 +328,14 @@ async function settle(page) {
     );
   }
   const browser = await chromium.launch({headless:true, executablePath, args:["--disable-dev-shm-usage", "--no-sandbox"]}); const captures=[];
-  for (const [viewportName, viewport] of Object.entries(viewports)) {
+  const orderedViewports = Object.entries(viewports).sort(([, a], [, b]) =>
+    Number(a.isMobile) - Number(b.isMobile) || a.height - b.height || a.width - b.width
+  );
+  for (const [viewportName, viewport] of orderedViewports) {
     const context = await browser.newContext({viewport:{width:viewport.width,height:viewport.height}, isMobile:viewport.isMobile, deviceScaleFactor:1});
     await context.addInitScript(() => localStorage.setItem("sofiati_cookie_preferences_v3", JSON.stringify({essential:true,preferences:false,analytics:false,externalMedia:false})));
     for (const pagePath of pages) {
-      const page = await context.newPage(); const url = urlFor(pagePath); const pageDir = path.join(outputDir, viewportName); fs.mkdirSync(pageDir, {recursive:true});
+      const page = await context.newPage(); const url = urlFor(pagePath); const filePrefix = `${pageName(pagePath)}--${viewportLabel(viewport)}`;
       try {
         await page.goto(url, {waitUntil:"load", timeout:45000}); await settle(page);
         if (target.kind === "scroll_slices") {
@@ -316,16 +347,16 @@ async function settle(page) {
           for (let top = 0; top < fullHeight; top += step) positions.push(Math.min(top, Math.max(0, fullHeight - height)));
           for (const [index, top] of [...new Set(positions)].entries()) {
             await page.evaluate(y => scrollTo(0, y), top); await page.waitForTimeout(100);
-            const file = path.join(pageDir, `${pageName(pagePath)}--scroll-${String(index + 1).padStart(2, "0")}.png`);
+            const file = path.join(outputDir, `${filePrefix}--scroll-${String(index + 1).padStart(2, "0")}.png`);
             await page.screenshot({path:file});
             captures.push({page:pagePath,viewport:viewportName,target:`scroll-${index + 1}`,status:"captured",file:path.relative(outputDir,file)});
           }
           await page.evaluate(() => scrollTo(0, 0));
           continue;
         }
-        let jobs = target.kind === "page" ? [{name: target.fullPage ? "full-page" : "viewport", page: true}] : target.kind === "numbered_sections" ? await page.locator("main section[data-section]").evaluateAll(nodes => nodes.map((node, i) => ({name:`section-${node.dataset.section || i+1}-${node.id || "section"}`, selector: `main section[data-section="${node.dataset.section}"]`}))) : target.selectors;
+        let jobs = target.kind === "page" ? [{name: target.fullPage ? "full-page" : "viewport", page: true}] : target.kind === "numbered_sections" ? await page.locator("main > section").evaluateAll(nodes => nodes.map((node, i) => ({name:`section-${i + 1}-${node.id || (node.className || "section").toString().split(/\\s+/)[0]}`, selector: `main > section:nth-of-type(${i + 1})`}))) : target.selectors;
         for (const job of jobs) {
-          const file = path.join(pageDir, `${pageName(pagePath)}--${safe(job.name)}.png`);
+          const file = path.join(outputDir, `${filePrefix}--${safe(job.name)}.png`);
           if (job.page) {
             if (target.fullPage) await captureFullPageWithFixedBackground(page, file);
             else await page.screenshot({path:file});
@@ -352,34 +383,44 @@ def main() -> int:
     except KeyboardInterrupt:
         print("\nCancelled.")
         return 130
-    stamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    stamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S-%f")
     output_dir = OUTPUT_ROOT / stamp
     port = find_free_port()
     previous_cwd = Path.cwd()
     os.chdir(ROOT)
     server = start_server(port)
+    print(f"Capturing {len(pages)} page(s) across {len(viewports)} viewport(s). Images are written to {output_dir.relative_to(ROOT)} as they complete.")
     try:
         with tempfile.NamedTemporaryFile("w", suffix=".cjs", dir=ROOT, delete=False, encoding="utf-8") as temp:
             temp.write(RUNNER)
             runner_path = Path(temp.name)
-        result = subprocess.run(["node", str(runner_path), f"http://127.0.0.1:{port}", str(output_dir), json.dumps(pages), json.dumps(viewports), json.dumps(target)], cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        try:
+            result = subprocess.run(["node", str(runner_path), f"http://127.0.0.1:{port}", str(output_dir), json.dumps(pages), json.dumps(viewports), json.dumps(target)], cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        except KeyboardInterrupt:
+            archive = create_archive(output_dir)
+            print(f"\nCapture cancelled. Completed images were packaged in {archive.relative_to(ROOT)}.")
+            return 130
     finally:
         os.chdir(previous_cwd)
         server.shutdown()
         runner_path.unlink(missing_ok=True) if "runner_path" in locals() else None
     if result.returncode:
+        archive = create_archive(output_dir)
         print(result.stdout)
+        print(f"Completed images were packaged in {archive.relative_to(ROOT)}.")
         return result.returncode
     manifest = json.loads(result.stdout)
     manifest.update({"capturedAt": datetime.now().isoformat(timespec="seconds"), "pages": pages, "viewports": viewports, "target": target})
     output_dir.mkdir(parents=True, exist_ok=True)
     (output_dir / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    archive = create_archive(output_dir)
     captured = sum(item["status"] == "captured" for item in manifest["captures"])
     skipped = sum(item["status"] == "skipped" for item in manifest["captures"])
     failed = sum(item["status"] == "failed" for item in manifest["captures"])
     print(f"\nCaptured {captured} screenshot(s). Skipped: {skipped}. Failed: {failed}.")
     print(f"Output: {output_dir.relative_to(ROOT)}")
     print(f"Manifest: {(output_dir / 'manifest.json').relative_to(ROOT)}")
+    print(f"ZIP: {archive.relative_to(ROOT)}")
     return 1 if failed else 0
 
 

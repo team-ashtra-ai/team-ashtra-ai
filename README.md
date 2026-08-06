@@ -73,3 +73,15 @@ This edition adds:
 - Editorial manifest and authoritative research-source record in `/docs/`
 
 Every article contains between 1,500 and 2,000 words, H1–H3 headings, a top Brazil-themed image and a unique CTA.
+
+
+## Editorial immersive rebuild
+- Thin Formspree registration banner on every page
+- Contact Formspree endpoint: xljreklg
+- Application Formspree endpoint: xgawebzl
+- Dynamic active navigation
+- Unified Brazil hero system and image strips
+- Golden outline SVG icon library
+- WhatsApp, EdBot and progress-ring back-to-top widgets
+- Evergreen blog metadata and enhanced article layout
+- Image inventory: docs/IMAGE_INVENTORY.csv

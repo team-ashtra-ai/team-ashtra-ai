@@ -4,21 +4,38 @@
 from __future__ import annotations
 
 import re
+from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ROBOTS = ROOT / "robots.txt"
-CANONICAL_RE = re.compile(r'<link\b[^>]*\brel=["\']canonical["\'][^>]*\bhref=["\']([^"\']+)', re.I)
 NON_PUBLIC_PATHS = ("/.git/", "/docs/", "/node_modules/", "/scripts/", "/screenshots/")
+
+
+class CanonicalLinkParser(HTMLParser):
+    """Extract a canonical URL regardless of the order of link attributes."""
+
+    canonical: str = ""
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag.lower() != "link" or self.canonical:
+            return
+        data = {name.lower(): value or "" for name, value in attrs}
+        if "canonical" in data.get("rel", "").lower().split():
+            self.canonical = data.get("href", "")
 
 
 def site_origin() -> str:
     """Read the production origin from the home page's canonical link."""
     home = (ROOT / "index.html").read_text(encoding="utf-8")
-    match = CANONICAL_RE.search(home)
-    if not match or not match.group(1).startswith("https://"):
+    parser = CanonicalLinkParser()
+    parser.feed(home)
+    if not parser.canonical.startswith("https://"):
         raise RuntimeError("index.html must have an absolute HTTPS canonical link")
-    return match.group(1).split("/", 3)[:3][0] + "//" + match.group(1).split("/", 3)[2]
+    match = re.match(r"^(https://[^/]+)", parser.canonical)
+    if not match:
+        raise RuntimeError("index.html canonical link must include a valid HTTPS host")
+    return match.group(1)
 
 
 def main() -> int:
