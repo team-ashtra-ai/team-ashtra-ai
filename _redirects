@@ -1,4 +1,8 @@
-/login /launch 301
-/register /launch 301
-/client-login /launch 301
-/dashboard / 301
+/services/* /study/ 301
+/examples/* /prices/ 301
+/invest/* /prices/ 301
+/launch/* /apply/ 301
+/discovery/* /apply/ 301
+/schedule/* /consultation/ 301
+/pay-consultation/* /consultation/ 301
+/index.htm / 301

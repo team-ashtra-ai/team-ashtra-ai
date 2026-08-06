@@ -1,64 +1,35 @@
-import os
+#!/usr/bin/env python3
+"""Commit all project changes (including an empty checkpoint) and push them."""
+
+from __future__ import annotations
+
+from datetime import datetime
+from pathlib import Path
 import subprocess
 import sys
 
-
-def run_git(*args, capture_output=False, check=True):
-    return subprocess.run(
-        ["git", *args],
-        check=check,
-        text=True,
-        capture_output=capture_output,
-    )
+ROOT = Path(__file__).resolve().parents[1]
 
 
-def git_output(*args):
-    return run_git(*args, capture_output=True).stdout.strip()
+def git(*args: str, capture: bool = False) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(["git", *args], cwd=ROOT, text=True, capture_output=capture, check=True)
 
 
-def main():
+def main() -> int:
     try:
-        repository_root = git_output("rev-parse", "--show-toplevel")
-    except subprocess.CalledProcessError:
-        print("This command must be run inside a Git repository.", file=sys.stderr)
+        branch = git("branch", "--show-current", capture=True).stdout.strip()
+        if not branch:
+            raise RuntimeError("Cannot publish from a detached HEAD")
+        timestamp = datetime.now().astimezone().strftime("%Y-%m-%d %H:%M:%S %Z")
+        git("add", "-A")
+        git("commit", "--allow-empty", "-m", f"Site update — {timestamp}")
+        upstream = subprocess.run(["git", "rev-parse", "--verify", "@{u}"], cwd=ROOT, capture_output=True).returncode == 0
+        git("push", *( () if upstream else ("-u", "origin", branch) ))
+        print(f"Published {branch}: Site update — {timestamp}")
+        return 0
+    except (subprocess.CalledProcessError, RuntimeError) as error:
+        print(f"Publish failed: {error}", file=sys.stderr)
         return 1
-
-    os.chdir(repository_root)
-    branch = git_output("rev-parse", "--abbrev-ref", "HEAD")
-
-    if branch == "HEAD":
-        print("Cannot publish from a detached HEAD.", file=sys.stderr)
-        return 1
-
-    upstream = run_git(
-        "rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{u}", capture_output=True, check=False
-    )
-    if upstream.returncode == 0:
-        remote, remote_branch = upstream.stdout.strip().split("/", 1)
-    else:
-        remote, remote_branch = "origin", branch
-
-    # Incorporate remote-only commits before staging local work.  --ff-only
-    # prevents this helper from silently creating merge commits or resolving
-    # conflicts on the caller's behalf.
-    run_git("fetch", remote, remote_branch)
-    run_git("merge", "--ff-only", f"{remote}/{remote_branch}")
-
-    tz = os.environ.get("TZ", "America/Sao_Paulo")
-    timestamp = subprocess.run(
-        ["date", "+%Y-%m-%d %H:%M:%S %Z"],
-        check=True,
-        text=True,
-        capture_output=True,
-        env={**os.environ, "TZ": tz},
-    ).stdout.strip()
-
-    run_git("add", "-A", "--", ".", ":(exclude)screenshots/**")
-    run_git("commit", "--allow-empty", "-m", timestamp)
-
-    run_git("push", "-u", remote, f"HEAD:{remote_branch}")
-
-    return 0
 
 
 if __name__ == "__main__":

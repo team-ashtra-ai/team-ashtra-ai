@@ -1,0 +1,274 @@
+404.html
+README.md
+_headers
+_redirects
+[DIR] about
+  index.html
+[DIR] accessibility
+  index.html
+[DIR] apply
+  index.html
+[DIR] assets
+  [DIR] brand
+    apple-touch-icon.png
+    ash-tra-logo.png
+    ashtra-mark.svg
+    favicon-16.png
+    favicon-32.png
+    favicon-64.png
+    icon-192.png
+    icon-512.png
+    logo.svg
+    mark.svg
+    social-preview.png
+  [DIR] css
+    site.css
+  [DIR] js
+    pricing.js
+    site-config.js
+    site.js
+  [DIR] media
+    [DIR] blog
+      15-hour-language-study-week-brazil.svg
+      ask-for-help-solve-problems-portuguese.svg
+      atlantic-forest-parks-environmental-learning.svg
+      balanced-student-routine-brazil.svg
+      beginner-to-independent-portuguese-journey.svg
+      big-cities-interior-life-brazil.svg
+      brazil-chapter-enquiry-confident-participation.svg
+      brazil-five-regions-geography.svg
+      brazilian-conversation-social-connection.svg
+      brazilian-film-literature-art-language-study.svg
+      brazilian-food-language-belonging.svg
+      brazilian-hospitality-language-student.svg
+      brazilian-portuguese-listening-beyond-textbook.svg
+      carnival-history-music-community-brazil.svg
+      choose-brazilian-city-language-immersion.svg
+      community-belonging-through-language.svg
+      cultural-events-classroom-brazil.svg
+      daily-life-living-portuguese-language.svg
+      discover-parana-beyond-usual-itinerary.svg
+      documents-services-daily-systems-brazil.svg
+      eating-local-brazil-menus-markets.svg
+      festa-junina-language-food-tradition.svg
+      historic-cities-cultural-landscapes-brazil.svg
+      homework-exploration-brazil-language-programme.svg
+      independence-first-months-brazil.svg
+      indigenous-african-european-influences-brazil.svg
+      language-brazil-landscapes-climate.svg
+      language-emergencies-brazil.svg
+      language-study-investment-future.svg
+      learning-portuguese-brazilian-music.svg
+      learning-portuguese-culture-community-conversation.svg
+      living-brazil-adaptability.svg
+      making-friends-community-student-brazil.svg
+      migration-shaped-modern-brazil.svg
+      nature-activities-language-homework-brazil.svg
+      parana-coffee-culture-language.svg
+      portuguese-museums-memory-heritage.svg
+      portuguese-pharmacies-clinics-health-appointments.svg
+      portuguese-supermarket-bakery-street-market.svg
+      practical-portuguese-housing-transport-errands.svg
+      prepare-study-abroad-brazil.svg
+      regional-identity-brazil.svg
+      respectful-cultural-adaptation-brazil.svg
+      rivers-coastlines-geography-brazil.svg
+      student-introduction-history-brazil.svg
+      studying-portuguese-southern-brazil.svg
+      understanding-brazil-cultural-diversity.svg
+      why-study-live-londrina-brazil.svg
+      why-study-portuguese-in-brazil.svg
+      year-in-brazil-worldview.svg
+    brazil-inspiration.jpg
+    coffee-culture.svg
+    contact-lines.svg
+    culture-city.svg
+    hero-brazil.svg
+    programme-path.svg
+    support-life.svg
+[DIR] blog
+  [DIR] 15-hour-language-study-week-brazil
+    index.html
+  [DIR] ask-for-help-solve-problems-portuguese
+    index.html
+  [DIR] atlantic-forest-parks-environmental-learning
+    index.html
+  [DIR] balanced-student-routine-brazil
+    index.html
+  [DIR] beginner-to-independent-portuguese-journey
+    index.html
+  [DIR] big-cities-interior-life-brazil
+    index.html
+  [DIR] brazil-chapter-enquiry-confident-participation
+    index.html
+  [DIR] brazil-five-regions-geography
+    index.html
+  [DIR] brazilian-conversation-social-connection
+    index.html
+  [DIR] brazilian-film-literature-art-language-study
+    index.html
+  [DIR] brazilian-food-language-belonging
+    index.html
+  [DIR] brazilian-hospitality-language-student
+    index.html
+  [DIR] brazilian-portuguese-listening-beyond-textbook
+    index.html
+  [DIR] carnival-history-music-community-brazil
+    index.html
+  [DIR] category
+    [DIR] cities-regions
+      index.html
+    [DIR] culture-identity
+      index.html
+    [DIR] festivals-arts
+      index.html
+    [DIR] food-everyday-life
+      index.html
+    [DIR] future-growth
+      index.html
+    [DIR] history-heritage
+      index.html
+    [DIR] language-immersion
+      index.html
+    [DIR] nature-geography
+      index.html
+    [DIR] practical-integration
+      index.html
+    [DIR] student-life
+      index.html
+  [DIR] choose-brazilian-city-language-immersion
+    index.html
+  [DIR] community-belonging-through-language
+    index.html
+  [DIR] cultural-events-classroom-brazil
+    index.html
+  [DIR] daily-life-living-portuguese-language
+    index.html
+  [DIR] discover-parana-beyond-usual-itinerary
+    index.html
+  [DIR] documents-services-daily-systems-brazil
+    index.html
+  [DIR] eating-local-brazil-menus-markets
+    index.html
+  feed.xml
+  [DIR] festa-junina-language-food-tradition
+    index.html
+  [DIR] historic-cities-cultural-landscapes-brazil
+    index.html
+  [DIR] homework-exploration-brazil-language-programme
+    index.html
+  [DIR] independence-first-months-brazil
+    index.html
+  index.html
+  [DIR] indigenous-african-european-influences-brazil
+    index.html
+  [DIR] language-brazil-landscapes-climate
+    index.html
+  [DIR] language-emergencies-brazil
+    index.html
+  [DIR] language-study-investment-future
+    index.html
+  [DIR] learning-portuguese-brazilian-music
+    index.html
+  [DIR] learning-portuguese-culture-community-conversation
+    index.html
+  [DIR] living-brazil-adaptability
+    index.html
+  [DIR] making-friends-community-student-brazil
+    index.html
+  [DIR] migration-shaped-modern-brazil
+    index.html
+  [DIR] nature-activities-language-homework-brazil
+    index.html
+  [DIR] parana-coffee-culture-language
+    index.html
+  [DIR] portuguese-museums-memory-heritage
+    index.html
+  [DIR] portuguese-pharmacies-clinics-health-appointments
+    index.html
+  [DIR] portuguese-supermarket-bakery-street-market
+    index.html
+  [DIR] practical-portuguese-housing-transport-errands
+    index.html
+  [DIR] prepare-study-abroad-brazil
+    index.html
+  [DIR] regional-identity-brazil
+    index.html
+  [DIR] respectful-cultural-adaptation-brazil
+    index.html
+  [DIR] rivers-coastlines-geography-brazil
+    index.html
+  [DIR] student-introduction-history-brazil
+    index.html
+  [DIR] studying-portuguese-southern-brazil
+    index.html
+  [DIR] understanding-brazil-cultural-diversity
+    index.html
+  [DIR] why-study-live-londrina-brazil
+    index.html
+  [DIR] why-study-portuguese-in-brazil
+    index.html
+  [DIR] year-in-brazil-worldview
+    index.html
+[DIR] brazil
+  index.html
+[DIR] consultation
+  index.html
+[DIR] contact
+  index.html
+[DIR] cookies
+  index.html
+[DIR] docs
+  ASH-TRA_Complete_Academic_Programme_Website_Page.docx
+  BLOG_ARTICLE_INDEX.csv
+  BLOG_ARTICLE_MANIFEST.json
+  EDITORIAL_RESEARCH_SOURCES.md
+  SHA256SUMS.txt
+  START_HERE.md
+  WEBSITE_FILE_TREE.txt
+  [DIR] archive
+    ASH-TRA_All_Previous_Content_Documents.zip
+  [DIR] design-reference
+    DESIGN_SYSTEM_PRESERVED.md
+    original-about-reference.png
+    original-homepage-reference.png
+    original-site-footer.txt
+    original-site-header.txt
+  [DIR] programme
+    00_READ_ME_FIRST.docx
+    01_PROGRAMME_OVERVIEW_CURRICULUM_SYLLABUS.docx
+    02_40_WEEK_SCOPE_AND_SEQUENCE.docx
+    03_120_SESSION_SCHEDULE.csv
+  [DIR] setup
+    PUBLIC_COMPANY_FACTS.md
+    check_site.py
+[DIR] faq
+  index.html
+index.html
+[DIR] mission
+  index.html
+package.json
+[DIR] partials
+  [DIR] site-footer
+    index.html
+  [DIR] site-header
+    index.html
+[DIR] payments
+  index.html
+[DIR] prices
+  index.html
+[DIR] privacy
+  index.html
+[DIR] process
+  index.html
+robots.txt
+site.webmanifest
+sitemap.xml
+[DIR] study
+  index.html
+[DIR] support
+  index.html
+[DIR] terms
+  index.html
+[DIR] values
+  index.html
