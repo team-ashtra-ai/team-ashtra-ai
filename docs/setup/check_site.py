@@ -2,7 +2,9 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 root=Path(__file__).resolve().parents[2]
 missing=[]
+ignored={'.git','node_modules','.tmp','docs','screenshots'}
 for f in root.rglob('*.html'):
+ if any(part in ignored for part in f.relative_to(root).parts): continue
  s=BeautifulSoup(f.read_text(encoding='utf-8'),'html.parser')
  for tag,attr in [('a','href'),('img','src'),('script','src'),('link','href')]:
   for n in s.find_all(tag):

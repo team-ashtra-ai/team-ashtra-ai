@@ -5,6 +5,9 @@
   "description": "Static website for ASH-TRA Languages Brazil",
   "scripts": {
     "start": "python3 -m http.server 8080",
-    "check": "python3 docs/setup/check_site.py"
+    "check": "python3 docs/setup/check_site.py",
+    "seo:build": "python3 scripts/seo_sync.py --local --no-submit",
+    "seo:sync": "python3 scripts/seo_sync.py",
+    "postdeploy": "python3 scripts/seo_sync.py"
   }
 }

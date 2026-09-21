@@ -1,1 +1,1 @@
-window.ASHTRA_CONFIG={siteName:"ASH-TRA Languages Brazil",legalName:"ASHLYN A MERRIGAN CURSOS",email:"nativeielts@gmail.com",whatsapp:"5543991324028",whatsappDisplay:"+55 43 99132-4028",formEndpoint:"",baseUrl:"https://www.ash-tra.com"};
+window.ASHTRA_CONFIG={siteName:"ASH-TRA Languages Brazil",legalName:"ASHLYN A MERRIGAN CURSOS",email:"nativeielts@gmail.com",whatsapp:"5543991324028",whatsappDisplay:"+55 43 99132-4028",formEndpoint:"",baseUrl:"https://ash-tra.com"};

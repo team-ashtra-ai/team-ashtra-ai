@@ -10,6 +10,8 @@ __pycache__/
 .codacy/
 .codex
 .codex/
+.seo-state.json
+seo-sync.log
 .vscode/
 .sixth/
 

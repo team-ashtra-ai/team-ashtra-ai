@@ -1,3 +1,8 @@
 User-agent: *
 Allow: /
-Sitemap: https://www.ash-tra.com/sitemap.xml
+
+
+
+
+
+Sitemap: https://ash-tra.com/sitemap.xml

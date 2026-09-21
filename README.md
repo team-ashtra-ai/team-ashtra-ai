@@ -4,7 +4,7 @@ This package preserves the dark navy, blue-neon and coral ASH-TRA visual system,
 
 # ASH-TRA Languages Brazil complete static website
 
-This folder is ready for static hosting at **https://www.ash-tra.com**. It contains every requested route, shared partials, responsive CSS, JavaScript, original SVG artwork, SEO files, the price calculator, forms and EdBot.
+This folder is ready for static hosting at **https://ash-tra.com**. It contains every requested route, shared partials, responsive CSS, JavaScript, original SVG artwork, SEO files, the price calculator, forms and EdBot.
 
 ## Start locally
 
@@ -45,6 +45,14 @@ Variable cultural, transport, ticket, food, accommodation, third-party and stude
 ## Deployment
 
 Upload the contents of this folder—not the outer ZIP—to the web root. `_headers` and `_redirects` are compatible with Cloudflare Pages-style static deployment. Confirm DNS, HTTPS, form endpoint, analytics consent and email delivery before launch.
+
+### SEO synchronization
+
+`python3 scripts/seo_sync.py` (also `npm run seo:sync`) crawls the configured live site, validates and writes `sitemap.xml`, `robots.txt`, and `llms.txt`, compares indexable page content with `.seo-state.json`, then submits changed, new, and removed URLs to IndexNow. Run `npm run seo:build` before publishing so the generated discovery files ship in that deployment, then `npm run postdeploy` after publishing to crawl the live site and notify IndexNow. Configure `SEO_SITE_URL` if the canonical origin changes. The default is `https://ash-tra.com/`, matching the canonical URLs in this site.
+
+Set `INDEXNOW_KEY` to a key you have generated for this host and publish the matching public key file at `https://ash-tra.com/<key>.txt` before enabling submission. A local build writes this file automatically when `INDEXNOW_KEY` is set and no custom key location is configured. Set `INDEXNOW_KEY_LOCATION` only when the file uses another path on the same host. The key is public by IndexNow design; do not use a secret from another service. The live command checks that the key file is reachable and contains the configured key before submitting. For deployment automation, configure the hosting pipeline's build command to run `npm run seo:build` and its post-deploy command to run `npm run postdeploy` with `INDEXNOW_KEY` and `SEO_SITE_URL` set, and persist `.seo-state.json` between runs (for example, as a CI cache/artifact). The repository does not contain deployment credentials or a configured hosting workflow, so the host-side build and post-deploy hooks must be enabled in the hosting account. Since this is a static site, post-deploy crawl output is written to the runner; publishing changed discovery files still requires the host's next deployment unless its pipeline publishes build artifacts after the crawl.
+
+The script logs to `seo-sync.log`, retries transient IndexNow failures, and does not advance its saved baseline when URL submissions were skipped or rejected. IndexNow covers Bing and participating engines; deprecated generic sitemap ping endpoints are not called. Google's sitemap discovery remains available through the `Sitemap` directive in `robots.txt` and Search Console.
 
 ## Pre-launch checklist
 
